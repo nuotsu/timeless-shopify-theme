@@ -1,13 +1,16 @@
 {
-	"sections": {
-		"hero-centered": {
-			"type": "hero-centered",
-			"settings": {
-
-			}
-		}
-	},
-	"order": [
-		"hero-centered"
-	]
+  "sections": {
+    "hero-centered": {
+      "type": "hero-centered",
+      "settings": {}
+    },
+    "placeholder": {
+      "type": "placeholder",
+      "settings": {}
+    }
+  },
+  "order": [
+    "hero-centered",
+    "placeholder"
+  ]
 }

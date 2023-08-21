@@ -1,20 +1,50 @@
-<details class="p-4 bg-gray-100 rte border-2 border-dashed border-gray-300">
-  <summary>🚧 Timeless Theme Documentation</summary>
+{%- if request.design_mode -%}
+<details class="p-4 bg-gray-100 rte border-2 border-dashed border-gray-300" open>
+  <summary class="h2">🚧 Timeless Theme Documentation</summary>
   <table class="w-full bg-white">
     <tr>
       <td>Tailwind CSS Configuration</td>
       <td><code>snippets/tailwind.liquid</code></td>
+      <td>
+        <ul>
+          <li>To add custom CSS, use the Custom CSS editor found in the {{ 'theme editor' | link_to: 'https://shopify.dev/docs/themes/tools/online-editor', class: 'link' }}</li>
+        </ul>
+      </td>
     </tr>
   </table>
 </details>
+{%- endif -%}
+
+{% stylesheet %}
+  .section-documentation:empty {
+    display: none;
+  }
+{% endstylesheet %}
 
 {% schema %}
 {
-  "name": "documentation",
+  "name": "Theme Documentation",
   "tag": "section",
-  "class": "p-4",
+  "class": "section-documentation p-4",
+  "limit": 1,
   "settings": [
-
-  ]
+    {
+      "type": "header",
+      "content": "Theme Documentation",
+      "info": "Visible only in the Theme Editor"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Theme Documentation",
+      "settings": {
+      }
+    }
+  ],
+  "enabled_on": {
+    "templates": [
+      "*"
+    ]
+  }
 }
 {% endschema %}

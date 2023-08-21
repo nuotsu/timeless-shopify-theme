@@ -3,6 +3,7 @@
     "paint": "#fff",
     "primary": "{{ shop.brand.colors.primary[0].background }}",
     "secondary": "{{ shop.brand.colors.secondary[0].background }}",
+    "font_body": "sans-serif",
     "content_for_index": [
 
     ]

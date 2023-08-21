@@ -11,20 +11,46 @@ tailwind.config = {
         // accents
         primary: '{{ settings.primary }}',
         secondary: '{{ settings.secondary }}',
-      }
+      },
+      fontFamily: {
+        heading: `{{ settings.font_heading.family }},{{ settings.font_heading.fallback_families }}`,
+        body: `{{ settings.font_body.family }},{{ settings.font_body.fallback_families }}`,
+      },
     }
   }
 }
 </script>
 
 <style type="text/tailwindcss">
+{{ settings.font_heading | font_face: font_display: string }}
+{{ settings.font_body | font_face: font_display: string }}
+
 @layer base {
   body {
-    @apply bg-paint text-ink accent-primary;
+    @apply bg-paint text-ink accent-primary font-body;
   }
 
   summary {
     cursor: pointer;
+  }
+}
+
+@layer components {
+  /* typography */
+  ._h {
+    @apply font-heading;
+  }
+  .h1 { @apply _h; }
+  .h2 { @apply _h; }
+  .h3 { @apply _h; }
+  .h4 { @apply _h; }
+  .h5 { @apply _h; }
+  .h6 { @apply _h; }
+
+  /* links, CTAs */
+
+  .link {
+    @apply underline decoration-gray-300 hover:decoration-primary;
   }
 }
 

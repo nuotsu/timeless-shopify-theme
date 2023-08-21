@@ -3,13 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Timeless</title>
+  <title>
+    {%- liquid
+      echo page_title
+      unless page_title == shop.name
+        echo ' | ' | append: shop.name
+      endunless
+    -%}
+  </title>
 
   {% render 'tailwind' %}
 
   {{ content_for_header }}
 </head>
 <body>
-  {{ content_for_layout }}
+  {% liquid
+    sections 'header-groups'
+    echo content_for_layout
+    sections 'footer-groups'
+  %}
 </body>
 </html>

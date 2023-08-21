@@ -1,0 +1,13 @@
+{
+	"sections": {
+		"hero-centered": {
+			"type": "hero-centered",
+			"settings": {
+
+			}
+		}
+	},
+	"order": [
+		"hero-centered"
+	]
+}

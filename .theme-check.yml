@@ -1,0 +1,5 @@
+RemoteAsset:
+  enabled: false
+ParserBlockingJavaScript:
+  ignore:
+    - snippets/tailwind.liquid

@@ -1,11 +1,11 @@
 {
   "sections": {
-    "placeholder": {
-      "type": "placeholder",
+    "cart": {
+      "type": "cart",
       "settings": {}
     }
   },
   "order": [
-    "placeholder"
+    "cart"
   ]
 }

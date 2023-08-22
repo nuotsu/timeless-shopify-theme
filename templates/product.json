@@ -1,11 +1,11 @@
 {
   "sections": {
-    "placeholder": {
-      "type": "placeholder",
+    "product": {
+      "type": "product",
       "settings": {}
     }
   },
   "order": [
-    "placeholder"
+    "product"
   ]
 }

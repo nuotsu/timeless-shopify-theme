@@ -1,0 +1,133 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
+
+<div class="section grid md:grid-cols-2 items-start gap-8">
+  <figure>
+    <div class="swiper">
+      <div class="swiper-wrapper">
+        {%- for image in product.images -%}
+          <div class="swiper-slide" data-variant-id="{{ image.variants[0].id }}">
+            {{ image
+              | image_url: width: 800, height: 800
+              | image_tag: class: 'w-full object-cover', loading: 'lazy'
+            }}
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </figure>
+
+  <div class="grid gap-2">
+    {%- for block in section.blocks -%}
+      {%- case block.type -%}
+        {%- when 'title' -%}
+          <h1 class="h1">{{ product.title }}</h1>
+        {%- when 'vendor' -%}
+          <p class="technical text-xs">{{ product.vendor }}</p>
+      {%- endcase -%}
+    {%- endfor -%}
+
+    {% form 'product', product, class: 'grid gap-2' %}
+      {%- unless product.has_only_default_variant -%}
+        <select name="id">
+          {%- for variant in product.variants -%}
+            <option
+              value="{{ variant.id }}"
+              {% if variant == product.selected_or_first_available_variant %}selected{% endif %}
+            >
+              {{ variant.title }} — {{ variant.price | money }}
+
+              {% if section.settings.show_inventory_quantity -%}
+                ({{ variant.inventory_quantity }} left)
+              {%- endif -%}
+            </option>
+          {%- endfor -%}
+        </select>
+
+        {%- for product_option in product.options_with_values -%}
+          <fieldset>
+            <legend>{{ product_option.name }}</legend>
+
+            {%- for value in product_option.values -%}
+              <label>
+                <input
+                  name="{{ product_option.name | handleize }}"
+                  id="{{ value }}"
+                  type="radio"
+                  {% if product_option.selected %}checked{% endif %}
+                />
+                {{ value }}
+              </label>
+            {%- endfor -%}
+          </fieldset>
+        {%- endfor -%}
+      {%- endunless -%}
+
+      <label>
+        Quantity
+        <input class="text-center" name="quantity" value="1" min="1" type="number" required />
+      </label>
+    {% endform %}
+  </div>
+</div>
+
+<script type="module" defer>
+  import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.mjs'
+
+  const swiper = new Swiper('#shopify-section-{{ section.id }} .swiper', {
+
+  })
+
+  document.querySelector('#shopify-section-{{ section.id }} form').addEventListener('input', productFormOnInput)
+
+  function productFormOnInput(form) {
+    const formData = new FormData(form.currentTarget)
+    if (formData.has('id')) {
+      const variantImage = document.querySelector(`[data-variant-id="${ formData.get('id') }"]`)
+      if (!!variantImage) {
+        const index = Array.from(variantImage.parentNode.children).indexOf(variantImage)
+        swiper.slideTo(index)
+      }
+    }
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Product",
+  "tag": "article",
+  "class": "section-product",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_inventory_quantity",
+      "label": "Show inventory quantity",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Title",
+      "type": "title",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Title"
+        }
+      ]
+    },
+    {
+      "name": "Vendor",
+      "type": "vendor",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Vendor"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

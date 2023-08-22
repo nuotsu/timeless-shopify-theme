@@ -1,0 +1,20 @@
+<table class="rte w-full">
+  {%- for line_item in cart.items -%}
+    <tr>
+      <td>{{ line_item.title }}</td>
+      <td>x {{ line_item.quantity }}</td>
+      <td><a href="{{ line_item.url_to_remove }}">🗑️</a></td>
+    </tr>
+  {%- endfor -%}
+</table>
+
+{% schema %}
+{
+  "name": "Cart",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+
+  ]
+}
+{% endschema %}

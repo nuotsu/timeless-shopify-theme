@@ -1,4 +1,18 @@
-<a href="{{ routes.root_url }}">{{ shop.name }}</a>
+<div class="section p-4">
+  <div>
+    <a href="{{ routes.root_url }}">{{ shop.name }}</a>
+  </div>
+
+  <nav>
+    <a href="{{ routes.cart_url }}">
+      Cart
+
+      {%- if cart.item_count > 0 -%}
+        ({{ cart.item_count }})
+      {%- endif -%}
+    </a>
+  </nav>
+</div>
 
 <style>
   .header {
@@ -11,7 +25,7 @@
 {
   "name": "Header",
   "tag": "header",
-  "class": "header",
+  "class": "header sticky z-10 top-0",
   "settings": [
     {
       "type": "color_scheme",

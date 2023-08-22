@@ -1,9 +1,7 @@
-<div class="section">
-  <p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}.</p>
-</div>
+<a href="{{ routes.root_url }}">{{ shop.name }}</a>
 
 <style>
-  .footer {
+  .header {
     background-color: {{ section.settings.color_scheme.settings.canvas }};
     color: {{ section.settings.color_scheme.settings.ink }};
   }
@@ -11,9 +9,9 @@
 
 {% schema %}
 {
-  "name": "Footer",
-  "tag": "footer",
-  "class": "footer",
+  "name": "Header",
+  "tag": "header",
+  "class": "header",
   "settings": [
     {
       "type": "color_scheme",

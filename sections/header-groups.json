@@ -1,6 +1,15 @@
 {
   "name": "Header",
   "type": "header",
-  "sections": {},
-  "order": []
+  "sections": {
+    "header": {
+      "type": "header",
+      "settings": {
+        "color_scheme": "default"
+      }
+    }
+  },
+  "order": [
+    "header"
+  ]
 }

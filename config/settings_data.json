@@ -1,11 +1,30 @@
 {
   "current": {
-    "paint": "#fff",
-    "primary": "{{ shop.brand.colors.primary[0].background }}",
-    "secondary": "{{ shop.brand.colors.secondary[0].background }}",
     "font_body": "sans-serif",
     "content_for_index": [
 
-    ]
+    ],
+    "color_schemes": {
+      "default": {
+        "settings": {
+          "canvas": "#ffffff",
+          "ink": "#000000",
+          "primary": "{{ shop.brand.colors.primary[0].background }}",
+          "primary_contrasting": "{{ shop.brand.colors.primary[0].foreground }}",
+          "secondary": "{{ shop.brand.colors.secondary[0].background }}",
+          "secondary_contrasting": "{{ shop.brand.colors.secondary[0].foreground }}"
+        }
+      },
+      "scheme-f9d63336-e4c3-4447-92ed-d3e1f73e6691": {
+        "settings": {
+          "canvas": "#000000",
+          "ink": "#fff",
+          "primary": "{{ shop.brand.colors.primary[0].background }}",
+          "primary_contrasting": "{{ shop.brand.colors.primary[0].foreground }}",
+          "secondary": "{{ shop.brand.colors.secondary[0].background }}",
+          "secondary_contrasting": "{{ shop.brand.colors.secondary[0].foreground }}"
+        }
+      }
+    }
   }
 }

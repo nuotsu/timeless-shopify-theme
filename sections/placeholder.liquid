@@ -1,0 +1,38 @@
+{% if request.design_mode %}
+  <div class="section p-4 text-center rte">
+    <h2>Welcome to the Timeless Theme</h2>
+
+    {% if shop.brand.slogan %}
+      <h3>{{ shop.brand.slogan }}</h3>
+    {% endif %}
+
+    <p><small>This is a placeholder section that is only visible in the Theme Editor.</small></p>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Placeholder",
+  "tag": "section",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Placeholder section",
+      "info": "Visible only in the Theme Editor"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Placeholder",
+      "settings": {
+      }
+    }
+  ],
+  "enabled_on": {
+    "templates": [
+      "*"
+    ]
+  }
+}
+{% endschema %}

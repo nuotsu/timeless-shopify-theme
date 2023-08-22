@@ -11,39 +11,70 @@
     "name": "Styles",
     "settings": [
       {
-        "type": "header",
-        "content": "Base colors"
-      },
-      {
-        "type": "color",
-        "id": "paint",
-        "label": "Paint",
-        "default": "#fff",
-        "info": "Background color"
-      },
-      {
-        "type": "color",
-        "id": "ink",
-        "label": "Ink",
-        "default": "#000",
-        "info": "Text color"
-      },
-      {
-        "type": "header",
-        "content": "Accent",
-        "info": "Add brand colors from Settings > Brand > Colors"
-      },
-      {
-        "type": "color",
-        "id": "primary",
-        "label": "Primary accent",
-        "default": "#d5001c"
-      },
-      {
-        "type": "color",
-        "id": "secondary",
-        "label": "Secondary",
-        "default": "#f4c827"
+        "type": "color_scheme_group",
+        "id": "color_schemes",
+        "definition": [
+          {
+            "type": "header",
+            "content": "Base"
+          },
+          {
+            "type": "color",
+            "id": "canvas",
+            "label": "Canvas",
+            "default": "#fff"
+          },
+          {
+            "type": "color",
+            "id": "ink",
+            "label": "Ink",
+            "default": "#000"
+          },
+          {
+            "type": "header",
+            "content": "Primary"
+          },
+          {
+            "type": "color",
+            "id": "primary",
+            "label": "Primary",
+            "default": "#d5001c"
+          },
+          {
+            "type": "color",
+            "id": "primary_contrasting",
+            "label": "Primary contrasting",
+            "default": "#fff"
+          },
+          {
+            "type": "header",
+            "content": "Secondary"
+          },
+          {
+            "type": "color",
+            "id": "secondary",
+            "label": "Secondary",
+            "default": "#f4c827"
+          },
+          {
+            "type": "color",
+            "id": "secondary_contrasting",
+            "label": "Secondary contrasting",
+            "default": "#000"
+          }
+        ],
+        "role": {
+          "background": "canvas",
+          "text": "ink",
+          "primary_button": "primary",
+          "on_primary_button": "primary_contrasting",
+          "primary_button_border": "primary",
+          "secondary_button": "secondary",
+          "on_secondary_button": "secondary_contrasting",
+          "secondary_button_border": "secondary",
+          "links": "primary",
+          "icons": "ink"
+        }
       },
       {
         "type": "header",

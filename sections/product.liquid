@@ -29,12 +29,17 @@
           <h1 class="h1">{{ product.title }}</h1>
         {%- when 'vendor' -%}
           <p class="technical text-xs">{{ product.vendor }}</p>
+        {%- when 'price' -%}
+          <p>{{ product.price | money }}</p>
       {%- endcase -%}
     {%- endfor -%}
 
     {% form 'product', product, class: 'grid gap-2' %}
-      {%- unless product.has_only_default_variant -%}
-        <select name="id" disabled>
+      {%- if product.has_only_default_variant -%}
+        <input name="id" value="{{ product.selected_or_first_available_variant.id }}" hidden>
+
+      {%- else -%}
+        <select name="id" hidden>
           {%- for variant in product.variants -%}
             <option
               value="{{ variant.id }}"
@@ -42,7 +47,6 @@
               {% if variant.option1 %}data-option1="{{ variant.option1 }}"{% endif %}
               {% if variant.option2 %}data-option2="{{ variant.option2 }}"{% endif %}
               {% if variant.option3 %}data-option3="{{ variant.option3 }}"{% endif %}
-              {% unless variant.available %}disabled{% endunless %}
             >
               {{ variant.title }} — {{ variant.price | money }}
 
@@ -55,7 +59,7 @@
 
         {%- for product_option in product.options_with_values -%}
           <fieldset>
-            <legend>{{ product_option.name }}</legend>
+            <legend class="technical">{{ product_option.name }}</legend>
 
             {%- for value in product_option.values -%}
               <label>
@@ -64,19 +68,23 @@
                   name="option{{ product_option.position }}"
                   value="{{ value }}"
                   type="radio"
-                  {% if product_option.selected %}checked{% endif %}
+                  {% if product_option.selected or forloop.index0 == 0 %}checked{% endif %}
                 />
                 {{ value }}
               </label>
             {%- endfor -%}
           </fieldset>
         {%- endfor -%}
-      {%- endunless -%}
+      {%- endif -%}
 
       <label>
-        Quantity
+        <span class="technical">Quantity</span>
         <input class="text-center" name="quantity" value="1" min="1" type="number" required />
       </label>
+
+      <p>
+        <button class="action" type="submit">Buy now</button>
+      </p>
     {% endform %}
   </div>
 </div>
@@ -91,33 +99,37 @@
   const productForm = document.querySelector('#shopify-section-{{ section.id }} form')
   const variantSelector = productForm.querySelector('[name="id"]')
 
-  const selectedOptions = variantSelector?.selectedOptions[0].dataset
-  for (const [key, value] of Object.entries(selectedOptions)) {
-    const option = productForm.querySelector(`[name="${ key }"][value="${ value }"]`)
-    if (!!option) option.checked = true
-  }
+  if (!!variantSelector) {
+    const selectedOptions = variantSelector?.selectedOptions[0].dataset
+    for (const [key, value] of Object.entries(selectedOptions)) {
+      const option = productForm.querySelector(`[name="${ key }"][value="${ value }"]`)
+      if (!!option) option.checked = true
+    }
 
-  productForm.addEventListener('input', () => {
-    const formData = new FormData(productForm)
+    productForm.addEventListener('input', () => {
+      const formData = new FormData(productForm)
 
-    const selector = Array.from(formData.keys())?.reduce((acc, key) => {
-      if (/option[123]/g.test(key)) {
-        acc += `[data-${ key }="${ formData.get(key) }"]`
+      const selector = Array.from(formData.keys())?.reduce((acc, key) => {
+        if (/option[123]/g.test(key)) {
+          acc += `[data-${ key }="${ formData.get(key) }"]`
+        }
+        return acc
+      }, 'option')
+
+      const newValue = productForm.querySelector(selector)?.value
+      if (!!newValue) {
+        variantSelector.value = newValue
       }
-      return acc
-    }, 'option')
 
-    const newValue = productForm.querySelector(selector)?.value
-    if (!!newValue) {
-      variantSelector.value = newValue
-    }
+      console.log(formData)
 
-    const variantImage = document.querySelector(`[data-variant-id="${ newValue }"]`)
-    if (!!variantImage) {
-      const index = Array.from(variantImage.parentNode.children).indexOf(variantImage)
-      swiper.slideTo(index)
-    }
-  })
+      const variantImage = document.querySelector(`[data-variant-id="${ newValue }"]`)
+      if (!!variantImage) {
+        const index = Array.from(variantImage.parentNode.children).indexOf(variantImage)
+        swiper.slideTo(index)
+      }
+    })
+  }
 </script>
 
 {% schema %}
@@ -154,6 +166,17 @@
         {
           "type": "header",
           "content": "Vendor"
+        }
+      ]
+    },
+    {
+      "name": "Price",
+      "type": "price",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Price"
         }
       ]
     }

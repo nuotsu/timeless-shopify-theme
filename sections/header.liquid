@@ -16,7 +16,7 @@
 
 <style>
   .header {
-    background-color: {{ section.settings.color_scheme.settings.canvas }};
+    background-color: {{ section.settings.color_scheme.settings.canvas }}80;
     color: {{ section.settings.color_scheme.settings.ink }};
   }
 </style>
@@ -25,7 +25,7 @@
 {
   "name": "Header",
   "tag": "header",
-  "class": "header sticky z-10 top-0",
+  "class": "header sticky z-10 top-0 backdrop-blur",
   "settings": [
     {
       "type": "color_scheme",

@@ -1,0 +1,21 @@
+{%- liquid
+  if product.has_only_default_variant
+    assign p = product
+  else
+    assign p = product.selected_or_first_available_variant
+  endif
+-%}
+
+{%- capture qty -%}
+  <span data-inventory-quantity>
+    {{- p.inventory_quantity -}}
+  </span>
+{%- endcapture -%}
+
+<span>
+  {{ text
+    | escape
+    | default: '# left'
+    | replace: '#', qty
+  }}
+</span>

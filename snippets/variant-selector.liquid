@@ -1,0 +1,39 @@
+{%- if product.has_only_default_variant -%}
+  <input name="id" value="{{ product.selected_or_first_available_variant.id }}" hidden>
+
+{%- else -%}
+  <select name="id" hidden>
+    {%- for variant in product.variants -%}
+      <option
+        value="{{ variant.id }}"
+        {% if variant == product.selected_or_first_available_variant %}selected{% endif %}
+        {% if variant.option1 %}data-option1="{{ variant.option1 }}"{% endif %}
+        {% if variant.option2 %}data-option2="{{ variant.option2 }}"{% endif %}
+        {% if variant.option3 %}data-option3="{{ variant.option3 }}"{% endif %}
+        data-inventory="{{ variant.inventory_quantity }}"
+      >
+        {{ variant | json }}
+      </option>
+    {%- endfor -%}
+  </select>
+
+  {%- for product_option in product.options_with_values -%}
+    <fieldset>
+      <legend class="technical text-xs">{{ product_option.name }}</legend>
+
+      {%- for value in product_option.values -%}
+        <label>
+          <input
+            class="product-options"
+            name="option{{ product_option.position }}"
+            value="{{ value }}"
+            type="radio"
+            {% if product_option.selected or forloop.index0 == 0 %}checked{% endif %}
+          />
+          {{ value }}
+        </label>
+      {%- endfor -%}
+    </fieldset>
+  {%- endfor -%}
+
+{%- endif -%}

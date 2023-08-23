@@ -1,0 +1,17 @@
+{%- liquid
+  if product.has_only_default_variant
+    assign p = product
+  else
+    assign p = product.selected_or_first_available_variant
+  endif
+-%}
+
+<div>
+  <span data-price>{{ p.price | money }}</span>
+  <s
+    data-compare-at-price
+    {% unless p.price < p.compare_at_price %}hidden{% endunless %}
+  >
+    {{ p.compare_at_price | money }}
+  </s>
+</div>

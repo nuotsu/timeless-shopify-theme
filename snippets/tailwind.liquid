@@ -10,7 +10,9 @@ tailwind.config = {
         ink: '{{ settings.color_schemes.default.settings.ink }}',
         // accents
         primary: '{{ settings.color_schemes.default.settings.primary }}',
+        'primary-contrasting': '{{ settings.color_schemes.default.settings.primary_contrasting }}',
         secondary: '{{ settings.color_schemes.default.settings.secondary }}',
+        'secondary_contrasting': '{{ settings.color_schemes.default.settings.secondary_contrasting }}',
       },
       fontFamily: {
         heading: `{{ settings.font_heading.family }},{{ settings.font_heading.fallback_families }}`,
@@ -62,6 +64,14 @@ tailwind.config = {
   }
 
   /* links, CTAs */
+
+  ._btn {
+    padding: 0.5em 1em;
+  }
+
+  .action {
+    @apply _btn bg-primary text-primary-contrasting;
+  }
 
   .link {
     @apply underline decoration-gray-300 hover:decoration-primary;

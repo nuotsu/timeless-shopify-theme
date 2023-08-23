@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
 
-<div class="section grid md:grid-cols-2 items-start gap-8">
+<div class="section grid md:grid-cols-2 items-start gap-8 [&>*]:min-w-0">
   <figure>
     <div class="swiper">
       <div class="swiper-wrapper">
@@ -22,75 +22,75 @@
     </div>
   </figure>
 
-  <div class="grid gap-2">
+  {% form 'product', product, class: 'grid gap-2' %}
     {%- for block in section.blocks -%}
       {%- case block.type -%}
         {%- when 'title' -%}
           <h1 class="h1">{{ product.title }}</h1>
+
         {%- when 'vendor' -%}
           <p class="technical text-xs">{{ product.vendor }}</p>
+
         {%- when 'price' -%}
-          <p>{{ product.price | money }}</p>
+          {%- render 'price' -%}
+
+        {%- when 'variant-selector' -%}
+          {% render 'variant-selector' %}
+
+        {%- when 'quantity-selector' -%}
+          <label>
+            <span class="technical text-xs">Quantity</span>
+            <input class="text-center" name="quantity" value="1" min="1" type="number" required />
+          </label>
+
+        {%- when 'buy-button' -%}
+          <p>
+            <button class="action" type="submit">
+              {{ block.settings.text | default: 'Add to cart' | escape }}
+              {%- if block.settings.inventory_text != blank -%}
+                {% render 'inventory', text: block.settings.inventory_text %}
+              {%- endif -%}
+            </button>
+          </p>
+
+        {%- when 'inventory' -%}
+          {%- liquid
+            if product.has_only_default_variant
+              assign p = product
+            else
+              assign p = product.selected_or_first_available_variant
+            endif
+          -%}
+
+          <div
+            {% if block.settings.enable_threshold %}
+              data-inventory-threshold="{{ block.settings.threshold }}"
+              {% if p.inventory_quantity > block.settings.threshold %}hidden{% endif %}
+            {% endif %}
+          >
+            {% render 'inventory', text: block.settings.text %}
+          </div>
+
+        {%- when 'custom' -%}
+          <div class="rte">{{ block.settings.richtext }}</div>
+
+        {%- when 'divider' -%}
+          <hr class="my-2">
+
       {%- endcase -%}
     {%- endfor -%}
-
-    {% form 'product', product, class: 'grid gap-2' %}
-      {%- if product.has_only_default_variant -%}
-        <input name="id" value="{{ product.selected_or_first_available_variant.id }}" hidden>
-
-      {%- else -%}
-        <select name="id" hidden>
-          {%- for variant in product.variants -%}
-            <option
-              value="{{ variant.id }}"
-              {% if variant == product.selected_or_first_available_variant %}selected{% endif %}
-              {% if variant.option1 %}data-option1="{{ variant.option1 }}"{% endif %}
-              {% if variant.option2 %}data-option2="{{ variant.option2 }}"{% endif %}
-              {% if variant.option3 %}data-option3="{{ variant.option3 }}"{% endif %}
-            >
-              {{ variant.title }} — {{ variant.price | money }}
-
-              {% if section.settings.show_inventory_quantity -%}
-                ({{ variant.inventory_quantity }} left)
-              {%- endif -%}
-            </option>
-          {%- endfor -%}
-        </select>
-
-        {%- for product_option in product.options_with_values -%}
-          <fieldset>
-            <legend class="technical">{{ product_option.name }}</legend>
-
-            {%- for value in product_option.values -%}
-              <label>
-                <input
-                  class="product-options"
-                  name="option{{ product_option.position }}"
-                  value="{{ value }}"
-                  type="radio"
-                  {% if product_option.selected or forloop.index0 == 0 %}checked{% endif %}
-                />
-                {{ value }}
-              </label>
-            {%- endfor -%}
-          </fieldset>
-        {%- endfor -%}
-      {%- endif -%}
-
-      <label>
-        <span class="technical">Quantity</span>
-        <input class="text-center" name="quantity" value="1" min="1" type="number" required />
-      </label>
-
-      <p>
-        <button class="action" type="submit">Buy now</button>
-      </p>
-    {% endform %}
-  </div>
+  {% endform %}
 </div>
 
 <script type="module" defer>
   import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.mjs'
+
+  const { format: formatMoney } = new Intl.NumberFormat('{{ request.locale.iso_code }}', {
+    style: 'currency',
+    currency: '{{ shop.currency }}',
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  })
 
   const swiper = new Swiper('#shopify-section-{{ section.id }} .swiper', {
 
@@ -100,6 +100,7 @@
   const variantSelector = productForm.querySelector('[name="id"]')
 
   if (!!variantSelector) {
+    // initialize options (populate on page load)
     const selectedOptions = variantSelector?.selectedOptions[0].dataset
     for (const [key, value] of Object.entries(selectedOptions)) {
       const option = productForm.querySelector(`[name="${ key }"][value="${ value }"]`)
@@ -118,15 +119,46 @@
 
       const newValue = productForm.querySelector(selector)?.value
       if (!!newValue) {
+        // update <select name="id">
         variantSelector.value = newValue
-      }
 
-      console.log(formData)
+        // update [data-*]
+        const [selectedOption] = variantSelector.selectedOptions
+        const selected = JSON.parse(selectedOption.innerHTML)
 
-      const variantImage = document.querySelector(`[data-variant-id="${ newValue }"]`)
-      if (!!variantImage) {
-        const index = Array.from(variantImage.parentNode.children).indexOf(variantImage)
-        swiper.slideTo(index)
+        productForm.querySelectorAll('[data-price]').forEach(elem => elem.textContent = formatMoney(selected.price / 100))
+
+        productForm.querySelectorAll('[data-compare-at-price]').forEach(elem => {
+          elem.textContent = formatMoney(selected.compare_at_price / 100)
+
+          // toggle data-compare-at-price
+          if (selected.price < selected.compare_at_price) {
+            elem.removeAttribute('hidden')
+          } else {
+            elem.setAttribute('hidden', '')
+          }
+        })
+
+        productForm.querySelectorAll('[data-inventory-quantity]').forEach(elem => {
+          elem.textContent = selectedOption.dataset.inventory
+
+          // toggle depending on threshold
+          const wrapper = elem.closest('[data-inventory-threshold]')
+          if (wrapper?.dataset.inventoryThreshold) {
+            if (selectedOption.dataset.inventory > Number(wrapper.dataset.inventoryThreshold)) {
+              wrapper.setAttribute('hidden', '')
+            } else {
+              wrapper.removeAttribute('hidden')
+            }
+          }
+        })
+
+        // update swiper
+        const variantImage = document.querySelector(`[data-variant-id="${ newValue }"]`)
+        if (!!variantImage) {
+          const index = Array.from(variantImage.parentNode.children).indexOf(variantImage)
+          swiper.slideTo(index)
+        }
       }
     })
   }
@@ -139,12 +171,7 @@
   "class": "section-product",
   "limit": 1,
   "settings": [
-    {
-      "type": "checkbox",
-      "id": "show_inventory_quantity",
-      "label": "Show inventory quantity",
-      "default": true
-    }
+
   ],
   "blocks": [
     {
@@ -152,10 +179,7 @@
       "type": "title",
       "limit": 1,
       "settings": [
-        {
-          "type": "header",
-          "content": "Title"
-        }
+
       ]
     },
     {
@@ -163,10 +187,7 @@
       "type": "vendor",
       "limit": 1,
       "settings": [
-        {
-          "type": "header",
-          "content": "Vendor"
-        }
+
       ]
     },
     {
@@ -174,10 +195,88 @@
       "type": "price",
       "limit": 1,
       "settings": [
+
+      ]
+    },
+    {
+      "name": "Variant selector",
+      "type": "variant-selector",
+      "limit": 1,
+      "settings": [
+
+      ]
+    },
+    {
+      "name": "Quantity selector",
+      "type": "quantity-selector",
+      "limit": 1,
+      "settings": [
+
+      ]
+    },
+    {
+      "name": "Buy button",
+      "type": "buy-button",
+      "settings": [
         {
-          "type": "header",
-          "content": "Price"
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "placeholder": "Add to cart"
+        },
+        {
+          "type": "text",
+          "id": "inventory_text",
+          "label": "Inventory text",
+          "info": "\"#\" will be replaced with the actual inventory quantity. Leave blank to hide.",
+          "default": "(# left)",
+          "placeholder": "(# left)"
         }
+      ]
+    },
+    {
+      "name": "Inventory",
+      "type": "inventory",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "info": "\"#\" will be replaced with the actual inventory quantity",
+          "default": "Only # left in stock!",
+          "placeholder": "Only # left in stock!"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_threshold",
+          "label": "Enable threshold",
+          "default": true,
+          "info": "Only show when inventory is below the threshold"
+        },
+        {
+          "type": "number",
+          "id": "threshold",
+          "label": "Threshold",
+          "default": 10
+        }
+      ]
+    },
+    {
+      "name": "Custom",
+      "type": "custom",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "richtext",
+          "label": "Richtext"
+        }
+      ]
+    },
+    {
+      "name": "Divider",
+      "type": "divider",
+      "settings": [
+
       ]
     }
   ]

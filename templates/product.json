@@ -2,7 +2,25 @@
   "sections": {
     "product": {
       "type": "product",
-      "settings": {}
+      "blocks": {
+        "8827b8ca-82ef-4494-b7ae-5b4db5859373": {
+          "type": "vendor",
+          "settings": {
+          }
+        },
+        "dbad3ae8-84d5-48a6-9ab8-8885e1ee2c41": {
+          "type": "title",
+          "settings": {
+          }
+        }
+      },
+      "block_order": [
+        "8827b8ca-82ef-4494-b7ae-5b4db5859373",
+        "dbad3ae8-84d5-48a6-9ab8-8885e1ee2c41"
+      ],
+      "settings": {
+        "show_inventory_quantity": true
+      }
     }
   },
   "order": [

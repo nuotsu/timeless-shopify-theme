@@ -2,7 +2,10 @@
   "sections": {
     "cart": {
       "type": "cart",
-      "settings": {}
+      "settings": {
+        "empty_cta_link": "shopify:\/\/collections",
+        "empty_cta_label": ""
+      }
     }
   },
   "order": [

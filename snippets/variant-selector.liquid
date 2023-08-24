@@ -10,7 +10,7 @@
         {% if variant.option1 %}data-option1="{{ variant.option1 }}"{% endif %}
         {% if variant.option2 %}data-option2="{{ variant.option2 }}"{% endif %}
         {% if variant.option3 %}data-option3="{{ variant.option3 }}"{% endif %}
-        data-inventory="{{ variant.inventory_quantity }}"
+        {% if variant.inventory_quantity %}data-inventory="{{ variant.inventory_quantity }}"{% endif %}
       >
         {{ variant | json }}
       </option>

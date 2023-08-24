@@ -8,7 +8,7 @@
 
 {%- capture qty -%}
   <span data-inventory-quantity>
-    {{- p.inventory_quantity -}}
+    {{- p.inventory_quantity | default: 0 -}}
   </span>
 {%- endcapture -%}
 

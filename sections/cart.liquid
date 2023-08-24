@@ -1,12 +1,79 @@
-<table class="rte w-full">
-  {%- for line_item in cart.items -%}
-    <tr>
-      <td>{{ line_item.title }}</td>
-      <td>x {{ line_item.quantity }}</td>
-      <td><a href="{{ line_item.url_to_remove }}">🗑️</a></td>
-    </tr>
-  {%- endfor -%}
-</table>
+<header class="text-center rte">
+  <h2>Cart</h2>
+
+  {%- if cart.empty? -%}
+    <p>Your cart is empty</p>
+  {%- endif -%}
+
+  <p>
+    <a class="action" href="{{ section.settings.empty_cta_link }}">
+      {{ section.settings.empty_cta_label | default: 'Continue shopping' }}
+    </a>
+  </p>
+</header>
+
+{%- unless cart.empty? -%}
+  {% form 'cart', cart %}
+    <ul class="mt-4">
+      {%- for line_item in cart.items -%}
+        <li class="grid grid-cols-[100px,1fr] items-center gap-4">
+          <figure>
+            {{ line_item.image
+              | image_url: width: 200, height: 200
+              | image_tag: loading: 'lazy'
+            }}
+          </figure>
+
+          <dl>
+            <dt>
+              <a class="link" href="{{ line_item.url }}">{{ line_item.product.title }}</a>
+              {%- unless line_item.product.has_only_default_variant -%}
+                <div class="flex flex-wrap items-center gap-[.5em]">
+                  {%- for option in line_item.variant.options -%}
+                    <small>{{ option }}</small>
+                  {%- endfor -%}
+                </div>
+              {%- endunless -%}
+            </dt>
+            <dd>
+              {%- if line_item.final_price < line_item.original_price -%}
+                <span>{{ line_item.final_price | money }}</span>
+                <s>{{ line_item.original_price | money }}</s>
+              {%- else -%}
+                <span>{{ line_item.price | money }}</span>
+              {%- endif -%}
+            </dd>
+            <dd>
+              <label>
+                x
+                <input class="text-center" name="updates[]" value="{{ line_item.quantity }}" min="0" type="number" required />
+              </label>
+              <a href="{{ line_item.url_to_remove }}">🗑️</a>
+            </dd>
+            <script>console.log({{ line_item|json }})</script>
+          </dl>
+        </li>
+      {%- endfor -%}
+    </ul>
+
+    <p>
+      <input class="action" type="submit" value="Update cart" />
+
+      <button class="action" name="checkout" type="submit">
+        {{ section.settings.checkout_label | default: 'Checkout' }}
+      </button>
+    </p>
+  {% endform %}
+{%- endunless -%}
+
+<script defer>
+  document.querySelectorAll('[name="updates[]"]').forEach(input => {
+    input.addEventListener('input', ({ target }) => {
+      console.log({target})
+      target.setAttribute('value', Math.max(0, target.valueAsNumber))
+    })
+  })
+</script>
 
 {% schema %}
 {
@@ -14,7 +81,27 @@
   "tag": "section",
   "class": "section",
   "settings": [
-
+    {
+      "type": "text",
+      "id": "empty_cta_label",
+      "label": "Empty CTA label",
+      "placeholder": "Continue shopping"
+    },
+    {
+      "type": "text",
+      "id": "checkout_label",
+      "label": "Checkout label",
+      "placeholder": "Checkout"
+    },
+    {
+      "type": "header",
+      "content": "Empty state"
+    },
+    {
+      "type": "url",
+      "id": "empty_cta_link",
+      "label": "Empty CTA link"
+    }
   ]
 }
 {% endschema %}

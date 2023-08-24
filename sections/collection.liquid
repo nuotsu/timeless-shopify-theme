@@ -1,0 +1,20 @@
+<ul>
+  {%- for product in collection.products -%}
+    <li>
+      <a class="link" href="{{ product.url }}">
+        {{ product.title }}
+      </a>
+    </li>
+  {%- endfor -%}
+</ul>
+
+{% schema %}
+{
+  "name": "Collection",
+  "tag": "section",
+  "class": "section rte",
+  "settings": [
+
+  ]
+}
+{% endschema %}

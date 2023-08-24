@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
 
-<div class="section grid md:grid-cols-2 items-start gap-8 [&>*]:min-w-0">
+<div class="section grid sm:grid-cols-2 items-start gap-8 [&>*]:min-w-0">
   <figure>
     <div class="swiper">
       <div class="swiper-wrapper">
@@ -71,8 +71,11 @@
             {% render 'inventory', text: block.settings.text %}
           </div>
 
-        {%- when 'custom' -%}
+        {%- when 'richtext' -%}
           <div class="rte">{{ block.settings.richtext }}</div>
+
+        {%- when 'custom-html' -%}
+          <div>{{ block.settings.html }}</div>
 
         {%- when 'divider' -%}
           <hr class="my-2">
@@ -262,13 +265,24 @@
       ]
     },
     {
-      "name": "Custom",
-      "type": "custom",
+      "name": "Richtext",
+      "type": "richtext",
       "settings": [
         {
           "type": "richtext",
           "id": "richtext",
           "label": "Richtext"
+        }
+      ]
+    },
+    {
+      "name": "Custom HTML",
+      "type": "custom-html",
+      "settings": [
+        {
+          "type": "html",
+          "id": "html",
+          "label": "HTML"
         }
       ]
     },

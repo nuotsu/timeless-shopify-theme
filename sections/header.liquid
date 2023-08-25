@@ -1,9 +1,13 @@
-<div class="section p-4">
-  <div>
-    <a href="{{ routes.root_url }}">{{ shop.name }}</a>
+<div class="header section grid gap-x-4 p-4">
+  <div style="grid-area: logo;">
+    <a class="font-heading" href="{{ routes.root_url }}">{{ shop.name }}</a>
   </div>
 
-  <nav>
+  <nav style="grid-area: menu;">
+
+  </nav>
+
+  <nav style="grid-area: actions;">
     <a href="{{ routes.cart_url }}">
       Cart
 
@@ -14,9 +18,23 @@
   </nav>
 </div>
 
-<style>
+<style type="text/tailwindcss">
   .header {
-    background-color: {{ section.settings.color_scheme.settings.canvas }}80;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      'logo actions'
+      'menu menu';
+  }
+
+  @screen md {
+    .header {
+      grid-template-columns: auto 1fr auto;
+      grid-template-areas: 'logo menu actions';
+    }
+  }
+
+  #shopify-section-{{ section.id }} {
+    background-color: {{ section.settings.color_scheme.settings.canvas }}dd;
     color: {{ section.settings.color_scheme.settings.ink }};
   }
 </style>
@@ -25,7 +43,7 @@
 {
   "name": "Header",
   "tag": "header",
-  "class": "header sticky z-10 top-0 backdrop-blur",
+  "class": "sticky z-10 top-0 backdrop-blur",
   "settings": [
     {
       "type": "color_scheme",

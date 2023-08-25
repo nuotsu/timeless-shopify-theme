@@ -32,7 +32,7 @@ tailwind.config = {
 
 @layer base {
   body {
-    @apply bg-canvas text-ink accent-primary font-body;
+    @apply bg-canvas text-ink accent-primary caret-primary font-body;
   }
 
   summary {
@@ -96,13 +96,13 @@ tailwind.config = {
 
   .chip {
     padding: 0 0.5em;
-    @apply inline-flex rounded border border-gray-300;
+    @apply inline-flex rounded border border-neutral-300;
   }
 
   /* inputs */
 
   .input {
-    @apply chip hover:border-gray-400;
+    @apply chip hover:border-neutral-400;
   }
 
   .quantity-input {
@@ -115,7 +115,7 @@ tailwind.config = {
   /* layouts */
 
   .section {
-    @apply max-w-screen-xl mx-auto py-8 px-4;
+    @apply max-w-screen-xl mx-auto py-8 sm:py-12 px-4;
   }
 }
 

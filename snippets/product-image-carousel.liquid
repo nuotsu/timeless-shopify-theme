@@ -1,0 +1,28 @@
+<figure>
+  <div class="swiper">
+    <div class="swiper-wrapper">
+      {%- for media in product.media -%}
+        {%- case media.media_type -%}
+          {%- when 'image' -%}
+            {%- liquid
+              if forloop.first
+                assign loading = 'eager'
+              else
+                assign loading = 'lazy'
+              endif
+
+              assign image = product.images[forloop.index0]
+            -%}
+
+            <div class="swiper-slide" data-variant-id="{{ image.variants[0].id }}">
+              {{ image
+                | image_url: width: 800, height: 800
+                | image_tag: class: 'w-full object-cover', loading: loading
+              }}
+            </div>
+
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</figure>

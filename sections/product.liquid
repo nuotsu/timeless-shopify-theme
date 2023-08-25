@@ -1,26 +1,17 @@
+{%- liquid
+  if product.has_only_default_variant
+    assign p = product
+  else
+    assign p = product.selected_or_first_available_variant
+  endif
+
+  assign sku = product.selected_or_first_available_variant.sku
+-%}
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
 
 <div class="section grid sm:grid-cols-2 items-start gap-8 [&>*]:min-w-0">
-  <figure>
-    <div class="swiper">
-      <div class="swiper-wrapper">
-        {%- for media in product.media -%}
-          {%- case media.media_type -%}
-            {%- when 'image' -%}
-              {%- assign image = product.images[forloop.index0] -%}
-
-              <div class="swiper-slide" data-variant-id="{{ image.variants[0].id }}">
-                {{ image
-                  | image_url: width: 800, height: 800
-                  | image_tag: class: 'w-full object-cover', loading: 'lazy'
-                }}
-              </div>
-
-          {%- endcase -%}
-        {%- endfor -%}
-      </div>
-    </div>
-  </figure>
+  {% render 'product-image-carousel' %}
 
   {% form 'product', product, class: 'grid gap-2' %}
     {%- for block in section.blocks -%}
@@ -28,8 +19,18 @@
         {%- when 'title' -%}
           <h1 class="h1">{{ product.title }}</h1>
 
+        {%- when 'description' -%}
+          <div class="rte {{ block.settings.tailwind | default: 'text-sm md:text-base' }}">
+            {{ product.description }}
+          </div>
+
+        {%- when 'sku' -%}
+          <p class="text-neutral-400" data-sku-container {% if sku == blank %}hidden{% endif %}>
+            <small>SKU: <code data-sku>{{ sku }}</code></small>
+          </p>
+
         {%- when 'vendor' -%}
-          <p class="technical text-xs">{{ product.vendor }}</p>
+          <p class="{{ block.settings.tailwind | default: 'technical text-xs' }}">{{ product.vendor }}</p>
 
         {%- when 'price' -%}
           {%- render 'price' -%}
@@ -45,7 +46,7 @@
 
         {%- when 'buy-button' -%}
           <p>
-            <button class="action" type="submit">
+            <button class="action w-full {% unless block.settings.full_width %}md:w-auto{% endunless %}" type="submit">
               {{ block.settings.text | default: 'Add to cart' | escape }}
               {%- if block.settings.inventory_text != blank -%}
                 {% render 'inventory', text: block.settings.inventory_text %}
@@ -54,31 +55,30 @@
           </p>
 
         {%- when 'inventory' -%}
-          {%- liquid
-            if product.has_only_default_variant
-              assign p = product
-            else
-              assign p = product.selected_or_first_available_variant
-            endif
-          -%}
-
-          <div
+          <p
+            class="{{ block.settings.tailwind | default: 'text-sm' }}"
             {% if block.settings.enable_threshold %}
               data-inventory-threshold="{{ block.settings.threshold }}"
               {% if p.inventory_quantity > block.settings.threshold %}hidden{% endif %}
             {% endif %}
           >
             {% render 'inventory', text: block.settings.text %}
-          </div>
+          </p>
 
         {%- when 'richtext' -%}
-          <div class="rte">{{ block.settings.richtext }}</div>
+          <div class="rte {{ block.settings.tailwind }}">{{ block.settings.richtext }}</div>
 
         {%- when 'custom-html' -%}
           <div>{{ block.settings.html }}</div>
 
         {%- when 'divider' -%}
-          <hr class="my-2">
+          {%- if block.settings.label != blank -%}
+            <h2 class="mt-4 divider technical text-xs">
+              <span>{{ block.settings.label }}</span>
+            </h2>
+          {%- else -%}
+            <hr class="my-4" />
+          {%- endif -%}
 
       {%- endcase -%}
     {%- endfor -%}
@@ -128,6 +128,16 @@
         // update [data-*]
         const [selectedOption] = variantSelector.selectedOptions
         const selected = JSON.parse(selectedOption.innerHTML)
+
+        productForm.querySelectorAll('[data-sku]').forEach(elem => {
+          elem.textContent = selected.sku
+
+          if (!!selected.sku) {
+            elem.closest('[data-sku-container]').removeAttribute('hidden')
+          } else {
+            elem.closest('[data-sku-container]').setAttribute('hidden', '')
+          }
+        })
 
         productForm.querySelectorAll('[data-price]').forEach(elem => elem.textContent = formatMoney(selected.price / 100))
 
@@ -181,41 +191,57 @@
       "name": "Title",
       "type": "title",
       "limit": 1,
+      "settings": []
+    },
+    {
+      "name": "Description",
+      "type": "description",
+      "limit": 1,
       "settings": [
-
+        {
+          "type": "html",
+          "id": "tailwind",
+          "label": "Tailwind classes",
+          "info": "Default: \"text-sm md:text-base\""
+        }
       ]
+    },
+    {
+      "name": "SKU",
+      "type": "sku",
+      "limit": 1,
+      "settings": []
     },
     {
       "name": "Vendor",
       "type": "vendor",
       "limit": 1,
       "settings": [
-
+        {
+          "type": "html",
+          "id": "tailwind",
+          "label": "Tailwind classes",
+          "info": "Default: \"technical text-xs\""
+        }
       ]
     },
     {
       "name": "Price",
       "type": "price",
       "limit": 1,
-      "settings": [
-
-      ]
+      "settings": []
     },
     {
       "name": "Variant selector",
       "type": "variant-selector",
       "limit": 1,
-      "settings": [
-
-      ]
+      "settings": []
     },
     {
       "name": "Quantity selector",
       "type": "quantity-selector",
       "limit": 1,
-      "settings": [
-
-      ]
+      "settings": []
     },
     {
       "name": "Buy button",
@@ -234,6 +260,13 @@
           "info": "\"#\" will be replaced with the actual inventory quantity. Leave blank to hide.",
           "default": "(# left)",
           "placeholder": "(# left)"
+        },
+        {
+          "type": "checkbox",
+          "id": "full_width",
+          "label": "Full width",
+          "default": false,
+          "info": "On tablet and desktop viewports"
         }
       ]
     },
@@ -261,6 +294,12 @@
           "id": "threshold",
           "label": "Threshold",
           "default": 10
+        },
+        {
+          "type": "html",
+          "id": "tailwind",
+          "label": "Tailwind classes",
+          "info": "Default: \"text-sm\""
         }
       ]
     },
@@ -272,6 +311,11 @@
           "type": "richtext",
           "id": "richtext",
           "label": "Richtext"
+        },
+        {
+          "type": "html",
+          "id": "tailwind",
+          "label": "Tailwind classes"
         }
       ]
     },
@@ -290,7 +334,11 @@
       "name": "Divider",
       "type": "divider",
       "settings": [
-
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label"
+        }
       ]
     }
   ]

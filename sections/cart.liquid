@@ -1,5 +1,9 @@
 <header class="text-center rte">
-  <h2>Cart</h2>
+  {%- if section.settings.content != blank -%}
+    {{ section.settings.content }}
+  {%- else -%}
+    <h1>{{ page_title }}</h1>
+  {%- endif -%}
 
   {%- if cart.empty? -%}
     <p>Your cart is empty</p>
@@ -146,8 +150,6 @@
 {%- endunless -%}
 
 <script defer>
-  console.log({{cart|json}})
-
   const cartForm = document.querySelector('#cart_form')
 
   cartForm.querySelectorAll('[name="updates[]"], [name="note"]').forEach(input => {
@@ -166,10 +168,9 @@
   "class": "section",
   "settings": [
     {
-      "type": "text",
-      "id": "empty_cta_label",
-      "label": "Empty CTA label",
-      "placeholder": "Continue shopping"
+      "type": "richtext",
+      "id": "content",
+      "label": "Content"
     },
     {
       "type": "text",
@@ -180,6 +181,12 @@
     {
       "type": "header",
       "content": "Empty state"
+    },
+    {
+      "type": "text",
+      "id": "empty_cta_label",
+      "label": "Empty CTA label",
+      "placeholder": "Continue shopping"
     },
     {
       "type": "url",

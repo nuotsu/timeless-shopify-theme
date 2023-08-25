@@ -113,14 +113,16 @@ tailwind.config = {
   }
 
   .quantity-input {
-    @apply input;
-    text-align: center;
     width: 4em;
-    padding-right: 0;
+    @apply input text-center pr-0;
   }
 
   .price {
     font-variant-numeric: tabular-nums;
+
+    & s {
+      @apply decoration-alert;
+    }
   }
   .price-negative {
     @apply price text-alert before:content-['-'];
@@ -130,6 +132,24 @@ tailwind.config = {
 
   .section {
     @apply max-w-screen-xl mx-auto py-8 sm:py-12 px-4;
+  }
+
+  .divider {
+    position: relative;
+
+    & span {
+      position: relative;
+      padding-right: 0.5ch;
+      @apply bg-white;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 50% 0 auto;
+      translate: 0 -50%;
+      @apply border-b;
+    }
   }
 }
 
@@ -153,7 +173,7 @@ tailwind.config = {
   /* richtext */
 
   .rte > * + * {
-    margin-top: var(--spacing, .5em);
+    margin-top: var(--spacing, 1em);
   }
 
   .rte h1 { @apply h1; }
@@ -166,6 +186,10 @@ tailwind.config = {
   .rte :is(ul, ol) {
     list-style: revert;
     padding-left: 1.5em;
+  }
+
+  .rte a:not(.action) {
+    @apply link;
   }
 
   .rte :is(th, td) {

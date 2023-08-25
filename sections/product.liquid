@@ -38,9 +38,9 @@
           {% render 'variant-selector' %}
 
         {%- when 'quantity-selector' -%}
-          <label>
+          <label class="flex items-center gap-[.5em]">
             <span class="technical text-xs">Quantity</span>
-            <input class="text-center" name="quantity" value="1" min="1" type="number" required />
+            <input class="quantity-input" name="quantity" value="1" min="1" type="number" required />
           </label>
 
         {%- when 'buy-button' -%}

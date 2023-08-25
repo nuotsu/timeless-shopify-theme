@@ -16,48 +16,68 @@
   {% form 'cart', cart %}
     <ul class="mt-4">
       {%- for line_item in cart.items -%}
-        <li class="grid grid-cols-[100px,1fr] items-center gap-4">
-          <figure>
+        <li class="grid grid-cols-[100px,1fr,auto] items-center gap-4">
+          <figure class="self-start">
             {{ line_item.image
               | image_url: width: 200, height: 200
               | image_tag: loading: 'lazy'
+              | link_to: line_item.url
             }}
           </figure>
 
-          <dl>
-            <dt>
-              <a class="link" href="{{ line_item.url }}">{{ line_item.product.title }}</a>
+          <dl class="grid gap-2 justify-start">
+            <dt class="flex flex-wrap gap-x-[.5em]">
+              <a class="font-bold text-lg hover:underline" href="{{ line_item.url }}">
+                {{ line_item.product.title }}
+              </a>
+
               {%- unless line_item.product.has_only_default_variant -%}
-                <div class="flex flex-wrap items-center gap-[.5em]">
+                <div class="flex flex-wrap items-center gap-x-[.25em]">
                   {%- for option in line_item.variant.options -%}
-                    <small>{{ option }}</small>
+                    <small class="chip text-xs">{{ option }}</small>
                   {%- endfor -%}
                 </div>
               {%- endunless -%}
             </dt>
-            <dd>
-              {%- if line_item.final_price < line_item.original_price -%}
-                <span>{{ line_item.final_price | money }}</span>
-                <s>{{ line_item.original_price | money }}</s>
-              {%- else -%}
-                <span>{{ line_item.price | money }}</span>
-              {%- endif -%}
-            </dd>
-            <dd>
-              <label>
-                x
-                <input class="text-center" name="updates[]" value="{{ line_item.quantity }}" min="0" type="number" required />
+            <dd class="flex gap-[.5em]">
+              <span>{{ line_item.original_price | money }}</span>
+              <label title="Quantity">
+                &times;
+                <input
+                  class="quantity-input"
+                  name="updates[]"
+                  value="{{ line_item.quantity }}"
+                  min="0"
+                  type="number"
+                  required
+                />
               </label>
-              <a href="{{ line_item.url_to_remove }}">🗑️</a>
             </dd>
-            <script>console.log({{ line_item|json }})</script>
+            {%- if line_item.discounts.size > 0 -%}
+              <dd class="py-1 px-2 bg-gradient-to-r from-warning/20 to-transparent">
+                {%- for discount in line_item.discounts -%}
+                  <dl class="flex gap-[.5em]">
+                    <dt>{{ discount.title }}</dt>
+                    <dd class="text-alert">{{ discount.amount | money | prepend: '-' }}</dd>
+                  </dl>
+                {%- endfor -%}
+              </dd>
+            {%- endif -%}
           </dl>
+
+          <a
+            class="self-stretch with-icon ghost text-sm"
+            href="{{ line_item.url_to_remove }}"
+            title="Remove {{ line_item.title }} from cart"
+          >
+            {%- render 'icon' with 'trash' -%}
+          </a>
         </li>
       {%- endfor -%}
     </ul>
 
-    <p>
-      <input class="action" type="submit" value="Update cart" />
+    <p class="grid gap-2">
+      <input class="action-secondary animate-pulse disabled:hidden" type="submit" value="Update cart" disabled />
 
       <button class="action" name="checkout" type="submit">
         {{ section.settings.checkout_label | default: 'Checkout' }}
@@ -67,10 +87,13 @@
 {%- endunless -%}
 
 <script defer>
-  document.querySelectorAll('[name="updates[]"]').forEach(input => {
+  const cartForm = document.querySelector('#cart_form')
+
+  cartForm.querySelectorAll('[name="updates[]"]').forEach(input => {
     input.addEventListener('input', ({ target }) => {
-      console.log({target})
       target.setAttribute('value', Math.max(0, target.valueAsNumber))
+      target.classList.add('border-warning', 'bg-warning/10', 'animate-pulse')
+      cartForm.querySelector('input[type="submit"]').removeAttribute('disabled')
     })
   })
 </script>

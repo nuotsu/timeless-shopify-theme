@@ -1,6 +1,11 @@
 {
   "current": {
+    "font_heading": "serif",
     "font_body": "sans-serif",
+    "checkout_input_background_color_mode": "transparent",
+    "checkout_sidebar_background_color": "#fff",
+    "checkout_accent_color": "#dd1d1d",
+    "checkout_button_color": "#dd1d1d",
     "content_for_index": [
 
     ],
@@ -18,7 +23,7 @@
       "scheme-f9d63336-e4c3-4447-92ed-d3e1f73e6691": {
         "settings": {
           "canvas": "#000000",
-          "ink": "#fff",
+          "ink": "#ffffff",
           "primary": "{{ shop.brand.colors.primary[0].background }}",
           "primary_contrasting": "{{ shop.brand.colors.primary[0].foreground }}",
           "secondary": "{{ shop.brand.colors.secondary[0].background }}",

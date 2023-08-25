@@ -12,7 +12,10 @@ tailwind.config = {
         primary: '{{ settings.color_schemes.default.settings.primary }}',
         'primary-contrasting': '{{ settings.color_schemes.default.settings.primary_contrasting }}',
         secondary: '{{ settings.color_schemes.default.settings.secondary }}',
-        'secondary_contrasting': '{{ settings.color_schemes.default.settings.secondary_contrasting }}',
+        'secondary-contrasting': '{{ settings.color_schemes.default.settings.secondary_contrasting }}',
+        // other
+        alert: '#f00',
+        warning: '#eab308',
       },
       fontFamily: {
         heading: `{{ settings.font_heading.family }},{{ settings.font_heading.fallback_families }}`,
@@ -72,14 +75,41 @@ tailwind.config = {
     align-items: center;
     justify-content: center;
     padding: 0.5em 1em;
+
+    @apply disabled:bg-neutral-300;
   }
 
   .action {
     @apply _btn bg-primary text-primary-contrasting;
   }
+  .action-secondary {
+    @apply _btn bg-secondary text-secondary-contrasting;
+  }
+
+  .ghost {
+    @apply _btn hover:bg-primary/10 active:bg-primary/20;
+  }
 
   .link {
-    @apply underline decoration-gray-300 hover:decoration-primary;
+    @apply underline hover:decoration-2;
+  }
+
+  .chip {
+    padding: 0 0.5em;
+    @apply inline-flex rounded border border-gray-300;
+  }
+
+  /* inputs */
+
+  .input {
+    @apply chip hover:border-gray-400;
+  }
+
+  .quantity-input {
+    @apply input;
+    text-align: center;
+    width: 4em;
+    padding-right: 0;
   }
 
   /* layouts */
@@ -90,6 +120,24 @@ tailwind.config = {
 }
 
 @layer utilities {
+  .with-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5em;
+
+    & svg {
+      height: 1.5em;
+      transition: scale 0.1s ease-in-out;
+    }
+
+    &:is(:hover, :focus) svg {
+      scale: 1.2;
+    }
+  }
+
+  /* richtext */
+
   .rte > * + * {
     margin-top: var(--spacing, .5em);
   }

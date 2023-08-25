@@ -77,6 +77,10 @@
         "907a93d4-708e-45b0-934c-ecdbba2fc1bb"
       ],
       "settings": {
+        "carousel_zoom_enabled": true,
+        "carousel_autoHeight": true,
+        "carousel_slidesPerView_desktop": 8,
+        "carousel_slidesPerView_mobile": 6
       }
     }
   },

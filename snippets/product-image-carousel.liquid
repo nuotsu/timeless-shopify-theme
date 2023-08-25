@@ -1,5 +1,5 @@
 <figure>
-  <div class="swiper">
+  <div class="swiper product-images">
     <div class="swiper-wrapper">
       {%- for media in product.media -%}
         {%- case media.media_type -%}
@@ -14,15 +14,40 @@
               assign image = product.images[forloop.index0]
             -%}
 
-            <div class="swiper-slide" data-variant-id="{{ image.variants[0].id }}">
+            {%- capture slide -%}
               {{ image
                 | image_url: width: 800, height: 800
                 | image_tag: class: 'w-full object-cover', loading: loading
               }}
+            {%- endcapture -%}
+
+            <div class="swiper-slide" data-variant-id="{{ image.variants[0].id }}">
+              {%- if section.settings.carousel_zoom_enabled -%}
+                <div class="swiper-zoom-container">{{ slide }}</div>
+              {%- else -%}
+                {{ slide }}
+              {%- endif -%}
             </div>
 
         {%- endcase -%}
       {%- endfor -%}
     </div>
   </div>
+
+  <nav class="swiper product-thumbs user-select-none mt-2">
+    <div class="swiper-wrapper">
+      {%- for media in product.media -%}
+        {%- case media.media_type -%}
+          {%- when 'image' -%}
+            <div class="swiper-slide cursor-pointer">
+              {{ media.preview_image
+                | image_url: width: 120, height: 120
+                | image_tag: class: 'w-full object-cover', loading: 'lazy'
+              }}
+            </div>
+
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+  </nav>
 </figure>

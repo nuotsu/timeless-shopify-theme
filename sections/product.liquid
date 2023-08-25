@@ -80,10 +80,34 @@
             <hr class="my-4" />
           {%- endif -%}
 
+        {%- when '@app' -%}
+          {% render block %}
+
       {%- endcase -%}
     {%- endfor -%}
   {% endform %}
 </div>
+
+<style type="text/tailwindcss">
+  .product-thumbs .swiper-slide {
+    @apply relative transition-transform;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      @apply bg-primary opacity-0 transition-opacity;
+    }
+  }
+
+  .product-thumbs .swiper-slide:is(.swiper-slide-thumb-active, :hover)::after {
+    @apply opacity-20;
+  }
+
+  .product-thumbs .swiper-slide:not(:is(.swiper-slide-thumb-active)) {
+    @apply scale-75;
+  }
+</style>
 
 <script type="module" defer>
   import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.mjs'
@@ -95,8 +119,18 @@
     maximumFractionDigits: 2
   })
 
-  const swiper = new Swiper('#shopify-section-{{ section.id }} .swiper', {
+  const thumbs = new Swiper('#shopify-section-{{ section.id }} .product-thumbs', {
+    slidesPerView: {{ section.settings.carousel_slidesPerView }},
+    spaceBetween: 1,
+    watchSlidesProgress: true,
+  })
 
+  const swiper = new Swiper('#shopify-section-{{ section.id }} .product-images', {
+    thumbs: {
+      swiper: thumbs,
+    },
+    autoHeight: {{ section.settings.carousel_autoHeight | default: true }},
+    zoom: {{ section.settings.carousel_zoom_enabled | default: true }},
   })
 
   const productForm = document.querySelector('#shopify-section-{{ section.id }} form')
@@ -184,7 +218,31 @@
   "class": "section-product",
   "limit": 1,
   "settings": [
-
+    {
+      "type": "header",
+      "content": "Carousel",
+      "info": "This theme uses [Swiper](https://swiperjs.com/) for carousels. Refresh the page to see the results."
+    },
+    {
+      "type": "checkbox",
+      "id": "carousel_zoom_enabled",
+      "label": "Enable zoom",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "carousel_autoHeight",
+      "label": "Auto height",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "carousel_slidesPerView",
+      "min": 4,
+      "max": 12,
+      "label": "Slides per view",
+      "default": 8
+    }
   ],
   "blocks": [
     {
@@ -340,6 +398,9 @@
           "label": "Label"
         }
       ]
+    },
+    {
+      "type": "@app"
     }
   ]
 }

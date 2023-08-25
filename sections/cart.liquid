@@ -34,34 +34,32 @@
               {%- unless line_item.product.has_only_default_variant -%}
                 <div class="flex flex-wrap items-center gap-[.25em]">
                   {%- for option in line_item.options_with_values -%}
-                    <small class="chip text-xs" title="{{ option.name }}">{{ option.value }}</small>
+                    <small class="hashtag text-xs" title="{{ option.name }}">{{ option.value }}</small>
                   {%- endfor -%}
                 </div>
               {%- endunless -%}
             </dt>
 
             <dd class="flex gap-[.5em]">
-              <span class="tabular-nums">{{ line_item.original_price | money }}</span>
+              <span class="price">{{ line_item.original_price | money }}</span>
               <label title="Quantity">
-                <span class="relative z-[1] bg-white -mr-[1ch]">&times;</span>
-                <input
-                  class="quantity-input"
-                  name="updates[]"
-                  value="{{ line_item.quantity }}"
-                  min="0"
-                  type="number"
-                  required
-                />
+                {% render 'quantity-selector',
+                  name: 'updates[]',
+                  value: line_item.quantity,
+                  min: 0
+                %}
               </label>
             </dd>
 
             {% comment %} Discounts {% endcomment %}
             {%- if line_item.discounts.size > 0 -%}
-              <dd class="py-1 px-2 bg-gradient-to-r from-warning/20 to-transparent">
+              <dd class="mt-2 p-2 pt-1 bg-gradient-to-r from-warning/20 to-transparent">
+                <div class="technical text-[10px] -mt-[1em]">Discounts</div>
+
                 {%- for discount in line_item.discounts -%}
                   <dl class="grid grid-cols-[1fr,auto] gap-x-4 items-center">
                     <dt>{{ discount.title }}</dt>
-                    <dd class="tabular-nums text-alert text-right">{{ discount.amount | money | prepend: '-' }}</dd>
+                    <dd class="price-negative text-right">{{ discount.amount | money }}</dd>
                   </dl>
                 {%- endfor -%}
               </dd>
@@ -73,7 +71,7 @@
             href="{{ line_item.url_to_remove }}"
             title="Remove {{ line_item.title }} from cart"
           >
-            {%- render 'icon' with 'trash' -%}
+            {%- render 'icon' with 'delete' -%}
           </a>
         </li>
       {%- endfor -%}
@@ -96,13 +94,44 @@
         <dl class="grid grid-cols-[1fr,auto] gap-x-4 [&_dd]:text-right">
           {%- if cart.total_discount > 0 -%}
             <dt>Original total price</dt>
-            <dd class="tabular-nums">{{ cart.original_total_price | money }}</dd>
+            <dd class="price">{{ cart.original_total_price | money }}</dd>
+
             <dt>Total discounts</dt>
-            <dd class="tabular-nums text-alert">{{ cart.total_discount | money | prepend: '-' }}</dd>
+            <dd class="price-negative">{{ cart.total_discount | money }}</dd>
+
+            {%- if cart.cart_level_discount_applications.size > 0 -%}
+              <details class="col-span-full pl-2 text-sm" open>
+                <summary class="technical text-[10px]">Includes</summary>
+
+                <div class="grid grid-cols-[1fr,auto] gap-x-4 [&_dd]:text-right">
+                  {%- for discount in cart.cart_level_discount_applications -%}
+                    <dt>
+                      {{ discount.title }}
+
+                      {%- if discount.value_type == 'percentage' -%}
+                        <small>({{ discount.value | append: '% off' }})</small>
+                      {%- endif -%}
+                    </dt>
+                    <dd class="price-negative">
+                      {{ discount.total_allocated_amount | money }}
+                    </dd>
+                  {%- endfor -%}
+
+                  {%- for line_item in cart.items -%}
+                    {%- for discount in line_item.discounts -%}
+                      <dt>{{ discount.title }}</dt>
+                      <dd class="price-negative">{{ discount.amount | money }}</dd>
+                    {%- endfor -%}
+                  {%- endfor -%}
+                </div>
+              </details>
+            {%- endif -%}
+
             <hr class="col-span-full my-2">
           {%- endif -%}
+
           <dt><b>Subtotal</b></dt>
-          <dd class="tabular-nums"><b>{{ cart.total_price | money }}</b></dd>
+          <dd class="price"><b>{{ cart.total_price | money }}</b></dd>
         </dl>
 
         <div class="grid gap-2">
@@ -117,6 +146,8 @@
 {%- endunless -%}
 
 <script defer>
+  console.log({{cart|json}})
+
   const cartForm = document.querySelector('#cart_form')
 
   cartForm.querySelectorAll('[name="updates[]"], [name="note"]').forEach(input => {

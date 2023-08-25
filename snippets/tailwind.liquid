@@ -37,6 +37,10 @@ tailwind.config = {
 
   summary {
     cursor: pointer;
+    display: block;
+  }
+  :-webkit-details-marker {
+    display: none;
   }
 
   label {
@@ -94,15 +98,18 @@ tailwind.config = {
     @apply underline hover:decoration-2;
   }
 
-  .chip {
-    padding: 0 0.5em;
-    @apply inline-flex rounded border border-neutral-300;
+  .hashtag {
+    &::before {
+      content: '#';
+      @apply text-neutral-400;
+    }
   }
 
   /* inputs */
 
   .input {
-    @apply chip hover:border-neutral-400;
+    padding: 0 0.5em;
+    @apply inline-flex rounded border border-neutral-300 hover:border-neutral-400;
   }
 
   .quantity-input {
@@ -110,6 +117,13 @@ tailwind.config = {
     text-align: center;
     width: 4em;
     padding-right: 0;
+  }
+
+  .price {
+    font-variant-numeric: tabular-nums;
+  }
+  .price-negative {
+    @apply price text-alert before:content-['-'];
   }
 
   /* layouts */

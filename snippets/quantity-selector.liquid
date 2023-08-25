@@ -1,0 +1,9 @@
+<span class="relative z-[1] inline-block bg-white translate-x-full leading-none">&times;</span>
+<input
+  class="quantity-input"
+  name="{{ name | default: 'quantity' }}"
+  value="{{ value | default: 1 }}"
+  min="{{ min | default: 1 }}"
+  type="number"
+  required
+/>

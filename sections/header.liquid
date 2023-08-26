@@ -3,9 +3,7 @@
     <a class="font-heading" href="{{ routes.root_url }}">{{ shop.name }}</a>
   </div>
 
-  <nav style="grid-area: menu;">
-
-  </nav>
+  {% render 'header-menu' %}
 
   <nav class="flex items-center gap-x-2 [&_svg]:w-[1.5em]" style="grid-area: actions;">
     <a href="{{ routes.search_url }}" title="Search">
@@ -62,8 +60,9 @@
   }
 
   #shopify-section-{{ section.id }} {
-    background-color: {{ section.settings.color_scheme.settings.canvas }}dd;
+    --header-bg: {{ section.settings.color_scheme.settings.canvas }}dd;
     color: {{ section.settings.color_scheme.settings.ink }};
+    @apply bg-[var(--header-bg)];
   }
 </style>
 
@@ -89,10 +88,46 @@
       "label": "Color scheme"
     },
     {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu"
+    },
+    {
       "type": "checkbox",
       "id": "show_cart_item_count",
       "label": "Show cart item count",
       "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "megamenu",
+      "name": "Megamenu",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "info": "Makes the linklist with the same title a full-width megamenu"
+        }
+      ]
+    },
+    {
+      "type": "featured_link",
+      "name": "Featured link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "info": "Makes megamenu links with the same title stylized"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
     }
   ]
 }

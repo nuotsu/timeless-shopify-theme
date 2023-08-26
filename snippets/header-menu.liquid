@@ -1,0 +1,77 @@
+{%- liquid
+  assign megamenus = section.blocks | where: 'type', 'megamenu' | map: 'settings' | map: 'title'
+  assign featured_links = section.blocks | where: 'type', 'featured_link' | map: 'settings'
+-%}
+
+<nav class="flex <md:flex-col md:justify-center gap-x-4" style="grid-area: menu;">
+  {%- for link in section.settings.menu.links -%}
+    {%- case link.levels -%}
+      {%- when 1 or 2 -%}
+        {%- if megamenus contains link.title -%}
+          {% comment %} Megamenu {% endcomment %}
+          <details>
+            <summary>{{ link.title }}</summary>
+            <div class="md:absolute top-full inset-x-0 bg-[var(--header-bg)] backdrop-blur">
+              <ul class="md:section md:py-4 flex <md:flex-col flex-wrap gap-y-4 gap-x-8 md:justify-center md:items-start">
+                {%- for child_link in link.links -%}
+                  {%- case child_link.levels -%}
+                    {%- when 1 -%}
+                      {% comment %} Megamenu > Dropdown {% endcomment %}
+                      <li>
+                        <div class="technical text-xs">{{ child_link.title | link_to: child_link.url }}</div>
+                        <ul>
+                          {%- for grandchild_link in child_link.links -%}
+                            <li>{{ grandchild_link.title | link_to: grandchild_link.url }}</li>
+                          {%- endfor -%}
+                        </ul>
+                      </li>
+
+                    {%- when 0 -%}
+                      {%- for featured_link in featured_links -%}
+                        {%- if featured_link.title == child_link.title -%}
+                          {% comment %} Megamenu > Featured link {% endcomment %}
+                          <li>
+                            <a class="grid gap-2 <md:grid-cols-[100px,1fr] items-center md:text-center font-bold" href="{{ child_link.url }}">
+                              {{ featured_link.image
+                                | default: child_link.object.featured_image
+                                | image_url: width: 300, height: 200
+                                | image_tag: class: 'md:max-w-[200px]', loading: 'lazy'
+                              }}
+
+                              <div>{{ child_link.title }}</div>
+                            </a>
+                          </li>
+
+                        {%- else -%}
+                          {% comment %} Megamenu > basic link {% endcomment %}
+                          <li>{{ child_link.title | link_to: child_link.url }}</li>
+
+                        {%- endif -%}
+                      {%- endfor -%}
+
+                  {%- endcase -%}
+                {%- endfor -%}
+              </ul>
+            </div>
+          </details>
+
+        {%- else -%}
+          {% comment %} Dropdown {% endcomment %}
+          <details class="relative">
+            <summary>{{ link.title }}</summary>
+            <ul class="md:absolute top-full -left-4 md:p-4 bg-[var(--header-bg)] backdrop-blur w-max">
+              {%- for child_link in link.links -%}
+                <li>{{ child_link.title | link_to: child_link.url }}</li>
+              {%- endfor -%}
+            </ul>
+          </details>
+
+        {%- endif -%}
+
+      {%- when 0 -%}
+        {% comment %} Basic top-level link {% endcomment %}
+        {{ link.title | link_to: link.url }}
+
+    {%- endcase -%}
+  {%- endfor -%}
+</nav>

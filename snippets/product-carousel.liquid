@@ -1,15 +1,15 @@
-<ul class="carousel gap-4 md:gap-8 <md:full-width lg:grid grid-cols-4">
+<ul class="carousel gap-4 sm:gap-8 px-4 sm:px-8 lg:px-0 <lg:pb-4 <lg:full-width lg:grid grid-cols-4">
   {%- for product in products -%}
     <li class="grid gap-2">
-      <a class="grid gap-2" href="{{ product.url }}">
-        <figure>
+      <a class="group grid gap-2" href="{{ product.url }}">
+        <figure class="overflow-hidden">
           {{ product.featured_image
             | image_url: width: 500, height: 500
-            | image_tag: class: 'w-full aspect-square object-cover', loading: 'lazy'
+            | image_tag: class: 'w-full aspect-square object-cover transition-transform group-hover:scale-110', loading: 'lazy'
           }}
         </figure>
 
-        <div>{{ product.title }}</div>
+        <div class="h3 group-hover:underline">{{ product.title }}</div>
       </a>
 
       <div class="price text-sm">

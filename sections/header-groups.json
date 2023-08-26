@@ -4,8 +4,28 @@
   "sections": {
     "header": {
       "type": "header",
+      "blocks": {
+        "d752493f-8893-4048-aab0-ec763a3057d5": {
+          "type": "megamenu",
+          "settings": {
+            "title": "Catalog"
+          }
+        },
+        "d9209980-ff1d-488e-ac69-aab8c8f06d01": {
+          "type": "featured_link",
+          "settings": {
+            "title": "Featured Product"
+          }
+        }
+      },
+      "block_order": [
+        "d752493f-8893-4048-aab0-ec763a3057d5",
+        "d9209980-ff1d-488e-ac69-aab8c8f06d01"
+      ],
       "settings": {
-        "color_scheme": "default"
+        "color_scheme": "default",
+        "menu": "main-menu",
+        "show_cart_item_count": true
       }
     }
   },

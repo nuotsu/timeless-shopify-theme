@@ -1,18 +1,15 @@
-<ul>
-  {%- for product in collection.products -%}
-    <li>
-      <a class="link" href="{{ product.url }}">
-        {{ product.title }}
-      </a>
-    </li>
-  {%- endfor -%}
-</ul>
+<header class="rte mb-8">
+  <h1>{{ collection.title }}</h1>
+  {{ collection.description }}
+</header>
+
+{% render 'product-carousel' with collection.products %}
 
 {% schema %}
 {
   "name": "Collection",
   "tag": "section",
-  "class": "section rte",
+  "class": "section",
   "settings": [
 
   ]

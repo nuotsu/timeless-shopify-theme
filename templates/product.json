@@ -1,7 +1,7 @@
 {
   "sections": {
-    "product": {
-      "type": "product",
+    "product-form": {
+      "type": "product-form",
       "blocks": {
         "8827b8ca-82ef-4494-b7ae-5b4db5859373": {
           "type": "vendor",
@@ -78,13 +78,17 @@
       ],
       "settings": {
         "carousel_zoom_enabled": true,
-        "carousel_autoHeight": true,
-        "carousel_slidesPerView_desktop": 8,
-        "carousel_slidesPerView_mobile": 6
+        "carousel_autoHeight": true
+      }
+    },
+    "product-recommendations": {
+      "type": "product-recommendations",
+      "settings": {
       }
     }
   },
   "order": [
-    "product"
+    "product-form",
+    "product-recommendations"
   ]
 }

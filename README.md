@@ -2,6 +2,9 @@
 
 > A minimalistic Shopify Theme built with Tailwind CSS
 
+Inspired from the flaws (and features) of [Dawn](https://github.com/Shopify/dawn).
+An iteration of my archived theme [Danshari](https://github.com/mitchuman/danshari).
+
 ## Tailwind CSS
 
 > Configured in `snippets/tailwind.liquid`

@@ -1,4 +1,4 @@
-<div class="header section grid gap-x-4 p-4">
+<div class="header section grid gap-x-4 py-4">
   <div style="grid-area: logo;">
     <a class="font-heading" href="{{ routes.root_url }}">{{ shop.name }}</a>
   </div>
@@ -66,6 +66,16 @@
     color: {{ section.settings.color_scheme.settings.ink }};
   }
 </style>
+
+<script defer>
+  const header = document.querySelector('#shopify-section-{{ section.id }}')
+
+  function setHeaderHeight() {
+    document.documentElement.style.setProperty('--header-height', `${ header.offsetHeight }px`)
+  }
+  setHeaderHeight()
+  document.addEventListener('resize', setHeaderHeight)
+</script>
 
 {% schema %}
 {

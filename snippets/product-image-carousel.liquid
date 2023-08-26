@@ -1,6 +1,6 @@
 <figure>
   <div class="swiper product-images">
-    <div class="swiper-wrapper">
+    <div class="swiper-wrapper items-center">
       {%- for media in product.media -%}
         {%- case media.media_type -%}
           {%- when 'image' -%}
@@ -21,7 +21,7 @@
               }}
             {%- endcapture -%}
 
-            <div class="swiper-slide" data-variant-id="{{ image.variants[0].id }}">
+            <div class="swiper-slide" data-variant-id="{{ image.variants.first.id }}">
               {%- if section.settings.carousel_zoom_enabled -%}
                 <div class="swiper-zoom-container">{{ slide }}</div>
               {%- else -%}
@@ -29,20 +29,25 @@
               {%- endif -%}
             </div>
 
+          {%- when 'external_video' -%}
+            <div class="swiper-slide [&>iframe]:aspect-[{{ media.aspect_ratio }}] bg-black">
+              {{ media | external_video_tag: class: 'w-full', loading: 'lazy' }}
+            </div>
+
         {%- endcase -%}
       {%- endfor -%}
     </div>
   </div>
 
-  <nav class="swiper product-thumbs user-select-none mt-2">
+  <nav class="swiper product-thumbs user-select-none mt-2" hidden>
     <div class="swiper-wrapper">
       {%- for media in product.media -%}
         {%- case media.media_type -%}
-          {%- when 'image' -%}
+          {%- when 'image' or 'external_video' -%}
             <div class="swiper-slide cursor-pointer">
               {{ media.preview_image
                 | image_url: width: 120, height: 120
-                | image_tag: class: 'w-full object-cover', loading: 'lazy'
+                | image_tag: class: 'object-cover', loading: 'lazy'
               }}
             </div>
 

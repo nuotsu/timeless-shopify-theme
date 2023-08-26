@@ -21,6 +21,13 @@ tailwind.config = {
         heading: `{{ settings.font_heading.family }},{{ settings.font_heading.fallback_families }}`,
         body: `{{ settings.font_body.family }},{{ settings.font_body.fallback_families }}`,
       },
+      screens: {
+        '<md': { max: '767px' },
+        '<sm': { max: '639px' },
+        '<lg': { max: '1023px' },
+        '<xl': { max: '1279px' },
+        '<2xl': { max: '1535px' },
+      },
     }
   }
 }
@@ -31,6 +38,8 @@ tailwind.config = {
 {{ settings.font_body | font_face: font_display: string }}
 
 @layer base {
+  [hidden] { display: none !important; }
+
   body {
     @apply bg-canvas text-ink accent-primary caret-primary font-body;
   }
@@ -100,8 +109,7 @@ tailwind.config = {
 
   .hashtag {
     &::before {
-      content: '#';
-      @apply text-neutral-400;
+      @apply content-['#'] text-neutral-400 hover:text-[inherit];
     }
   }
 
@@ -131,7 +139,35 @@ tailwind.config = {
   /* layouts */
 
   .section {
-    @apply max-w-screen-xl mx-auto py-8 sm:py-12 px-4;
+    @apply max-w-screen-xl mx-auto py-8 sm:py-12 px-4 sm:px-8;
+  }
+}
+
+@layer utilities {
+  .full-width {
+    width: 100vw;
+    margin-inline: calc(50% - 50vw);
+  }
+
+  .sticky-below-header {
+    position: sticky;
+    top: calc(var(--header-height, 0px) + var(--offset, 0px));
+  }
+
+  .with-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5em;
+
+    & svg {
+      height: 1.5em;
+      transition: scale 0.1s ease-in-out;
+    }
+
+    &:is(:hover, :focus) svg {
+      scale: 1.2;
+    }
   }
 
   .divider {
@@ -151,22 +187,16 @@ tailwind.config = {
       @apply border-b;
     }
   }
-}
 
-@layer utilities {
-  .with-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: .5em;
+  .carousel {
+    display: flex;
+    align-items: flex-start;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
 
-    & svg {
-      height: 1.5em;
-      transition: scale 0.1s ease-in-out;
-    }
-
-    &:is(:hover, :focus) svg {
-      scale: 1.2;
+    & > * {
+      scroll-snap-align: center;
+      flex: 0 1 var(--size, min(80vw, 280px));
     }
   }
 

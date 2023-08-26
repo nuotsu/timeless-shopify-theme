@@ -1,0 +1,39 @@
+<div data-product-recommendations class="section empty:hidden [&:has(.carousel:empty)]:hidden">
+  {%- if recommendations.performed? and recommendations.products_count > 0 -%}
+    <header class="rte">
+      {{ section.settings.content }}
+    </header>
+
+    {% render 'product-carousel' with recommendations.products %}
+  {%- endif -%}
+</div>
+
+<script type="module" defer>
+  const target = document.querySelector('[data-product-recommendations]')
+  const url = '{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit=4&intent=related'
+
+  const recommendations = await fetch(url)
+    .then(res => res.text())
+
+  const div = document.createElement('div')
+  div.innerHTML = recommendations
+
+  console.log(div.querySelector('[data-product-recommendations] .carousel'))
+
+  target.innerHTML = div.querySelector('[data-product-recommendations]')?.innerHTML ?? ''
+</script>
+
+{% schema %}
+{
+  "name": "Product recommendations",
+  "tag": "section",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content"
+    }
+  ]
+}
+{% endschema %}

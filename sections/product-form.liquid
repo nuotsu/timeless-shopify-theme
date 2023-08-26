@@ -10,7 +10,7 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
 
-<div class="section grid sm:grid-cols-2 items-start gap-8 [&>*]:min-w-0">
+<div class="section-product-form section grid sm:grid-cols-2 items-start gap-8">
   {% render 'product-image-carousel' %}
 
   {% form 'product', product, class: 'grid gap-2' %}
@@ -56,7 +56,7 @@
 
         {%- when 'inventory' -%}
           <p
-            class="{{ block.settings.tailwind | default: 'text-sm' }}"
+            class="{{ block.settings.tailwind | default: 'text-sm text-center md:text-left' }}"
             {% if block.settings.enable_threshold %}
               data-inventory-threshold="{{ block.settings.threshold }}"
               {% if p.inventory_quantity > block.settings.threshold %}hidden{% endif %}
@@ -89,6 +89,11 @@
 </div>
 
 <style type="text/tailwindcss">
+  .section-product-form > * {
+    min-width: 0;
+    @apply sm:self-start sm:sticky-below-header
+  }
+
   .product-thumbs .swiper-slide {
     @apply relative transition-transform;
 
@@ -123,18 +128,23 @@
     slidesPerView: {{ section.settings.carousel_slidesPerView }},
     spaceBetween: 1,
     watchSlidesProgress: true,
+    on: {
+      init: function() {
+        this.el.removeAttribute('hidden')
+      },
+    }
   })
 
   const swiper = new Swiper('#shopify-section-{{ section.id }} .product-images', {
     thumbs: {
       swiper: thumbs,
     },
-    autoHeight: {{ section.settings.carousel_autoHeight | default: true }},
-    zoom: {{ section.settings.carousel_zoom_enabled | default: true }},
+    autoHeight: {{ section.settings.carousel_autoHeight }},
+    zoom: {{ section.settings.carousel_zoom_enabled }},
   })
 
   const productForm = document.querySelector('#shopify-section-{{ section.id }} form')
-  const variantSelector = productForm.querySelector('[name="id"]')
+  const variantSelector = productForm.querySelector('select[name="id"]')
 
   if (!!variantSelector) {
     // initialize options (populate on page load)
@@ -200,22 +210,26 @@
           }
         })
 
-        // update swiper
-        const variantImage = document.querySelector(`[data-variant-id="${ newValue }"]`)
-        if (!!variantImage) {
-          const index = Array.from(variantImage.parentNode.children).indexOf(variantImage)
-          swiper.slideTo(index)
-        }
+        updateSwiper(newValue)
       }
     })
   }
+
+  function updateSwiper(variantId) {
+    const variantImage = document.querySelector(`[data-variant-id="${ variantId }"]`)
+    if (!!variantImage) {
+      const index = Array.from(variantImage.parentNode.children).indexOf(variantImage)
+      swiper.slideTo(index)
+    }
+  }
+  updateSwiper({{ product.selected_or_first_available_variant.id }})
 </script>
 
 {% schema %}
 {
-  "name": "Product",
+  "name": "Product form",
   "tag": "article",
-  "class": "section-product",
+  "class": "section-product-form",
   "limit": 1,
   "settings": [
     {
@@ -357,7 +371,7 @@
           "type": "html",
           "id": "tailwind",
           "label": "Tailwind classes",
-          "info": "Default: \"text-sm\""
+          "info": "Default: \"text-sm text-center md:text-left\""
         }
       ]
     },

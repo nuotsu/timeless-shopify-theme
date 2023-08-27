@@ -2,7 +2,9 @@
   "sections": {
     "collection": {
       "type": "collection",
-      "settings": {}
+      "settings": {
+        "grid_item_size": 200
+      }
     }
   },
   "order": [

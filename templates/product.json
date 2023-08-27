@@ -78,12 +78,14 @@
       ],
       "settings": {
         "carousel_zoom_enabled": true,
-        "carousel_autoHeight": true
+        "carousel_autoHeight": true,
+        "carousel_slidesPerView": 8
       }
     },
     "product-recommendations": {
       "type": "product-recommendations",
       "settings": {
+        "content": "<h2>Product Recommendations<\/h2>"
       }
     }
   },

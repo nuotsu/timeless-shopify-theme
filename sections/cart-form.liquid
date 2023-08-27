@@ -45,7 +45,11 @@
             </dt>
 
             <dd class="flex gap-[.5em]">
-              <span class="price">{{ line_item.original_price | money }}</span>
+              <div>
+                <span class="price">{{ line_item.original_price | money }}</span>
+                {% render 'unit-price', measurement: line_item.unit_price_measurement %}
+              </div>
+
               <label title="Quantity">
                 {% render 'quantity-selector',
                   name: 'updates[]',
@@ -163,7 +167,7 @@
 
 {% schema %}
 {
-  "name": "Cart",
+  "name": "Cart form",
   "tag": "section",
   "class": "section",
   "settings": [

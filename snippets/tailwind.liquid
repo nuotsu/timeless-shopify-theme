@@ -117,12 +117,14 @@ tailwind.config = {
 
   .input {
     padding: 0 0.5em;
-    @apply inline-flex rounded border border-neutral-300 hover:border-neutral-400;
+    @apply inline-flex rounded border border-neutral-300 hover:border-neutral-400 invalid:border-alert;
   }
 
-  .quantity-input {
-    width: 4em;
+  .input-number {
     @apply input text-center pr-0;
+  }
+  .input-number-label {
+    @apply relative z-[1] inline-block bg-white translate-x-full leading-none;
   }
 
   .price, [data-price], [data-compare-at-price] {

@@ -1,0 +1,69 @@
+<nav class="flex gap-x-4">
+  {%- for filter in results.filters -%}
+    <details open>
+      <summary>{{ filter.label }}</summary>
+      {%- case filter.type -%}
+        {%- when 'list' or 'boolean' -%}
+          <fieldset>
+            <legend class="sr-only">{{ filter.label }}</legend>
+            <div class="grid">
+              {%- for value in filter.values -%}
+                <label>
+                  <input
+                    name="{{ value.param_name }}"
+                    id="{{ filter.param_name | handleize }}-{{ forloop.index0 }}"
+                    type="checkbox"
+                    {% if value.active %}checked{% endif %}
+                    {% if value.count == 0 and value.active == false %}disabled{% endif %}
+                  />
+                  {{ value.label }} ({{ value.count }})
+                </label>
+              {%- endfor -%}
+            </div>
+          </fieldset>
+
+        {%- when 'price_range' -%}
+          <fieldset>
+            <legend class="sr-only">{{ filter.label }}</legend>
+            <div class="grid">
+              <label class="flex items-center">
+                <span class="grow technical text-xs">Min</span>
+                <div>
+                  <span class="input-number-label">{{ cart.currency.symbol }}</span>
+                  <input
+                    class="input-number w-[6em]"
+                    name="{{ filter.min_value.param_name }}"
+                    id="{{ filter.label | escape }}-gte"
+                    {% if filter.min_value.value %}
+                      value="{{ filter.min_value.value | divided_by: 100 }}"
+                    {% endif %}
+                    type="number"
+                    min="0" max="{{ filter.range_max | divided_by: 100 }}"
+                    placeholder="0"
+                  />
+                </div>
+              </label>
+              <label class="flex items-center">
+                <span class="grow technical text-xs">Max</span>
+                <div>
+                  <span class="input-number-label">{{ cart.currency.symbol }}</span>
+                  <input
+                    class="input-number w-[6em]"
+                    name="{{ filter.max_value.param_name }}"
+                    id="{{ filter.label | escape }}-lte"
+                    {% if filter.max_value.value %}
+                      value="{{ filter.max_value.value | divided_by: 100 }}"
+                    {% endif %}
+                    type="number"
+                    min="0" max="{{ filter.range_max | divided_by: 100 }}"
+                    placeholder="{{ filter.range_max | divided_by: 100 }}"
+                  />
+                </div>
+              </label>
+            </div>
+          </fieldset>
+
+      {%- endcase -%}
+    </details>
+  {%- endfor -%}
+</nav>

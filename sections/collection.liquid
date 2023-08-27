@@ -1,15 +1,23 @@
-<header class="rte mb-8">
+<header class="rte">
   <h1>{{ collection.title }}</h1>
   {{ collection.description }}
 </header>
 
-{% render 'product-grid', products: collection.products, size: section.settings.grid_item_size %}
+<div class="grid gap-8">
+  {% render 'filters', results: collection %}
+
+  {% comment %}
+    TODO: add pagination
+    @see https://github.com/Shopify/dawn/blob/main/sections/main-collection-product-grid.liquid
+  {% endcomment %}
+  {% render 'product-grid', products: collection.products, size: section.settings.grid_item_size %}
+</div>
 
 {% schema %}
 {
   "name": "Collection",
   "tag": "section",
-  "class": "section",
+  "class": "section grid gap-8",
   "settings": [
     {
       "type": "range",

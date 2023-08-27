@@ -1,6 +1,6 @@
 <div data-product-recommendations class="section empty:hidden [&:has(.carousel:empty)]:hidden">
   {%- if recommendations.performed? and recommendations.products_count > 0 -%}
-    <header class="rte">
+    <header class="mb-8 rte">
       {{ section.settings.content }}
     </header>
 
@@ -17,8 +17,6 @@
 
   const div = document.createElement('div')
   div.innerHTML = recommendations
-
-  console.log(div.querySelector('[data-product-recommendations] .carousel'))
 
   target.innerHTML = div.querySelector('[data-product-recommendations]')?.innerHTML ?? ''
 </script>

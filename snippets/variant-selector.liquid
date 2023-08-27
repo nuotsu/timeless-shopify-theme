@@ -17,23 +17,25 @@
     {%- endfor -%}
   </select>
 
-  {%- for product_option in product.options_with_values -%}
-    <fieldset>
-      <legend class="technical text-xs">{{ product_option.name }}</legend>
+  <div class="grid gap-3 p-2 px-3 bg-gradient-to-r from-canvas-subdued to-transparent">
+    {%- for product_option in product.options_with_values -%}
+      <fieldset>
+        <legend class="technical text-xs">{{ product_option.name }}</legend>
 
-      {%- for value in product_option.values -%}
-        <label>
-          <input
-            class="product-options"
-            name="option{{ product_option.position }}"
-            value="{{ value }}"
-            type="radio"
-            {% if product_option.selected or forloop.index0 == 0 %}checked{% endif %}
-          />
-          {{ value }}
-        </label>
-      {%- endfor -%}
-    </fieldset>
-  {%- endfor -%}
+        {%- for value in product_option.values -%}
+          <label>
+            <input
+              class="product-options"
+              name="option{{ product_option.position }}"
+              value="{{ value }}"
+              type="radio"
+              {% if product_option.selected or forloop.index0 == 0 %}checked{% endif %}
+            />
+            {{ value }}
+          </label>
+        {%- endfor -%}
+      </fieldset>
+    {%- endfor -%}
+  </div>
 
 {%- endif -%}

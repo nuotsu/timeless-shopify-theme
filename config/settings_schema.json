@@ -31,6 +31,29 @@
             "default": "#000"
           },
           {
+            "type": "color",
+            "id": "stroke",
+            "label": "Stroke",
+            "default": "#a3a3a3"
+          },
+          {
+            "type": "header",
+            "content": "Subdued",
+            "info": "Used for separation and disabled states"
+          },
+          {
+            "type": "color",
+            "id": "canvas_subdued",
+            "label": "Canvas",
+            "default": "#f7f7f7"
+          },
+          {
+            "type": "color",
+            "id": "ink_subdued",
+            "label": "Ink",
+            "default": "#a3a3a3"
+          },
+          {
             "type": "header",
             "content": "Primary"
           },

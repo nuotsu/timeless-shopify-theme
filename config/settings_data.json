@@ -14,6 +14,9 @@
         "settings": {
           "canvas": "#ffffff",
           "ink": "#000000",
+          "stroke": "#a3a3a3",
+          "canvas_subdued": "#f7f7f7",
+          "ink_subdued": "#a3a3a3",
           "primary": "{{ shop.brand.colors.primary[0].background }}",
           "primary_contrasting": "{{ shop.brand.colors.primary[0].foreground }}",
           "secondary": "{{ shop.brand.colors.secondary[0].background }}",
@@ -24,6 +27,9 @@
         "settings": {
           "canvas": "#f7f7f7",
           "ink": "#000000",
+          "stroke": "#a3a3a3",
+          "canvas_subdued": "#ebebeb",
+          "ink_subdued": "#a3a3a3",
           "primary": "{{ shop.brand.colors.primary[0].background }}",
           "primary_contrasting": "{{ shop.brand.colors.primary[0].foreground }}",
           "secondary": "{{ shop.brand.colors.secondary[0].background }}",
@@ -34,6 +40,9 @@
         "settings": {
           "canvas": "#000000",
           "ink": "#ffffff",
+          "stroke": "#616161",
+          "canvas_subdued": "#303030",
+          "ink_subdued": "#8a8a8a",
           "primary": "{{ shop.brand.colors.primary[0].background }}",
           "primary_contrasting": "{{ shop.brand.colors.primary[0].foreground }}",
           "secondary": "{{ shop.brand.colors.secondary[0].background }}",

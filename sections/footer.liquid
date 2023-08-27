@@ -2,10 +2,11 @@
   <p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name | link_to: routes.root_url }}.</p>
 </div>
 
-<style>
+<style type="text/tailwindcss">
   #shopify-section-{{ section.id }} {
     --canvas: {{ section.settings.color_scheme.settings.canvas }};
     --ink: {{ section.settings.color_scheme.settings.ink }};
+    @apply bg-[var(--canvas)] text-[var(--ink)];
   }
 </style>
 

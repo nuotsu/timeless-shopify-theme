@@ -6,8 +6,12 @@ tailwind.config = {
     extend: {
       colors: {
         // base
-        canvas: 'var(--canvas, {{ settings.color_schemes.default.settings.canvas }})',
-        ink: 'var(--ink, {{ settings.color_schemes.default.settings.ink }})',
+        canvas: '{{ settings.color_schemes.default.settings.canvas }}',
+        ink: '{{ settings.color_schemes.default.settings.ink }}',
+        stroke: '{{ settings.color_schemes.default.settings.stroke }}',
+        // subdued
+        'canvas-subdued': '{{ settings.color_schemes.default.settings.canvas_subdued }}',
+        'ink-subdued': '{{ settings.color_schemes.default.settings.ink_subdued }}',
         // accents
         primary: '{{ settings.color_schemes.default.settings.primary }}',
         'primary-contrasting': '{{ settings.color_schemes.default.settings.primary_contrasting }}',
@@ -56,12 +60,12 @@ tailwind.config = {
     display: none;
   }
 
-  label {
+  label, select {
     cursor: pointer;
   }
 
-  select {
-    cursor: pointer;
+  hr {
+    @apply border-stroke;
   }
 }
 
@@ -94,7 +98,7 @@ tailwind.config = {
     border-radius: var(--border-radius);
     padding: 0.5em 1em;
 
-    @apply disabled:bg-neutral-300;
+    @apply disabled:grayscale;
   }
 
   .action {
@@ -114,7 +118,7 @@ tailwind.config = {
 
   .hashtag {
     &::before {
-      @apply content-['#'] text-neutral-400;
+      @apply content-['#'] text-ink-subdued;
     }
     &[href]:hover::before {
       color: inherit;
@@ -128,8 +132,8 @@ tailwind.config = {
     padding-inline: .5em;
 
     @apply
-      inline-flex border border-neutral-300 bg-transparent
-      hover:border-neutral-400;
+      inline-flex border border-stroke bg-transparent
+      hover:border-opacity-100 hover:border-ink-subdued;
 
     &:invalid:not(:placeholder-shown) {
       @apply border-alert;
@@ -140,8 +144,7 @@ tailwind.config = {
     @apply input text-center pr-0;
   }
   .input-number-label {
-    background-color: var(--canvas, theme('colors.canvas'));
-    @apply relative z-[1] inline-block translate-x-full leading-none;
+    @apply relative z-[1] inline-block bg-canvas translate-x-full leading-none;
   }
 
   /* tokens */
@@ -233,7 +236,7 @@ tailwind.config = {
       position: absolute;
       inset: 50% 0 auto;
       translate: 0 -50%;
-      @apply border-b;
+      @apply border-b border-stroke;
     }
   }
 

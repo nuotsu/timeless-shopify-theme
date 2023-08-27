@@ -1,5 +1,5 @@
 <li class="grid gap-2">
-  <a class="group grid gap-2" href="{{ product.url }}">
+  <a class="group grid gap-2" href="{{ product.url | within: collection }}">
     <figure class="overflow-hidden">
       {{ product.featured_image
         | image_url: width: 500, height: 500

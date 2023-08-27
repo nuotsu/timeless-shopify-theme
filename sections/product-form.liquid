@@ -13,7 +13,7 @@
 <div class="section-product-form section grid sm:grid-cols-2 items-start gap-8">
   {% render 'product-image-carousel' %}
 
-  {% form 'product', product, class: 'grid gap-2' %}
+  {% form 'product', product, class: 'grid gap-3' %}
     {%- for block in section.blocks -%}
       {%- case block.type -%}
         {%- when 'title' -%}
@@ -25,7 +25,7 @@
           </div>
 
         {%- when 'sku' -%}
-          <p class="text-neutral-400" data-sku-container {% if sku == blank %}hidden{% endif %}>
+          <p class="text-ink-subdued" data-sku-container {% if sku == blank %}hidden{% endif %}>
             <small>SKU: <code data-sku>{{ sku }}</code></small>
           </p>
 
@@ -73,7 +73,7 @@
 
         {%- when 'divider' -%}
           {%- if block.settings.label != blank -%}
-            <h2 class="mt-4 divider technical text-xs">
+            <h2 class="divider technical text-xs mt-4">
               <span>{{ block.settings.label }}</span>
             </h2>
           {%- else -%}

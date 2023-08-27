@@ -6,8 +6,8 @@ tailwind.config = {
     extend: {
       colors: {
         // base
-        canvas: '{{ settings.color_schemes.default.settings.canvas }}',
-        ink: '{{ settings.color_schemes.default.settings.ink }}',
+        canvas: 'var(--canvas, {{ settings.color_schemes.default.settings.canvas }})',
+        ink: 'var(--ink, {{ settings.color_schemes.default.settings.ink }})',
         // accents
         primary: '{{ settings.color_schemes.default.settings.primary }}',
         'primary-contrasting': '{{ settings.color_schemes.default.settings.primary_contrasting }}',
@@ -38,6 +38,10 @@ tailwind.config = {
 {{ settings.font_body | font_face: font_display: string }}
 
 @layer base {
+  :root {
+    --border-radius: {{ settings.border_radius }}px;
+  }
+
   [hidden] { display: none !important; }
 
   body {
@@ -87,6 +91,7 @@ tailwind.config = {
     gap: .5em;
     align-items: center;
     justify-content: center;
+    border-radius: var(--border-radius);
     padding: 0.5em 1em;
 
     @apply disabled:bg-neutral-300;
@@ -109,17 +114,26 @@ tailwind.config = {
 
   .hashtag {
     &::before {
-      @apply content-['#'] text-neutral-400 hover:text-[inherit];
+      @apply content-['#'] text-neutral-400;
+    }
+    &[href]:hover::before {
+      color: inherit;
     }
   }
 
   /* inputs */
 
   .input {
-    padding: 0 0.5em;
+    border-radius: var(--border-radius);
+    padding-inline: .5em;
+
     @apply
-      inline-flex rounded border border-neutral-300 bg-transparent
-      hover:border-neutral-400 invalid:border-alert;
+      inline-flex border border-neutral-300 bg-transparent
+      hover:border-neutral-400;
+
+    &:invalid:not(:placeholder-shown) {
+      @apply border-alert;
+    }
   }
 
   .input-number {
@@ -129,6 +143,8 @@ tailwind.config = {
     background-color: var(--canvas, theme('colors.canvas'));
     @apply relative z-[1] inline-block translate-x-full leading-none;
   }
+
+  /* tokens */
 
   .price, [data-price], [data-compare-at-price] {
     font-variant-numeric: tabular-nums;
@@ -184,6 +200,22 @@ tailwind.config = {
 
     &:is(:hover, :focus) svg {
       scale: 1.2;
+    }
+  }
+
+  .with-label {
+    @apply flex flex-col items-start gap-1;
+
+    & label {
+      z-index: 1;
+      margin-bottom: -1.2em;
+      padding-inline: .5em;
+      font-size: x-small;
+      @apply relative technical ml-1 bg-canvas text-ink;
+    }
+
+    & textarea, & input {
+      @apply py-2;
     }
   }
 

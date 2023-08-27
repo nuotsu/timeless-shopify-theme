@@ -1,11 +1,58 @@
-contact-form
+<div class="grid md:grid-cols-2 items-start gap-y-4 gap-x-12">
+  <div class="self-start md:sticky-below-header rte">
+    <h1>{{ page.title }}</h1>
+    {{ page.content }}
+  </div>
+
+  {% form 'contact', class: 'grid gap-2' %}
+    {{ form.errors | default_errors }}
+
+    {%- if section.settings.content != blank -%}
+      <div class="rte">
+        {{ section.settings.content }}
+      </div>
+    {%- endif -%}
+
+    <div class="with-label">
+      <label for="contact-name">Name</label>
+      <input class="input w-full" type="text" name="contact[name]" placeholder="John Smith" />
+    </div>
+
+    <div class="with-label">
+      <label for="contact-email">Email</label>
+      <input class="input w-full" type="email" name="contact[email]" placeholder="john@example.com" required />
+    </div>
+
+    <div class="with-label">
+      <label for="contact-body">Message</label>
+      <textarea class="input w-full" id="contact-body" name="contact[body]" placeholder="Message"></textarea>
+    </div>
+
+    <div>
+      <button class="action">
+        {{- section.settings.submit_label | default: 'Submit' -}}
+      </button>
+    </div>
+  {% endform %}
+</div>
 
 {% schema %}
 {
   "name": "Contact form",
   "tag": "section",
+  "class": "section",
   "settings": [
-
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content"
+    },
+    {
+      "type": "text",
+      "id": "submit_label",
+      "label": "Submit label",
+      "placeholder": "Submit"
+    }
   ]
 }
 {% endschema %}

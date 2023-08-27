@@ -2,7 +2,10 @@
   "sections": {
     "contact-form": {
       "type": "contact-form",
-      "settings": {}
+      "settings": {
+        "content": "<h3>Contact us!<\/h3>",
+        "submit_label": ""
+      }
     }
   },
   "order": [

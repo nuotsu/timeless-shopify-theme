@@ -3,7 +3,7 @@
     <figure class="overflow-hidden">
       {{ product.featured_image
         | image_url: width: 500, height: 500
-        | image_tag: class: 'w-full aspect-square object-cover transition-transform group-hover:scale-110', loading: 'lazy'
+        | image_tag: class: 'w-full aspect-square object-cover group-hover:scale-110 transition-transform', loading: 'lazy'
       }}
     </figure>
 
@@ -20,8 +20,8 @@
   </div>
 
   {%- unless product.has_only_default_variant -%}
-    <nav class="text-sm">
-      <div class="technical text-xs">{{ product.variants.size }} options</div>
+    <nav class="text-xs">
+      <div class="technical">{{ product.variants.size }} options</div>
 
       <div class="flex flex-wrap gap-x-[.5em]">
         {%- for product_option in product.options_with_values -%}

@@ -91,6 +91,20 @@
         "id": "font_body",
         "label": "Body font",
         "default": "sans-serif"
+      },
+      {
+        "type": "header",
+        "content": "Components"
+      },
+      {
+        "type": "range",
+        "id": "border_radius",
+        "min": 0,
+        "max": 8,
+        "step": 2,
+        "unit": "px",
+        "label": "Border radius",
+        "default": 0
       }
     ]
   }

@@ -19,83 +19,21 @@
 {%- unless cart.empty? -%}
   {% form 'cart', cart, class: 'grid gap-8 max-w-screen-lg mx-auto' %}
     <ul class="mt-8">
-      {%- for line_item in cart.items -%}
-        <li class="line-item grid grid-cols-[auto,1fr,auto] items-center gap-4 pb-4 border-b border-neutral-200 [&+&]:mt-4">
-          <figure class="self-start w-[80px] md:w-[100px]">
-            {{ line_item.image
-              | image_url: width: 200, height: 200
-              | image_tag: loading: 'lazy'
-              | link_to: line_item.url
-            }}
-          </figure>
-
-          <dl class="grid gap-2 justify-start">
-            <dt class="flex flex-wrap gap-x-[.5em]">
-              <a class="font-bold text-lg hover:underline" href="{{ line_item.url }}">
-                {{ line_item.product.title }}
-              </a>
-
-              {%- unless line_item.product.has_only_default_variant -%}
-                <div class="flex flex-wrap items-center gap-[.25em]">
-                  {%- for option in line_item.options_with_values -%}
-                    <small class="hashtag text-xs" title="{{ option.name }}">{{ option.value }}</small>
-                  {%- endfor -%}
-                </div>
-              {%- endunless -%}
-            </dt>
-
-            <dd class="flex gap-[.5em]">
-              <div>
-                <span class="price">{{ line_item.original_price | money }}</span>
-                {% render 'unit-price', measurement: line_item.unit_price_measurement %}
-              </div>
-
-              <label title="Quantity">
-                {% render 'quantity-selector',
-                  name: 'updates[]',
-                  value: line_item.quantity,
-                  min: 0
-                %}
-              </label>
-            </dd>
-
-            {% comment %} Discounts {% endcomment %}
-            {%- if line_item.discounts.size > 0 -%}
-              <dd class="mt-2 p-2 pt-1 bg-gradient-to-r from-warning/20 to-transparent">
-                <div class="technical text-[10px] -mt-[1em]">Discounts</div>
-
-                {%- for discount in line_item.discounts -%}
-                  <dl class="grid grid-cols-[1fr,auto] gap-x-4 items-center">
-                    <dt>{{ discount.title }}</dt>
-                    <dd class="price-negative text-right">{{ discount.amount | money }}</dd>
-                  </dl>
-                {%- endfor -%}
-              </dd>
-            {%- endif -%}
-          </dl>
-
-          <a
-            class="self-stretch with-icon ghost text-sm"
-            href="{{ line_item.url_to_remove }}"
-            title="Remove {{ line_item.title }} from cart"
-          >
-            {%- render 'icon' with 'delete' -%}
-          </a>
-        </li>
-      {%- endfor -%}
+      {% render 'line-item' for cart.items as line_item %}
     </ul>
 
     <div class="grid sm:flex flex-wrap items-start gap-8 sm:ml-auto">
       {% comment %} Cart note {% endcomment %}
-      <label class="flex flex-col items-start gap-1">
-        <span class="relative z-[1] technical px-[.5em] ml-1 text-[10px] bg-white -mb-[1.2em]">Cart note</span>
+      <div class="with-label">
+        <label for="cart-note">Cart note</label>
         <textarea
-          class="input p-2 w-full min-h-[2.5em] max-h-[12em] leading-tight"
+          class="input w-full min-h-[2.5em] max-h-[12em] leading-tight"
+          id="cart-note"
           name="note"
           cols="30" rows="3"
           placeholder="Cart notes"
         >{{ cart.note }}</textarea>
-      </label>
+      </div>
 
       {% comment %} Cart summary {% endcomment %}
       <div class="grid gap-4">
@@ -109,7 +47,7 @@
 
             {%- if cart.cart_level_discount_applications.size > 0 -%}
               <details class="col-span-full pl-2 text-sm" open>
-                <summary class="technical text-[10px]">Includes</summary>
+                <summary class="technical text-[x-small]">Includes</summary>
 
                 <div class="grid grid-cols-[1fr,auto] gap-x-4 [&_dd]:text-right">
                   {%- for discount in cart.cart_level_discount_applications -%}

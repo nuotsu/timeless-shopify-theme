@@ -1,0 +1,62 @@
+<li class="line-item grid grid-cols-[auto,1fr,auto] items-center gap-4 pb-4 border-b border-neutral-200 [&+&]:mt-4">
+  <figure class="group self-start w-[80px] md:w-[100px] overflow-hidden">
+    {{ line_item.image
+      | image_url: width: 200, height: 200
+      | image_tag: class: 'group-hover:scale-110 transition-transform', loading: 'lazy'
+      | link_to: line_item.url
+    }}
+  </figure>
+
+  <dl class="grid gap-2 justify-start">
+    <dt class="flex flex-wrap gap-x-[.5em]">
+      <a class="font-bold text-lg hover:underline" href="{{ line_item.url }}">
+        {{ line_item.product.title }}
+      </a>
+
+      {%- unless line_item.product.has_only_default_variant -%}
+        <div class="flex flex-wrap items-center gap-[.25em]">
+          {%- for option in line_item.options_with_values -%}
+            <small class="hashtag text-xs" title="{{ option.name }}">{{ option.value }}</small>
+          {%- endfor -%}
+        </div>
+      {%- endunless -%}
+    </dt>
+
+    <dd class="flex gap-[.5em]">
+      <div>
+        <span class="price">{{ line_item.original_price | money }}</span>
+        {% render 'unit-price', measurement: line_item.unit_price_measurement %}
+      </div>
+
+      <label title="Quantity">
+        {% render 'quantity-selector',
+          name: 'updates[]',
+          value: line_item.quantity,
+          min: 0
+        %}
+      </label>
+    </dd>
+
+    {% comment %} Discounts {% endcomment %}
+    {%- if line_item.discounts.size > 0 -%}
+      <dd class="mt-2 p-2 pt-1 bg-gradient-to-r from-warning/20 to-transparent">
+        <div class="technical text-[x-small] -mt-[1em]">Discounts</div>
+
+        {%- for discount in line_item.discounts -%}
+          <dl class="grid grid-cols-[1fr,auto] gap-x-4 items-center">
+            <dt>{{ discount.title }}</dt>
+            <dd class="price-negative text-right">{{ discount.amount | money }}</dd>
+          </dl>
+        {%- endfor -%}
+      </dd>
+    {%- endif -%}
+  </dl>
+
+  <a
+    class="self-stretch with-icon ghost text-sm"
+    href="{{ line_item.url_to_remove }}"
+    title="Remove {{ line_item.title }} from cart"
+  >
+    {%- render 'icon' with 'delete' -%}
+  </a>
+</li>

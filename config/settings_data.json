@@ -20,7 +20,17 @@
           "secondary_contrasting": "{{ shop.brand.colors.secondary[0].foreground }}"
         }
       },
-      "scheme-f9d63336-e4c3-4447-92ed-d3e1f73e6691": {
+      "gray": {
+        "settings": {
+          "canvas": "#f7f7f7",
+          "ink": "#000000",
+          "primary": "{{ shop.brand.colors.primary[0].background }}",
+          "primary_contrasting": "{{ shop.brand.colors.primary[0].foreground }}",
+          "secondary": "{{ shop.brand.colors.secondary[0].background }}",
+          "secondary_contrasting": "{{ shop.brand.colors.secondary[0].foreground }}"
+        }
+      },
+      "dark": {
         "settings": {
           "canvas": "#000000",
           "ink": "#ffffff",

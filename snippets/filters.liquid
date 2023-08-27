@@ -1,37 +1,58 @@
-<nav class="flex gap-x-4">
+<form
+  class="flex {% if stacked %}flex-col gap-y-4{% endif %} gap-x-8 overflow-x-auto <sm:full-width <sm:px-4"
+  oninput="this.querySelector('[data-filters-actions]').removeAttribute('hidden')"
+>
+  {%- if results.terms -%}
+    <input type="hidden" name="q" value="{{ results.terms | escape }}">
+    <input name="options[prefix]" type="hidden" value="last">
+  {%- endif -%}
+
   {%- for filter in results.filters -%}
-    <details open>
-      <summary>{{ filter.label }}</summary>
-      {%- case filter.type -%}
-        {%- when 'list' or 'boolean' -%}
-          <fieldset>
-            <legend class="sr-only">{{ filter.label }}</legend>
+    {%- if stacked -%}
+      {%- unless forloop.first -%}<hr>{%- endunless -%}
+    {%- endif -%}
+
+    <details class="whitespace-nowrap" open>
+      <summary class="flex items-center gap-2 hover:underline decoration-dashed">
+        <span class="grow technical text-xs">{{ filter.label }}</span>
+
+        {%- assign active_values = filter.active_values | where: 'active' -%}
+        {%- if active_values.size > 0 -%}
+          <a class="text-alert [&_svg]:h-[1.2em]" href="{{ filter.url_to_remove }}" title="Remove filter">
+            {% render 'icon' with 'circle-cancel' %}
+          </a>
+        {%- endif -%}
+      </summary>
+
+      <fieldset class="mt-1">
+        <legend class="sr-only">{{ filter.label }}</legend>
+
+        {%- case filter.type -%}
+          {%- when 'boolean' or 'list' -%}
             <div class="grid">
               {%- for value in filter.values -%}
-                <label>
+                <label class="flex gap-[.5ch]">
                   <input
                     name="{{ value.param_name }}"
-                    id="{{ filter.param_name | handleize }}-{{ forloop.index0 }}"
+                    id="Filter-{{ filter.param_name | escape }}-{{ forloop.index }}"
+                    value={{ value.value }}
                     type="checkbox"
                     {% if value.active %}checked{% endif %}
                     {% if value.count == 0 and value.active == false %}disabled{% endif %}
                   />
-                  {{ value.label }} ({{ value.count }})
+                  <span class="grow {% if value.count == 0 and value.active == false %}text-neutral-400{% endif %}">{{ value.label }}</span>
+                  <small class="self-center ml-[.5ch] tabular-nums text-right text-neutral-400">{{ value.count }}</small>
                 </label>
               {%- endfor -%}
             </div>
-          </fieldset>
-
-        {%- when 'price_range' -%}
-          <fieldset>
-            <legend class="sr-only">{{ filter.label }}</legend>
-            <div class="grid">
+          {%- when 'price_range' -%}
+            <div class="grid gap-2">
               <label class="flex items-center">
                 <span class="grow technical text-xs">Min</span>
                 <div>
                   <span class="input-number-label">{{ cart.currency.symbol }}</span>
                   <input
-                    class="input-number w-[6em]"
+                    class="input-number w-[7em]"
                     name="{{ filter.min_value.param_name }}"
                     id="{{ filter.label | escape }}-gte"
                     {% if filter.min_value.value %}
@@ -48,7 +69,7 @@
                 <div>
                   <span class="input-number-label">{{ cart.currency.symbol }}</span>
                   <input
-                    class="input-number w-[6em]"
+                    class="input-number w-[7em]"
                     name="{{ filter.max_value.param_name }}"
                     id="{{ filter.label | escape }}-lte"
                     {% if filter.max_value.value %}
@@ -61,9 +82,14 @@
                 </div>
               </label>
             </div>
-          </fieldset>
-
-      {%- endcase -%}
+        {%- endcase -%}
+      </fieldset>
     </details>
   {%- endfor -%}
-</nav>
+
+  <div data-filters-actions class="sticky -right-4 md:right-0 z-[1] bg-white/50 backdrop-blur-sm" hidden>
+    <button class="w-full h-full action-secondary animate-pulse" type="submit">
+      Apply
+    </button>
+  </div>
+</form>

@@ -117,14 +117,17 @@ tailwind.config = {
 
   .input {
     padding: 0 0.5em;
-    @apply inline-flex rounded border border-neutral-300 hover:border-neutral-400 invalid:border-alert;
+    @apply
+      inline-flex rounded border border-neutral-300 bg-transparent
+      hover:border-neutral-400 invalid:border-alert;
   }
 
   .input-number {
     @apply input text-center pr-0;
   }
   .input-number-label {
-    @apply relative z-[1] inline-block bg-white translate-x-full leading-none;
+    background-color: var(--canvas, theme('colors.canvas'));
+    @apply relative z-[1] inline-block translate-x-full leading-none;
   }
 
   .price, [data-price], [data-compare-at-price] {
@@ -142,6 +145,18 @@ tailwind.config = {
 
   .section {
     @apply max-w-screen-xl mx-auto py-8 sm:py-12 px-4 sm:px-8;
+  }
+
+  .pagination {
+    @apply flex justify-center gap-4;
+
+    & .current {
+      @apply font-bold;
+    }
+
+    & a:hover {
+      text-decoration: underline;
+    }
   }
 }
 

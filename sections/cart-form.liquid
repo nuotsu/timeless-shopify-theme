@@ -143,7 +143,7 @@
         </dl>
 
         <div class="grid gap-2">
-          <input class="action-secondary animate-pulse disabled:hidden" type="submit" value="Update cart" disabled />
+          <input class="action-secondary animate-pulse" type="submit" value="Update cart" hidden />
           <button class="action" name="checkout" type="submit">
             {{ section.settings.checkout_label | default: 'Checkout' }}
           </button>
@@ -160,7 +160,7 @@
     input.addEventListener('input', ({ target }) => {
       target.setAttribute('value', Math.max(0, target.valueAsNumber))
       target.classList.add('border-warning', 'bg-warning/10', 'animate-pulse')
-      cartForm.querySelector('input[type="submit"]').removeAttribute('disabled')
+      cartForm.querySelector('input[type="submit"]').removeAttribute('hidden')
     })
   })
 </script>

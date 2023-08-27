@@ -3,7 +3,8 @@
     "collection": {
       "type": "collection",
       "settings": {
-        "grid_item_size": 200
+        "grid_item_size": 200,
+        "filters_color_scheme": "gray"
       }
     }
   },

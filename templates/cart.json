@@ -3,8 +3,8 @@
     "cart-form": {
       "type": "cart-form",
       "settings": {
-        "empty_cta_label": "",
         "checkout_label": "",
+        "empty_cta_label": "",
         "empty_cta_link": "shopify:\/\/collections\/all"
       }
     }

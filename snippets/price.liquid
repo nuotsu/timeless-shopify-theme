@@ -6,7 +6,7 @@
   endif
 -%}
 
-<div class="price">
+<div>
   <span data-price>{{ p.price | money }}</span>
   <s
     data-compare-at-price
@@ -14,4 +14,6 @@
   >
     {{ p.compare_at_price | money }}
   </s>
+
+  {% render 'unit-price', measurement: p.unit_price_measurement %}
 </div>

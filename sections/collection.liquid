@@ -3,7 +3,7 @@
   {{ collection.description }}
 </header>
 
-{% render 'product-carousel' with collection.products %}
+{% render 'product-grid', products: collection.products, size: section.settings.grid_item_size %}
 
 {% schema %}
 {
@@ -11,7 +11,16 @@
   "tag": "section",
   "class": "section",
   "settings": [
-
+    {
+      "type": "range",
+      "id": "grid_item_size",
+      "label": "Grid item size",
+      "unit": "px",
+      "min": 100,
+      "max": 350,
+      "step": 10,
+      "default": 180
+    }
   ]
 }
 {% endschema %}

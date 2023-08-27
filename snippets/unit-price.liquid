@@ -1,0 +1,8 @@
+{%- if measurement -%}
+  <small title="{{ measurement.measured_type }}">/
+    {%- if measurement.reference_value != 1 -%}
+      {{- measurement.reference_value -}}
+    {%- endif -%}
+    {{ measurement.reference_unit }}
+  </small>
+{%- endif -%}

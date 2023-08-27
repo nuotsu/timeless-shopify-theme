@@ -1,0 +1,19 @@
+<div
+  {% if section.settings.tailwind %}class="{{ section.settings.tailwind }}"{% endif %}
+>
+  {{ page.content }}
+</div>
+
+{% schema %}
+{
+  "name": "Blank page",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "html",
+      "id": "tailwind",
+      "label": "Tailwind classes"
+    }
+  ]
+}
+{% endschema %}

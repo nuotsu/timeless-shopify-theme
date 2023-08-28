@@ -1,11 +1,16 @@
 {
   "sections": {
-    "placeholder": {
-      "type": "placeholder",
+    "heading": {
+      "type": "heading",
+      "settings": {}
+    },
+    "article": {
+      "type": "article",
       "settings": {}
     }
   },
   "order": [
-    "placeholder"
+    "heading",
+    "article"
   ]
 }

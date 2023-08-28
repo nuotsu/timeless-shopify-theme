@@ -1,0 +1,18 @@
+{{ article.content }}
+
+<style type="text/tailwindcss">
+  #shopify-section-{{ section.id }} blockquote {
+    @apply py-1 px-3 border-l-2 border-stroke italic;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Article",
+  "tag": "article",
+  "class": "section rte max-w-screen-sm",
+  "settings": [
+
+  ]
+}
+{% endschema %}

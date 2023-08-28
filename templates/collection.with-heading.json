@@ -3,7 +3,9 @@
     "heading": {
       "type": "heading",
       "settings": {
-        "color_scheme": "dark"
+        "color_scheme": "dark",
+        "content": "",
+        "bg_opacity": 0.5
       }
     },
     "collection": {

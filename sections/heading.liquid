@@ -17,14 +17,18 @@
 
 <div
   class="text-center bg-center bg-cover"
-  style="background-image: url({{ section.settings.image | default: data.featured_image | image_url: width: 1600 }});"
+  style="background-image: url({{ section.settings.image | default: data.image | image_url: width: 1600 }});"
 >
   <div class="relative z-[1] section py-12 md:py-20 max-w-screen-sm rte [text-wrap:balance]">
     {%- if section.settings.content != blank -%}
       {{ section.settings.content }}
     {%- else -%}
       <h1>{{ data.title | default: data.name | default: page_title }}</h1>
-      {{ data.description }}
+      {%- unless data.description contains '<' -%}
+        <p>{{ data.description }}</p>
+      {%- else -%}
+        {{ data.description }}
+      {%- endunless -%}
     {%- endif -%}
 
     {% render 'cta-list' with section %}

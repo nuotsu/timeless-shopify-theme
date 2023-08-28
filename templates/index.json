@@ -1,11 +1,29 @@
 {
   "sections": {
-    "placeholder": {
-      "type": "placeholder",
-      "settings": {}
+    "a9c33750-66f1-446c-b111-4f7f04b89688": {
+      "type": "heading",
+      "blocks": {
+        "0b40575d-b6b3-46fa-84b6-10cfa7683275": {
+          "type": "cta",
+          "settings": {
+            "url": "shopify:\/\/collections",
+            "label": "View all collections",
+            "style": "action"
+          }
+        }
+      },
+      "block_order": [
+        "0b40575d-b6b3-46fa-84b6-10cfa7683275"
+      ],
+      "settings": {
+        "color_scheme": "dark",
+        "content": "",
+        "image": "shopify:\/\/shop_images\/nuotsu_triceratops_and_t-rex_fighting_around_a_Porsche_911_jur_75b96cbf-fb44-4814-b98e-ed6ca8c26569.png",
+        "bg_opacity": 0.5
+      }
     }
   },
   "order": [
-    "placeholder"
+    "a9c33750-66f1-446c-b111-4f7f04b89688"
   ]
 }

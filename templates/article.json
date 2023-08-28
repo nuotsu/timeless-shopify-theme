@@ -2,11 +2,16 @@
   "sections": {
     "heading": {
       "type": "heading",
-      "settings": {}
+      "settings": {
+        "color_scheme": "gray",
+        "content": "",
+        "bg_opacity": 0.8
+      }
     },
     "article": {
       "type": "article",
-      "settings": {}
+      "settings": {
+      }
     }
   },
   "order": [

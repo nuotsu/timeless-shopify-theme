@@ -1,11 +1,11 @@
 {
   "sections": {
-    "placeholder": {
-      "type": "placeholder",
+    "list-collections": {
+      "type": "list-collections",
       "settings": {}
     }
   },
   "order": [
-    "placeholder"
+    "list-collections"
   ]
 }

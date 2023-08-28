@@ -6,10 +6,12 @@
   endif
 -%}
 
-<header class="rte">
-  <h1>{{ collection.title }}</h1>
-  {{ collection.description }}
-</header>
+{%- if section.settings.show_heading -%}
+  <header class="rte {{ section.settings.tailwind | default: 'max-w-screen-sm' }}">
+    <h1>{{ collection.title }}</h1>
+    {{ collection.description }}
+  </header>
+{%- endif -%}
 
 <div class="flex flex-col {% if sidebar_enabled %}md:flex-row{% endif %} gap-8">
   {%- if section.settings.filters_enabled -%}
@@ -43,20 +45,20 @@
   "class": "section grid gap-12",
   "settings": [
     {
-      "type": "range",
-      "id": "grid_item_size",
-      "label": "Grid item size",
-      "unit": "px",
-      "min": 100,
-      "max": 350,
-      "step": 10,
-      "default": 180
+      "type": "header",
+      "content": "Heading"
     },
     {
-      "type": "number",
-      "id": "page_size",
-      "label": "Products per page",
-      "default": 12
+      "type": "checkbox",
+      "id": "show_heading",
+      "label": "Show heading",
+      "default": true
+    },
+    {
+      "type": "html",
+      "id": "tailwind",
+      "label": "Tailwind classes",
+      "info": "Default: \"max-w-screen-sm\""
     },
     {
       "type": "header",
@@ -83,6 +85,26 @@
         }
       ],
       "default": "left"
+    },
+    {
+      "type": "header",
+      "content": "Products"
+    },
+    {
+      "type": "range",
+      "id": "grid_item_size",
+      "label": "Grid item size",
+      "unit": "px",
+      "min": 100,
+      "max": 350,
+      "step": 10,
+      "default": 180
+    },
+    {
+      "type": "number",
+      "id": "page_size",
+      "label": "Products per page",
+      "default": 12
     }
   ]
 }

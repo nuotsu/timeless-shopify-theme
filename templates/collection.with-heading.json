@@ -1,0 +1,25 @@
+{
+  "sections": {
+    "heading": {
+      "type": "heading",
+      "settings": {
+        "color_scheme": "dark"
+      }
+    },
+    "collection": {
+      "type": "collection",
+      "settings": {
+        "show_heading": false,
+        "tailwind": "",
+        "filters_enabled": true,
+        "filters_position": "left",
+        "grid_item_size": 200,
+        "page_size": 12
+      }
+    }
+  },
+  "order": [
+    "heading",
+    "collection"
+  ]
+}

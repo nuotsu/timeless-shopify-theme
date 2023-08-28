@@ -4,6 +4,7 @@
 - announcement bar
   - `color_background`
 - alert, warning colors
+- `.anim-*`
 
 ## PDP
 - product-image-gallery

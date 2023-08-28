@@ -1,0 +1,131 @@
+{%- liquid
+  case template.name
+    when 'collection'
+      assign data = collection
+    when 'product'
+      assign data = product
+    when 'page'
+      assign data = page
+    when 'blog'
+      assign data = blog
+    when 'article'
+      assign data = article
+    when 'index'
+      assign data = shop
+  endcase
+-%}
+
+<div
+  class="text-center bg-center bg-cover"
+  style="background-image: url({{ section.settings.image | default: data.featured_image | image_url: width: 1600 }});"
+>
+  <div class="relative z-[1] section py-12 md:py-20 max-w-screen-sm rte [text-wrap:balance]">
+    {%- if section.settings.content != blank -%}
+      {{ section.settings.content }}
+    {%- else -%}
+      <h1>{{ data.title | default: data.name | default: page_title }}</h1>
+      {{ data.description }}
+    {%- endif -%}
+
+    {% render 'cta-list' with section %}
+  </div>
+</div>
+
+<style type="text/tailwindcss">
+  #shopify-section-{{ section.id }} {
+    --canvas: {{ section.settings.color_scheme.settings.canvas }};
+    --ink: {{ section.settings.color_scheme.settings.ink }};
+    @apply bg-[var(--canvas)] text-[var(--ink)];
+  }
+
+  #shopify-section-{{ section.id }}::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: {{ section.settings.bg_opacity }};
+    @apply bg-[var(--canvas)];
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Heading",
+  "tag": "section",
+  "class": "relative",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "range",
+      "id": "bg_opacity",
+      "label": "Background opacity",
+      "min": 0,
+      "max": 1,
+      "step": 0.1,
+      "default": 0.5
+    }
+  ],
+  "blocks": [
+    {
+      "type": "cta",
+      "name": "CTA",
+      "settings": [
+        {
+          "type": "url",
+          "id": "url",
+          "label": "URL"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label"
+        },
+        {
+          "type": "select",
+          "id": "style",
+          "label": "Style",
+          "options": [
+            {
+              "value": "action",
+              "label": "Action (primary)"
+            },
+            {
+              "value": "action-secondary",
+              "label": "Action (secondary)"
+            },
+            {
+              "value": "ghost",
+              "label": "Ghost button"
+            },
+            {
+              "value": "hashtag",
+              "label": "Hashtag"
+            }
+          ],
+          "default": "action"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Heading",
+      "settings": {
+      }
+    }
+  ]
+}
+{% endschema %}

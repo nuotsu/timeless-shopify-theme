@@ -57,7 +57,7 @@
         {%- when 'inventory' -%}
           <p
             class="{{ block.settings.tailwind | default: 'text-sm text-center md:text-left' }}"
-            {% if block.settings.enable_threshold %}
+            {% if block.settings.threshold_enabled %}
               data-inventory-threshold="{{ block.settings.threshold }}"
               {% if p.inventory_quantity > block.settings.threshold %}hidden{% endif %}
             {% endif %}
@@ -373,7 +373,7 @@
         },
         {
           "type": "checkbox",
-          "id": "enable_threshold",
+          "id": "threshold_enabled",
           "label": "Enable threshold",
           "default": true,
           "info": "Only show when inventory is below the threshold"

@@ -73,6 +73,7 @@ tailwind.config = {
   /* typography */
 
   ._h {
+    text-wrap: balance;
     @apply font-heading;
   }
   .h1 { @apply _h text-4xl; }
@@ -283,7 +284,7 @@ tailwind.config = {
     padding-left: 1.5em;
   }
 
-  .rte a:not(.action) {
+  .rte a:not(:is(.action, .action-secondary, .ghost, .hashtag)) {
     @apply link;
   }
 

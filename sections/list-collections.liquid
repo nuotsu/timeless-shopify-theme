@@ -1,0 +1,48 @@
+<header class="rte {{ section.settings.tailwind | default: 'text-center' }}">
+  {%- if section.settings.content != blank -%}
+    {{ section.settings.content }}
+  {%- else -%}
+    <h1>{{ page_title }}</h1>
+  {%- endif -%}
+  </header>
+
+<ul class="grid grid-cols-2 md:grid-cols-[repeat(auto-fill,minmax({{ section.settings.grid_item_size | default: 180 }}px,1fr))] items-start gap-4 sm:gap-8">
+  {%- for collection in collections -%}
+    {% render 'collection-item', collection: collection %}
+  {%- endfor -%}
+</ul>
+
+{% schema %}
+{
+  "name": "List collections",
+  "tag": "section",
+  "class": "section grid gap-12",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content"
+    },
+    {
+      "type": "html",
+      "id": "tailwind",
+      "label": "Tailwind classes",
+      "info": "Default: \"text-center\""
+    },
+    {
+      "type": "header",
+      "content": "Collections"
+    },
+    {
+      "type": "range",
+      "id": "grid_item_size",
+      "label": "Grid item size",
+      "unit": "px",
+      "min": 100,
+      "max": 350,
+      "step": 10,
+      "default": 180
+    }
+  ]
+}
+{% endschema %}

@@ -41,7 +41,6 @@
           "type": "inventory",
           "settings": {
             "text": "Only # left in stock!",
-            "enable_threshold": true,
             "threshold": 10,
             "tailwind": ""
           }

@@ -8,9 +8,12 @@
   {%- endif -%}
 
   {%- for filter in results.filters -%}
-    <details class="whitespace-nowrap" open>
-      <summary class="flex items-center gap-2 hover:underline decoration-dashed">
-        <span class="grow technical text-xs">{{ filter.label }}</span>
+    <details class="with-accordion whitespace-nowrap" open>
+      <summary class="flex items-center gap-2">
+        <span class="with-icon grow technical text-xs">
+          <span class="grow">{{ filter.label }}</span>
+          {% render 'icon' with 'chevron-right' %}
+        </span>
 
         {%- assign active_values = filter.active_values | where: 'active' -%}
         {%- if active_values.size > 0 -%}

@@ -5,7 +5,8 @@
     "footer": {
       "type": "footer",
       "settings": {
-        "color_scheme": "dark"
+        "color_scheme": "dark",
+        "menu": "footer"
       }
     }
   },

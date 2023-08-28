@@ -201,7 +201,9 @@ tailwind.config = {
       transition: scale 0.1s ease-in-out;
     }
 
-    &:is(:hover, :focus) svg {
+    [open] > & svg,
+    &:hover svg,
+    &:is(button, [href]):focus svg {
       scale: 1.2;
     }
   }
@@ -219,6 +221,17 @@ tailwind.config = {
 
     & textarea, & input {
       @apply py-2;
+    }
+  }
+
+  .with-accordion {
+    & .with-icon svg {
+      height: 1.2em;
+      @apply transition-transform;
+    }
+
+    &[open] svg {
+      @apply rotate-90;
     }
   }
 

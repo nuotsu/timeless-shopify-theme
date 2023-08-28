@@ -1,0 +1,44 @@
+<nav
+  style="grid-area: actions;"
+  class="
+    sticky bottom-0 flex items-center justify-center gap-x-4 [&_svg]:w-[1.5em]
+    <md:full-width <md:p-4 <md:bg-[var(--canvas)]
+    md:gap-x-2
+  "
+>
+  <a href="{{ routes.search_url }}" title="Search">
+    {% render 'icon' with 'search' %}
+  </a>
+
+  {%- if shop.customer_accounts_enabled -%}
+    {%- if customer -%}
+      <a href="{{ routes.account_url }}" title="Account">
+        {% render 'icon' with 'customers' %}
+      </a>
+    {%- else -%}
+      <a href="{{ routes.account_login_url }}" title="Log in">
+        {% render 'icon' with 'customers' %}
+      </a>
+    {%- endif -%}
+  {%- endif -%}
+
+  <a class="relative" href="{{ routes.cart_url }}" title="Cart">
+    {% render 'icon' with 'cart' %}
+    {%- unless cart.empty? -%}
+      <span
+        class="
+          absolute top-0 right-0 -translate-y-1/2 translate-x-1/2
+          grid place-content-center rounded-full bg-primary
+          {% if section.settings.show_cart_item_count and cart.item_count < 100 %}
+            w-[1.3em] text-primary-contrasting text-xs
+          {% else %}
+            w-2 aspect-square text-[0px]
+          {% endif %}
+        "
+        title="{{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }} in cart"
+      >
+        {{- cart.item_count -}}
+      </span>
+    {%- endunless -%}
+  </a>
+</nav>

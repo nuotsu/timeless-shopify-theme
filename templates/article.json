@@ -10,6 +10,64 @@
     },
     "article": {
       "type": "article",
+      "blocks": {
+        "11ade9c6-a07c-46bd-b481-bdee4969ff2a": {
+          "type": "excerpt",
+          "settings": {
+            "tailwind": ""
+          }
+        },
+        "0675822d-8912-4c42-993f-7db43c7fc697": {
+          "type": "hr",
+          "settings": {
+          }
+        },
+        "15e6d3ee-b038-4784-be36-7924877be972": {
+          "type": "date",
+          "settings": {
+            "tailwind": "text-right text-sm"
+          }
+        },
+        "content": {
+          "type": "content",
+          "settings": {
+            "illuminated_manuscript": true,
+            "tailwind": ""
+          }
+        },
+        "8ba99f3b-52ce-402b-bca8-29ab9e8831b6": {
+          "type": "hr",
+          "settings": {
+          }
+        },
+        "d7b04a19-0ff8-4a18-ba93-8cc0c48886a6": {
+          "type": "author",
+          "settings": {
+            "tailwind": ""
+          }
+        },
+        "e7010210-2d02-4436-ba8e-2918a2c2fe3f": {
+          "type": "tags",
+          "settings": {
+            "tailwind": ""
+          }
+        },
+        "d63d3d30-c76b-4082-9548-2e4109d0c2c1": {
+          "type": "comments",
+          "settings": {
+          }
+        }
+      },
+      "block_order": [
+        "11ade9c6-a07c-46bd-b481-bdee4969ff2a",
+        "0675822d-8912-4c42-993f-7db43c7fc697",
+        "15e6d3ee-b038-4784-be36-7924877be972",
+        "content",
+        "8ba99f3b-52ce-402b-bca8-29ab9e8831b6",
+        "d7b04a19-0ff8-4a18-ba93-8cc0c48886a6",
+        "e7010210-2d02-4436-ba8e-2918a2c2fe3f",
+        "d63d3d30-c76b-4082-9548-2e4109d0c2c1"
+      ],
       "settings": {
       }
     }

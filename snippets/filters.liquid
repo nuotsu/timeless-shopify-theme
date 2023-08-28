@@ -8,7 +8,7 @@
   {%- endif -%}
 
   {%- for filter in results.filters -%}
-    <details class="with-accordion whitespace-nowrap" open>
+    <details class="with-accordion whitespace-nowrap" {% if opened %}open{% endif %}>
       <summary class="flex items-center gap-2">
         <span class="with-icon grow technical text-xs">
           <span class="grow">{{ filter.label }}</span>

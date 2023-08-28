@@ -15,16 +15,10 @@
             "tailwind": ""
           }
         },
-        "10a58370-d8eb-4854-b00c-f09be746c470": {
-          "type": "author",
-          "settings": {
-            "tailwind": "w-full text-xs"
-          }
-        },
         "dc62592b-5a4c-462e-8068-c43f1909941c": {
           "type": "date",
           "settings": {
-            "tailwind": "technical text-xs"
+            "tailwind": ""
           }
         },
         "4985723e-f4f4-47e2-ac80-fa49a6d1ad08": {
@@ -34,15 +28,10 @@
             "tailwind": ""
           }
         },
-        "7b42c6cb-f647-4fd1-8723-a18f6ab1d127": {
-          "type": "read_time",
+        "10a58370-d8eb-4854-b00c-f09be746c470": {
+          "type": "author",
           "settings": {
-            "tailwind": "technical text-xs"
-          }
-        },
-        "50457c07-e1c7-4a81-a22f-8fdb74b8a4bd": {
-          "type": "hr",
-          "settings": {
+            "tailwind": ""
           }
         },
         "8cf327d2-4d2e-41fb-b1b8-a85f3043d801": {
@@ -50,17 +39,28 @@
           "settings": {
             "tailwind": ""
           }
+        },
+        "50457c07-e1c7-4a81-a22f-8fdb74b8a4bd": {
+          "type": "hr",
+          "settings": {
+          }
+        },
+        "7b42c6cb-f647-4fd1-8723-a18f6ab1d127": {
+          "type": "read_time",
+          "settings": {
+            "tailwind": "technical text-[x-small] ml-auto"
+          }
         }
       },
       "block_order": [
         "4b071858-30ee-4a76-b512-ba03909bcd17",
         "6a103835-397a-4ff6-83ca-40a287d3e8d4",
-        "10a58370-d8eb-4854-b00c-f09be746c470",
         "dc62592b-5a4c-462e-8068-c43f1909941c",
         "4985723e-f4f4-47e2-ac80-fa49a6d1ad08",
-        "7b42c6cb-f647-4fd1-8723-a18f6ab1d127",
+        "10a58370-d8eb-4854-b00c-f09be746c470",
+        "8cf327d2-4d2e-41fb-b1b8-a85f3043d801",
         "50457c07-e1c7-4a81-a22f-8fdb74b8a4bd",
-        "8cf327d2-4d2e-41fb-b1b8-a85f3043d801"
+        "7b42c6cb-f647-4fd1-8723-a18f6ab1d127"
       ],
       "settings": {
         "grid_item_size": 240,

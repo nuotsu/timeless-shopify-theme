@@ -43,10 +43,21 @@ tailwind.config = {
 
 @layer base {
   :root {
+    --canvas: theme('colors.canvas');
+    --ink: theme('colors.ink');
+    --stroke: theme('colors.stroke');
     --border-radius: {{ settings.border_radius }}px;
   }
 
   [hidden] { display: none !important; }
+
+  :target {
+    scroll-margin-top: var(--header-height, 0px);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
 
   body {
     @apply bg-canvas text-ink accent-primary caret-primary font-body;
@@ -65,7 +76,7 @@ tailwind.config = {
   }
 
   hr {
-    @apply border-stroke;
+    @apply border-[var(--stroke)];
   }
 }
 
@@ -86,6 +97,10 @@ tailwind.config = {
   .technical {
     text-transform: uppercase;
     letter-spacing: 0.1em;
+  }
+
+  .illuminated-manuscript > p:first-of-type::first-letter {
+    @apply font-heading text-7xl;
   }
 
   /* links, CTAs */
@@ -242,7 +257,7 @@ tailwind.config = {
     & span {
       position: relative;
       padding-right: 0.5ch;
-      @apply bg-white;
+      @apply bg-[var(--canvas)];
     }
 
     &::before {
@@ -250,7 +265,7 @@ tailwind.config = {
       position: absolute;
       inset: 50% 0 auto;
       translate: 0 -50%;
-      @apply border-b border-stroke;
+      @apply border-b border-[var(--stroke)];
     }
   }
 

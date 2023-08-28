@@ -1,4 +1,61 @@
-{{ article.content }}
+{%- for block in section.blocks -%}
+  {%- case block.type -%}
+    {%- when 'author' -%}
+      <div class="{{ block.settings.tailwind }}">
+        by {{ article.author }}
+      </div>
+
+    {%- when 'content' -%}
+      <div class="rte {% if block.settings.illuminated_manuscript %}illuminated-manuscript{% endif %} {{ block.settings.tailwind }}">
+        {{ article.content }}
+      </div>
+
+    {%- when 'comments' -%}
+      {% render 'comments' %}
+
+    {%- when 'date' -%}
+      <dd class="{{ block.settings.tailwind }}">
+        <time datetime="{{ article.published_at }}">
+          {{ article.published_at | date: settings.date_format }}
+        </time>
+      </dd>
+
+    {%- when 'excerpt' -%}
+      {%- if article.excerpt != blank -%}
+        <div class="rte {{ block.settings.tailwind | default: 'italic' }}">{{ article.excerpt }}</div>
+      {%- endif -%}
+
+    {%- when 'featured_image' -%}
+      {%- if article.image != blank -%}
+        {%- assign tailwind = block.settings.tailwind | default: 'w-full object-cover' -%}
+        <figure class="<md:full-width [&_img]:aspect-[{{ block.settings.width }}/{{ block.settings.height }}]">
+          {{ article.image
+            | image_url: width: block.settings.width, height: block.settings.height
+            | image_tag: class: tailwind, loading: block.settings.loading
+          }}
+        </figure>
+      {%- endif -%}
+
+    {%- when 'read_time' -%}
+      <div class="{{ block.settings.tailwind }}">
+        {{ article.content | strip_html | split: ' ' | size | divided_by: 200 | ceil }} min read
+      </div>
+
+    {%- when 'tags' -%}
+      <div class="flex flex-wrap gap-x-4 {{ block.settings.tailwind }}">
+        {%- for tag in article.tags -%}
+          <span class="hashtag">{{ tag }}</span>
+        {%- endfor -%}
+      </div>
+
+    {%- when 'title' -%}
+      <h1 class="{{ block.settings.tailwind | default: 'h1 text-center' }}">{{ article.title }}</h1>
+
+    {%- when 'hr' -%}
+      <hr class="my-4 first:hidden">
+
+  {%- endcase -%}
+{%- endfor -%}
 
 <style type="text/tailwindcss">
   #shopify-section-{{ section.id }} blockquote {
@@ -10,9 +67,194 @@
 {
   "name": "Article",
   "tag": "article",
-  "class": "section rte max-w-screen-sm",
+  "class": "section max-w-screen-sm grid gap-4",
+  "limit": 1,
   "settings": [
 
+  ],
+  "blocks": [
+    {
+      "type": "author",
+      "name": "Author",
+      "settings": [
+        {
+          "type": "html",
+          "id": "tailwind",
+          "label": "Tailwind classes"
+        }
+      ]
+    },
+    {
+      "type": "comments",
+      "name": "Comments",
+      "limit": 1,
+      "settings": []
+    },
+    {
+      "type": "content",
+      "name": "Content",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "illuminated_manuscript",
+          "label": "Illuminated manuscript",
+          "default": true
+        },
+        {
+          "type": "html",
+          "id": "tailwind",
+          "label": "Tailwind classes"
+        }
+      ]
+    },
+    {
+      "type": "date",
+      "name": "Date",
+      "settings": [
+        {
+          "type": "html",
+          "id": "tailwind",
+          "label": "Tailwind classes",
+          "info": "Default: \"italic\""
+        }
+      ]
+    },
+    {
+      "type": "excerpt",
+      "name": "Excerpt",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "html",
+          "id": "tailwind",
+          "label": "Tailwind classes",
+          "info": "Default: \"italic\""
+        }
+      ]
+    },
+    {
+      "type": "featured_image",
+      "name": "Featured image",
+      "settings": [
+        {
+          "type": "range",
+          "id": "width",
+          "label": "Width",
+          "min": 100,
+          "max": 2400,
+          "step": 100,
+          "unit": "px",
+          "default": 1600
+        },
+        {
+          "type": "range",
+          "id": "height",
+          "label": "Height",
+          "min": 100,
+          "max": 2400,
+          "step": 100,
+          "unit": "px",
+          "default": 1000
+        },
+        {
+          "type": "select",
+          "id": "loading",
+          "label": "Loading",
+          "options": [
+            {
+              "value": "eager",
+              "label": "eager"
+            },
+            {
+              "value": "lazy",
+              "label": "lazy"
+            }
+          ],
+          "default": "eager"
+        },
+        {
+          "type": "html",
+          "id": "tailwind",
+          "label": "Tailwind classes",
+          "info": "Default: \"w-full object-cover\""
+        }
+      ]
+    },
+    {
+      "type": "read_time",
+      "name": "Read time",
+      "settings": [
+        {
+          "type": "html",
+          "id": "tailwind",
+          "label": "Tailwind classes"
+        }
+      ]
+    },
+    {
+      "type": "tags",
+      "name": "Tags",
+      "settings": [
+        {
+          "type": "html",
+          "id": "tailwind",
+          "label": "Tailwind classes"
+        }
+      ]
+    },
+    {
+      "type": "title",
+      "name": "Title",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "html",
+          "id": "tailwind",
+          "label": "Tailwind classes",
+          "info": "Default: \"h1 text-center\""
+        }
+      ]
+    },
+    {
+      "type": "hr",
+      "name": "Horizontal rule",
+      "settings": []
+    }
+  ],
+  "presets": [
+    {
+      "name": "Article",
+      "blocks": [
+        {
+          "type": "excerpt"
+        },
+        {
+          "type": "hr"
+        },
+        {
+          "type": "date",
+          "settings": {
+            "tailwind": "text-right text-sm"
+          }
+        },
+        {
+          "type": "content"
+        },
+        {
+          "type": "hr"
+        },
+        {
+          "type": "author"
+        },
+        {
+          "type": "tags"
+        },
+        {
+          "type": "comments"
+        }
+      ]
+    }
   ]
 }
 {% endschema %}

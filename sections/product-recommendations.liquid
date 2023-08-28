@@ -21,12 +21,25 @@
   target.innerHTML = div.querySelector('[data-product-recommendations]')?.innerHTML ?? ''
 </script>
 
+<style type="text/tailwindcss">
+  #shopify-section-{{ section.id }} {
+    --canvas: {{ section.settings.color_scheme.settings.canvas }};
+    --ink: {{ section.settings.color_scheme.settings.ink }};
+    @apply bg-[var(--canvas)] text-[var(--ink)];
+  }
+</style>
+
 {% schema %}
 {
   "name": "Product recommendations",
   "tag": "section",
   "limit": 1,
   "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme"
+    },
     {
       "type": "richtext",
       "id": "content",

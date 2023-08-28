@@ -35,6 +35,12 @@
           </label>
         {%- endfor -%}
       </fieldset>
+
+      {%- unless forloop.last -%}
+        {%- if show_dividers -%}
+          <hr>
+        {%- endif -%}
+      {%- endunless -%}
     {%- endfor -%}
   </div>
 

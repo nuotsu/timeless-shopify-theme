@@ -18,8 +18,8 @@
   #shopify-section-{{ section.id }} {
     --canvas: {{ section.settings.color_scheme.settings.canvas }};
     --canvas-opacity: {{ section.settings.color_scheme.settings.canvas }}dd;
-    color: {{ section.settings.color_scheme.settings.ink }};
-    @apply bg-[var(--canvas-opacity)] transition-colors;
+    --ink: {{ section.settings.color_scheme.settings.ink }};
+    @apply bg-[var(--canvas-opacity)] text-[var(--ink)] transition-colors;
 
     &:has([open]) {
       @apply bg-[var(--canvas)];

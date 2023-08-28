@@ -36,7 +36,7 @@
           {%- render 'price' -%}
 
         {%- when 'variant-selector' -%}
-          {% render 'variant-selector' %}
+          {% render 'variant-selector', show_dividers: block.settings.show_dividers %}
 
         {%- when 'quantity-selector' -%}
           <label>
@@ -308,6 +308,12 @@
       "type": "variant-selector",
       "limit": 1,
       "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_dividers",
+          "label": "Show dividers",
+          "default": false
+        },
         {
           "type": "header",
           "content": "* Required block",

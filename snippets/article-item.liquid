@@ -32,11 +32,7 @@
 
           {%- when 'author' -%}
             <dd class="{{ block.settings.tailwind | default: 'text-xs' }}">
-              {%- if article.author -%}
-                by {{ article.author }}
-              {%- else -%}
-                No author
-              {%- endif -%}
+              by {{ article.author }}
             </dd>
 
           {%- when 'date' -%}

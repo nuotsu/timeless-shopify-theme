@@ -2,7 +2,12 @@
   "sections": {
     "list-collections": {
       "type": "list-collections",
-      "settings": {}
+      "settings": {
+        "content": "",
+        "tailwind": "",
+        "grid_item_size": 220,
+        "page_size": 12
+      }
     }
   },
   "order": [

@@ -1,0 +1,47 @@
+{%- assign excerpt = article.excerpt_or_content | strip_html | truncatewords: 30 -%}
+
+<li>
+  <a class="group grid gap-2" href="{{ article.url }}">
+    <figure class="overflow-hidden">
+      {%- if article.image -%}
+        {{ article.image
+          | image_url: width: 500, height: 500
+          | image_tag: class: 'w-full transition-transform group-hover:scale-110', loading: 'lazy'
+        }}
+      {%- else -%}
+        <div class="grid place-content-center p-4 aspect-square bg-canvas-subdued text-ink-subdued">
+          <p class="line-clamp-3">
+            {{ article.metafields.global.description_tag.value
+              | default: excerpt
+              | strip_html
+              | truncatewords: 30
+            }}
+          </p>
+        </div>
+      {%- endif -%}
+    </figure>
+
+    <dl class="grid gap-2 items-center">
+      <dt class="h3 group-hover:underline">{{ article.title }}</dt>
+      <dd class="text-sm line-clamp-3">{{ excerpt }}</dd>
+
+      <div class="flex flex-wrap gap-2 text-xs">
+        <dd>by {{ article.author }}</dd>
+        ·
+        <dd>
+          <time datetime="{{ article.published_at }}">
+            {{ article.published_at | date: settings.date_format }}
+          </time>
+        </dd>
+      </div>
+
+      {%- if article.tags != nil -%}
+        <dd class="w-full flex flex-wrap gap-x-2 text-xs">
+          {%- for tag in article.tags -%}
+            <span class="hashtag">{{ tag }}</span>
+          {%- endfor -%}
+        </dd>
+      {%- endif -%}
+    </dl>
+  </a>
+</li>

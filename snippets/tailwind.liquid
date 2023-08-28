@@ -168,7 +168,7 @@ tailwind.config = {
   .price, [data-price], [data-compare-at-price] {
     font-variant-numeric: tabular-nums;
 
-    & s {
+    &:is(s) {
       @apply decoration-alert;
     }
   }
@@ -273,7 +273,7 @@ tailwind.config = {
     display: grid;
     align-items: start;
     --size: 180px;
-    @apply grid-cols-2 md:grid-cols-[repeat(auto-fill,minmax(var(--size),1fr))] gap-4 sm:gap-8;
+    @apply grid-cols-2 md:grid-cols-[repeat(auto-fill,minmax(var(--size),1fr))] gap-8 <sm:gap-x-4;
   }
 
   .carousel {

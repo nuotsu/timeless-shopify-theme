@@ -28,15 +28,24 @@
 </header>
 
 {%- if search.performed -%}
-  <section class="section">
+  <section class="section grid gap-8">
     {% paginate search.results by section.settings.page_size %}
-      <ul class="item-grid" style="--size: {{ section.settings.grid_item_size }}px;">
-        {%- for item in search.results -%}
-          <li>
-            <div class="technical text-sm">{{ item.object_type }}</div>
-            {{ item.title }}
-          </li>
-        {%- endfor -%}
+      <ul class="item-grid <md:grid-cols-1" style="--size: {{ section.settings.grid_item_size }}px;">
+        {%- liquid
+          for item in search.results
+            case item.object_type
+              when 'article'
+                render 'article-item-static', article: item
+
+              when 'page'
+                render 'page-item', page: item
+
+              when 'product'
+                render 'product-item', product: item
+
+            endcase
+          endfor
+        -%}
       </ul>
 
       {%- if paginate.pages > 1 -%}
@@ -68,13 +77,13 @@
       "min": 100,
       "max": 350,
       "step": 10,
-      "default": 180
+      "default": 220
     },
     {
       "type": "number",
       "id": "page_size",
       "label": "Items per page",
-      "default": 12
+      "default": 8
     }
   ]
 }

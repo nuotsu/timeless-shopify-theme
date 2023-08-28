@@ -2,7 +2,11 @@
   "sections": {
     "search": {
       "type": "search",
-      "settings": {}
+      "settings": {
+        "searchbox_placeholder": "",
+        "grid_item_size": 220,
+        "page_size": 8
+      }
     }
   },
   "order": [

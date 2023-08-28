@@ -1,0 +1,17 @@
+<form action="{{ routes.search_url }}">
+  {%- if type != blank -%}
+    <input name="type" value="{{ type | join: ',' }}" type="hidden" />
+  {%- endif -%}
+
+  <div class="with-label">
+    <label for="searchbox">Search</label>
+    <input
+      class="input w-full"
+      id="searchbox"
+      name="q"
+      value="{{ search.terms | escape }}"
+      type="search"
+      placeholder="{{ placeholder | default: 'Search' }}"
+    />
+  </div>
+</form>

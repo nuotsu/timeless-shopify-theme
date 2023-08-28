@@ -1,0 +1,81 @@
+{%- liquid
+  assign types = 'article,page,product' | split: ','
+
+  if search.types.size == 1
+    assign current_type = search.types.first
+  else
+    assign current_type = nil
+  endif
+-%}
+
+<header class="section max-w-screen-sm grid gap-4 text-center">
+  <h1 class="h1">{{ page_title }}</h1>
+
+  <nav class="flex flex-wrap gap-x-4 justify-center">
+    {%- for type in types -%}
+      {%- if type == current_type -%}
+        <a class="hashtag text-primary hover:line-through" href="{{ routes.search_url }}?q={{ search.terms }}">{{ type }}</a>
+      {%- else -%}
+        <a class="hashtag" href="{{ routes.search_url }}?type={{ type | compact }}&q={{ search.terms }}">{{ type }}</a>
+      {%- endif -%}
+    {%- endfor -%}
+  </nav>
+
+  {% render 'search-form'
+    type: current_type
+    placeholder: section.settings.searchbox_placeholder
+  %}
+</header>
+
+{%- if search.performed -%}
+  <section class="section">
+    {% paginate search.results by section.settings.page_size %}
+      <ul class="item-grid" style="--size: {{ section.settings.grid_item_size }}px;">
+        {%- for item in search.results -%}
+          <li>
+            <div class="technical text-sm">{{ item.object_type }}</div>
+            {{ item.title }}
+          </li>
+        {%- endfor -%}
+      </ul>
+
+      {%- if paginate.pages > 1 -%}
+        <nav class="pagination">{{ paginate | default_pagination }}</nav>
+      {%- endif -%}
+    {% endpaginate %}
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Search",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "searchbox_placeholder",
+      "label": "Searchbox placeholder"
+    },
+    {
+      "type": "header",
+      "content": "Results"
+    },
+    {
+      "type": "range",
+      "id": "grid_item_size",
+      "label": "Grid item size",
+      "unit": "px",
+      "min": 100,
+      "max": 350,
+      "step": 10,
+      "default": 180
+    },
+    {
+      "type": "number",
+      "id": "page_size",
+      "label": "Items per page",
+      "default": 12
+    }
+  ]
+}
+{% endschema %}

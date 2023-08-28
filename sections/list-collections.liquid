@@ -6,11 +6,17 @@
   {%- endif -%}
   </header>
 
-<ul class="grid grid-cols-2 md:grid-cols-[repeat(auto-fill,minmax({{ section.settings.grid_item_size | default: 180 }}px,1fr))] items-start gap-4 sm:gap-8">
-  {%- for collection in collections -%}
-    {% render 'collection-item', collection: collection %}
-  {%- endfor -%}
-</ul>
+{% paginate collections by section.settings.page_size %}
+  <ul class="item-grid" style="--size: {{ section.settings.grid_item_size }}px;">
+    {%- for collection in collections -%}
+      {%- render 'collection-item', collection: collection -%}
+    {%- endfor -%}
+  </ul>
+
+  {%- if paginate.pages > 1 -%}
+    <nav class="pagination">{{ paginate | default_pagination }}</nav>
+  {%- endif -%}
+{% endpaginate %}
 
 {% schema %}
 {
@@ -42,6 +48,12 @@
       "max": 350,
       "step": 10,
       "default": 180
+    },
+    {
+      "type": "number",
+      "id": "page_size",
+      "label": "Collections per page",
+      "default": 12
     }
   ]
 }

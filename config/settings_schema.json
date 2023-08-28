@@ -128,6 +128,14 @@
         "unit": "px",
         "label": "Border radius",
         "default": 0
+      },
+      {
+        "type": "text",
+        "id": "date_format",
+        "label": "Date format",
+        "default": "%b %d, %Y",
+        "info": "Documentation found [here](https://shopify.dev/docs/api/liquid/filters/date)",
+        "placeholder": "%b %d, %Y"
       }
     ]
   }

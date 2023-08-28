@@ -254,6 +254,13 @@ tailwind.config = {
     }
   }
 
+  .item-grid {
+    display: grid;
+    align-items: start;
+    --size: 180px;
+    @apply grid-cols-2 md:grid-cols-[repeat(auto-fill,minmax(var(--size),1fr))] gap-4 sm:gap-8;
+  }
+
   .carousel {
     display: flex;
     align-items: flex-start;

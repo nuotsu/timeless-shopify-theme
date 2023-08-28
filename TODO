@@ -3,8 +3,14 @@
 ## General
 - announcement bar
   - `color_background`
+- scheduled content
 - alert, warning colors
 - `.anim-*`
+
+## Search
+- blog search
+
+## Login / Orders
 
 ## PDP
 - product-image-gallery

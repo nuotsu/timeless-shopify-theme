@@ -1,0 +1,164 @@
+<section class="grid gap-4 md:basis-[400px] md:self-start md:sticky-below-header">
+  <h1 class="h2">{{ blog.title }}</h1>
+
+  <nav>
+    <div class="divider technical text-xs mb-2"><span>Tags</span></div>
+    <ul class="flex flex-wrap gap-x-3 gap-y-1">
+      {%- for tag in blog.all_tags -%}
+        <li>
+          {%- if current_tags contains tag -%}
+            <a class="hashtag text-primary hover:line-through" href="{{ blog.url }}" title="Remove tag filter">
+              {{- tag -}}
+            </a>
+          {% else %}
+            <a class="hashtag" href="{{ blog.url }}/tagged/{{ tag | handleize }}">{{ tag }}</a>
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ul>
+  </nav>
+</section>
+
+<section>
+  {% paginate blog.articles by section.settings.page_size %}
+    <ul class="item-grid <sm:grid-cols-1" style="--size: {{ section.settings.grid_item_size }}px;">
+      {%- render 'article-item'
+        for blog.articles as article
+        with section
+      -%}
+    </ul>
+
+    {%- if paginate.pages > 1 -%}
+      <nav class="pagination">{{ paginate | default_pagination }}</nav>
+    {%- endif -%}
+  {% endpaginate %}
+</section>
+
+<style type="text/tailwindcss">
+  #shopify-section-{{ section.id }} {
+    @apply <md:flex-col;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Blog",
+  "tag": "article",
+  "class": "section flex gap-8",
+  "settings": [
+    {
+      "type": "range",
+      "id": "grid_item_size",
+      "label": "Grid item size",
+      "unit": "px",
+      "min": 100,
+      "max": 350,
+      "step": 10,
+      "default": 240
+    },
+    {
+      "type": "number",
+      "id": "page_size",
+      "label": "Articles per page",
+      "default": 12
+    }
+  ],
+  "blocks": [
+    {
+      "type": "title",
+      "name": "Title",
+      "settings": [
+        {
+          "type": "html",
+          "id": "tailwind",
+          "label": "Tailwind classes"
+        }
+      ]
+    },
+    {
+      "type": "excerpt",
+      "name": "Excerpt",
+      "settings": [
+        {
+          "type": "html",
+          "id": "tailwind",
+          "label": "Tailwind classes",
+          "info": "Default: \"text-sm line-clamp-3\""
+        }
+      ]
+    },
+    {
+      "type": "author",
+      "name": "Author",
+      "settings": [
+        {
+          "type": "html",
+          "id": "tailwind",
+          "label": "Tailwind classes",
+          "info": "Default: \"text-xs\". Add \"w-full\" to make block level."
+        }
+      ]
+    },
+    {
+      "type": "date",
+      "name": "Date",
+      "settings": [
+        {
+          "type": "html",
+          "id": "tailwind",
+          "label": "Tailwind classes",
+          "info": "Default: \"text-sm\". Add \"w-full\" to make block level."
+        }
+      ]
+    },
+    {
+      "type": "read_time",
+      "name": "Read time",
+      "settings": [
+        {
+          "type": "html",
+          "id": "tailwind",
+          "label": "Tailwind classes",
+          "info": "Default: \"text-sm\". Add \"w-full\" to make block level."
+        }
+      ]
+    },
+    {
+      "type": "tags",
+      "name": "Tags",
+      "settings": [
+        {
+          "type": "html",
+          "id": "tailwind",
+          "label": "Tailwind classes",
+          "info": "Default: \"text-xs\""
+        }
+      ]
+    },
+    {
+      "type": "hr",
+      "name": "Horizontal rule (Divider)",
+      "settings": []
+    },
+    {
+      "type": "separator",
+      "name": "Separator",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "·",
+          "info": "Default: \"·\""
+        },
+        {
+          "type": "html",
+          "id": "tailwind",
+          "label": "Tailwind classes",
+          "info": "Default: \"text-xs\""
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -16,33 +16,8 @@
   {% form 'product', product, class: 'grid gap-3' %}
     {%- for block in section.blocks -%}
       {%- case block.type -%}
-        {%- when 'title' -%}
-          <h1 class="h1">{{ product.title }}</h1>
-
-        {%- when 'description' -%}
-          <div class="rte {{ block.settings.tailwind | default: 'text-sm md:text-base' }}">
-            {{ product.description }}
-          </div>
-
-        {%- when 'sku' -%}
-          <p class="text-ink-subdued" data-sku-container {% if sku == blank %}hidden{% endif %}>
-            <small>SKU: <code data-sku>{{ sku }}</code></small>
-          </p>
-
-        {%- when 'vendor' -%}
-          <p class="{{ block.settings.tailwind | default: 'technical text-xs' }}">{{ product.vendor }}</p>
-
-        {%- when 'price' -%}
-          {%- render 'price' -%}
-
-        {%- when 'variant-selector' -%}
-          {% render 'variant-selector', show_dividers: block.settings.show_dividers %}
-
-        {%- when 'quantity-selector' -%}
-          <label>
-            <span class="technical text-xs">Quantity</span>
-            {% render 'quantity-selector' %}
-          </label>
+        {%- when '@app' -%}
+          {% render block %}
 
         {%- when 'buy-button' -%}
           <p>
@@ -53,6 +28,23 @@
               {%- endif -%}
             </button>
           </p>
+
+        {%- when 'custom-html' -%}
+          <div>{{ block.settings.html }}</div>
+
+        {%- when 'description' -%}
+          <div class="rte {{ block.settings.tailwind | default: 'text-sm md:text-base' }}">
+            {{ product.description }}
+          </div>
+
+        {%- when 'divider' -%}
+          {%- if block.settings.label != blank -%}
+            <h2 class="divider technical text-xs mt-4">
+              <span>{{ block.settings.label }}</span>
+            </h2>
+          {%- else -%}
+            <hr class="my-4" />
+          {%- endif -%}
 
         {%- when 'inventory' -%}
           <p
@@ -65,23 +57,38 @@
             {% render 'inventory', text: block.settings.text %}
           </p>
 
+        {%- when 'price' -%}
+          {%- render 'price' -%}
+
+        {%- when 'quantity-selector' -%}
+          <label class="justify-self-start">
+            <span class="technical text-xs">Quantity</span>
+            {% render 'quantity-selector' %}
+          </label>
+
         {%- when 'richtext' -%}
           <div class="rte {{ block.settings.tailwind }}">{{ block.settings.richtext }}</div>
 
-        {%- when 'custom-html' -%}
-          <div>{{ block.settings.html }}</div>
+        {%- when 'sku' -%}
+          <p class="text-ink-subdued" data-sku-container {% if sku == blank %}hidden{% endif %}>
+            <small>SKU: <code data-sku>{{ sku }}</code></small>
+          </p>
 
-        {%- when 'divider' -%}
-          {%- if block.settings.label != blank -%}
-            <h2 class="divider technical text-xs mt-4">
-              <span>{{ block.settings.label }}</span>
-            </h2>
-          {%- else -%}
-            <hr class="my-4" />
-          {%- endif -%}
+        {%- when 'tags' -%}
+          <div class="flex flex-wrap gap-x-4 {{ block.settings.tailwind }}">
+            {%- for tag in product.tags -%}
+              <span class="hashtag">{{ tag }}</span>
+            {%- endfor -%}
+          </div>
 
-        {%- when '@app' -%}
-          {% render block %}
+        {%- when 'title' -%}
+          <h1 class="h1">{{ product.title }}</h1>
+
+        {%- when 'variant-selector' -%}
+          {% render 'variant-selector', show_dividers: block.settings.show_dividers %}
+
+        {%- when 'vendor' -%}
+          <p class="{{ block.settings.tailwind | default: 'technical text-xs' }}">{{ product.vendor }}</p>
 
       {%- endcase -%}
     {%- endfor -%}
@@ -260,78 +267,7 @@
   ],
   "blocks": [
     {
-      "name": "Title",
-      "type": "title",
-      "limit": 1,
-      "settings": []
-    },
-    {
-      "name": "Description",
-      "type": "description",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "html",
-          "id": "tailwind",
-          "label": "Tailwind classes",
-          "info": "Default: \"text-sm md:text-base\""
-        }
-      ]
-    },
-    {
-      "name": "SKU",
-      "type": "sku",
-      "limit": 1,
-      "settings": []
-    },
-    {
-      "name": "Vendor",
-      "type": "vendor",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "html",
-          "id": "tailwind",
-          "label": "Tailwind classes",
-          "info": "Default: \"technical text-xs\""
-        }
-      ]
-    },
-    {
-      "name": "Price",
-      "type": "price",
-      "limit": 1,
-      "settings": []
-    },
-    {
-      "name": "*Variant selector",
-      "type": "variant-selector",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "checkbox",
-          "id": "show_dividers",
-          "label": "Show dividers",
-          "default": false
-        },
-        {
-          "type": "header",
-          "content": "* Required block",
-          "info": "Needs to be included for the product form to work"
-        }
-      ]
-    },
-    {
-      "name": "*Quantity selector",
-      "type": "quantity-selector",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "header",
-          "content": "* Required block",
-          "info": "Needs to be included for the product form to work"
-        }
-      ]
+      "type": "@app"
     },
     {
       "name": "*Buy button",
@@ -362,6 +298,41 @@
           "type": "header",
           "content": "* Required block",
           "info": "Needs to be included for the product form to work"
+        }
+      ]
+    },
+    {
+      "name": "Custom HTML",
+      "type": "custom-html",
+      "settings": [
+        {
+          "type": "html",
+          "id": "html",
+          "label": "HTML"
+        }
+      ]
+    },
+    {
+      "name": "Description",
+      "type": "description",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "html",
+          "id": "tailwind",
+          "label": "Tailwind classes",
+          "info": "Default: \"text-sm md:text-base\""
+        }
+      ]
+    },
+    {
+      "name": "Divider",
+      "type": "divider",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label"
         }
       ]
     },
@@ -399,6 +370,24 @@
       ]
     },
     {
+      "name": "Price",
+      "type": "price",
+      "limit": 1,
+      "settings": []
+    },
+    {
+      "name": "*Quantity selector",
+      "type": "quantity-selector",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "header",
+          "content": "* Required block",
+          "info": "Needs to be included for the product form to work"
+        }
+      ]
+    },
+    {
       "name": "Richtext",
       "type": "richtext",
       "settings": [
@@ -415,29 +404,47 @@
       ]
     },
     {
-      "name": "Custom HTML",
-      "type": "custom-html",
+      "name": "SKU",
+      "type": "sku",
+      "limit": 1,
+      "settings": []
+    },
+    {
+      "name": "Title",
+      "type": "title",
+      "limit": 1,
+      "settings": []
+    },
+    {
+      "name": "*Variant selector",
+      "type": "variant-selector",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_dividers",
+          "label": "Show dividers",
+          "default": false
+        },
+        {
+          "type": "header",
+          "content": "* Required block",
+          "info": "Needs to be included for the product form to work"
+        }
+      ]
+    },
+    {
+      "name": "Vendor",
+      "type": "vendor",
+      "limit": 1,
       "settings": [
         {
           "type": "html",
-          "id": "html",
-          "label": "HTML"
+          "id": "tailwind",
+          "label": "Tailwind classes",
+          "info": "Default: \"technical text-xs\""
         }
       ]
-    },
-    {
-      "name": "Divider",
-      "type": "divider",
-      "settings": [
-        {
-          "type": "text",
-          "id": "label",
-          "label": "Label"
-        }
-      ]
-    },
-    {
-      "type": "@app"
     }
   ]
 }

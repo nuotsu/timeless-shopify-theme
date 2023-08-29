@@ -36,6 +36,9 @@
         </figure>
       {%- endif -%}
 
+    {%- when 'hr' -%}
+      <hr class="my-4 first:hidden">
+
     {%- when 'read_time' -%}
       <div class="{{ block.settings.tailwind }}">
         {{ article.content | strip_html | split: ' ' | size | divided_by: 200 | ceil }} min read
@@ -50,9 +53,6 @@
 
     {%- when 'title' -%}
       <h1 class="{{ block.settings.tailwind | default: 'h1 text-center' }}">{{ article.title }}</h1>
-
-    {%- when 'hr' -%}
-      <hr class="my-4 first:hidden">
 
   {%- endcase -%}
 {%- endfor -%}
@@ -182,6 +182,11 @@
       ]
     },
     {
+      "type": "hr",
+      "name": "Horizontal rule",
+      "settings": []
+    },
+    {
       "type": "read_time",
       "name": "Read time",
       "settings": [
@@ -215,11 +220,6 @@
           "info": "Default: \"h1 text-center\""
         }
       ]
-    },
-    {
-      "type": "hr",
-      "name": "Horizontal rule",
-      "settings": []
     }
   ],
   "presets": [

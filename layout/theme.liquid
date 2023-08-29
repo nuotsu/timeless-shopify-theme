@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ request.locale.iso_code }}">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,10 +17,12 @@
   {{ content_for_header }}
 </head>
 <body>
-  {% liquid
-    sections 'header-groups'
-    echo content_for_layout
-    sections 'footer-groups'
-  %}
+  <main>
+    {% liquid
+      sections 'header-groups'
+      echo content_for_layout
+      sections 'footer-groups'
+    %}
+  </main>
 </body>
 </html>

@@ -99,15 +99,17 @@
 {%- endunless -%}
 
 <script defer>
-  const cartForm = document.querySelector('#cart_form')
+  (function(){
+    const cartForm = document.querySelector('#cart_form')
 
-  cartForm.querySelectorAll('[name="updates[]"], [name="note"]').forEach(input => {
-    input.addEventListener('input', ({ target }) => {
-      target.setAttribute('value', Math.max(0, target.valueAsNumber))
-      target.classList.add('border-warning', 'bg-warning/10', 'animate-pulse')
-      cartForm.querySelector('input[type="submit"]').removeAttribute('hidden')
+    cartForm.querySelectorAll('[name="updates[]"], [name="note"]').forEach(input => {
+      input.addEventListener('input', ({ target }) => {
+        target.setAttribute('value', Math.max(0, target.valueAsNumber))
+        target.classList.add('border-warning', 'bg-warning/10', 'animate-pulse')
+        cartForm.querySelector('input[type="submit"]').removeAttribute('hidden')
+      })
     })
-  })
+  })()
 </script>
 
 {% schema %}

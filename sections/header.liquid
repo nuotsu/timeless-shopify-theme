@@ -65,13 +65,15 @@
 </style>
 
 <script defer>
-  const header = document.querySelector('#shopify-section-{{ section.id }}')
+  (function(){
+    const header = document.querySelector('#shopify-section-{{ section.id }}')
 
-  function setHeaderHeight() {
-    document.documentElement.style.setProperty('--header-height', `${ header.offsetHeight }px`)
-  }
-  setHeaderHeight()
-  document.addEventListener('resize', setHeaderHeight)
+    function setHeaderHeight() {
+      document.documentElement.style.setProperty('--header-height', `${ header.offsetHeight }px`)
+    }
+    setHeaderHeight()
+    document.addEventListener('resize', setHeaderHeight)
+  })()
 </script>
 
 {% schema %}

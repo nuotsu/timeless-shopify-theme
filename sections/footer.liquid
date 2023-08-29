@@ -17,11 +17,11 @@
     </div>
 
     <div>
-      {% render 'language-selector' %}
-
       {%- if section.settings.show_follow_on_shop -%}
         <div>{{ shop | login_button: action: 'follow' }}</div>
       {%- endif -%}
+
+      {% render 'language-selector' %}
     </div>
   </div>
 </div>

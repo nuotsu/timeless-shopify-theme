@@ -24,9 +24,6 @@
     <dl class="flex flex-wrap items-center gap-2">
       {%- for block in section.blocks -%}
         {%- case block.type -%}
-          {%- when 'title' -%}
-            <dt class="w-full h3 group-hover:underline">{{ article.title }}</dt>
-
           {%- when 'excerpt' -%}
             <dd class="w-full {{ block.settings.tailwind | default: 'text-sm line-clamp-3' }}">{{ excerpt }}</dd>
 
@@ -42,10 +39,18 @@
               </time>
             </dd>
 
+          {%- when 'hr' -%}
+            <hr class="w-full" />
+
           {%- when 'read_time' -%}
             <dd class="{{ block.settings.tailwind | default: 'text-xs' }}">
               {{ article.content | strip_html | split: ' ' | size | divided_by: 200 | ceil }} min read
             </dd>
+
+          {%- when 'separator' -%}
+            <span class="{{ block.settings.tailwind | default: 'text-xs' }}">
+              {{- block.settings.text | default: '·' -}}
+            </span>
 
           {%- when 'tags' -%}
             {%- if article.tags != nil -%}
@@ -56,13 +61,8 @@
               </dd>
             {%- endif -%}
 
-          {%- when 'hr' -%}
-            <hr class="w-full" />
-
-          {%- when 'separator' -%}
-            <span class="{{ block.settings.tailwind | default: 'text-xs' }}">
-              {{- block.settings.text | default: '·' -}}
-            </span>
+          {%- when 'title' -%}
+            <dt class="w-full h3 group-hover:underline">{{ article.title }}</dt>
 
         {%- endcase -%}
       {%- endfor -%}

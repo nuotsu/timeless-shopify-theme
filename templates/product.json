@@ -22,6 +22,7 @@
         "743a2bf4-9909-45f2-9b51-411702650ac1": {
           "type": "variant-selector",
           "settings": {
+            "show_dividers": false
           }
         },
         "53d588d3-8f9e-4dc5-8de0-e3eca78cd48f": {
@@ -34,13 +35,15 @@
           "settings": {
             "text": "",
             "inventory_text": "(# left)",
-            "full_width": false
+            "full_width": false,
+            "show_payment_buttons": false
           }
         },
         "0442fcb3-bb2b-4c7c-854f-063c431018ce": {
           "type": "inventory",
           "settings": {
             "text": "Only # left in stock!",
+            "threshold_enabled": true,
             "threshold": 10,
             "tailwind": ""
           }
@@ -84,6 +87,7 @@
     "product-recommendations": {
       "type": "product-recommendations",
       "settings": {
+        "color_scheme": "",
         "content": "<h2>Product Recommendations<\/h2>"
       }
     }

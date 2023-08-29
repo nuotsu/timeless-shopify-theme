@@ -36,8 +36,8 @@
       </div>
 
       {% comment %} Cart summary {% endcomment %}
-      <div class="grid gap-4">
-        <dl class="grid grid-cols-[1fr,auto] gap-x-4 [&_dd]:text-right">
+      <div class="grid gap-4 md:min-w-[200px]">
+        <dl class="grid grid-cols-[1fr,auto] gap-x-4 [&_dd:not(.payment-terms)]:text-right">
           {%- if cart.total_discount > 0 -%}
             <dt>Original total price</dt>
             <dd class="price">{{ cart.original_total_price | money }}</dd>
@@ -81,6 +81,10 @@
 
           <dt><b>Subtotal</b></dt>
           <dd class="price"><b>{{ cart.total_price | money }}</b></dd>
+
+          <dd class="payment-terms col-span-full">
+            {{ form | payment_terms }}
+          </dd>
         </dl>
 
         <div class="grid gap-2">

@@ -3,7 +3,7 @@
   assign featured_links = section.blocks | where: 'type', 'featured_link' | map: 'settings'
 -%}
 
-<nav class="flex <md:flex-col md:justify-center gap-x-4" style="grid-area: menu;">
+<nav class="flex <md:flex-col md:justify-center gap-x-8" style="grid-area: menu;">
   {%- for link in section.settings.menu.links -%}
     {%- case link.levels -%}
       {%- when 1 or 2 -%}
@@ -21,7 +21,7 @@
                     {%- when 1 -%}
                       {% comment %} Megamenu > Dropdown {% endcomment %}
                       <li>
-                        <div class="technical text-xs mb-1">{{ child_link.title | link_to: child_link.url }}</div>
+                        <div class="mb-1">{{ child_link.title | link_to: child_link.url, class: 'technical text-xs' }}</div>
                         <ul>
                           {%- for grandchild_link in child_link.links -%}
                             <li>{{ grandchild_link.title | link_to: grandchild_link.url, class: 'hover:underline' }}</li>

@@ -1,0 +1,12 @@
+{%- if localization.available_languages.size > 1 -%}
+  {% form 'localization', onchange: 'languageSelectorOnChange(this)' %}
+    <div class="with-label">
+      <label for="lang-selector">Languages</label>
+      <select id="lang-selector" class="select">
+        {%- for shop_locale in localization.available_languages -%}
+          <option value="{{ shop_locale.root_url }}">{{ shop_locale.endonym_name }}</option>
+        {%- endfor -%}
+      </select>
+    </div>
+  {% endform %}
+{%- endif -%}

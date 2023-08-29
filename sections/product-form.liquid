@@ -20,20 +20,24 @@
           {% render block %}
 
         {%- when 'buy-button' -%}
-          <p>
+          <div>
             <button class="action w-full {% unless block.settings.full_width %}md:w-auto{% endunless %}" type="submit">
               {{ block.settings.text | default: 'Add to cart' | escape }}
               {%- if block.settings.inventory_text != blank -%}
                 {% render 'inventory', text: block.settings.inventory_text %}
               {%- endif -%}
             </button>
-          </p>
+          </div>
 
-        {%- when 'custom-html' -%}
-          <div>{{ block.settings.html }}</div>
+          {%- if block.settings.show_payment_buttons -%}
+            {{ form | payment_button }}
+          {%- endif -%}
+
+        {%- when 'custom-liquid' -%}
+          <div>{{ block.settings.liquid }}</div>
 
         {%- when 'description' -%}
-          <div class="rte {{ block.settings.tailwind | default: 'text-sm md:text-base' }}">
+          <div class="rte {{ block.settings.tailwind | default: '<md:text-sm' }}">
             {{ product.description }}
           </div>
 
@@ -60,6 +64,8 @@
         {%- when 'price' -%}
           {%- render 'price' -%}
 
+          {{ form | payment_terms }}
+
         {%- when 'quantity-selector' -%}
           <label class="justify-self-start">
             <span class="technical text-xs">Quantity</span>
@@ -75,11 +81,13 @@
           </p>
 
         {%- when 'tags' -%}
-          <div class="flex flex-wrap gap-x-4 {{ block.settings.tailwind }}">
-            {%- for tag in product.tags -%}
-              <span class="hashtag">{{ tag }}</span>
-            {%- endfor -%}
-          </div>
+          {%- if product.tags.size > 0 -%}
+            <div class="flex flex-wrap gap-x-4 {{ block.settings.tailwind }}">
+              {%- for tag in product.tags -%}
+                <span class="hashtag">{{ tag }}</span>
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
 
         {%- when 'title' -%}
           <h1 class="h1">{{ product.title }}</h1>
@@ -295,6 +303,12 @@
           "info": "On tablet and desktop viewports"
         },
         {
+          "type": "checkbox",
+          "id": "show_payment_buttons",
+          "label": "Show Shopify payment buttons",
+          "default": false
+        },
+        {
           "type": "header",
           "content": "* Required block",
           "info": "Needs to be included for the product form to work"
@@ -302,13 +316,13 @@
       ]
     },
     {
-      "name": "Custom HTML",
-      "type": "custom-html",
+      "name": "Custom liquid",
+      "type": "custom-liquid",
       "settings": [
         {
-          "type": "html",
-          "id": "html",
-          "label": "HTML"
+          "type": "liquid",
+          "id": "liquid",
+          "label": "Liquid"
         }
       ]
     },
@@ -318,10 +332,10 @@
       "limit": 1,
       "settings": [
         {
-          "type": "html",
+          "type": "liquid",
           "id": "tailwind",
           "label": "Tailwind classes",
-          "info": "Default: \"text-sm md:text-base\""
+          "info": "Default: \"<md:text-sm\""
         }
       ]
     },
@@ -362,7 +376,7 @@
           "default": 10
         },
         {
-          "type": "html",
+          "type": "liquid",
           "id": "tailwind",
           "label": "Tailwind classes",
           "info": "Default: \"text-sm text-center md:text-left\""
@@ -397,7 +411,7 @@
           "label": "Richtext"
         },
         {
-          "type": "html",
+          "type": "liquid",
           "id": "tailwind",
           "label": "Tailwind classes"
         }
@@ -408,6 +422,18 @@
       "type": "sku",
       "limit": 1,
       "settings": []
+    },
+    {
+      "name": "Tags",
+      "type": "tags",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "liquid",
+          "id": "tailwind",
+          "label": "Tailwind classes"
+        }
+      ]
     },
     {
       "name": "Title",
@@ -439,7 +465,7 @@
       "limit": 1,
       "settings": [
         {
-          "type": "html",
+          "type": "liquid",
           "id": "tailwind",
           "label": "Tailwind classes",
           "info": "Default: \"technical text-xs\""

@@ -1,0 +1,19 @@
+<nav class="flex flex-wrap <sm:flex-col gap-y-2 gap-x-8 mr-auto">
+  {%- for link in section.settings.menu.links -%}
+    {%- case link.levels -%}
+      {%- when 1 or 2 -%}
+        <div>
+          <div class="technical text-xs mb-1">{{ link.title }}</div>
+          <ul>
+            {%- for child_link in link.links -%}
+              <li>{{ child_link.title | link_to: child_link.url, class: 'hover:underline' }}</li>
+            {%- endfor -%}
+          </ul>
+        </div>
+
+      {%- when 0 -%}
+        <div>{{ link.title | link_to: link.url, class: 'hover:underline' }}</div>
+
+    {%- endcase -%}
+  {%- endfor -%}
+</nav>

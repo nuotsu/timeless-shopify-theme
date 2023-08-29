@@ -6,7 +6,8 @@
       "type": "footer",
       "settings": {
         "color_scheme": "dark",
-        "menu": "footer"
+        "menu": "footer",
+        "show_follow_on_shop": false
       }
     }
   },

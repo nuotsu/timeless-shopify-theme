@@ -80,37 +80,12 @@
   ],
   "blocks": [
     {
-      "type": "title",
-      "name": "Title",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "html",
-          "id": "tailwind",
-          "label": "Tailwind classes"
-        }
-      ]
-    },
-    {
-      "type": "excerpt",
-      "name": "Excerpt",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "html",
-          "id": "tailwind",
-          "label": "Tailwind classes",
-          "info": "Default: \"text-sm line-clamp-3\""
-        }
-      ]
-    },
-    {
       "type": "author",
       "name": "Author",
       "limit": 1,
       "settings": [
         {
-          "type": "html",
+          "type": "liquid",
           "id": "tailwind",
           "label": "Tailwind classes",
           "info": "Default: \"text-xs\". Add \"w-full\" to make block level."
@@ -123,7 +98,7 @@
       "limit": 1,
       "settings": [
         {
-          "type": "html",
+          "type": "liquid",
           "id": "tailwind",
           "label": "Tailwind classes",
           "info": "Default: \"text-sm\". Add \"w-full\" to make block level."
@@ -131,28 +106,15 @@
       ]
     },
     {
-      "type": "read_time",
-      "name": "Read time",
+      "type": "excerpt",
+      "name": "Excerpt",
       "limit": 1,
       "settings": [
         {
-          "type": "html",
+          "type": "liquid",
           "id": "tailwind",
           "label": "Tailwind classes",
-          "info": "Default: \"text-sm\". Add \"w-full\" to make block level."
-        }
-      ]
-    },
-    {
-      "type": "tags",
-      "name": "Tags",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "html",
-          "id": "tailwind",
-          "label": "Tailwind classes",
-          "info": "Default: \"text-xs\""
+          "info": "Default: \"text-sm line-clamp-3\""
         }
       ]
     },
@@ -160,6 +122,19 @@
       "type": "hr",
       "name": "Horizontal rule (Divider)",
       "settings": []
+    },
+    {
+      "type": "read_time",
+      "name": "Read time",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "liquid",
+          "id": "tailwind",
+          "label": "Tailwind classes",
+          "info": "Default: \"text-sm\". Add \"w-full\" to make block level."
+        }
+      ]
     },
     {
       "type": "separator",
@@ -173,10 +148,35 @@
           "info": "Default: \"·\""
         },
         {
-          "type": "html",
+          "type": "liquid",
           "id": "tailwind",
           "label": "Tailwind classes",
           "info": "Default: \"text-xs\""
+        }
+      ]
+    },
+    {
+      "type": "tags",
+      "name": "Tags",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "liquid",
+          "id": "tailwind",
+          "label": "Tailwind classes",
+          "info": "Default: \"text-xs\""
+        }
+      ]
+    },
+    {
+      "type": "title",
+      "name": "Title",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "liquid",
+          "id": "tailwind",
+          "label": "Tailwind classes"
         }
       ]
     }

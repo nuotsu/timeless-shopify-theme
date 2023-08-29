@@ -3,6 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="{{ canonical_url }}">
+  {% unless settings.font_heading.system? and settings.font_body.system? -%}
+    <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+  {%- endunless -%}
+
   <title>
     {%- liquid
       echo page_title
@@ -11,10 +16,14 @@
       endunless
     -%}
   </title>
+  {% if page_description -%}
+    <meta name="description" content="{{ page_description | escape }}">
+  {%- endif %}
 
-  {% render 'tailwind' %}
-
-  {{ content_for_header }}
+  {%- liquid
+    echo content_for_header
+    render 'tailwind'
+  -%}
 </head>
 <body>
   <main>
@@ -22,6 +31,10 @@
       sections 'header-groups'
       echo content_for_layout
       sections 'footer-groups'
+
+      if additional_checkout_buttons
+        echo content_for_additional_checkout_buttons
+      endif
     %}
   </main>
 </body>

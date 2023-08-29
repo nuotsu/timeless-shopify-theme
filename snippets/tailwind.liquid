@@ -37,9 +37,10 @@ tailwind.config = {
 }
 </script>
 
+{% capture tailwind %}
 <style type="text/tailwindcss">
-{{ settings.font_heading | font_face: font_display: string }}
-{{ settings.font_body | font_face: font_display: string }}
+{{- settings.font_heading | font_face: font_display: string -}}
+{{- settings.font_body | font_face: font_display: string }}
 
 @layer base {
   :root {
@@ -147,13 +148,16 @@ tailwind.config = {
     border-radius: var(--border-radius);
     padding-inline: .5em;
 
-    @apply
-      inline-flex border border-stroke bg-transparent
-      hover:border-opacity-100 hover:border-ink-subdued;
+    @apply inline-flex border border-[var(--stroke)] bg-transparent hover:border-opacity-100 hover:border-ink-subdued;
 
     &:invalid:not(:placeholder-shown) {
       @apply border-alert;
     }
+  }
+
+  .select {
+    padding-block: .25em;
+    @apply input;
   }
 
   .input-number {
@@ -232,7 +236,7 @@ tailwind.config = {
       margin-bottom: -1.2em;
       padding-inline: .5em;
       font-size: x-small;
-      @apply relative technical ml-1 bg-canvas text-ink;
+      @apply relative technical ml-1 bg-[var(--canvas)] text-[var(--ink)];
     }
 
     & textarea, & input {
@@ -316,3 +320,5 @@ tailwind.config = {
   }
 }
 </style>
+{% endcapture %}
+{{ tailwind | strip_newlines | strip | replace: '  ', '' }}

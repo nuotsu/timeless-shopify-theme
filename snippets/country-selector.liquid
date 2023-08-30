@@ -1,0 +1,17 @@
+{% form 'localization', class: 'flex flex-wrap gap-2', onchange: 'this.submit()' %}
+  {%- if localization.available_countries.size > 1 -%}
+    <div class="with-label">
+      <label for="country-selector">Country (Currency)</label>
+      <select id="country-selector" name="country_code" class="select">
+        {%- for country in localization.available_countries -%}
+          <option
+            value="{{ country.iso_code }}"
+            {% if country.iso_code == localization.country.iso_code %}selected{% endif %}
+          >
+            {{ country.name }} ({{ country.currency.iso_code }})
+          </option>
+        {%- endfor -%}
+      </select>
+    </div>
+  {%- endif -%}
+{% endform %}

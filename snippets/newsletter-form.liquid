@@ -1,3 +1,19 @@
-<div>
-  Newsletter form
-</div>
+{% form 'customer', class: class %}
+  <div class="with-label">
+    <label for="contact-email">Email</label>
+    <input
+      class="input w-full"
+      id="contact-email"
+      name="contact[email]"
+      type="email"
+      placeholder="john@example.com"
+      required
+    />
+  </div>
+
+  <div>
+    <button class="action">
+      {{- submit_label | default: 'Sign up' -}}
+    </button>
+  </div>
+{% endform %}

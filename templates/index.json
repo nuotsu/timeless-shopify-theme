@@ -1,6 +1,6 @@
 {
   "sections": {
-    "a9c33750-66f1-446c-b111-4f7f04b89688": {
+    "heading": {
       "type": "heading",
       "blocks": {
         "0b40575d-b6b3-46fa-84b6-10cfa7683275": {
@@ -21,9 +21,18 @@
         "image": "shopify:\/\/shop_images\/nuotsu_triceratops_and_t-rex_fighting_around_a_Porsche_911_jur_75b96cbf-fb44-4814-b98e-ed6ca8c26569.png",
         "bg_opacity": 0.5
       }
+    },
+    "newsletter-form": {
+      "type": "newsletter-form",
+      "settings": {
+        "content": "<h2>Newsletter sign-up<\/h2>",
+        "tailwind": "",
+        "submit_label": ""
+      }
     }
   },
   "order": [
-    "a9c33750-66f1-446c-b111-4f7f04b89688"
+    "heading",
+    "newsletter-form"
   ]
 }

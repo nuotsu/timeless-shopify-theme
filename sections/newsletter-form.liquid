@@ -1,0 +1,50 @@
+<div class="section max-w-screen-lg grid sm:grid-cols-2 gap-y-4 gap-x-12">
+  <div class="rte {{ section.settings.tailwind }}">
+    {{ section.settings.content }}
+  </div>
+
+  {% render 'newsletter-form'
+    class: 'grid grid-cols-[1fr,auto] gap-2 items-end'
+    submit_label: section.settings.submit_label
+  %}
+</div>
+
+{% schema %}
+{
+  "name": "Newsletter form",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content"
+    },
+    {
+      "type": "liquid",
+      "id": "tailwind",
+      "label": "Tailwind classes"
+    },
+    {
+      "type": "header",
+      "content": "Form"
+    },
+    {
+      "type": "text",
+      "id": "submit_label",
+      "label": "Submit label"
+    }
+  ],
+  "disabled_on": {
+    "groups": [
+      "*"
+    ]
+  },
+  "presets": [
+    {
+      "name": "Newsletter form",
+      "settings": {
+      }
+    }
+  ]
+}
+{% endschema %}

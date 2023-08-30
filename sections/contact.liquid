@@ -1,0 +1,40 @@
+<div class="grid md:grid-cols-2 items-start gap-y-4 gap-x-12">
+  <div class="self-start md:sticky-below-header rte">
+    <h1>{{ page.title }}</h1>
+    {{ page.content }}
+  </div>
+
+  <div class="grid gap-4">
+    {%- if section.settings.content != blank -%}
+      <div class="rte">
+        {{ section.settings.content }}
+      </div>
+    {%- endif -%}
+
+    {% render 'contact-form'
+      class: 'grid gap-2'
+      submit_label: section.settings.submit_label
+    %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Contact form",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content"
+    },
+    {
+      "type": "text",
+      "id": "submit_label",
+      "label": "Submit label",
+      "placeholder": "Submit"
+    }
+  ]
+}
+{% endschema %}

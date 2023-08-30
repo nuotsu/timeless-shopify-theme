@@ -51,6 +51,11 @@ tailwind.config = {
 
   [hidden] { display: none !important; }
 
+  :focus-visible {
+    outline: none;
+    @apply ring ring-primary/50;
+  }
+
   :target {
     scroll-margin-top: var(--header-height, 0px);
   }
@@ -114,7 +119,7 @@ tailwind.config = {
     border-radius: var(--border-radius);
     padding: 0.5em 1em;
 
-    @apply disabled:grayscale;
+    @apply disabled:grayscale border border-transparent;
   }
 
   .action {
@@ -147,16 +152,24 @@ tailwind.config = {
     border-radius: var(--border-radius);
     padding-inline: .5em;
 
-    @apply inline-flex border border-[var(--stroke)] bg-transparent hover:border-opacity-100 hover:border-ink-subdued;
+    @apply inline-flex border border-[var(--stroke)] bg-transparent;
+
+    &:hover {
+      @apply border-opacity-100 border-ink-subdued;
+    }
 
     &:invalid:not(:placeholder-shown) {
       @apply border-alert;
+    }
+
+    &:focus-visible {
+      @apply border-primary;
     }
   }
 
   .select {
     padding-block: .25em;
-    @apply input;
+    @apply input focus:border-primary;
   }
 
   .input-number {

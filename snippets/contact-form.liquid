@@ -1,0 +1,24 @@
+{% form 'contact', class: class %}
+  {{ form.errors | default_errors }}
+
+  <div class="with-label">
+    <label for="contact-name">Name</label>
+    <input class="input w-full" type="text" name="contact[name]" placeholder="John Smith" />
+  </div>
+
+  <div class="with-label">
+    <label for="contact-email">Email</label>
+    <input class="input w-full" type="email" name="contact[email]" placeholder="john@example.com" required />
+  </div>
+
+  <div class="with-label">
+    <label for="contact-body">Message</label>
+    <textarea class="input w-full" id="contact-body" name="contact[body]" placeholder="Message"></textarea>
+  </div>
+
+  <div>
+    <button class="action">
+      {{- submit_label | default: 'Submit' -}}
+    </button>
+  </div>
+{% endform %}

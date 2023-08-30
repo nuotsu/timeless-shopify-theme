@@ -1,9 +1,9 @@
-<form action="{{ routes.search_url }}">
+<form class="relative" action="{{ routes.search_url }}">
   {%- if type != blank -%}
     <input name="type" value="{{ type | join: ',' }}" type="hidden" />
   {%- endif -%}
 
-  <div class="with-label">
+  <div class="with-label relative z-[3]">
     <label for="searchbox">Search</label>
     <input
       tabindex="1"
@@ -15,4 +15,10 @@
       placeholder="{{ placeholder | default: 'Search' }}"
     />
   </div>
+
+  {%- liquid
+    if predictive
+      render 'predictive-search'
+    endif
+  -%}
 </form>

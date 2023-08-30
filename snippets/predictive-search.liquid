@@ -1,0 +1,57 @@
+{%- assign resources = 'products,collections,pages,articles' | split: ',' -%}
+
+<div
+  id="predictive-search-results"
+  class="
+    empty:hidden [.with-label:not(:focus-within)+&]:hidden
+    absolute top-full inset-x-0 z-[2]
+    flex flex-wrap gap-y-4 gap-x-12 p-4 text-left max-h-[20em] overflow-y-auto
+    bg-white/90 backdrop-blur radius-b-[var(--border-radius)] shadow-xl
+  "
+>
+  {%- if predictive_search.performed -%}
+    {%- for resource in resources -%}
+      {%- if predictive_search.resources[resource].size > 0 -%}
+        <div>
+          <h2 class="technical text-[x-small] mb-1">{{ resource }}</h2>
+          <ul>
+            {%- for item in predictive_search.resources[resource] -%}
+              <li>{{ item.title | link_to: item.url, class: 'hover:underline' }}</li>
+            {%- endfor -%}
+          </ul>
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+</div>
+
+<script defer>
+  (function(){
+    const searchbox = document.querySelector('[name="q"]')
+    const targetSelector = '#predictive-search-results'
+    searchbox.addEventListener('keyup', debounce(predictiveSearch, 300))
+
+    function predictiveSearch(e) {
+      const q = e.target.value
+      if (!q) document.querySelector(targetSelector).innerHTML = ''
+
+      fetch(`{{ routes.search_url }}/suggest?q=${ q }&section_id={{ section.id }}`)
+        .then(res => {
+          if (!res.ok) throw new Error(res.status)
+          return res.text()
+        })
+        .then(text => {
+          const markup = new DOMParser().parseFromString(text, 'text/html')
+          document.querySelector(targetSelector).innerHTML = markup.querySelector(targetSelector).innerHTML
+        })
+    }
+
+    function debounce(fn, delay) {
+      let t = null
+      return (...args) => {
+        clearTimeout(t)
+        t = setTimeout(b => fn.apply(b, args), delay)
+      }
+    }
+  })()
+</script>

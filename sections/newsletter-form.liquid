@@ -1,10 +1,8 @@
-<div class="section max-w-screen-lg grid sm:grid-cols-2 gap-y-4 gap-x-12">
-  <div class="rte {{ section.settings.tailwind }}">
-    {{ section.settings.content }}
-  </div>
+<div class="section text-center rte {{ section.settings.tailwind | default: 'max-w-lg' }}">
+  {{ section.settings.content }}
 
   {% render 'newsletter-form'
-    class: 'grid grid-cols-[1fr,auto] gap-2 items-end'
+    class: 'max-w-sm mx-auto grid grid-cols-[1fr,auto] gap-2 items-end'
     submit_label: section.settings.submit_label
   %}
 </div>
@@ -22,7 +20,8 @@
     {
       "type": "liquid",
       "id": "tailwind",
-      "label": "Tailwind classes"
+      "label": "Tailwind classes",
+      "info": "Default: \"max-w-lg\""
     },
     {
       "type": "header",

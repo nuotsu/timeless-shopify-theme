@@ -158,7 +158,7 @@ tailwind.config = {
       @apply border-opacity-100 border-ink-subdued;
     }
 
-    &:invalid:not(:placeholder-shown) {
+    &:invalid:not(:placeholder-shown, [type="password"]) {
       @apply border-alert;
     }
 
@@ -177,6 +177,11 @@ tailwind.config = {
   }
   .input-number-label {
     @apply relative z-[1] inline-block bg-canvas translate-x-full leading-none;
+  }
+
+  form .errors {
+    border-radius: var(--border-radius);
+    @apply p-2 bg-alert/10 text-alert text-sm;
   }
 
   /* tokens */

@@ -136,6 +136,15 @@
         "default": "%b %d, %Y",
         "info": "Documentation found [here](https://shopify.dev/docs/api/liquid/filters/date)",
         "placeholder": "%b %d, %Y"
+      },
+      {
+        "type": "header",
+        "content": "Other"
+      },
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon"
       }
     ]
   }

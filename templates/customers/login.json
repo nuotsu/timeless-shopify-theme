@@ -1,11 +1,11 @@
 {
   "sections": {
-    "placeholder": {
-      "type": "placeholder",
+    "customer-login-form": {
+      "type": "customer-login-form",
       "settings": {}
     }
   },
   "order": [
-    "placeholder"
+    "customer-login-form"
   ]
 }

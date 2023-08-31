@@ -1,11 +1,11 @@
 {
   "sections": {
-    "placeholder": {
-      "type": "placeholder",
+    "create-customer-form": {
+      "type": "create-customer-form",
       "settings": {}
     }
   },
   "order": [
-    "placeholder"
+    "create-customer-form"
   ]
 }

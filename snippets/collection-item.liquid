@@ -1,6 +1,6 @@
 <li>
   <a class="group grid gap-2" href="{{ collection.url }}">
-    <figure class="overflow-hidden">
+    <figure class="overflow-hidden bg-canvas-subdued">
       {{ collection.featured_image
         | image_url: width: 500, height: 500
         | image_tag: class: 'w-full group-hover:scale-110 transition-transform', loading: 'lazy'

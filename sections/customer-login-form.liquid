@@ -1,0 +1,18 @@
+<div id="recover" class="[&:not(:target)]:hidden rte">
+  {% render 'recover-customer-password-form' %}
+</div>
+
+<div class="[#recover:target~&]:hidden rte">
+  {% render 'customer-login-form' %}
+</div>
+
+{% schema %}
+{
+  "name": "Customer login form",
+  "tag": "section",
+  "class": "section max-w-lg",
+  "settings": [
+
+  ]
+}
+{% endschema %}

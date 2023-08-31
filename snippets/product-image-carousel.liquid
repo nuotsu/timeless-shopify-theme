@@ -34,6 +34,14 @@
               {{ media | external_video_tag: class: 'w-full', loading: 'lazy' }}
             </div>
 
+          {%- when 'model' -%}
+            <div class="swiper-slide">
+              {{ media | model_viewer_tag:
+                image_size: '400x',
+                class: 'swiper-no-swiping w-full min-h-[250px] md:min-h-[400px]'
+              }}
+            </div>
+
         {%- endcase -%}
       {%- endfor -%}
     </div>
@@ -42,16 +50,21 @@
   <nav class="swiper product-thumbs user-select-none mt-2" hidden>
     <div class="swiper-wrapper">
       {%- for media in product.media -%}
-        {%- case media.media_type -%}
-          {%- when 'image' or 'external_video' -%}
-            <div class="swiper-slide cursor-pointer">
-              {{ media.preview_image
-                | image_url: width: 120, height: 120
-                | image_tag: class: 'object-cover', loading: 'lazy'
-              }}
-            </div>
+        <div
+          class="swiper-slide cursor-pointer"
+          {% if media.media_type == 'model' %}title="Model view available"{% endif %}
+        >
+          {{ media.preview_image
+            | image_url: width: 120, height: 120
+            | image_tag: class: 'object-cover', loading: 'lazy'
+          }}
 
-        {%- endcase -%}
+          {%- if media.media_type == 'model' -%}
+            <span class="absolute bottom-0 right-0 w-[1.5em] text-ink-subdued animate-pulse" title="Model view available">
+              {%- render 'icon' with 'behavior' -%}
+            </span>
+          {%- endif -%}
+        </div>
       {%- endfor -%}
     </div>
   </nav>

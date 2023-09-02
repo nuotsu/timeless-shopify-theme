@@ -3,7 +3,7 @@
   <h2 class="text-3xl price">{{ gift_card.balance | money }}</h2>
 
   {%- if gift_card.enabled == false or gift_card.expired -%}
-    <p class="text-alert">This gift card is expired.</p>
+    <p class="text-red-600">This gift card is expired.</p>
   {%- endif -%}
 
   {%- if gift_card.expires_on -%}

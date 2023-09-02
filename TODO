@@ -5,8 +5,8 @@
 - announcement bar
   - `color_background`
 - scheduled content
-- alert, warning colors
 - `.anim-*`
+- `autocomplete` on inputs
 
 ## Search
 - blog search

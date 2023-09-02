@@ -2,7 +2,31 @@
   "sections": {
     "account": {
       "type": "account",
-      "settings": {}
+      "settings": {},
+      "blocks": {
+        "created_at": {
+          "type": "created_at"
+        },
+        "item_count": {
+          "type": "item_count"
+        },
+        "total_price": {
+          "type": "total_price"
+        },
+        "financial_status_label": {
+          "type": "financial_status_label"
+        },
+        "status": {
+          "type": "status"
+        }
+      },
+      "block_order": [
+        "created_at",
+        "item_count",
+        "total_price",
+        "financial_status_label",
+        "status"
+      ]
     }
   },
   "order": [

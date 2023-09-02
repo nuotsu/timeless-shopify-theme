@@ -1,0 +1,37 @@
+<header class="mb-12 rte">
+  <h1>{{ page_title }}</h1>
+
+  {% render 'add-address' %}
+</header>
+
+<ul class="grid sm:grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-y-4 gap-x-12">
+  {%- if customer.default_address -%}
+    <li class="relative">
+      <div class="technical text-xs absolute left-0 bottom-full mb-1">Default</div>
+      {% render 'address' with customer.default_address %}
+    </li>
+  {%- endif -%}
+
+  {%- for address in customer.addresses -%}
+    {%- liquid
+      if customer.default_address.summary == address.summary
+        break
+      endif
+    -%}
+
+    <li>
+      {% render 'address' with address %}
+    </li>
+  {%- endfor -%}
+</ul>
+
+{% schema %}
+{
+  "name": "Addresses",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+
+  ]
+}
+{% endschema %}

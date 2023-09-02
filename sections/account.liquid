@@ -1,14 +1,132 @@
 <header class="rte">
-  <h1>Welcome, {{ customer.first_name}}!</h1>
+  <h1>Welcome, {{ customer.first_name }}!</h1>
+  <nav>{{ 'Log out' | link_to: routes.account_logout_url, class: 'link' }}</nav>
 </header>
+
+<article class="grid gap-4 orders">
+  <header class="rte">
+    <h2>Orders</h2>
+  </header>
+  {% paginate customer.orders by section.settings.page_size %}
+    <div class="overflow-x-auto <md:full-width">
+      <table class="min-w-full <md:full-width text-center whitespace-nowrap">
+        <thead class="text-xs">
+          <tr>
+            <th class="bg-canvas/80 backdrop-blur-sm sticky left-0">Order</th>
+            {%- for block in section.blocks -%}
+              {%- case block.type -%}
+                {%- when 'created_at' -%}
+                  <th>Date</th>
+                {%- when 'item_count' -%}
+                  <th>Item count</th>
+                {%- when 'financial_status_label' -%}
+                  <th>Payment status</th>
+                {%- when 'status' -%}
+                  <th>Fulfillment Status</th>
+                {%- when 'total_price' -%}
+                  <th>Price</th>
+              {%- endcase -%}
+            {%- endfor -%}
+          </tr>
+        </thead>
+        <tbody>
+          {% render 'order-item' for customer.orders as order %}
+        </tbody>
+      </table>
+    </div>
+
+    {%- if paginate.pages > 1 -%}
+      <nav class="pagination">{{ paginate | default_pagination }}</nav>
+    {%- endif -%}
+  {% endpaginate %}
+</article>
+
+<article class="grid gap-4">
+  <header class="rte">
+    <h2>Address</h2>
+  </header>
+
+  {%- assign address = customer.default_address -%}
+  {%- if address != blank -%}
+    {% render 'address' with address %}
+  {%- else -%}
+    <p class="text-ink-subdued">No default address</p>
+  {%- endif -%}
+
+  <nav>{{ 'Edit addresses' | link_to: routes.account_addresses_url, class: 'link' }}</nav>
+</article>
+
+<style type="text/tailwindcss">
+  .orders :is(th, td) {
+    @apply py-1 px-4;
+  }
+</style>
 
 {% schema %}
 {
   "name": "Account",
   "tag": "section",
-  "class": "section",
+  "class": "section grid gap-8",
   "settings": [
-
+    {
+      "type": "header",
+      "content": "Ordes"
+    },
+    {
+      "type": "number",
+      "id": "page_size",
+      "label": "Orders per page",
+      "default": 20
+    }
+  ],
+  "blocks": [
+    {
+      "type": "created_at",
+      "name": "Created at",
+      "settings": []
+    },
+    {
+      "type": "item_count",
+      "name": "Item count",
+      "settings": []
+    },
+    {
+      "type": "financial_status_label",
+      "name": "Financial status label",
+      "settings": []
+    },
+    {
+      "type": "status",
+      "name": "Status",
+      "settings": []
+    },
+    {
+      "type": "total_price",
+      "name": "Total price",
+      "settings": []
+    }
+  ],
+  "presets": [
+    {
+      "name": "Account",
+      "blocks": [
+        {
+          "type": "created_at"
+        },
+        {
+          "type": "item_count"
+        },
+        {
+          "type": "total_price"
+        },
+        {
+          "type": "financial_status_label"
+        },
+        {
+          "type": "status"
+        }
+      ]
+    }
   ]
 }
 {% endschema %}

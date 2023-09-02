@@ -16,9 +16,6 @@ tailwind.config = {
         'primary-contrasting': '{{ settings.color_schemes.default.settings.primary_contrasting }}',
         secondary: '{{ settings.color_schemes.default.settings.secondary }}',
         'secondary-contrasting': '{{ settings.color_schemes.default.settings.secondary_contrasting }}',
-        // other
-        alert: '#f00',
-        warning: '#eab308',
       },
       fontFamily: {
         heading: `{{ settings.font_heading.family }},{{ settings.font_heading.fallback_families }}`,
@@ -72,7 +69,7 @@ tailwind.config = {
     cursor: pointer;
     display: block;
   }
-  :-webkit-details-marker {
+  ::-webkit-details-marker {
     display: none;
   }
 
@@ -80,8 +77,16 @@ tailwind.config = {
     cursor: pointer;
   }
 
+  th {
+    @apply technical font-normal;
+  }
+
   hr {
     @apply border-[var(--stroke)];
+  }
+
+  address {
+    font-style: normal;
   }
 }
 
@@ -137,13 +142,8 @@ tailwind.config = {
     @apply underline hover:decoration-2;
   }
 
-  .hashtag {
-    &::before {
-      @apply content-['#'] text-ink-subdued;
-    }
-    &[href]:hover::before {
-      color: inherit;
-    }
+  .link-subdued {
+    @apply underline decoration-dashed decoration-neutral-400 hover:decoration-current hover:decoration-solid;
   }
 
   /* inputs */
@@ -159,7 +159,7 @@ tailwind.config = {
     }
 
     &:invalid:not(:placeholder-shown, [type="password"]) {
-      @apply border-alert;
+      @apply border-red-600;
     }
 
     &:focus-visible {
@@ -181,7 +181,7 @@ tailwind.config = {
 
   form .errors {
     border-radius: var(--border-radius);
-    @apply p-2 bg-alert/10 text-alert text-sm;
+    @apply p-2 bg-red-600/20 text-red-600 text-sm;
   }
 
   /* tokens */
@@ -190,11 +190,25 @@ tailwind.config = {
     font-variant-numeric: tabular-nums;
 
     &:is(s) {
-      @apply decoration-alert;
+      @apply decoration-red-600;
     }
   }
   .price-negative {
-    @apply price text-alert before:content-['-'];
+    @apply price text-red-600 before:content-['-'];
+  }
+
+  .hashtag {
+    &::before {
+      @apply content-['#'] text-ink-subdued;
+    }
+    &[href]:hover::before {
+      color: inherit;
+    }
+  }
+
+  .chip {
+    padding: 0 0.5em;
+    border-radius: var(--border-radius);
   }
 
   /* layouts */

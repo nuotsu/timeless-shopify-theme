@@ -1,0 +1,43 @@
+<tr class="group hover:bg-canvas-subdued">
+  <td class="bg-canvas/80 backdrop-blur-sm group-hover:bg-canvas-subdued/80 sticky left-0">
+    <a class="link-subdued price" href="{{ order.customer_url }}">{{ order.name }}</a>
+  </td>
+
+  {%- for block in section.blocks -%}
+    {%- case block.type -%}
+      {%- when 'created_at' -%}
+        <td>{{ order.created_at | date: settings.date_format }}</td>
+
+      {%- when 'item_count' -%}
+        <td>{{ order.item_count }} {{ order.item_count | pluralize: 'item', 'items' }}</td>
+
+      {%- when 'financial_status_label' -%}
+        <td>{{ order.financial_status_label }}</td>
+
+      {%- when 'status' -%}
+        <td>
+          <div class="flex flex-wrap gap-x-[.5em] gap-y-px justify-center">
+            {%- if order.cancelled -%}
+              <span class="chip bg-neutral-400/20 text-neutral-700">Cancelled</span>
+            {%- else -%}
+              {% case order.fulfillment_status %}
+                {% when 'fulfilled' %}
+                  <span class="chip bg-green-400/20 text-green-700">{{ order.fulfillment_status_label }}</span>
+                {% when 'partial' %}
+                  <span class="chip bg-amber-400/20 text-amber-700">{{ order.fulfillment_status_label }}</span>
+                {% when 'unfulfilled' %}
+                  <span class="chip bg-red-400/20 text-red-700">{{ order.fulfillment_status_label }}</span>
+                {% else %}
+                  <span class="chip bg-neutral-400/20 text-neutral-700">{{ order.fulfillment_status_label }}</span>
+              {% endcase %}
+            {%- endif -%}
+          </div>
+        </td>
+
+      {%- when 'total_price' -%}
+        <td class="price">{{ order.total_price | money }}</td>
+
+    {%- endcase -%}
+  {%- endfor -%}
+
+</tr>

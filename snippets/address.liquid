@@ -1,0 +1,35 @@
+<dl>
+  {%- if address.name -%}
+    <dt class="font-bold">{{ address.name }}</dt>
+  {%- endif -%}
+
+  {%- if address.company -%}
+    <dt>{{ address.company }}</dt>
+  {%- endif -%}
+
+  <dd>
+    <address>
+      <p>
+        {{- address.address1 -}}
+        {%- if address.address2 -%}
+          <br> {{ address.address2 }}
+        {%- endif -%}
+      </p>
+
+      <p>
+        {{- address.city }},
+        {% if address.province_code -%}
+          {{ address.province_code }}
+        {%- endif -%}
+        {% if address.country_code -%}
+          {{ address.country_code }}
+        {%- endif -%}
+        {{ address.zip_code -}}
+      </p>
+    </address>
+  </dd>
+
+  {%- if address.phone -%}
+    <dd>{{ address.phone }}</dd>
+  {%- endif -%}
+</dl>

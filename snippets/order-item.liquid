@@ -18,18 +18,9 @@
         <td>
           <div class="flex flex-wrap gap-x-[.5em] gap-y-px justify-center">
             {%- if order.cancelled -%}
-              <span class="chip bg-neutral-400/20 text-neutral-700">Cancelled</span>
+              Cancelled
             {%- else -%}
-              {% case order.fulfillment_status %}
-                {% when 'fulfilled' %}
-                  <span class="chip bg-green-400/20 text-green-700">{{ order.fulfillment_status_label }}</span>
-                {% when 'partial' %}
-                  <span class="chip bg-amber-400/20 text-amber-700">{{ order.fulfillment_status_label }}</span>
-                {% when 'unfulfilled' %}
-                  <span class="chip bg-red-400/20 text-red-700">{{ order.fulfillment_status_label }}</span>
-                {% else %}
-                  <span class="chip bg-neutral-400/20 text-neutral-700">{{ order.fulfillment_status_label }}</span>
-              {% endcase %}
+              {{ order.fulfillment_status_label }}
             {%- endif -%}
           </div>
         </td>

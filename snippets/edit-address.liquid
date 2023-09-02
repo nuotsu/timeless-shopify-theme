@@ -1,0 +1,11 @@
+<details class="with-accordion open:w-full">
+  <summary class="link">Edit</summary>
+
+  {% form 'customer_address', address, class: 'mt-2 grid gap-2' %}
+    {% render 'address-fields', address: form %}
+
+    <div>
+      <button class="action">Update</button>
+    </div>
+  {% endform %}
+</details>

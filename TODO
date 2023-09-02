@@ -1,26 +1,14 @@
 # TODO
 
 ## General
-- favicon
+- breadcrumbs
 - announcement bar
   - `color_background`
 - scheduled content
 - `.anim-*`
 - `autocomplete` on inputs
 
-## Search
-- blog search
-
-## Login / Orders
-
 ## PDP
 - product-image-gallery
   - navigation
   - vertical thumbnails?
-- 3D model
-
-## Collections
-- blocks treatment
-
-## Collections list
-- blocks treatment

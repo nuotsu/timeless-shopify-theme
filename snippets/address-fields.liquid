@@ -1,0 +1,51 @@
+{%- capture required -%}
+  <span class="text-red-600">*</span>
+{%- endcapture -%}
+
+<div class="grid sm:grid-cols-2 gap-2">
+  <div class="with-label">
+    <label for="address-firstname">First name</label>
+    <input class="input w-full" id="address-firstname" name="address[first_name]" value="{{ address.first_name }}" type="text" placeholder="John" autocomplete="given-name">
+  </div>
+  <div class="with-label">
+    <label for="address-lastname">Last name</label>
+    <input class="input w-full" id="address-lastname" name="address[last_name]" value="{{ address.last_name }}" type="text" placeholder="Smith" autocomplete="family-name">
+  </div>
+</div>
+
+<div class="with-label">
+  <label for="address-company">Company</label>
+  <input class="input w-full" id="address-company" name="address[company]" value="{{ address.company }}" type="text" placeholder="Company" autocomplete="organization">
+</div>
+<div class="with-label">
+  <label for="address-address1">Address{{ required }}</label>
+  <input class="input w-full" id="address-address1" name="address[address1]" value="{{ address.address1 }}" type="text" placeholder="Address" autocomplete="address-line1" required>
+</div>
+<div class="with-label">
+  <label for="address-city">Address (line 2)</label>
+  <input class="input w-full" id="address-address2" name="address[address2]" value="{{ address.address2 }}" type="text" placeholder="Address (line 2)" autocomplete="address-line2">
+</div>
+
+<div class="grid sm:grid-cols-2 gap-2">
+  <div class="with-label">
+    <label for="address-city">City{{ required }}</label>
+    <input class="input w-full" id="address-city" name="address[city]" value="{{ address.city }}" type="text" placeholder="City" autocomplete="address-level2" required>
+  </div>
+  <div class="with-label">
+    <label for="address-zip">Zip code{{ required }}</label>
+    <input class="input w-full" id="address-zip" name="address[zip]" value="{{ address.zip }}" type="text" placeholder="Zip code" autocomplete="postal-code" required>
+  </div>
+</div>
+
+<div class="grid sm:grid-cols-2 gap-2">
+  <div class="with-label">
+    <label for="address-country">Country{{ required }}</label>
+    <select class="select w-full" id="address-country" name="address[country]" data-default="{{ address.country }}" autocomplete="country" required>
+      {{ all_country_option_tags }}
+    </select>
+  </div>
+  <div class="with-label">
+    <label for="address-province">Province</label>
+    <select class="select w-full" id="address-province" name="address[province]" data-default="{{ address.province }}" autocomplete="address-level1" required></select>
+  </div>
+</div>

@@ -29,10 +29,11 @@
       </div>
 
       <label title="Quantity">
-        {% render 'quantity-selector',
-          name: 'updates[]',
-          value: line_item.quantity,
+        {% render 'quantity-selector'
+          name: 'updates[]'
+          value: line_item.quantity
           min: 0
+          readonly: is_order
         %}
       </label>
     </dd>
@@ -52,11 +53,13 @@
     {%- endif -%}
   </dl>
 
-  <a
-    class="self-stretch with-icon ghost text-sm"
-    href="{{ line_item.url_to_remove }}"
-    title="Remove {{ line_item.title }} from cart"
-  >
-    {%- render 'icon' with 'delete' -%}
-  </a>
+  {%- unless is_order -%}
+    <a
+      class="self-stretch with-icon ghost text-sm"
+      href="{{ line_item.url_to_remove }}"
+      title="Remove {{ line_item.title }} from cart"
+    >
+      {%- render 'icon' with 'delete' -%}
+    </a>
+  {%- endunless -%}
 </li>

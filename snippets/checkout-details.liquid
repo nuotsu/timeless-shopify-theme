@@ -1,0 +1,99 @@
+<div class="grid sm:flex flex-wrap items-start gap-y-8 gap-x-12 sm:ml-auto">
+  {% comment %} Note {% endcomment %}
+  <div class="with-label">
+    <label for="cart-note">Cart note</label>
+    <textarea
+      class="input w-full min-h-[2.5em] max-h-[12em] leading-tight"
+      id="cart-note"
+      name="note"
+      cols="30" rows="3"
+      placeholder="Cart notes"
+      {% if is_order %}readonly{% endif %}
+    >{{ cart.note }}</textarea>
+  </div>
+
+  {% comment %} Summary {% endcomment %}
+  <div class="grid gap-4 md:min-w-[250px]">
+    <dl class="grid grid-cols-[1fr,auto] gap-x-4 [&_dd:not(.payment-terms)]:text-right">
+      {%- if cart.total_discounts > 0 -%}
+        {%- if cart.original_total_price -%}
+          <dt>Original total price</dt>
+          <dd class="price">{{ cart.original_total_price | money }}</dd>
+        {%- endif -%}
+
+        <dt>Total discounts</dt>
+        <dd class="price-negative">{{ cart.total_discounts | money }}</dd>
+
+        {%- if cart.cart_level_discount_applications.size > 0 -%}
+          <details class="with-accordion col-span-full pl-3 text-sm">
+            <summary class="with-icon technical text-[x-small]">
+              Includes
+              {% render 'icon' with 'chevron-right' %}
+            </summary>
+
+            <div class="grid grid-cols-[1fr,auto] gap-x-4 [&_dd]:text-right">
+              {%- for discount in cart.cart_level_discount_applications -%}
+                <dt>
+                  {{ discount.title }}
+
+                  {%- if discount.value_type == 'percentage' -%}
+                    <small>({{ discount.value | append: '% off' }})</small>
+                  {%- endif -%}
+                </dt>
+                <dd class="price-negative">
+                  {{ discount.total_allocated_amount | money }}
+                </dd>
+              {%- endfor -%}
+
+              {%- for line_item in cart.items -%}
+                {%- for discount in line_item.discounts -%}
+                  <dt>{{ discount.title }}</dt>
+                  <dd class="price-negative">{{ discount.amount | money }}</dd>
+                {%- endfor -%}
+              {%- endfor -%}
+            </div>
+          </details>
+        {%- endif -%}
+
+        <hr class="col-span-full my-2">
+      {%- endif -%}
+
+      <dt><b>Subtotal</b></dt>
+      <dd class="price"><b>{{ cart.total_price | money }}</b></dd>
+
+      {% comment %} Shipping {% endcomment %}
+      {%- for shipping_method in cart.shipping_methods -%}
+        <dt><b>Shipping</b> <small>({{ shipping_method.title }})</small></dt>
+        <dd class="price">{{ shipping_method.price | money }}</dd>
+
+        {%- for discount_allocation in shipping_method.discount_allocations -%}
+          <dt>{{ discount_allocation.discount_application.title }}</dt>
+          <dd class="price-negative">{{ discount_allocation.amount | money }}</dd>
+        {%- endfor -%}
+      {%- endfor -%}
+
+      {% comment %} Refund {% endcomment %}
+      {%- if cart.total_refunded_amount > 0 -%}
+        <dt><b>Refund</b></dt>
+        <dd class="price-negative text-green-600">{{ cart.total_refunded_amount | money }}</dd>
+        <dt><b>Net amount</b></dt>
+        <dd class="price"><b>{{ cart.total_net_amount | money }}</b></dd>
+      {%- endif -%}
+
+      {%- unless is_order -%}
+        <dd class="payment-terms col-span-full">
+          {{ form | payment_terms }}
+        </dd>
+      {%- endunless -%}
+    </dl>
+
+    {%- unless is_order -%}
+      <div class="grid gap-2">
+        <input class="action-secondary animate-pulse" type="submit" value="Update cart" hidden />
+        <button class="action" name="checkout" type="submit">
+          {{ section.settings.checkout_label | default: 'Checkout' }}
+        </button>
+      </div>
+    {%- endunless -%}
+  </div>
+</div>

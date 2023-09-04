@@ -31,7 +31,6 @@
 {
   "name": "Product recommendations",
   "tag": "section",
-  "limit": 1,
   "settings": [
     {
       "type": "color_scheme",
@@ -59,6 +58,16 @@
       ],
       "default": "related",
       "info": "Documentation found [here](https://shopify.dev/docs/api/ajax/reference/product-recommendations)."
+    }
+  ],
+  "disabled_on": {
+    "groups": [
+      "*"
+    ]
+  },
+  "presets": [
+    {
+      "name": "Product recommendations"
     }
   ]
 }

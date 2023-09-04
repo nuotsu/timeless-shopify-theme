@@ -6,4 +6,5 @@
   min="{{ min | default: 1 }}"
   type="number"
   required
+  {% if readonly %}readonly{% endif %}
 />

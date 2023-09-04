@@ -6,7 +6,7 @@
   {%- for block in section.blocks -%}
     {%- case block.type -%}
       {%- when 'created_at' -%}
-        <td>{{ order.created_at | date: settings.date_format }}</td>
+        <td><time datetime="{{ order.created_at }}">{{ order.created_at | date: settings.date_format }}</time></td>
 
       {%- when 'item_count' -%}
         <td>{{ order.item_count }} {{ order.item_count | pluralize: 'item', 'items' }}</td>

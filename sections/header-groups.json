@@ -27,9 +27,14 @@
         "menu": "main-menu",
         "show_cart_item_count": true
       }
+    },
+    "breadcrumbs": {
+      "type": "breadcrumbs",
+      "settings": {}
     }
   },
   "order": [
-    "header"
+    "header",
+    "breadcrumbs"
   ]
 }

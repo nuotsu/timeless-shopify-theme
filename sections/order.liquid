@@ -1,0 +1,61 @@
+<header class="rte">
+  <h1>
+    {{ page_title }}
+    {% if order.cancelled -%}
+      (Cancelled)
+    {%- endif -%}
+  </h1>
+  <p>
+    Placed on
+    <time datetime="{{ order.created_at }}">
+      {{ order.created_at | date: settings.date_format }}
+      at {{ order.created_at | date: '%l:%M %p' }}
+    </time>
+  </p>
+</header>
+
+<article class="grid gap-8">
+  <ul>
+    {% render 'line-item' for order.line_items as line_item, is_order: true %}
+  </ul>
+
+  {% render 'checkout-details', cart: order, is_order: true %}
+
+  <div class="grid sm:flex flex-wrap items-start gap-y-8 gap-x-12 sm:justify-center">
+    <dl class="grid grid-cols-[1fr,auto] gap-x-4 [&_dd]:text-right">
+      <dt>Confirmation number</dt>
+      <dd><code>{{ order.confirmation_number }}</code></dd>
+      <dt>Payment status</dt>
+      <dd class="text-right">{{ order.financial_status_label }}</dd>
+      <dt>Fulfillment status</dt>
+      <dd class="text-right">
+        {%- if order.cancelled -%}
+          Cancelled
+        {%- else -%}
+          {{ order.fulfillment_status_label }}
+        {%- endif -%}
+      </dd>
+    </dl>
+
+    <div>
+      <div class="technical text-xs mb-2">Billing Address</div>
+      {% render 'address' with order.billing_address %}
+    </div>
+
+    <div>
+      <div class="technical text-xs mb-2">Shipping Address</div>
+      {% render 'address' with order.shipping_address %}
+    </div>
+  </div>
+</article>
+
+{% schema %}
+{
+  "name": "Order",
+  "tag": "section",
+  "class": "section grid gap-8",
+  "settings": [
+
+  ]
+}
+{% endschema %}

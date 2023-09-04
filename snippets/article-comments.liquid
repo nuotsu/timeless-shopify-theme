@@ -1,0 +1,60 @@
+<article class="grid gap-6 mt-4 p-4 bg-canvas-subdued">
+  <h2 class="h2">{{ article.comments_count }} {{ article.comments_count | pluralize: 'Comment', 'Comments' }}</h2>
+
+  {%- if article.comments_count > 0 -%}
+    {% paginate article.comments by page_size %}
+      <ul class="grid gap-3">
+        {%- for comment in article.comments -%}
+          <li id="{{ comment.id }}" class="p-4 bg-white [&:not(:hover)_a]:hidden">
+            <blockquote class="grid gap-1">
+              <footer class="flex flex-wrap gap-[1em] -mt-[2em] text-xs">
+                <b>{{ comment.author }}</b>
+                <time>{{ comment.created_at | date: '%b %d, %Y %l:%M %p' }}</time>
+                <a class="[&_svg]:h-[1.2em]" href="#{{ comment.id }}" title="Link to comment">
+                  {% render 'icon' with 'link' %}
+                </a>
+              </footer>
+              <div>{{ comment.content }}</div>
+            </blockquote>
+          </li>
+        {%- endfor -%}
+      </ul>
+
+      {%- if paginate.pages > 1 -%}
+        <nav class="pagination">{{ paginate | default_pagination }}</nav>
+      {%- endif -%}
+    {% endpaginate %}
+  {%- else -%}
+    <p class="text-ink-subdued text-center">No comments</p>
+  {%- endif -%}
+
+  <details class="with-accordion [&_label]:bg-canvas-subdued" {% if article.comments_count == 0 %}open{% endif %}>
+    <summary class="with-icon hover:underline">
+      <span class="grow">Join the conversation</span>
+      {% render 'icon' with 'chevron-right' %}
+    </summary>
+
+    {% form 'new_comment', article, class: 'grid gap-2 mt-2' %}
+      {{ form.errors | default_errors }}
+
+      <div class="with-label">
+        <label for="comment-author">Author</label>
+        <input class="input w-full" id="comment-author" name="comment[author]" value="{{ form.author }}" type="text" placeholder="John Smith" autocomplete="name" required>
+      </div>
+
+      <div class="with-label">
+        <label for="comment-email">Email</label>
+        <input class="input w-full" id="comment-email" name="comment[email]" value="{{ form.email }}" type="text" placeholder="john@example.com" autocomplete="email" required>
+      </div>
+
+      <div class="with-label">
+        <label for="comment-body">Message</label>
+        <textarea class="input w-full" id="comment-body" name="comment[body]" placeholder="Comment" required>{{ form.body }}</textarea>
+      </div>
+
+      <div>
+        <button class="action">Post comment</button>
+      </div>
+    {% endform %}
+  </details>
+</article>

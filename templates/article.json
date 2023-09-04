@@ -51,11 +51,6 @@
           "settings": {
             "tailwind": ""
           }
-        },
-        "d63d3d30-c76b-4082-9548-2e4109d0c2c1": {
-          "type": "comments",
-          "settings": {
-          }
         }
       },
       "block_order": [
@@ -65,8 +60,7 @@
         "content",
         "8ba99f3b-52ce-402b-bca8-29ab9e8831b6",
         "d7b04a19-0ff8-4a18-ba93-8cc0c48886a6",
-        "e7010210-2d02-4436-ba8e-2918a2c2fe3f",
-        "d63d3d30-c76b-4082-9548-2e4109d0c2c1"
+        "e7010210-2d02-4436-ba8e-2918a2c2fe3f"
       ],
       "settings": {
       }

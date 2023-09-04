@@ -152,7 +152,7 @@ tailwind.config = {
     border-radius: var(--border-radius);
     padding-inline: .5em;
 
-    @apply inline-flex border border-[var(--stroke)] bg-transparent;
+    @apply inline-flex border border-[var(--stroke)] bg-transparent focus:border-primary focus-visible:border-primary;
 
     &:hover {
       @apply border-opacity-100 border-ink-subdued;
@@ -160,10 +160,6 @@ tailwind.config = {
 
     &:invalid:not(:placeholder-shown, [type="password"]) {
       @apply border-red-600;
-    }
-
-    &:focus-visible {
-      @apply border-primary;
     }
   }
 

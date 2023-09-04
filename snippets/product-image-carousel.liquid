@@ -58,12 +58,6 @@
             | image_url: width: 120, height: 120
             | image_tag: class: 'object-cover', loading: 'lazy'
           }}
-
-          {%- if media.media_type == 'model' -%}
-            <span class="absolute bottom-0 right-0 w-[1.5em] text-ink-subdued animate-pulse" title="Model view available">
-              {%- render 'icon' with 'behavior' -%}
-            </span>
-          {%- endif -%}
         </div>
       {%- endfor -%}
     </div>

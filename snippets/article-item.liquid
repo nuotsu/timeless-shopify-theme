@@ -21,40 +21,39 @@
       {%- endif -%}
     </figure>
 
-    <dl class="flex flex-wrap items-center gap-2">
+    <dl class="grid items-center gap-2">
       {%- for block in section.blocks -%}
         {%- case block.type -%}
           {%- when 'excerpt' -%}
-            <dd class="w-full {{ block.settings.tailwind | default: 'text-sm line-clamp-3' }}">{{ excerpt }}</dd>
+            <dd class="{{ block.settings.tailwind | default: 'text-sm line-clamp-3' }}">{{ excerpt }}</dd>
 
-          {%- when 'author' -%}
-            <dd class="{{ block.settings.tailwind | default: 'text-xs' }}">
-              by {{ article.author }}
-            </dd>
+          {%- when 'comments' -%}
+            {%- if blog.comments_enabled? -%}
+              <dd class="{{ block.settings.tailwind | default: 'text-xs' }}">
+                {{ article.comments_count }} {{ article.comments_count | pluralize: 'comment', 'comments' }}
+              </dd>
+            {%- endif -%}
 
-          {%- when 'date' -%}
+          {%- when 'date-and-author' -%}
             <dd class="{{ block.settings.tailwind | default: 'text-xs' }}">
               <time datetime="{{ article.published_at }}">
                 {{ article.published_at | date: settings.date_format }}
               </time>
+              {{ block.settings.separator | default: '·' }}
+              by {{ article.author }}
             </dd>
 
           {%- when 'hr' -%}
-            <hr class="w-full" />
+            <hr />
 
           {%- when 'read_time' -%}
             <dd class="{{ block.settings.tailwind | default: 'text-xs' }}">
               {{ article.content | strip_html | split: ' ' | size | divided_by: 200 | ceil }} min read
             </dd>
 
-          {%- when 'separator' -%}
-            <span class="{{ block.settings.tailwind | default: 'text-xs' }}">
-              {{- block.settings.text | default: '·' -}}
-            </span>
-
           {%- when 'tags' -%}
             {%- if article.tags != nil -%}
-              <dd class="w-full flex flex-wrap gap-x-2 {{ block.settings.tailwind | default: 'text-xs' }}">
+              <dd class="flex flex-wrap gap-x-2 {{ block.settings.tailwind | default: 'text-xs' }}">
                 {%- for tag in article.tags -%}
                   <span class="hashtag">{{ tag }}</span>
                 {%- endfor -%}
@@ -62,7 +61,7 @@
             {%- endif -%}
 
           {%- when 'title' -%}
-            <dt class="w-full h3 group-hover:underline">{{ article.title }}</dt>
+            <dt class="h3 group-hover:underline">{{ article.title }}</dt>
 
         {%- endcase -%}
       {%- endfor -%}

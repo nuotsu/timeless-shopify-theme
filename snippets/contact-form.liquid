@@ -3,17 +3,17 @@
 
   <div class="with-label">
     <label for="contact-name">Name</label>
-    <input class="input w-full" type="text" name="contact[name]" placeholder="John Smith" />
+    <input class="input w-full" id="contact-name" name="contact[name]" value="{{ form.author }}" type="text" placeholder="John Smith" />
   </div>
 
   <div class="with-label">
     <label for="contact-email">Email</label>
-    <input class="input w-full" type="email" name="contact[email]" placeholder="john@example.com" required />
+    <input class="input w-full" id="contact-email" name="contact[email]" value="{{ form.email }}" type="email" placeholder="john@example.com" required />
   </div>
 
   <div class="with-label">
     <label for="contact-body">Message</label>
-    <textarea class="input w-full" id="contact-body" name="contact[body]" placeholder="Message"></textarea>
+    <textarea class="input w-full" id="contact-body" name="contact[body]" placeholder="Message" required>{{ form.body }}</textarea>
   </div>
 
   <div>

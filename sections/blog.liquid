@@ -80,28 +80,22 @@
   ],
   "blocks": [
     {
-      "type": "author",
-      "name": "Author",
+      "type": "date-and-author",
+      "name": "Date and author",
       "limit": 1,
       "settings": [
         {
           "type": "liquid",
           "id": "tailwind",
           "label": "Tailwind classes",
-          "info": "Default: \"text-xs\". Add \"w-full\" to make block level."
-        }
-      ]
-    },
-    {
-      "type": "date",
-      "name": "Date",
-      "limit": 1,
-      "settings": [
+          "info": "Default: \"text-sm\""
+        },
         {
-          "type": "liquid",
-          "id": "tailwind",
-          "label": "Tailwind classes",
-          "info": "Default: \"text-sm\". Add \"w-full\" to make block level."
+          "type": "text",
+          "id": "separator",
+          "label": "Separator",
+          "default": "·",
+          "info": "Default: \"·\""
         }
       ]
     },
@@ -132,26 +126,7 @@
           "type": "liquid",
           "id": "tailwind",
           "label": "Tailwind classes",
-          "info": "Default: \"text-sm\". Add \"w-full\" to make block level."
-        }
-      ]
-    },
-    {
-      "type": "separator",
-      "name": "Separator",
-      "settings": [
-        {
-          "type": "text",
-          "id": "text",
-          "label": "Text",
-          "default": "·",
-          "info": "Default: \"·\""
-        },
-        {
-          "type": "liquid",
-          "id": "tailwind",
-          "label": "Tailwind classes",
-          "info": "Default: \"text-xs\""
+          "info": "Default: \"text-sm\""
         }
       ]
     },

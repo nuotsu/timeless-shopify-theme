@@ -1,6 +1,35 @@
-{%- unless request.path == routes.root_url -%}
-  <nav class="section py-4">
-    test
+{%- if
+  template.name == 'search' or
+  template.name == 'collection' or
+  template.name == 'product' or
+  template.name == 'blog' or
+  template.name == 'article' or
+  template.name == 'page'
+-%}
+  <nav class="section py-4 {{ section.settings.tailwind | default: 'text-sm' }}">
+    <ol class="flex" itemscope itemtype="https://schema.org/BreadcrumbList">
+      {% render 'breadcrumb-item', link: routes.root_url, title: 'Home', position: 1 %}
+
+      {%- liquid
+        case template
+          when 'product'
+            if collection != blank
+              render 'breadcrumb-item', link: collection.url, title: collection.title, position: 2
+              render 'breadcrumb-item', link: product.url, title: product.title, position: 3
+            else
+              render 'breadcrumb-item', link: product.url, title: product.title, position: 2
+            endif
+
+          when 'article'
+            render 'breadcrumb-item', link: blog.url, title: blog.title, position: 2
+            render 'breadcrumb-item', link: article.url, title: article.title, position: 3
+
+          else
+            render 'breadcrumb-item', link: request.path, title: page_title, position: 2
+
+        endcase
+      -%}
+    </ol>
   </nav>
 
   <style type="text/tailwindcss">
@@ -10,8 +39,13 @@
       --stroke: {{ section.settings.color_scheme.settings.stroke }};
       @apply bg-[var(--canvas)] text-[var(--ink)];
     }
+
+    #shopify-section-{{ section.id }} li:not(:first-child)::before {
+      content: '/';
+      @apply text-[var(--stroke)] mx-2;
+    }
   </style>
-{%- endunless -%}
+{%- endif -%}
 
 {% schema %}
 {
@@ -22,6 +56,12 @@
       "type": "color_scheme",
       "id": "color_scheme",
       "label": "Color scheme"
+    },
+    {
+      "type": "liquid",
+      "id": "tailwind",
+      "label": "Tailwind classes",
+      "info": "Default: \"text-sm\""
     }
   ],
   "limit": 1,

@@ -2,6 +2,13 @@
   "name": "Footer",
   "type": "footer",
   "sections": {
+    "breadcrumbs": {
+      "type": "breadcrumbs",
+      "settings": {
+        "color_scheme": "gray",
+        "tailwind": ""
+      }
+    },
     "footer": {
       "type": "footer",
       "settings": {
@@ -12,6 +19,7 @@
     }
   },
   "order": [
+    "breadcrumbs",
     "footer"
   ]
 }

@@ -13,94 +13,102 @@
 <div class="section-product-form section grid sm:grid-cols-2 items-start gap-8">
   {% render 'product-image-carousel' %}
 
-  {% form 'product', product, class: 'grid gap-3' %}
-    {%- for block in section.blocks -%}
-      {%- case block.type -%}
-        {%- when '@app' -%}
-          {% render block %}
+  <div class="grid gap-6">
+    {% form 'product', product, class: 'grid gap-3' %}
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when '@app' -%}
+            {% render block %}
 
-        {%- when 'buy-button' -%}
-          <div>
-            <button class="action w-full {% unless block.settings.full_width %}md:w-auto{% endunless %}" type="submit">
-              {{ block.settings.text | default: 'Add to cart' | escape }}
-              {%- if block.settings.inventory_text != blank -%}
-                {% render 'inventory', text: block.settings.inventory_text %}
-              {%- endif -%}
-            </button>
-          </div>
-
-          {%- if block.settings.show_payment_buttons -%}
-            {{ form | payment_button }}
-          {%- endif -%}
-
-        {%- when 'custom-liquid' -%}
-          <div>{{ block.settings.liquid }}</div>
-
-        {%- when 'description' -%}
-          <div class="rte {{ block.settings.tailwind | default: '<md:text-sm' }}">
-            {{ product.description }}
-          </div>
-
-        {%- when 'divider' -%}
-          {%- if block.settings.label != blank -%}
-            <h2 class="divider technical text-xs mt-4">
-              <span>{{ block.settings.label }}</span>
-            </h2>
-          {%- else -%}
-            <hr class="my-4" />
-          {%- endif -%}
-
-        {%- when 'inventory' -%}
-          <p
-            class="{{ block.settings.tailwind | default: 'text-sm text-center md:text-left' }}"
-            {% if block.settings.threshold_enabled %}
-              data-inventory-threshold="{{ block.settings.threshold }}"
-              {% if p.inventory_quantity > block.settings.threshold %}hidden{% endif %}
-            {% endif %}
-          >
-            {% render 'inventory', text: block.settings.text %}
-          </p>
-
-        {%- when 'price' -%}
-          {%- render 'price' -%}
-
-          {{ form | payment_terms }}
-
-        {%- when 'quantity-selector' -%}
-          <label class="justify-self-start">
-            <span class="technical text-xs">Quantity</span>
-            {% render 'quantity-selector' %}
-          </label>
-
-        {%- when 'richtext' -%}
-          <div class="rte {{ block.settings.tailwind }}">{{ block.settings.richtext }}</div>
-
-        {%- when 'sku' -%}
-          <p class="text-ink-subdued" data-sku-container {% if sku == blank %}hidden{% endif %}>
-            <small>SKU: <code data-sku>{{ sku }}</code></small>
-          </p>
-
-        {%- when 'tags' -%}
-          {%- if product.tags.size > 0 -%}
-            <div class="flex flex-wrap gap-x-4 {{ block.settings.tailwind }}">
-              {%- for tag in product.tags -%}
-                <span class="hashtag">{{ tag }}</span>
-              {%- endfor -%}
+          {%- when 'buy-button' -%}
+            <div>
+              <button class="action w-full {% unless block.settings.full_width %}md:w-auto{% endunless %}" type="submit">
+                {{ block.settings.text | default: 'Add to cart' | escape }}
+                {%- if block.settings.inventory_text != blank -%}
+                  {% render 'inventory', text: block.settings.inventory_text %}
+                {%- endif -%}
+              </button>
             </div>
-          {%- endif -%}
 
-        {%- when 'title' -%}
-          <h1 class="h1">{{ product.title }}</h1>
+            {%- if block.settings.show_payment_buttons -%}
+              {{ form | payment_button }}
+            {%- endif -%}
 
-        {%- when 'variant-selector' -%}
-          {% render 'variant-selector', show_dividers: block.settings.show_dividers %}
+          {%- when 'custom-liquid' -%}
+            <div>{{ block.settings.liquid }}</div>
 
-        {%- when 'vendor' -%}
-          <p class="{{ block.settings.tailwind | default: 'technical text-xs' }}">{{ product.vendor }}</p>
+          {%- when 'description' -%}
+            <div class="rte {{ block.settings.tailwind | default: '<md:text-sm' }}">
+              {{ product.description }}
+            </div>
 
-      {%- endcase -%}
-    {%- endfor -%}
-  {% endform %}
+          {%- when 'divider' -%}
+            {%- if block.settings.label != blank -%}
+              <h2 class="divider technical text-xs mt-4">
+                <span>{{ block.settings.label }}</span>
+              </h2>
+            {%- else -%}
+              <hr class="my-4" />
+            {%- endif -%}
+
+          {%- when 'inventory' -%}
+            <p
+              class="{{ block.settings.tailwind | default: 'text-sm text-center md:text-left' }}"
+              {% if block.settings.threshold_enabled %}
+                data-inventory-threshold="{{ block.settings.threshold }}"
+                {% if p.inventory_quantity > block.settings.threshold %}hidden{% endif %}
+              {% endif %}
+            >
+              {% render 'inventory', text: block.settings.text %}
+            </p>
+
+          {%- when 'price' -%}
+            {%- render 'price' -%}
+
+            {{ form | payment_terms }}
+
+          {%- when 'quantity-selector' -%}
+            <label class="justify-self-start">
+              <span class="technical text-xs">Quantity</span>
+              {% render 'quantity-selector' %}
+            </label>
+
+          {%- when 'richtext' -%}
+            <div class="rte {{ block.settings.tailwind }}">{{ block.settings.richtext }}</div>
+
+          {%- when 'sku' -%}
+            <p class="text-ink-subdued" data-sku-container {% if sku == blank %}hidden{% endif %}>
+              <small>SKU: <code data-sku>{{ sku }}</code></small>
+            </p>
+
+          {%- when 'tags' -%}
+            {%- if product.tags.size > 0 -%}
+              <div class="flex flex-wrap gap-x-4 {{ block.settings.tailwind }}">
+                {%- for tag in product.tags -%}
+                  <span class="hashtag">{{ tag }}</span>
+                {%- endfor -%}
+              </div>
+            {%- endif -%}
+
+          {%- when 'title' -%}
+            <h1 class="h1">{{ product.title }}</h1>
+
+          {%- when 'variant-selector' -%}
+            {% render 'variant-selector', show_dividers: block.settings.show_dividers %}
+
+          {%- when 'vendor' -%}
+            <p class="{{ block.settings.tailwind | default: 'technical text-xs' }}">{{ product.vendor }}</p>
+
+        {%- endcase -%}
+      {%- endfor -%}
+    {% endform %}
+
+    {%- liquid
+      if section.settings.show_pickup_availability
+        render 'pickup-availability'
+      endif
+    -%}
+  </div>
 </div>
 
 <style type="text/tailwindcss">
@@ -140,6 +148,13 @@
   "class": "section-product-form",
   "limit": 1,
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_pickup_availability",
+      "label": "Show pickup availability",
+      "default": false,
+      "info": "Enable for stores with local pickup."
+    },
     {
       "type": "header",
       "content": "Carousel",

@@ -30,6 +30,6 @@
   </dd>
 
   {%- if address.phone -%}
-    <dd>{{ address.phone }}</dd>
+    <dd><a class="link" href="tel:{{ address.phone }}">{{ address.phone }}</a></dd>
   {%- endif -%}
 </dl>

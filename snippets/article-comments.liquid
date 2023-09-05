@@ -6,8 +6,8 @@
       <ul class="grid gap-3">
         {%- for comment in article.comments -%}
           <li id="{{ comment.id }}" class="p-4 bg-white [&:not(:hover)_a]:hidden">
-            <blockquote class="grid gap-1">
-              <footer class="flex flex-wrap gap-[1em] -mt-[2em] text-xs">
+            <blockquote>
+              <footer class="flex flex-wrap gap-3 -mt-6 text-xs">
                 <b>{{ comment.author }}</b>
                 <time>{{ comment.created_at | date: '%b %d, %Y %l:%M %p' }}</time>
                 <a class="[&_svg]:h-[1.2em]" href="#{{ comment.id }}" title="Link to comment">

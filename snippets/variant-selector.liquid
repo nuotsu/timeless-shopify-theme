@@ -22,18 +22,20 @@
       <fieldset>
         <legend class="technical text-xs mb-1">{{ product_option.name }}</legend>
 
-        {%- for value in product_option.values -%}
-          <label>
-            <input
-              class="product-options"
-              name="option{{ product_option.position }}"
-              value="{{ value }}"
-              type="radio"
-              {% if product_option.selected or forloop.index0 == 0 %}checked{% endif %}
-            />
-            {{ value }}
-          </label>
-        {%- endfor -%}
+        <div class="flex flex-wrap gap-3">
+          {%- for value in product_option.values -%}
+            <label>
+              <input
+                class="product-options"
+                name="option{{ product_option.position }}"
+                value="{{ value }}"
+                type="radio"
+                {% if product_option.selected or forloop.index0 == 0 %}checked{% endif %}
+              />
+              {{ value }}
+            </label>
+          {%- endfor -%}
+        </div>
       </fieldset>
 
       {%- unless forloop.last -%}

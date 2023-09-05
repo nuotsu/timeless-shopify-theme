@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
   <link rel="canonical" href="{{ canonical_url }}">
-  {% unless settings.font_heading.system? and settings.font_body.system? -%}
+  {%- unless settings.font_heading.system? and settings.font_body.system? -%}
     <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
   {%- endunless -%}
 
@@ -17,9 +17,10 @@
       endunless
     -%}
   </title>
-  {% if page_description -%}
+  {%- if page_description -%}
     <meta name="description" content="{{ page_description | escape }}">
   {%- endif %}
+  {%- render 'meta-tags' -%}
 
   {%- liquid
     echo content_for_header

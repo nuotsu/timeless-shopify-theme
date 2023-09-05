@@ -1,5 +1,5 @@
 {%- liquid
-  case template.name
+  case request.page_type
     when 'collection'
       assign data = collection
     when 'product'

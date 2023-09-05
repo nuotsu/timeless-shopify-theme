@@ -1,10 +1,10 @@
 {%- if
-  template.name == 'search' or
-  template.name == 'collection' or
-  template.name == 'product' or
-  template.name == 'blog' or
-  template.name == 'article' or
-  template.name == 'page'
+  request.page_type == 'search' or
+  request.page_type == 'collection' or
+  request.page_type == 'product' or
+  request.page_type == 'blog' or
+  request.page_type == 'article' or
+  request.page_type == 'page'
 -%}
   <nav class="section py-4 {{ section.settings.tailwind | default: 'text-sm' }}">
     <ol class="flex" itemscope itemtype="https://schema.org/BreadcrumbList">

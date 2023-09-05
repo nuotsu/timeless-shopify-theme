@@ -1,0 +1,110 @@
+<script type="module" defer>
+import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.mjs'
+
+const { format: formatMoney } = new Intl.NumberFormat('{{ cart.currency.iso_code }}', {
+  style: 'currency',
+  currency: '{{ shop.currency }}',
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2
+})
+
+const thumbs = new Swiper('#shopify-section-{{ section.id }} .product-thumbs', {
+  slidesPerView: {{ section.settings.carousel_slidesPerView }},
+  spaceBetween: 1,
+  watchSlidesProgress: true,
+  on: {
+    init: function() {
+      this.el.removeAttribute('hidden')
+    },
+  }
+})
+
+const swiper = new Swiper('#shopify-section-{{ section.id }} .product-images', {
+  thumbs: {
+    swiper: thumbs,
+  },
+  autoHeight: {{ section.settings.carousel_autoHeight }},
+  zoom: {{ section.settings.carousel_zoom_enabled }},
+})
+
+const productForm = document.querySelector('#shopify-section-{{ section.id }} form')
+const variantSelector = productForm.querySelector('select[name="id"]')
+
+if (!!variantSelector) {
+  // initialize options (populate on page load)
+  const selectedOptions = variantSelector?.selectedOptions[0].dataset
+  for (const [key, value] of Object.entries(selectedOptions)) {
+    const option = productForm.querySelector(`[name="${ key }"][value="${ value }"]`)
+    if (!!option) option.checked = true
+  }
+
+  productForm.addEventListener('input', () => {
+    const formData = new FormData(productForm)
+
+    const selector = Array.from(formData.keys())?.reduce((acc, key) => {
+      if (/option[123]/g.test(key)) {
+        acc += `[data-${ key }="${ formData.get(key) }"]`
+      }
+      return acc
+    }, 'option')
+
+    const newValue = productForm.querySelector(selector)?.value
+    if (!!newValue) {
+      // update <select name="id">
+      variantSelector.value = newValue
+
+      // update [data-*]
+      const [selectedOption] = variantSelector.selectedOptions
+      const selected = JSON.parse(selectedOption.innerHTML)
+
+      productForm.querySelectorAll('[data-sku]').forEach(elem => {
+        elem.textContent = selected.sku
+
+        if (!!selected.sku) {
+          elem.closest('[data-sku-container]').removeAttribute('hidden')
+        } else {
+          elem.closest('[data-sku-container]').setAttribute('hidden', '')
+        }
+      })
+
+      productForm.querySelectorAll('[data-price]').forEach(elem => elem.textContent = formatMoney(selected.price / 100))
+
+      productForm.querySelectorAll('[data-compare-at-price]').forEach(elem => {
+        elem.textContent = formatMoney(selected.compare_at_price / 100)
+
+        // toggle data-compare-at-price
+        if (selected.price < selected.compare_at_price) {
+          elem.removeAttribute('hidden')
+        } else {
+          elem.setAttribute('hidden', '')
+        }
+      })
+
+      productForm.querySelectorAll('[data-inventory-quantity]').forEach(elem => {
+        elem.textContent = selectedOption.dataset.inventory || 0
+
+        // toggle depending on threshold
+        const wrapper = elem.closest('[data-inventory-threshold]')
+        if (wrapper?.dataset.inventoryThreshold) {
+          if (selectedOption.dataset.inventory > Number(wrapper.dataset.inventoryThreshold)) {
+            wrapper.setAttribute('hidden', '')
+          } else {
+            wrapper.removeAttribute('hidden')
+          }
+        }
+      })
+
+      updateSwiper(newValue)
+    }
+  })
+}
+
+function updateSwiper(variantId) {
+  const variantImage = document.querySelector(`[data-variant-id="${ variantId }"]`)
+  if (!!variantImage) {
+    const index = Array.from(variantImage.parentNode.children).indexOf(variantImage)
+    swiper.slideTo(index)
+  }
+}
+updateSwiper({{ product.selected_or_first_available_variant.id }})
+</script>

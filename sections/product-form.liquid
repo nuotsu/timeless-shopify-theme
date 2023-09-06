@@ -61,7 +61,7 @@
             </p>
 
           {%- when 'price' -%}
-            {%- render 'price' -%}
+            {%- render 'price', show_taxes_included: true -%}
 
             {{ form | payment_terms }}
 

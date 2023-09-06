@@ -4,17 +4,24 @@
   else
     assign p = product.selected_or_first_available_variant
   endif
+
+  capture unit_price
+    render 'unit-price', measurement: p.unit_price_measurement
+  endcapture
 -%}
 
-<div class="flex flex-wrap gap-1 items-baseline">
-  <span data-price>{{ p.price | money }}</span>
-  <s
-    class="ml-1"
-    data-compare-at-price
-    {% unless p.price < p.compare_at_price %}hidden{% endunless %}
-  >
-    {{ p.compare_at_price | money }}
-  </s>
+<div class="flex flex-wrap gap-2 items-baseline">
+  <span>
+    <strong data-price>{{ p.price | money }}</strong>
+    {{- unit_price -}}
+  </span>
 
-  {% render 'unit-price', measurement: p.unit_price_measurement %}
+  <span {% unless p.price < p.compare_at_price %}hidden{% endunless %}>
+    <s data-compare-at-price>{{ p.compare_at_price | money }}</s>
+    {{- unit_price -}}
+  </span>
+
+  {%- if show_taxes_included and cart.taxes_included -%}
+    <small>(Taxes incl.)</small>
+  {%- endif -%}
 </div>

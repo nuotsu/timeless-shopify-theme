@@ -1,3 +1,9 @@
+{%- liquid
+  capture unit_price
+    render 'unit-price', measurement: product.variants.first.unit_price_measurement
+  endcapture
+-%}
+
 <li class="grid gap-2">
   <a class="group grid gap-2" href="{{ product.url | within: collection }}">
     <figure class="bg-canvas-subdued overflow-hidden">
@@ -12,16 +18,21 @@
 
   <div class="text-sm">
     {%- if product.price_varies -%}From{%- endif %}
-    <span class="price">{{ product.price_min | money }}</span>
+    <span>
+      <strong class="price">{{ product.price_min | money }}</strong>
+      {{- unit_price -}}
+    </span>
     {% if product.price_min < product.compare_at_price_min %}
-      <s class="price">{{ product.compare_at_price_min | money }}</s>
+      <span class="ml-1">
+        <s class="price">{{ product.compare_at_price_min | money }}</s>
+        {{- unit_price -}}
+      </span>
     {% endif %}
-    {% render 'unit-price', measurement: product.variants.first.unit_price_measurement %}
   </div>
 
   {%- unless product.has_only_default_variant -%}
     <nav class="text-xs">
-      <div class="technical">{{ product.variants.size }} options</div>
+      <div class="technical text-[x-small]">{{ product.variants.size }} options</div>
 
       <div class="flex flex-wrap gap-x-[.5em]">
         {%- for product_option in product.options_with_values -%}

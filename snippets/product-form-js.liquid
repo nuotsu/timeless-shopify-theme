@@ -79,9 +79,9 @@ import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.mjs
 
           // toggle data-compare-at-price
           if (selected.price < selected.compare_at_price) {
-            elem.removeAttribute('hidden')
+            elem.parentElement.removeAttribute('hidden')
           } else {
-            elem.setAttribute('hidden', '')
+            elem.parentElement.setAttribute('hidden', '')
           }
         })
 

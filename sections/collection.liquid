@@ -13,7 +13,7 @@
   </header>
 {%- endif -%}
 
-<div class="flex flex-col {% if sidebar_enabled %}md:flex-row{% endif %} gap-8">
+<div class="flex flex-col {% if sidebar_enabled %}md:flex-row{% endif %} gap-8 min-w-0">
   {%- if section.settings.filters_enabled -%}
     <aside class="
       bg-canvas-subdued pt-2 <sm:full-width

@@ -152,15 +152,13 @@ tailwind.config = {
     border-radius: var(--border-radius);
     padding-inline: .5em;
 
-    @apply inline-flex border border-[var(--stroke)] bg-transparent focus:border-primary focus-visible:border-primary;
-
-    &:hover {
-      @apply border-opacity-100 border-ink-subdued;
-    }
-
-    &:invalid:not(:placeholder-shown, [type="password"]) {
-      @apply border-red-600;
-    }
+    @apply inline-flex border border-[var(--stroke)] bg-transparent focus:border-primary focus-visible:!border-primary;
+  }
+  .input:hover {
+    @apply hover:border-opacity-100 hover:border-ink-subdued;
+  }
+  .input:invalid:not(:placeholder-shown, [type="password"]) {
+    @apply border-red-600;
   }
 
   .select {
@@ -184,22 +182,20 @@ tailwind.config = {
 
   .price, [data-price], [data-compare-at-price] {
     font-variant-numeric: tabular-nums;
-
-    &:is(s) {
-      @apply decoration-red-600;
-    }
   }
+  :is(.price, [data-price], [data-compare-at-price]):is(s) {
+    @apply decoration-red-600;
+  }
+
   .price-negative {
     @apply price text-red-600 before:content-['-'];
   }
 
-  .hashtag {
-    &::before {
-      @apply content-['#'] text-ink-subdued;
-    }
-    &[href]:hover::before {
-      color: inherit;
-    }
+  .hashtag::before {
+    @apply content-['#'] text-ink-subdued;
+  }
+  .hashtag[href]:hover::before {
+    color: inherit;
   }
 
   .chip {
@@ -215,14 +211,12 @@ tailwind.config = {
 
   .pagination {
     @apply flex justify-center gap-4;
-
-    & .current {
-      @apply font-bold;
-    }
-
-    & a:hover {
-      text-decoration: underline;
-    }
+  }
+  .pagination .current {
+    @apply font-bold;
+  }
+  .pagination a:hover {
+    text-decoration: underline;
   }
 }
 
@@ -242,62 +236,55 @@ tailwind.config = {
     align-items: center;
     justify-content: center;
     gap: .5em;
+  }
+  .with-icon svg {
+    height: 1.5em;
+    transition: scale 0.1s ease-in-out;
+  }
 
-    & svg {
-      height: 1.5em;
-      transition: scale 0.1s ease-in-out;
-    }
-
-    [open] > & svg,
-    &:hover svg,
-    &:is(button, [href]):focus svg {
-      scale: 1.2;
-    }
+  [open] > .with-icon svg,
+  .with-icon:hover svg,
+  .with-icon:is(button, [href]):focus svg {
+    scale: 1.2;
   }
 
   .with-label {
     @apply flex flex-col items-start gap-1;
-
-    & label {
-      z-index: 1;
-      margin-bottom: -1.2em;
-      padding-inline: .5em;
-      font-size: x-small;
-      @apply relative technical ml-1 bg-[var(--canvas)] text-[var(--ink)];
-    }
-
-    & textarea, & input {
-      padding-block: .5em;
-    }
+  }
+  .with-label label {
+    z-index: 1;
+    margin-bottom: -1.2em;
+    padding-inline: .5em;
+    font-size: x-small;
+    @apply relative technical ml-1 bg-[var(--canvas)] text-[var(--ink)];
   }
 
-  .with-accordion {
-    & .with-icon svg {
-      height: 1.2em;
-      @apply transition-transform;
-    }
+  .with-label :is(textarea, input) {
+    padding-block: .5em;
+  }
 
-    &[open] svg {
-      @apply rotate-90;
-    }
+  .with-accordion .with-icon svg {
+    height: 1.2em;
+    @apply transition-transform;
+  }
+  .with-accordion[open] svg {
+    @apply rotate-90;
   }
 
   .divider {
     position: relative;
-
-    & span {
-      position: relative;
-      padding-right: 0.5ch;
-      @apply bg-[var(--canvas)];
-    }
-
-    &::before {
-      content: '';
-      position: absolute;
-      inset: 50% 0 auto;
-      translate: 0 -50%;
-      @apply border-b border-[var(--stroke)];
-    }
+  }
+  .divider span {
+    position: relative;
+    padding-right: 0.5ch;
+    @apply bg-[var(--canvas)];
+  }
+  .divider::before {
+    content: '';
+    position: absolute;
+    inset: 50% 0 auto;
+    translate: 0 -50%;
+    @apply border-b border-[var(--stroke)];
   }
 
   .item-grid {
@@ -312,11 +299,10 @@ tailwind.config = {
     align-items: flex-start;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-
-    & > * {
-      scroll-snap-align: center;
-      flex: 0 0 var(--size, min(80vw, 280px));
-    }
+  }
+  .carousel > * {
+    scroll-snap-align: center;
+    flex: 0 0 var(--size, min(80vw, 280px));
   }
 
   /* richtext */

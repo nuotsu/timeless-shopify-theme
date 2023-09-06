@@ -119,14 +119,13 @@
 
   .product-thumbs .swiper-slide {
     @apply relative transition-transform;
-
-    &::after {
-      content: '';
-      pointer-events: none;
-      position: absolute;
-      inset: 0;
-      @apply bg-primary opacity-0 transition-opacity;
-    }
+  }
+  .product-thumbs .swiper-slide::after {
+    content: '';
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    @apply bg-primary opacity-0 transition-opacity;
   }
 
   .product-thumbs .swiper-slide:is(.swiper-slide-thumb-active, :hover)::after {

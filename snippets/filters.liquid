@@ -30,7 +30,7 @@
           {%- when 'boolean' or 'list' -%}
             <div class="grid">
               {%- for value in filter.values -%}
-                <label class="flex gap-[.5ch]">
+                <label class="flex items-center gap-1">
                   <input
                     name="{{ value.param_name }}"
                     id="Filter-{{ filter.param_name | escape }}-{{ forloop.index }}"
@@ -40,7 +40,7 @@
                     {% if value.count == 0 and value.active == false %}disabled{% endif %}
                   />
                   <span class="grow {% if value.count == 0 and value.active == false %}text-ink-subdued{% endif %}">{{ value.label }}</span>
-                  <small class="self-center ml-[.5ch] tabular-nums text-right text-ink-subdued">{{ value.count }}</small>
+                  <small class="self-center ml-1 tabular-nums text-right text-ink-subdued">{{ value.count }}</small>
                 </label>
               {%- endfor -%}
             </div>

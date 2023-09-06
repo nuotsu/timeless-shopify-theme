@@ -1,0 +1,53 @@
+<div class="section py-6 flex flex-wrap <sm:flex-col items-center justify-between gap-4">
+  <div class="flex flex-wrap gap-2">
+    <div class="flex flex-wrap gap-2 justify-center">
+      {% render 'language-selector' %}
+      {% render 'country-selector' %}
+    </div>
+
+    {%- if section.settings.show_follow_on_shop -%}
+      <div>{{ shop | login_button: action: 'follow' }}</div>
+    {%- endif -%}
+  </div>
+
+  {%- if shop.enabled_payment_types.size > 0 -%}
+    <ul class="flex flex-wrap gap-2">
+      {%- for type in shop.enabled_payment_types -%}
+        <li>{{ type | payment_type_svg_tag }}</li>
+      {%- endfor -%}
+    </ul>
+  {%- endif -%}
+
+  <div>
+    <p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name | link_to: routes.root_url }}.</p>
+  </div>
+</div>
+
+<style type="text/tailwindcss">
+  #shopify-section-{{ section.id }} {
+    --canvas: {{ section.settings.color_scheme.settings.canvas }};
+    --ink: {{ section.settings.color_scheme.settings.ink }};
+    @apply bg-[var(--canvas)] text-[var(--ink)];
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Footer bottom",
+  "tag": "footer",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_follow_on_shop",
+      "label": "Show Follow on Shop",
+      "default": false,
+      "info": "Documentation found [here](https://help.shopify.com/en/manual/online-store/themes/customizing-themes/follow-on-shop)"
+    }
+  ]
+}
+{% endschema %}

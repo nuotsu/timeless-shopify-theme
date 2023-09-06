@@ -13,13 +13,20 @@
       "type": "footer",
       "settings": {
         "color_scheme": "dark",
-        "menu": "footer",
+        "menu": "footer"
+      }
+    },
+    "footer-bottom": {
+      "type": "footer-bottom",
+      "settings": {
+        "color_scheme": "dark",
         "show_follow_on_shop": false
       }
     }
   },
   "order": [
     "breadcrumbs",
-    "footer"
+    "footer",
+    "footer-bottom"
   ]
 }

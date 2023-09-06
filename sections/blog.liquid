@@ -37,30 +37,12 @@
   {% endpaginate %}
 </section>
 
-<style type="text/tailwindcss">
-  #shopify-section-{{ section.id }} {
-    --canvas: {{ section.settings.color_scheme.settings.canvas }};
-    --stroke: {{ section.settings.color_scheme.settings.stroke }};
-    --ink: {{ section.settings.color_scheme.settings.ink }};
-    @apply bg-[var(--canvas)] text-[var(--ink)] <md:flex-col;
-  }
-</style>
-
 {% schema %}
 {
   "name": "Blog",
   "tag": "article",
   "class": "section flex gap-8",
   "settings": [
-    {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "Color scheme"
-    },
-    {
-      "type": "header",
-      "content": "Articles"
-    },
     {
       "type": "range",
       "id": "grid_item_size",

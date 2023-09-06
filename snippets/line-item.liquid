@@ -1,4 +1,4 @@
-<li class="line-item grid grid-cols-[auto,1fr,auto] items-center gap-4 pb-4 border-b border-stroke [&+&]:mt-4">
+<li class="line-item grid grid-cols-[auto,1fr,auto] gap-4 pb-4 border-b border-stroke [&+&]:mt-4">
   <figure class="group self-start w-[80px] md:w-[100px] bg-canvas-subdued overflow-hidden">
     {{ line_item.image
       | image_url: width: 200, height: 200
@@ -7,7 +7,7 @@
     }}
   </figure>
 
-  <dl class="grid gap-2 justify-start">
+  <dl class="grid gap-2 self-center justify-start">
     <dt class="flex flex-wrap gap-x-4">
       <a class="font-bold text-lg hover:underline" href="{{ line_item.url }}">
         {{ line_item.product.title }}
@@ -40,15 +40,22 @@
 
     {% comment %} Discounts {% endcomment %}
     {%- if line_item.discounts.size > 0 -%}
-      <dd class="mt-2 p-2 pt-1 bg-gradient-to-r from-amber-400/20 to-transparent">
-        <div class="technical text-[x-small] -mt-[1em]">Discounts</div>
-
+      <dt class="technical text-[x-small] ml-2">Discounts</dt>
+      <dd class="-mt-4 p-2 bg-gradient-to-r from-amber-400/20 to-transparent">
         {%- for discount in line_item.discounts -%}
           <dl class="grid grid-cols-[1fr,auto] gap-x-4 items-center">
             <dt>{{ discount.title }}</dt>
             <dd class="price-negative text-right">{{ discount.amount | money }}</dd>
           </dl>
         {%- endfor -%}
+      </dd>
+    {%- endif -%}
+
+    {% comment %} Selling plan {% endcomment %}
+    {%- if line_item.selling_plan_allocation -%}
+      <div class="technical text-[x-small] ml-2">Selling plan</div>
+      <dd class="-mt-4 p-2 bg-gradient-to-r from-green-400/20 to-transparent">
+        <div>{{ line_item.selling_plan_allocation.selling_plan.name }}</div>
       </dd>
     {%- endif -%}
   </dl>

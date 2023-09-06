@@ -4,8 +4,6 @@
   else
     assign p = product.selected_or_first_available_variant
   endif
-
-  assign sku = product.selected_or_first_available_variant.sku
 -%}
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
@@ -38,8 +36,8 @@
             <div>{{ block.settings.liquid }}</div>
 
           {%- when 'description' -%}
-            <div class="rte {{ block.settings.tailwind | default: '<md:text-sm' }}">
-              {{ product.description }}
+            <div class="rte empty:hidden {{ block.settings.tailwind | default: '<md:text-sm' }}">
+              {{- product.description -}}
             </div>
 
           {%- when 'divider' -%}
@@ -77,6 +75,7 @@
             <div class="rte {{ block.settings.tailwind }}">{{ block.settings.richtext }}</div>
 
           {%- when 'sku' -%}
+            {%- assign sku = product.selected_or_first_available_variant.sku -%}
             <p class="text-ink-subdued" data-sku-container {% if sku == blank %}hidden{% endif %}>
               <small>SKU: <code data-sku>{{ sku }}</code></small>
             </p>

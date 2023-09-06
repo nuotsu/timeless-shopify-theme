@@ -6,9 +6,10 @@
   endif
 -%}
 
-<div class="flex flex-wrap gap-2">
+<div class="flex flex-wrap gap-1 items-baseline">
   <span data-price>{{ p.price | money }}</span>
   <s
+    class="ml-1"
     data-compare-at-price
     {% unless p.price < p.compare_at_price %}hidden{% endunless %}
   >

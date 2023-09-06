@@ -10,7 +10,7 @@
         {%- if megamenus contains link.title -%}
           {% comment %} Megamenu {% endcomment %}
           <details class="with-accordion">
-            <summary class="with-icon w-full <md:py-1 [&_svg]:rotate-90">
+            <summary class="with-icon w-full py-1 md:py-3 [&_svg]:rotate-90">
               <span class="grow">{{ link.title }}</span>
               {% render 'icon' with 'chevron-right' %}
             </summary>
@@ -66,7 +66,7 @@
         {%- else -%}
           {% comment %} Dropdown {% endcomment %}
           <details class="with-accordion relative">
-            <summary class="with-icon w-full <md:py-1 [&_svg]:rotate-90">
+            <summary class="with-icon w-full py-1 md:py-3 [&_svg]:rotate-90">
               <span class="grow">{{ link.title }}</span>
               {% render 'icon' with 'chevron-right' %}
             </summary>
@@ -81,7 +81,7 @@
 
       {%- when 0 -%}
         {% comment %} Basic top-level link {% endcomment %}
-        {{ link.title | link_to: link.url, class: 'block <md:py-1' }}
+        {{ link.title | link_to: link.url, class: 'block py-1 md:py-3' }}
 
     {%- endcase -%}
   {%- endfor -%}

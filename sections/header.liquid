@@ -74,16 +74,28 @@
     document.addEventListener('resize', setHeaderHeight)
 
     // header menus events
+
     const headerMenus = header.querySelectorAll('[style*="menu"] details')
+
     function updateHeaderMenuEvents() {
-      if (window.matchMedia('(min-width: 768px)').matches) {
+      const { matches } = window.matchMedia('(min-width: 768px) and (hover: hover)')
+
+      if (matches) {
         headerMenus.forEach(menu => {
-          menu.addEventListener('mouseenter', () => menu.setAttribute('open', ''))
-          menu.addEventListener('mouseleave', () => menu.removeAttribute('open'))
+          menu.addEventListener('mouseenter', mouseenter)
+          menu.addEventListener('mouseleave', mouseleave)
+        })
+      } else {
+        headerMenus.forEach(menu => {
+          menu.removeEventListener('mouseenter', mouseenter)
+          menu.removeEventListener('mouseleave', mouseleave)
         })
       }
     }
     updateHeaderMenuEvents()
+
+    function mouseenter() { this.setAttribute('open', '') }
+    function mouseleave() { this.removeAttribute('open') }
 
     window.addEventListener('resize', updateHeaderMenuEvents)
   })()

@@ -93,6 +93,10 @@
         <button class="action" name="checkout" type="submit">
           {{ section.settings.checkout_label | default: 'Checkout' }}
         </button>
+
+        {%- if additional_checkout_buttons -%}
+          {{ content_for_additional_checkout_buttons }}
+        {%- endif -%}
       </div>
     {%- endunless -%}
   </div>

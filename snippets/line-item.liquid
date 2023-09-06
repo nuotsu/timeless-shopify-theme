@@ -24,7 +24,7 @@
 
     <dd class="flex gap-1">
       <div>
-        <strong class="price">{{ line_item.original_price | money }}</strong>
+        <strong class="price">{{ line_item.final_price | money }}</strong>
         {%- render 'unit-price', measurement: line_item.unit_price_measurement %}
         {%- if cart.taxes_included -%}
           <small>(Taxes incl.)</small>

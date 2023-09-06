@@ -6,23 +6,23 @@
     md:gap-x-2
   "
 >
-  <a href="{{ routes.search_url }}" title="Search">
+  <a href="{{ routes.search_url }}" aria-label="Search">
     {% render 'icon' with 'search' %}
   </a>
 
   {%- if shop.customer_accounts_enabled -%}
     {%- if customer -%}
-      <a href="{{ routes.account_url }}" title="Account">
+      <a href="{{ routes.account_url }}" aria-label="Account">
         {% render 'icon' with 'customers-filled' %}
       </a>
     {%- else -%}
-      <a href="{{ routes.account_login_url }}" title="Log in">
+      <a href="{{ routes.account_login_url }}" aria-label="Log in">
         {% render 'icon' with 'customers' %}
       </a>
     {%- endif -%}
   {%- endif -%}
 
-  <a class="relative" href="{{ routes.cart_url }}" title="Cart">
+  <a class="relative" href="{{ routes.cart_url }}" aria-label="Cart">
     {% render 'icon' with 'cart' %}
     {%- unless cart.empty? -%}
       <span
@@ -35,7 +35,7 @@
             w-2 aspect-square text-[0px]
           {% endif %}
         "
-        title="{{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }} in cart"
+        aria-label="{{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }} in cart"
       >
         {{- cart.item_count -}}
       </span>

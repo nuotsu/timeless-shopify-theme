@@ -8,7 +8,7 @@
       {%- for tag in blog.all_tags -%}
         <li>
           {%- if current_tags contains tag -%}
-            <a class="hashtag text-primary hover:line-through" href="{{ blog.url }}" title="Remove tag filter">
+            <a class="hashtag text-primary hover:line-through" href="{{ blog.url }}" aria-label="Remove tag filter">
               {{- tag -}}
             </a>
           {% else %}

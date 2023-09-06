@@ -52,7 +52,7 @@
       {%- for media in product.media -%}
         <div
           class="swiper-slide cursor-pointer"
-          {% if media.media_type == 'model' %}title="Model view available"{% endif %}
+          {% if media.media_type == 'model' %}aria-label="Model view available"{% endif %}
         >
           {{ media.preview_image
             | image_url: width: 120, height: 120

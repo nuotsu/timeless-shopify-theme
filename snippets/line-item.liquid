@@ -7,7 +7,7 @@
     }}
   </figure>
 
-  <dl class="grid gap-2 self-center justify-start">
+  <dl class="grid gap-3 self-center justify-start">
     <dt class="flex flex-wrap gap-x-4">
       <a class="font-bold text-lg hover:underline" href="{{ line_item.url }}">
         {{ line_item.product.title }}
@@ -16,19 +16,22 @@
       {%- unless line_item.product.has_only_default_variant -%}
         <div class="flex flex-wrap items-center gap-[.25em]">
           {%- for option in line_item.options_with_values -%}
-            <small class="hashtag text-xs" title="{{ option.name }}">{{ option.value }}</small>
+            <small class="hashtag text-xs" aria-label="{{ option.name }}">{{ option.value }}</small>
           {%- endfor -%}
         </div>
       {%- endunless -%}
     </dt>
 
-    <dd class="flex gap-[.5em]">
+    <dd class="flex gap-1">
       <div>
-        <span class="price">{{ line_item.original_price | money }}</span>
-        {% render 'unit-price', measurement: line_item.unit_price_measurement %}
+        <strong class="price">{{ line_item.original_price | money }}</strong>
+        {%- render 'unit-price', measurement: line_item.unit_price_measurement %}
+        {%- if cart.taxes_included -%}
+          <small>(Taxes incl.)</small>
+        {%- endif -%}
       </div>
 
-      <label title="Quantity">
+      <label aria-label="Quantity">
         {% render 'quantity-selector'
           name: 'updates[]'
           value: line_item.quantity
@@ -40,8 +43,8 @@
 
     {% comment %} Discounts {% endcomment %}
     {%- if line_item.discounts.size > 0 -%}
-      <dt class="technical text-[x-small] ml-2">Discounts</dt>
-      <dd class="-mt-4 p-2 bg-gradient-to-r from-amber-400/20 to-transparent">
+      <dt class="relative technical text-[x-small] ml-2">Discounts</dt>
+      <dd class="-mt-5 p-2 bg-amber-400/20">
         {%- for discount in line_item.discounts -%}
           <dl class="grid grid-cols-[1fr,auto] gap-x-4 items-center">
             <dt>{{ discount.title }}</dt>
@@ -53,9 +56,23 @@
 
     {% comment %} Selling plan {% endcomment %}
     {%- if line_item.selling_plan_allocation -%}
-      <div class="technical text-[x-small] ml-2">Selling plan</div>
-      <dd class="-mt-4 p-2 bg-gradient-to-r from-green-400/20 to-transparent">
+      <dt class="relative technical text-[x-small] ml-2">Selling plan</dt>
+      <dd class="-mt-5 p-2 bg-green-400/20">
         <div>{{ line_item.selling_plan_allocation.selling_plan.name }}</div>
+      </dd>
+    {%- endif -%}
+
+    {% comment %} Properties {% endcomment %}
+    {%- assign property_size = line_item.properties | size -%}
+    {%- if property_size > 0 -%}
+      <dt class="relative technical text-[x-small] ml-2">Properties</dt>
+      <dd class="-mt-5 p-2 grid gap-1 bg-canvas-subdued">
+        {%- for property in line_item.properties -%}
+          <dl class="grid grid-cols-[auto,1fr] gap-x-2 items-center text-xs">
+            <dt class="text-ink-subdued">{{ property.first }}:</dt>
+            <dd>{{ property.last }}</dd>
+          </dl>
+        {%- endfor -%}
       </dd>
     {%- endif -%}
   </dl>
@@ -64,7 +81,7 @@
     <a
       class="self-stretch with-icon ghost text-sm"
       href="{{ line_item.url_to_remove }}"
-      title="Remove {{ line_item.title }} from cart"
+      aria-label="Remove {{ line_item.title }} from cart"
     >
       {%- render 'icon' with 'delete' -%}
     </a>

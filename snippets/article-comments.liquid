@@ -10,7 +10,7 @@
               <footer class="flex flex-wrap gap-3 -mt-6 text-xs">
                 <b>{{ comment.author }}</b>
                 <time>{{ comment.created_at | date: '%b %d, %Y %l:%M %p' }}</time>
-                <a class="[&_svg]:h-[1.2em]" href="#{{ comment.id }}" title="Link to comment">
+                <a class="[&_svg]:h-[1.2em]" href="#{{ comment.id }}" aria-label="Link to comment">
                   {% render 'icon' with 'link' %}
                 </a>
               </footer>

@@ -12,7 +12,7 @@
   {% render 'product-image-carousel' %}
 
   <div class="grid gap-6">
-    {% form 'product', product, class: 'grid gap-3' %}
+    {% form 'product', product, class: 'grid gap-4' %}
       {%- for block in section.blocks -%}
         {%- case block.type -%}
           {%- when '@app' -%}
@@ -49,6 +49,11 @@
               <hr class="my-4" />
             {%- endif -%}
 
+          {%- when 'gift-card-recipient-form' -%}
+            {%- if product.gift_card? -%}
+              {%- render 'gift-card-recipient-form' -%}
+            {%- endif -%}
+
           {%- when 'inventory' -%}
             <p
               class="{{ block.settings.tailwind | default: 'text-sm text-center md:text-left' }}"
@@ -72,7 +77,7 @@
             </label>
 
           {%- when 'richtext' -%}
-            <div class="rte {{ block.settings.tailwind }}">{{ block.settings.richtext }}</div>
+            <div class="rte empty:hidden {{ block.settings.tailwind }}">{{ block.settings.richtext }}</div>
 
           {%- when 'sku' -%}
             {%- assign sku = product.selected_or_first_available_variant.sku -%}
@@ -253,6 +258,17 @@
           "type": "text",
           "id": "label",
           "label": "Label"
+        }
+      ]
+    },
+    {
+      "name": "Gift card recipient form",
+      "type": "gift-card-recipient-form",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Required block",
+          "info": "Needs to be included for gift card products"
         }
       ]
     },

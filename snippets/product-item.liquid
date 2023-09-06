@@ -39,7 +39,7 @@
           {%- for value in product_option.values -%}
             {%- for variant in product.variants -%}
               {%- if variant.title contains value -%}
-                <a class="hashtag hover:text-primary" href="{{ variant.url }}" title="{{ product_option.name }}">
+                <a class="hashtag hover:text-primary" href="{{ variant.url }}" aria-label="{{ product_option.name }}">
                   {{- value -}}
                 </a>
                 {% break %}

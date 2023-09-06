@@ -17,9 +17,9 @@
     {%- endfor -%}
   </select>
 
-  <div class="grid gap-3 py-2 px-3 bg-gradient-to-r from-canvas-subdued to-transparent">
+  <div class="grid gap-8 p-3 bg-canvas-subdued">
     {%- for product_option in product.options_with_values -%}
-      <fieldset>
+      <fieldset class="-mt-5 {% unless forloop.last %}pb-3 border-b border-stroke{% endunless %}">
         <legend class="technical text-xs mb-1">{{ product_option.name }}</legend>
 
         <div class="flex flex-wrap gap-3">

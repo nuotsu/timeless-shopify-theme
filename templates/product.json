@@ -25,6 +25,11 @@
             "show_dividers": false
           }
         },
+        "2ee3839d-c255-4bf0-ad47-55a84e135f1f": {
+          "type": "gift-card-recipient-form",
+          "settings": {
+          }
+        },
         "53d588d3-8f9e-4dc5-8de0-e3eca78cd48f": {
           "type": "quantity-selector",
           "settings": {
@@ -71,6 +76,7 @@
         "dbad3ae8-84d5-48a6-9ab8-8885e1ee2c41",
         "07d05eb6-e4ce-4fa1-81d6-3b59e0854401",
         "743a2bf4-9909-45f2-9b51-411702650ac1",
+        "2ee3839d-c255-4bf0-ad47-55a84e135f1f",
         "53d588d3-8f9e-4dc5-8de0-e3eca78cd48f",
         "54221e7b-8868-4c06-bc77-ea9ea93bea2b",
         "0442fcb3-bb2b-4c7c-854f-063c431018ce",
@@ -79,6 +85,7 @@
         "907a93d4-708e-45b0-934c-ecdbba2fc1bb"
       ],
       "settings": {
+        "show_pickup_availability": false,
         "carousel_zoom_enabled": true,
         "carousel_autoHeight": true,
         "carousel_slidesPerView": 8

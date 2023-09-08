@@ -1,9 +1,9 @@
 {% form 'customer', class: class %}
   <div class="with-label">
-    <label for="contact-email">Email</label>
+    <label for="contact-email-{{ id }}">Email</label>
     <input
       class="input w-full"
-      id="contact-email"
+      id="contact-email-{{ id }}"
       name="contact[email]"
       type="email"
       placeholder="john@example.com"

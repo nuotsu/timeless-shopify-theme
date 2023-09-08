@@ -1,6 +1,24 @@
 <div class="section flex <md:flex-col gap-y-4 gap-x-12 items-start">
-  <div>
-    {{ shop.name | link_to: routes.root_url, class: 'font-heading' }}
+  <div class="grid gap-4 <md:mx-auto">
+    <div class="max-w-[160px]">
+      {%- if section.settings.logo -%}
+        {{ section.settings.logo
+          | image_url: width: 300
+          | image_tag: class: 'max-h-[160px] object-contain', loading: 'lazy'
+          | link_to: routes.root_url
+        }}
+      {%- else -%}
+        {{ shop.name | link_to: routes.root_url, class: 'font-heading' }}
+      {%- endif -%}
+    </div>
+
+    <nav class="flex flex-wrap items-center justify-center gap-x-4 [&_svg]:h-[1.5em]">
+      {%- for social in shop.brand.metafields.social_links -%}
+        <a href="{{ social.last }}" aria-label="{{ social.first }}">
+          {%- render 'icon' with social.first -%}
+        </a>
+      {%- endfor -%}
+    </nav>
   </div>
 
   {% render 'footer-menu' %}
@@ -27,11 +45,21 @@
       "label": "Color scheme"
     },
     {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
       "type": "link_list",
       "id": "menu",
       "label": "Menu",
       "info": "At least one level of nesting for each top-level link recommended.",
       "default": "footer"
+    },
+    {
+      "type": "header",
+      "content": "Social links",
+      "info": "Add social links from Settings > Brand > Social links. More info found [here](https://help.shopify.com/en/manual/promoting-marketing/managing-brand-assets#social-media-links)."
     }
   ]
 }

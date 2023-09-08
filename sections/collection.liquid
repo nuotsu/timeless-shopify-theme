@@ -6,41 +6,55 @@
   endif
 -%}
 
-{%- if section.settings.show_heading -%}
+{%- unless section.settings.hide_heading -%}
   <header class="rte {{ section.settings.tailwind | default: 'max-w-screen-sm' }}">
     <h1>{{ collection.title }}</h1>
     {{ collection.description }}
   </header>
-{%- endif -%}
+{%- endunless -%}
 
-<div class="flex flex-col {% if sidebar_enabled %}md:flex-row{% endif %} gap-8 min-w-0">
-  {%- if section.settings.filters_enabled -%}
-    <aside class="
-      bg-canvas-subdued pt-2 <sm:full-width
-      {% if sidebar_enabled %}w-full md:basis-[300px] p-4 self-start md:sticky-below-header [--offset:.5rem]
-      {% else %}p-6 <md:px-4
-      {% endif %}
-    ">
-      <h2 class="technical text-sm -mt-4 {% if sidebar_enabled %}mb-3{% else %}mb-2{% endif %}">Filters</h2>
-      {% render 'filters'
-        results: collection
-        stacked: sidebar_enabled
-        opened: section.settings.opened_by_default
-      %}
-    </aside>
-  {%- endif -%}
-
-  {% paginate collection.products by section.settings.page_size %}
-    {% render 'product-grid'
-      products: collection.products
-      size: section.settings.grid_item_size
-    %}
-
-    {%- if paginate.pages > 1 -%}
-      <nav class="pagination">{{ paginate | default_pagination }}</nav>
+{%- if collection.products_count > 0 -%}
+  <div class="flex flex-col items-start {% if sidebar_enabled %}md:flex-row{% endif %} gap-8 min-w-0">
+    {%- if section.settings.filters_enabled -%}
+      <aside class="
+        bg-canvas-subdued pt-2 <sm:full-width
+        {% if sidebar_enabled %}w-full md:basis-[300px] p-4 self-start md:sticky-below-header [--offset:.5rem]
+        {% else %}p-6 <md:px-4
+        {% endif %}
+      ">
+        <h2 class="technical text-sm -mt-4 {% if sidebar_enabled %}mb-3{% else %}mb-2{% endif %}">Filters</h2>
+        {% render 'filters'
+          results: collection
+          stacked: sidebar_enabled
+          opened: section.settings.opened_by_default
+        %}
+      </aside>
     {%- endif -%}
-  {% endpaginate %}
-</div>
+
+    <div class="grid gap-6">
+      {%- liquid
+        if section.settings.sorting_enabled
+          render 'sort-by'
+        endif
+      -%}
+
+      {% paginate collection.products by section.settings.page_size %}
+        {% render 'product-grid'
+          products: collection.products
+          size: section.settings.grid_item_size
+        %}
+
+        {%- if paginate.pages > 1 -%}
+          <nav class="pagination">{{ paginate | default_pagination }}</nav>
+        {%- endif -%}
+      {% endpaginate %}
+    </div>
+  </div>
+
+{%- else -%}
+  <p class="text-ink-subdued text-center">No products in this collection</p>
+
+{%- endif -%}
 
 {% schema %}
 {
@@ -54,9 +68,9 @@
     },
     {
       "type": "checkbox",
-      "id": "show_heading",
-      "label": "Show heading",
-      "default": true
+      "id": "hide_heading",
+      "label": "Hide heading",
+      "default": false
     },
     {
       "type": "liquid",
@@ -66,7 +80,13 @@
     },
     {
       "type": "header",
-      "content": "Filters"
+      "content": "Sorting and filters"
+    },
+    {
+      "type": "checkbox",
+      "id": "sorting_enabled",
+      "label": "Enable sorting",
+      "default": true
     },
     {
       "type": "checkbox",
@@ -115,6 +135,33 @@
       "id": "page_size",
       "label": "Products per page",
       "default": 12
+    }
+  ],
+  "blocks": [
+    {
+      "type": "sale-badge",
+      "name": "Sale badge settings",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "enabled",
+          "label": "Show sale badge",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "On sale"
+        },
+        {
+          "type": "liquid",
+          "id": "tailwind",
+          "label": "Tailwind classes",
+          "info": "Default: \"right-0 bottom-4\""
+        }
+      ]
     }
   ]
 }

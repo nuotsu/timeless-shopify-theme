@@ -8,7 +8,7 @@
   {%- endif -%}
 </div>
 
-<script type="module" defer>
+<script type="module">
   // TODO: use intersection observer to lazyload
   fetch('{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit=4&intent={{ section.settings.intent }}')
     .then(res => res.text())

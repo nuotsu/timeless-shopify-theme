@@ -199,8 +199,13 @@ tailwind.config = {
   }
 
   .chip {
-    padding: 0 0.5em;
+    padding: 0 .5em;
     border-radius: var(--border-radius);
+  }
+
+  .badge {
+    padding: 0 .5em;
+    @apply technical bg-red-600/80 backdrop-blur text-white text-xs;
   }
 
   /* layouts */

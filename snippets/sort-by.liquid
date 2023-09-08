@@ -1,0 +1,22 @@
+{%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
+
+<aside class="flex flex-wrap gap-4 justify-end">
+  <div class="with-label">
+    <label for="sort-by">Sort by</label>
+    <select class="select" id="sort-by" name="sort-by" onchange="sortByOnChange(this)">
+      {%- for option in collection.sort_options -%}
+        <option value="{{ option.value }}" {% if option.value == sort_by %}selected{% endif %}>
+          {{- option.name -}}
+        </option>
+      {%- endfor -%}
+    </select>
+  </div>
+</aside>
+
+<script defer>
+  function sortByOnChange({ value }) {
+    const url = new URL(window.location.href)
+    url.searchParams.set('sort_by', value)
+    location.href = url.toString()
+  }
+</script>

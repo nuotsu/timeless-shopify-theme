@@ -1,4 +1,10 @@
 {%- liquid
+  if product.price_min < product.compare_at_price_min
+    assign is_on_sale = true
+  else
+    assign is_on_sale = false
+  endif
+
   capture unit_price
     render 'unit-price', measurement: product.variants.first.unit_price_measurement
   endcapture
@@ -6,11 +12,17 @@
 
 <li class="grid gap-2">
   <a class="group grid gap-2" href="{{ product.url | within: collection }}">
-    <figure class="bg-canvas-subdued overflow-hidden">
+    <figure class="relative bg-canvas-subdued overflow-hidden">
       {{ product.featured_image
         | image_url: width: 500, height: 500
         | image_tag: class: 'w-full group-hover:scale-110 transition-transform', loading: 'lazy'
       }}
+
+      {%- if is_on_sale and sale_badge.enabled -%}
+        <span class="badge absolute {{ sale_badge.tailwind | default: 'right-0 bottom-4' }}">
+          {{- sale_badge.text | default: 'On sale' -}}
+        </span>
+      {%- endif -%}
     </figure>
 
     <div class="h3 group-hover:underline">{{ product.title }}</div>
@@ -22,7 +34,7 @@
       <strong class="price">{{ product.price_min | money }}</strong>
       {{- unit_price -}}
     </span>
-    {% if product.price_min < product.compare_at_price_min %}
+    {% if is_on_sale %}
       <span class="ml-1">
         <s class="price">{{ product.compare_at_price_min | money }}</s>
         {{- unit_price -}}

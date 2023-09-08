@@ -10,10 +10,25 @@
     },
     "collection": {
       "type": "collection",
+      "blocks": {
+        "be1e3e9c-2ec8-4cca-97a4-95a0e902c166": {
+          "type": "sale-badge",
+          "settings": {
+            "enabled": true,
+            "label": "On sale",
+            "tailwind": ""
+          }
+        }
+      },
+      "block_order": [
+        "be1e3e9c-2ec8-4cca-97a4-95a0e902c166"
+      ],
       "settings": {
-        "show_heading": false,
+        "hide_heading": true,
         "tailwind": "",
+        "sorting_enabled": true,
         "filters_enabled": true,
+        "opened_by_default": true,
         "filters_position": "left",
         "grid_item_size": 200,
         "page_size": 12

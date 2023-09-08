@@ -21,38 +21,40 @@
     {%- endfor -%}
   </nav>
 
-  {% render 'search-form'
-    predictive: true
-    type: current_type
-    placeholder: section.settings.searchbox_placeholder
-  %}
+  {% render 'search-form', predictive: true, type: current_type %}
 </header>
 
 {%- if search.performed -%}
-  <section class="section grid gap-8">
-    {% paginate search.results by section.settings.page_size %}
-      <ul class="item-grid <md:grid-cols-1" style="--size: {{ section.settings.grid_item_size }}px;">
-        {%- liquid
-          for item in search.results
-            case item.object_type
-              when 'article'
-                render 'article-item-static', article: item
+  <section class="section pt-0 grid gap-8">
+    {%- if search.results_count > 0 -%}
+      {% paginate search.results by section.settings.page_size %}
+        <ul class="item-grid <md:grid-cols-1" style="--size: {{ section.settings.grid_item_size }}px;">
+          {%- liquid
+            for item in search.results
+              case item.object_type
+                when 'article'
+                  render 'article-item-static', article: item
 
-              when 'page'
-                render 'page-item', page: item
+                when 'page'
+                  render 'page-item', page: item
 
-              when 'product'
-                render 'product-item', product: item
+                when 'product'
+                  render 'product-item', product: item
 
-            endcase
-          endfor
-        -%}
-      </ul>
+              endcase
+            endfor
+          -%}
+        </ul>
 
-      {%- if paginate.pages > 1 -%}
-        <nav class="pagination">{{ paginate | default_pagination }}</nav>
-      {%- endif -%}
-    {% endpaginate %}
+        {%- if paginate.pages > 1 -%}
+          <nav class="pagination">{{ paginate | default_pagination }}</nav>
+        {%- endif -%}
+      {% endpaginate %}
+
+    {%- else -%}
+      <p class="text-ink-subdued text-center">No results found for "{{ search.terms }}"</p>
+
+    {%- endif -%}
   </section>
 {%- endif -%}
 
@@ -61,11 +63,6 @@
   "name": "Search",
   "tag": "section",
   "settings": [
-    {
-      "type": "text",
-      "id": "searchbox_placeholder",
-      "label": "Searchbox placeholder"
-    },
     {
       "type": "header",
       "content": "Results"

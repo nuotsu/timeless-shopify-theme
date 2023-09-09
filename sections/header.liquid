@@ -1,25 +1,38 @@
+{%- liquid
+  if section.settings.offset > 0
+    assign has_offset = true
+  else
+    assign has_offset = false
+  endif
+-%}
+
 <input id="header-menu-opened" type="checkbox" hidden>
 
-<div class="header section grid gap-x-4 py-0 <md:max-h-[100dvh] <md:overflow-y-auto">
-  <div style="grid-area: logo;" class="flex items-center gap-4 sticky top-0 z-[1] <md:py-4 transition-colors">
-    {%- if section.settings.logo -%}
-      {{ section.settings.logo
-        | image_url: width: 300
-        | image_tag: class: 'max-w-[160px] max-h-[160px] object-contain', loading: 'lazy'
-        | link_to: routes.root_url
-      }}
-    {%- else -%}
-      {{ shop.name | link_to: routes.root_url, class: 'font-heading' }}
-    {%- endif -%}
+<div class="
+  header backdrop-blur-sm text-[var(--ink)] bg-[var(--canvas-opacity)] transition-[background-color,box-shadow] [&:is(:hover,:has([open]))]:bg-[var(--canvas)] <md:overflow-hidden
+  {% if has_offset %}max-w-screen-xl mx-auto rounded-[var(--border-radius)] [&:has(.megamenu[open])]:md:rounded-b-none{% endif %}
+">
+  <div class="header-grid section grid gap-x-4 py-0 <md:max-h-[100dvh] <md:overflow-y-auto">
+    <div style="grid-area: logo;" class="flex items-center gap-4 sticky top-0 z-[1] <md:py-4 transition-colors">
+      {%- if section.settings.logo -%}
+        {{ section.settings.logo
+          | image_url: width: 300
+          | image_tag: class: 'max-w-[160px] max-h-[160px] object-contain', loading: 'lazy'
+          | link_to: routes.root_url
+        }}
+      {%- else -%}
+        {{ shop.name | link_to: routes.root_url, class: 'font-heading' }}
+      {%- endif -%}
 
-    <label for="header-menu-opened" class="with-icon ml-auto md:hidden" aria-label="Toggle header menu">
-      <span class="toggle-open">{% render 'icon' with 'mobile-hamburger' %}</span>
-      <span class="toggle-close">{% render 'icon' with 'cancel' %}</span>
-    </label>
+      <label for="header-menu-opened" class="with-icon ml-auto md:hidden" aria-label="Toggle header menu">
+        <span class="toggle-open">{% render 'icon' with 'mobile-hamburger' %}</span>
+        <span class="toggle-close">{% render 'icon' with 'cancel' %}</span>
+      </label>
+    </div>
+
+    {% render 'header-menu' %}
+    {% render 'header-actions' %}
   </div>
-
-  {% render 'header-menu' %}
-  {% render 'header-actions' %}
 </div>
 
 <style type="text/tailwindcss">
@@ -27,16 +40,20 @@
     --canvas: {{ section.settings.color_scheme.settings.canvas }};
     --canvas-opacity: {{ section.settings.color_scheme.settings.canvas }}cc;
     --ink: {{ section.settings.color_scheme.settings.ink }};
-    @apply bg-[var(--canvas-opacity)] text-[var(--ink)] transition-colors;
   }
-  #shopify-section-{{ section.id }}:has([open]) {
-    @apply bg-[var(--canvas)];
+
+  #shopify-section-{{ section.id }}:has(#header-menu-opened:not(:checked)) {
+    @apply m-{{ section.settings.offset }} top-{{ section.settings.offset }};
+  }
+
+  .is-scrolled .header {
+    @apply shadow-lg;
   }
 
   @screen md {
-    .megamenu-contents, .dropdown-contents {
-      border-radius: var(--border-radius);
-      @apply absolute top-full bg-[var(--canvas)] shadow-xl;
+    .megamenu-contents,
+    .dropdown-contents {
+      @apply absolute top-full bg-[var(--canvas)] rounded-b-[var(--border-radius)] shadow-xl;
     }
   }
 
@@ -54,17 +71,18 @@
       display: none;
     }
 
-    .megamenu-contents, .dropdown-contents {
+    .megamenu-contents,
+    .dropdown-contents {
       @apply my-1 py-1 pl-3 border-l border-stroke;
     }
   }
 
-  .header {
+  .header-grid {
     grid-template-areas: 'logo' 'menu' 'actions';
   }
 
   @screen md {
-    .header {
+    .header-grid {
       grid-template-columns: auto 1fr auto;
       grid-template-areas: 'logo menu actions';
     }
@@ -106,6 +124,18 @@
     function mouseleave() { this.removeAttribute('open') }
 
     window.addEventListener('resize', updateHeaderMenuEvents)
+
+    window.addEventListener('scroll', e => {
+      const { scrollTop } = e.target.documentElement
+      const announcementHeight = Array.from(document.querySelectorAll('.section-announcement')).reduce((acc, el) => acc + el.offsetHeight, 0)
+      const headerHeight = header.offsetHeight / 2
+
+      if (scrollTop > (announcementHeight + headerHeight)) {
+        header.classList.add('is-scrolled')
+      } else {
+        header.classList.remove('is-scrolled')
+      }
+    })
   })()
 </script>
 
@@ -113,12 +143,21 @@
 {
   "name": "Header",
   "tag": "header",
-  "class": "sticky z-10 top-0 backdrop-blur",
+  "class": "sticky z-10 top-0 transition-all",
   "settings": [
     {
       "type": "color_scheme",
       "id": "color_scheme",
       "label": "Color scheme"
+    },
+    {
+      "type": "range",
+      "id": "offset",
+      "min": 0,
+      "max": 8,
+      "label": "Offset",
+      "info": "Spacing from the edges of the screen",
+      "default": 0
     },
     {
       "type": "image_picker",

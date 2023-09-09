@@ -65,6 +65,14 @@ tailwind.config = {
     @apply bg-canvas text-ink accent-primary caret-primary font-body;
   }
 
+  details > *:not(summary) {
+    @apply transition-[opacity,translate];
+  }
+  details:not([open]) > *:not(summary) {
+    opacity: 0;
+    translate: 0 -1rem;
+  }
+
   summary {
     cursor: pointer;
     display: block;
@@ -343,6 +351,37 @@ tailwind.config = {
   .rte.text-right > .cta-list {
     @apply justify-end;
   }
+
+  /* anims */
+
+  @keyframes fade {
+		from {
+			opacity: 0;
+			scale: var(--scale, 1);
+			translate: var(--translate, 0 0);
+		}
+		to {
+			opacity: 1;
+			scale: 1;
+			translate: 0 0;
+		}
+	}
+
+	.anim-fade {
+		animation: fade .2s ease-in-out var(--delay, 0s) forwards;
+	}
+	.anim-fade-r {
+		@apply anim-fade;
+		--translate: -1rem 0;
+	}
+	.anim-fade-l {
+		@apply anim-fade;
+		--translate: 1rem 0;
+	}
+	.anim-fade-b {
+		@apply anim-fade;
+		--translate: 0 -1rem;
+	}
 }
 </style>
 {% endcapture %}

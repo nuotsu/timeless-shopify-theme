@@ -9,7 +9,7 @@
       {%- when 1 or 2 -%}
         {%- if megamenus contains link.title -%}
           {% comment %} Megamenu {% endcomment %}
-          <details class="with-accordion">
+          <details class="megamenu with-accordion">
             <summary class="with-icon w-full md:h-full items-center py-1 md:py-3 [&_svg]:rotate-90">
               <span class="grow">{{ link.title }}</span>
               {% render 'icon' with 'chevron-right' %}
@@ -70,7 +70,7 @@
               <span class="grow">{{ link.title }}</span>
               {% render 'icon' with 'chevron-right' %}
             </summary>
-            <ul class="dropdown-contents -left-4 w-max md:px-4 md:pb-4">
+            <ul class="dropdown-contents -left-4 w-max md:p-4 md:pt-1">
               {%- for child_link in link.links -%}
                 <li>{{ child_link.title | link_to: child_link.url, class: 'hover:underline' }}</li>
               {%- endfor -%}

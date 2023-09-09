@@ -2,6 +2,23 @@
   "name": "Header",
   "type": "header",
   "sections": {
+    "d992c21f-752c-4c84-a751-f552e3aaaa35": {
+      "type": "anouncement",
+      "blocks": {
+        "9258ad69-dc72-4f9a-941a-72134b2e3eb4": {
+          "type": "static",
+          "settings": {
+            "color_scheme": "dark",
+            "content": "<p>Announcement goes here<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "9258ad69-dc72-4f9a-941a-72134b2e3eb4"
+      ],
+      "settings": {
+      }
+    },
     "header": {
       "type": "header",
       "blocks": {
@@ -31,6 +48,7 @@
     }
   },
   "order": [
+    "d992c21f-752c-4c84-a751-f552e3aaaa35",
     "header"
   ]
 }

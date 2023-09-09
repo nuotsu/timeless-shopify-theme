@@ -8,13 +8,16 @@
 - `.anim-*`
 - `autocomplete` on inputs
 - password input toggle
+- `activate_account.json``
 
 ## PDP
 - product-image-gallery
   - navigation
   - vertical thumbnails?
 
-## Products
+## Pre-launch
+
+### Products
 - flux capacitor
 - headlight fluid
 - blinker fluid
@@ -23,6 +26,6 @@
 - rotate tire air
 - elbow grease
 
-## Documentation
+### Documentation
 - contact form
 - FAQs

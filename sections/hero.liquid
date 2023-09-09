@@ -31,7 +31,7 @@
 </div>
 
 <style type="text/tailwindcss">
-  #shopify-section-{{ section.id }} {
+  #shopify-section-{{ section.id }} > div {
     --canvas: {{ section.settings.color_scheme.settings.canvas }};
     --ink: {{ section.settings.color_scheme.settings.ink }};
     @apply bg-[var(--canvas)] text-[var(--ink)];
@@ -42,7 +42,7 @@
 {
   "name": "Hero",
   "tag": "section",
-  "class": "max-w-screen-lg mx-auto",
+  "class": "section max-w-screen-lg px-0",
   "settings": [
     {
       "type": "color_scheme",
@@ -175,6 +175,11 @@
       ]
     }
   ],
+  "disabled_on": {
+    "groups": [
+      "*"
+    ]
+  },
   "presets": [
     {
       "name": "Hero",

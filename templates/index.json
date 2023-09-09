@@ -19,6 +19,7 @@
         "color_scheme": "dark",
         "content": "",
         "content_alignment": "center",
+        "min_height": 65,
         "image": "shopify:\/\/shop_images\/nuotsu_triceratops_and_t-rex_fighting_around_a_Porsche_911_jur_75b96cbf-fb44-4814-b98e-ed6ca8c26569.png",
         "bg_opacity": 0.5
       }
@@ -151,7 +152,7 @@
         "template--20591287501082__ce0ef662-6b39-433c-b70a-bf2a6563ea2f-product-4"
       ],
       "settings": {
-        "color_scheme": "",
+        "color_scheme": "gray",
         "content": "<h2>Featured products<\/h2>",
         "columns": 4
       }

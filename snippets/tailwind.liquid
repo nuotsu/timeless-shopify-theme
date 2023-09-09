@@ -35,8 +35,8 @@ tailwind.config = {
 
 {% capture tailwind %}
 <style type="text/tailwindcss">
-{{- settings.font_heading | font_face: font_display: string -}}
-{{- settings.font_body | font_face: font_display: string }}
+{{ settings.font_heading | font_face: font_display: string }}
+{{ settings.font_body | font_face: font_display: string }}
 
 @layer base {
   :root {
@@ -128,10 +128,10 @@ tailwind.config = {
   }
 
   .action {
-    @apply _btn bg-primary text-primary-contrasting;
+    @apply _btn bg-primary text-primary-contrasting transition-[filter] hover:brightness-125;
   }
   .action-secondary {
-    @apply _btn bg-secondary text-secondary-contrasting;
+    @apply _btn bg-secondary text-secondary-contrasting transition-[filter] hover:brightness-125;
   }
 
   .ghost {

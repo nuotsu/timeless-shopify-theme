@@ -22,13 +22,25 @@
     when 'right'
       assign content_class = 'text-right ml-auto'
   endcase
+
+  assign video = section.blocks | where: 'type', 'video' | map: 'settings' | first
 -%}
 
 <div
   class="text-center bg-center bg-cover"
   style="background-image: url({{ section.settings.image | default: data.image | image_url: width: 1600 }});"
 >
-  <div class="relative z-[1] section py-12 md:py-20" style="text-wrap: balance;">
+  {%- if video != nil -%}
+    {{ video.file | video_tag: autoplay: true, loop: true, muted: true, class: 'absolute z-[0] inset-0 w-full h-full object-cover' }}
+  {%- endif -%}
+
+  <div
+    class="relative flex flex-col justify-center z-[2] section py-12 md:py-20"
+    style="
+      text-wrap: balance;
+      min-height: calc({{ section.settings.min_height | default: 0 }}dvh - var(--header-height));
+    "
+  >
     <div class="max-w-screen-sm rte {{ content_class }}">
       {%- if section.settings.content != blank -%}
         {{ section.settings.content }}
@@ -59,6 +71,7 @@
     content: '';
     position: absolute;
     inset: 0;
+    z-index: 1;
     opacity: {{ section.settings.bg_opacity }};
     @apply bg-[var(--canvas)];
   }
@@ -99,6 +112,16 @@
         }
       ],
       "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "min_height",
+      "label": "Minimum height",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "dvh",
+      "default": 0
     },
     {
       "type": "image_picker",
@@ -153,6 +176,18 @@
             }
           ],
           "default": "action"
+        }
+      ]
+    },
+    {
+      "type": "video",
+      "name": "Video",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "video",
+          "id": "file",
+          "label": "File"
         }
       ]
     }

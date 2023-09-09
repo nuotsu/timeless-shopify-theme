@@ -1,0 +1,66 @@
+{%- if section.settings.content -%}
+  <header class="mb-8 rte">
+    {{ section.settings.content }}
+  </header>
+{%- endif -%}
+
+{%- if section.settings.blog != nil -%}
+  {% paginate section.settings.blog.articles by section.settings.page_size %}
+    <ul class="item-grid <sm:grid-cols-1" style="--size: {{ section.settings.grid_item_size | default: item_size }}px;">
+      {%- render 'article-item-static'
+        for section.settings.blog.articles as article
+        with section
+        aspect_ratio: 1.5
+      -%}
+    </ul>
+
+    {%- if paginate.pages > 1 -%}
+      <nav class="pagination">{{ paginate | default_pagination }}</nav>
+    {%- endif -%}
+  {% endpaginate %}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Article list",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "blog",
+      "id": "blog",
+      "label": "Blog"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content",
+      "default": "<h2>Read our blog</h2>"
+    },
+    {
+      "type": "range",
+      "id": "grid_item_size",
+      "label": "Grid item size",
+      "unit": "px",
+      "min": 100,
+      "max": 350,
+      "step": 10,
+      "default": 240
+    },
+    {
+      "type": "number",
+      "id": "page_size",
+      "label": "Articles per page",
+      "default": 12
+    }
+  ],
+  "presets": [
+    {
+      "name": "Article list",
+      "settings": {
+        "content": "<h2>Read our blog</h2>"
+      }
+    }
+  ]
+}
+{% endschema %}

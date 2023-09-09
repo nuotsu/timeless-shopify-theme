@@ -7,10 +7,13 @@
     </header>
   {%- endif -%}
 
-  <ul class="
-    carousel md:grid gap-8 items-start <md:full-width <md:px-4 <md:pb-4
-    grid-cols-{{ section.settings.columns }}
-  ">
+  <ul
+    class="
+      carousel md:grid gap-8 items-start <md:full-width <md:px-4 <md:pb-4
+      grid-cols-{{ section.settings.columns }}
+    "
+    style="text-align: {{ section.settings.text_align }};"
+  >
     {%- for item in items -%}
       <li class="rte">
         {%- if item.icon -%}
@@ -34,10 +37,6 @@
     --ink: {{ section.settings.color_scheme.settings.ink }};
     --icon-height: {{ section.settings.icon_height }}px;
     @apply bg-[var(--canvas)] text-[var(--ink)];
-  }
-
-  #shopify-section-{{ section.id }} ul {
-    text-align: {{ section.settings.text_align }};
   }
 </style>
 
@@ -119,23 +118,26 @@
   "presets": [
     {
       "name": "Text and icon",
+      "settings": {
+        "content": "<h2>Features</h2>",
+      },
       "blocks": [
         {
           "type": "item",
           "settings": {
-            "content": "<h3>Feature 1</h3><p>Feature 1 description</p>"
+            "content": "<h3>Heading</h3><p>A description goes here.</p>"
           }
         },
         {
           "type": "item",
           "settings": {
-            "content": "<h3>Feature 2</h3><p>Feature 2 description</p>"
+            "content": "<h3>Heading</h3><p>A description goes here.</p>"
           }
         },
         {
           "type": "item",
           "settings": {
-            "content": "<h3>Feature 3</h3><p>Feature 3 description</p>"
+            "content": "<h3>Heading</h3><p>A description goes here.</p>"
           }
         }
       ]

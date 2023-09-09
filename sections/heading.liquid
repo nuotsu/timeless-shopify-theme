@@ -13,25 +13,38 @@
     when 'index'
       assign data = shop
   endcase
+
+  case section.settings.content_alignment
+    when 'left'
+      assign content_class = 'text-left mr-auto'
+    when 'center'
+      assign content_class = 'text-center mx-auto'
+    when 'right'
+      assign content_class = 'text-right ml-auto'
+  endcase
 -%}
 
 <div
   class="text-center bg-center bg-cover"
   style="background-image: url({{ section.settings.image | default: data.image | image_url: width: 1600 }});"
 >
-  <div class="relative z-[1] section py-12 md:py-20 max-w-screen-sm rte [text-wrap:balance]">
-    {%- if section.settings.content != blank -%}
-      {{ section.settings.content }}
-    {%- else -%}
-      <h1>{{ data.title | default: data.name | default: page_title }}</h1>
-      {%- unless data.description contains '<' -%}
-        <p>{{ data.description }}</p>
-      {%- else -%}
-        {{ data.description }}
-      {%- endunless -%}
-    {%- endif -%}
+  <div class="relative z-[1] section py-12 md:py-20" style="text-wrap: balance;">
+    <div class="max-w-screen-sm rte {{ content_class }}">
+      {%- if section.settings.content != blank -%}
+        {{ section.settings.content }}
 
-    {% render 'cta-list' with section %}
+      {%- else -%}
+        <h1>{{ data.title | default: data.name | default: page_title }}</h1>
+        {%- unless data.description contains '<' -%}
+          <p>{{ data.description }}</p>
+        {%- else -%}
+          {{ data.description }}
+        {%- endunless -%}
+
+      {%- endif -%}
+
+      {% render 'cta-list' with section %}
+    </div>
   </div>
 </div>
 
@@ -66,6 +79,26 @@
       "type": "richtext",
       "id": "content",
       "label": "Content"
+    },
+    {
+      "type": "select",
+      "id": "content_alignment",
+      "label": "Content alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "left"
+        },
+        {
+          "value": "center",
+          "label": "center"
+        },
+        {
+          "value": "right",
+          "label": "right"
+        }
+      ],
+      "default": "center"
     },
     {
       "type": "image_picker",

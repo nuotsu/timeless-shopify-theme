@@ -1,19 +1,23 @@
 {%- liquid
-  for block in section.blocks
-    case block.type
-      when 'static'
-        render 'announcement-item', block: block
+  assign static = section.blocks | where: 'type', 'static' | map: 'settings' | first
+  assign scheduled_blocks = section.blocks | where: 'type', 'scheduled' | map: 'settings'
 
-      when 'scheduled'
-        assign now = 'now' | replace: '-0500', '-0800' | date: '%s' | plus: 3600
-        assign start = block.settings.start_datetime | append: ' -0800' | date: '%s' | times: 1
-        assign end = block.settings.end_datetime | append: ' -0800' | date: '%s' | times: 1
+  for scheduled in scheduled_blocks
+    assign now = 'now' | replace: '-0500', '-0800' | date: '%s' | plus: 3600
+    assign start = scheduled.start_datetime | append: ' -0800' | date: '%s' | times: 1
+    assign end = scheduled.end_datetime | append: ' -0800' | date: '%s' | times: 1
 
-        if now >= start and now <= end
-          render 'announcement-item', block: block
-        endif
-    endcase
+    if now >= start and now <= end
+      assign scheduled_is_active = true
+      assign active = scheduled
+    endif
   endfor
+
+  if scheduled_is_active and active != nil
+    render 'announcement', data: active
+  elsif static != nil
+    render 'announcement', data: static
+  endif
 -%}
 
 {% schema %}
@@ -28,6 +32,7 @@
     {
       "type": "static",
       "name": "Static",
+      "limit": 1,
       "settings": [
         {
           "type": "color_scheme",

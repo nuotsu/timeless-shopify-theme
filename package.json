@@ -1,13 +1,13 @@
 {
   "name": "timeless-shopify-theme",
-  "version": "0.0.1",
-  "description": "",
-  "main": "index.js",
+  "version": "0.0.2",
+  "description": "A minimalistic Shopify Theme built with Tailwind CSS",
+  "main": "layout/theme.liquid",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nuotsu/timeless-shopify-theme.git"
   },
-  "author": "",
+  "author": "nuotsu <xzmaru@gmail.com> (https://nuotsu.dev)",
   "license": "ISC",
   "scripts": {
     "dev": "shopify theme dev --store=nuotsu-dev",

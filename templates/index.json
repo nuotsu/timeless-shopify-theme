@@ -22,9 +22,45 @@
         "bg_opacity": 0.5
       }
     },
+    "2326e1f5-dd4b-4acb-85c6-34994c4a7832": {
+      "type": "text-and-icon",
+      "blocks": {
+        "template--20591287501082__2326e1f5-dd4b-4acb-85c6-34994c4a7832-item-1": {
+          "type": "item",
+          "settings": {
+            "content": "<h3>Feature 1<\/h3><p>Feature 1 description<\/p>"
+          }
+        },
+        "template--20591287501082__2326e1f5-dd4b-4acb-85c6-34994c4a7832-item-2": {
+          "type": "item",
+          "settings": {
+            "content": "<h3>Feature 2<\/h3><p>Feature 2 description<\/p>"
+          }
+        },
+        "template--20591287501082__2326e1f5-dd4b-4acb-85c6-34994c4a7832-item-3": {
+          "type": "item",
+          "settings": {
+            "content": "<h3>Feature 3<\/h3><p>Feature 3 description<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--20591287501082__2326e1f5-dd4b-4acb-85c6-34994c4a7832-item-1",
+        "template--20591287501082__2326e1f5-dd4b-4acb-85c6-34994c4a7832-item-2",
+        "template--20591287501082__2326e1f5-dd4b-4acb-85c6-34994c4a7832-item-3"
+      ],
+      "settings": {
+        "color_scheme": "default",
+        "content": "<h2>Why choose us?<\/h2>",
+        "text_align": "left",
+        "columns": 3,
+        "icon_height": 60
+      }
+    },
     "newsletter-form": {
       "type": "newsletter-form",
       "settings": {
+        "color_scheme": "default",
         "content": "<h2>Newsletter sign-up<\/h2>",
         "tailwind": "",
         "submit_label": ""
@@ -33,6 +69,7 @@
   },
   "order": [
     "heading",
+    "2326e1f5-dd4b-4acb-85c6-34994c4a7832",
     "newsletter-form"
   ]
 }

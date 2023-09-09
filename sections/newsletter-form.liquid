@@ -1,5 +1,9 @@
-<div class="section text-center rte {{ section.settings.tailwind | default: 'max-w-lg' }}">
-  {{ section.settings.content }}
+<div class="section text-center {{ section.settings.tailwind | default: 'max-w-lg' }}">
+  {%- if section.settings.content -%}
+    <header class="mb-8 rte">
+      {{ section.settings.content }}
+    </header>
+  {%- endif -%}
 
   {% render 'newsletter-form'
     id: section.id
@@ -8,11 +12,25 @@
   %}
 </div>
 
+<style type="text/tailwindcss">
+  #shopify-section-{{ section.id }} {
+    --canvas: {{ section.settings.color_scheme.settings.canvas }};
+    --ink: {{ section.settings.color_scheme.settings.ink }};
+    --stroke: {{ section.settings.color_scheme.settings.stroke }};
+    @apply bg-[var(--canvas)] text-[var(--ink)];
+  }
+</style>
+
 {% schema %}
 {
   "name": "Newsletter form",
   "tag": "section",
   "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme"
+    },
     {
       "type": "richtext",
       "id": "content",

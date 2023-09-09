@@ -1,0 +1,145 @@
+{%- assign items = section.blocks | where: 'type', 'item' | map: 'settings' -%}
+
+<div class="section">
+  {%- if section.settings.content != blank -%}
+    <header class="mb-8 text-center rte">
+      {{ section.settings.content }}
+    </header>
+  {%- endif -%}
+
+  <ul class="
+    carousel md:grid gap-8 items-start <md:full-width <md:px-4 <md:pb-4
+    grid-cols-{{ section.settings.columns }}
+  ">
+    {%- for item in items -%}
+      <li class="rte">
+        {%- if item.icon -%}
+          <figure class="[&>*]:max-h-[var(--icon-height)]">
+            {{ item.icon
+              | image_url: height: 80
+              | image_tag: class: 'w-auto', loading: 'lazy'
+            }}
+          </figure>
+        {%- endif -%}
+
+        {{ item.content }}
+      </li>
+    {%- endfor -%}
+  </ul>
+</div>
+
+<style type="text/tailwindcss">
+  #shopify-section-{{ section.id }} {
+    --canvas: {{ section.settings.color_scheme.settings.canvas }};
+    --ink: {{ section.settings.color_scheme.settings.ink }};
+    --icon-height: {{ section.settings.icon_height }}px;
+    @apply bg-[var(--canvas)] text-[var(--ink)];
+  }
+
+  #shopify-section-{{ section.id }} ul {
+    text-align: {{ section.settings.text_align }};
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Text and icon",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content",
+      "default": "<h2>Why choose us?</h2>"
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "label": "Text align",
+      "options": [
+        {
+          "value": "left",
+          "label": "left"
+        },
+        {
+          "value": "center",
+          "label": "center"
+        },
+        {
+          "value": "right",
+          "label": "right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "label": "Columns",
+      "min": 1,
+      "max": 5,
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "icon_height",
+      "label": "Icon height",
+      "min": 10,
+      "max": 150,
+      "step": 10,
+      "unit": "px",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Item",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content",
+          "default": "<h3>Feature</h3><p>Feature description</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Text and icon",
+      "blocks": [
+        {
+          "type": "item",
+          "settings": {
+            "content": "<h3>Feature 1</h3><p>Feature 1 description</p>"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "content": "<h3>Feature 2</h3><p>Feature 2 description</p>"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "content": "<h3>Feature 3</h3><p>Feature 3 description</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

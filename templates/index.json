@@ -22,6 +22,39 @@
         "bg_opacity": 0.5
       }
     },
+    "118f2cfe-1052-486f-a5d0-1921db5cecfe": {
+      "type": "item-list",
+      "blocks": {
+        "template--20591287501082__118f2cfe-1052-486f-a5d0-1921db5cecfe-collection-1": {
+          "type": "collection",
+          "settings": {
+            "collection": "everything"
+          }
+        },
+        "template--20591287501082__118f2cfe-1052-486f-a5d0-1921db5cecfe-collection-2": {
+          "type": "collection",
+          "settings": {
+            "collection": "timeless-stuff"
+          }
+        },
+        "template--20591287501082__118f2cfe-1052-486f-a5d0-1921db5cecfe-collection-3": {
+          "type": "collection",
+          "settings": {
+            "collection": "car-stuff"
+          }
+        }
+      },
+      "block_order": [
+        "template--20591287501082__118f2cfe-1052-486f-a5d0-1921db5cecfe-collection-1",
+        "template--20591287501082__118f2cfe-1052-486f-a5d0-1921db5cecfe-collection-2",
+        "template--20591287501082__118f2cfe-1052-486f-a5d0-1921db5cecfe-collection-3"
+      ],
+      "settings": {
+        "color_scheme": "default",
+        "content": "<h2>Featured collections<\/h2>",
+        "columns": 3
+      }
+    },
     "2326e1f5-dd4b-4acb-85c6-34994c4a7832": {
       "type": "text-and-icon",
       "blocks": {
@@ -52,16 +85,56 @@
       "settings": {
         "color_scheme": "default",
         "content": "<h2>Why choose us?<\/h2>",
-        "text_align": "left",
+        "text_align": "center",
         "columns": 3,
         "icon_height": 60
       }
     },
-    "newsletter-form": {
+    "3c77ee19-0cc5-4474-b5ac-25106ab7133a": {
+      "type": "item-list",
+      "blocks": {
+        "template--20591287501082__3c77ee19-0cc5-4474-b5ac-25106ab7133a-product-1": {
+          "type": "product",
+          "settings": {
+            "product": ""
+          }
+        },
+        "template--20591287501082__3c77ee19-0cc5-4474-b5ac-25106ab7133a-product-2": {
+          "type": "product",
+          "settings": {
+            "product": ""
+          }
+        },
+        "template--20591287501082__3c77ee19-0cc5-4474-b5ac-25106ab7133a-product-3": {
+          "type": "product",
+          "settings": {
+            "product": ""
+          }
+        },
+        "template--20591287501082__3c77ee19-0cc5-4474-b5ac-25106ab7133a-product-4": {
+          "type": "product",
+          "settings": {
+            "product": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--20591287501082__3c77ee19-0cc5-4474-b5ac-25106ab7133a-product-1",
+        "template--20591287501082__3c77ee19-0cc5-4474-b5ac-25106ab7133a-product-2",
+        "template--20591287501082__3c77ee19-0cc5-4474-b5ac-25106ab7133a-product-3",
+        "template--20591287501082__3c77ee19-0cc5-4474-b5ac-25106ab7133a-product-4"
+      ],
+      "settings": {
+        "color_scheme": "",
+        "content": "<h2>Featured collections<\/h2>",
+        "columns": 4
+      }
+    },
+    "934419f0-0530-4768-98cc-9472b579fe40": {
       "type": "newsletter-form",
       "settings": {
-        "color_scheme": "default",
-        "content": "<h2>Newsletter sign-up<\/h2>",
+        "color_scheme": "",
+        "content": "<h2>Subscribe to our newsletter<\/h2>",
         "tailwind": "",
         "submit_label": ""
       }
@@ -69,7 +142,9 @@
   },
   "order": [
     "heading",
+    "118f2cfe-1052-486f-a5d0-1921db5cecfe",
     "2326e1f5-dd4b-4acb-85c6-34994c4a7832",
-    "newsletter-form"
+    "3c77ee19-0cc5-4474-b5ac-25106ab7133a",
+    "934419f0-0530-4768-98cc-9472b579fe40"
   ]
 }

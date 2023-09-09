@@ -13,10 +13,14 @@
 <li class="grid gap-2">
   <a class="group grid gap-2" href="{{ product.url | within: collection }}">
     <figure class="relative bg-canvas-subdued overflow-hidden">
-      {{ product.featured_image
-        | image_url: width: 500, height: 500
-        | image_tag: class: 'w-full group-hover:scale-110 transition-transform', loading: 'lazy'
-      }}
+      {%- if product.featured_image -%}
+        {{ product.featured_image
+          | image_url: width: 500, height: 500
+          | image_tag: class: 'w-full group-hover:scale-110 transition-transform', loading: 'lazy'
+        }}
+      {%- else -%}
+        {{ 'product-1' | placeholder_svg_tag }}
+      {%- endif -%}
 
       {%- if is_on_sale and sale_badge.enabled -%}
         <span class="badge absolute {{ sale_badge.tailwind | default: 'right-0 bottom-4' }}">
@@ -25,13 +29,13 @@
       {%- endif -%}
     </figure>
 
-    <div class="h3 group-hover:underline">{{ product.title }}</div>
+    <div class="h3 group-hover:underline">{{ product.title | default: 'Product title' }}</div>
   </a>
 
   <div class="text-sm">
     {%- if product.price_varies -%}From{%- endif %}
     <span>
-      <strong class="price">{{ product.price_min | money }}</strong>
+      <strong class="price">{{ product.price_min | default: 0 | money }}</strong>
       {{- unit_price -}}
     </span>
     {% if is_on_sale %}
@@ -44,7 +48,7 @@
 
   {%- unless product.has_only_default_variant -%}
     <nav class="text-xs">
-      <div class="technical text-[x-small]">{{ product.variants.size }} options</div>
+      <div class="technical text-[x-small]">{{ product.variants.size | default: 'No' }} options</div>
 
       <div class="flex flex-wrap gap-x-[.5em]">
         {%- for product_option in product.options_with_values -%}

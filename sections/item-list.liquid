@@ -1,0 +1,122 @@
+<div class="section">
+  {%- if section.settings.content -%}
+    <header class="mb-8 text-center rte">
+      {{ section.settings.content }}
+    </header>
+  {%- endif -%}
+
+  <ul class="
+    carousel md:grid gap-4 lg:gap-8 items-start <md:full-width <md:px-4 <md:pb-4
+    grid-cols-{{ section.settings.columns }}
+  ">
+    {%- for block in section.blocks -%}
+      {%- case block.type -%}
+        {%- when 'collection' -%}
+          {% render 'collection-item', collection: block.settings.collection %}
+
+        {%- when 'product' -%}
+          {% render 'product-item', product: block.settings.product %}
+
+      {%- endcase -%}
+    {%- endfor -%}
+  </ul>
+</div>
+
+<style type="text/tailwindcss">
+  #shopify-section-{{ section.id }} {
+    --canvas: {{ section.settings.color_scheme.settings.canvas }};
+    --ink: {{ section.settings.color_scheme.settings.ink }};
+    @apply bg-[var(--canvas)] text-[var(--ink)];
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Item list",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content",
+      "default": "<h2>Featured collections</h2>"
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "label": "Columns",
+      "min": 1,
+      "max": 4,
+      "default": 4
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Colletion"
+        }
+      ]
+    },
+    {
+      "type": "product",
+      "name": "product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection list",
+      "blocks": [
+        {
+          "type": "collection"
+        },
+        {
+          "type": "collection"
+        },
+        {
+          "type": "collection"
+        },
+        {
+          "type": "collection"
+        }
+      ]
+    },
+    {
+      "name": "Product list",
+      "settings": {
+        "content": "<h2>Featured products</h2>"
+      },
+      "blocks": [
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

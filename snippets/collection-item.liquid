@@ -1,16 +1,20 @@
 <li>
   <a class="group grid gap-2" href="{{ collection.url }}">
     <figure class="overflow-hidden bg-canvas-subdued">
-      {{ collection.featured_image
-        | image_url: width: 500, height: 500
-        | image_tag: class: 'w-full group-hover:scale-110 transition-transform', loading: 'lazy'
-      }}
+      {%- if collection.featured_image -%}
+        {{ collection.featured_image
+          | image_url: width: 500, height: 500
+          | image_tag: class: 'w-full group-hover:scale-110 transition-transform', loading: 'lazy'
+        }}
+      {%- else -%}
+        {{ 'collection-1' | placeholder_svg_tag }}
+      {%- endif -%}
     </figure>
 
     <dl class="grid gap-2">
-      <dt class="h3 group-hover:underline">{{ collection.title }}</dt>
+      <dt class="h3 group-hover:underline">{{ collection.title | default: 'Collection title' }}</dt>
       <dd class="text-sm">
-        {{- collection.all_products_count }}
+        {{- collection.all_products_count | default: 'No' }}
         {{ collection.all_products_count | pluralize: 'product', 'products' -}}
       </dd>
     </dl>

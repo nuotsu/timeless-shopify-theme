@@ -23,6 +23,9 @@ import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.mjs
   })
 
   const swiper = new Swiper('#shopify-section-{{ section.id }} .product-images', {
+    {% if section.settings.carousel_fade_enabled %}
+      effect: 'fade',
+    {% endif %}
     thumbs: {
       swiper: thumbs,
     },

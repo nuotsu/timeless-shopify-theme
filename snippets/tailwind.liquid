@@ -22,8 +22,8 @@ tailwind.config = {
         body: `{{ settings.font_body.family }},{{ settings.font_body.fallback_families }}`,
       },
       screens: {
-        '<md': { max: '767px' },
         '<sm': { max: '639px' },
+        '<md': { max: '767px' },
         '<lg': { max: '1023px' },
         '<xl': { max: '1279px' },
         '<2xl': { max: '1535px' },
@@ -133,13 +133,17 @@ tailwind.config = {
     padding: 0.5em 1em;
 
     @apply disabled:grayscale border border-transparent;
+
+    {% if settings.fully_rounded_buttons %}
+      @apply rounded-full;
+    {% endif %}
   }
 
   .action {
-    @apply _btn bg-primary text-primary-contrasting transition-[filter] hover:brightness-125;
+    @apply _btn bg-primary text-primary-contrasting transition-[filter] hover:brightness-[1.2];
   }
   .action-secondary {
-    @apply _btn bg-secondary text-secondary-contrasting transition-[filter] hover:brightness-125;
+    @apply _btn bg-secondary text-secondary-contrasting transition-[filter] hover:brightness-[1.2];
   }
 
   .ghost {
@@ -212,8 +216,8 @@ tailwind.config = {
   }
 
   .badge {
-    padding: 0 .5em;
-    @apply technical bg-red-600/80 backdrop-blur-sm text-white text-xs;
+    padding: .1em .5em;
+    @apply bg-primary text-white text-xs shadow-md;
   }
 
   /* layouts */

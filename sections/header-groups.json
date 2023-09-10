@@ -41,6 +41,7 @@
       ],
       "settings": {
         "color_scheme": "default",
+        "offset": 0,
         "logo": "{{ shop.brand.logo }}",
         "menu": "main-menu",
         "show_cart_item_count": true

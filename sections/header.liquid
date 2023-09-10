@@ -9,11 +9,11 @@
 <input id="header-menu-opened" type="checkbox" hidden>
 
 <div class="
-  header backdrop-blur-sm text-[var(--ink)] bg-[var(--canvas-opacity)] transition-[background-color,box-shadow] [&:is(:hover,:has([open]))]:bg-[var(--canvas)] <md:overflow-hidden
-  {% if has_offset %}max-w-screen-xl mx-auto rounded-[var(--border-radius)] [&:has(.megamenu[open])]:md:rounded-b-none{% endif %}
+  header backdrop-blur-sm text-[var(--ink)] bg-[var(--canvas-opacity)] transition-[background-color,box-shadow] [&:is(:hover,:has([open]))]:bg-[var(--canvas)] <sm:overflow-hidden
+  {% if has_offset %}max-w-screen-xl mx-auto rounded-[var(--border-radius)] [&:has(.megamenu[open])]:sm:rounded-b-none{% endif %}
 ">
-  <div class="header-grid section grid gap-x-4 py-0 <md:max-h-[100dvh] <md:overflow-y-auto">
-    <div style="grid-area: logo;" class="flex items-center gap-4 sticky top-0 z-[1] <md:py-4 transition-colors">
+  <div class="header-grid section grid gap-x-4 py-0 sm:pt-4 md:pt-0 <sm:max-h-[100dvh] <sm:overflow-y-auto">
+    <div style="grid-area: logo;" class="flex items-center gap-4 sticky top-0 z-[1] <sm:py-4 transition-colors">
       {%- if section.settings.logo -%}
         {{ section.settings.logo
           | image_url: width: 300
@@ -24,7 +24,7 @@
         {{ shop.name | link_to: routes.root_url, class: 'font-heading' }}
       {%- endif -%}
 
-      <label for="header-menu-opened" class="with-icon ml-auto md:hidden" aria-label="Toggle header menu">
+      <label for="header-menu-opened" class="with-icon ml-auto sm:hidden" aria-label="Toggle header menu">
         <span class="toggle-open">{% render 'icon' with 'mobile-hamburger' %}</span>
         <span class="toggle-close">{% render 'icon' with 'cancel' %}</span>
       </label>
@@ -50,14 +50,14 @@
     @apply shadow-lg;
   }
 
-  @screen md {
+  @screen sm {
     .megamenu-contents,
     .dropdown-contents {
       @apply absolute top-full bg-[var(--canvas)] rounded-b-[var(--border-radius)] shadow-xl;
     }
   }
 
-  @screen <md {
+  @screen <sm {
     #header-menu-opened:checked ~ .header {
       @apply bg-[var(--canvas)] shadow-xl;
     }
@@ -79,6 +79,15 @@
 
   .header-grid {
     grid-template-areas: 'logo' 'menu' 'actions';
+  }
+
+  @screen sm {
+    .header-grid {
+      grid-template-columns: 1fr auto;
+      grid-template-areas:
+        'logo actions'
+        'menu menu';
+    }
   }
 
   @screen md {
@@ -104,7 +113,7 @@
     const headerMenus = header.querySelectorAll('[style*="menu"] details')
 
     function updateHeaderMenuEvents() {
-      const { matches } = window.matchMedia('(min-width: 768px) and (hover: hover)')
+      const { matches } = window.matchMedia('(min-width: 640px) and (hover: hover)')
 
       if (matches) {
         headerMenus.forEach(menu => {

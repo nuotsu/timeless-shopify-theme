@@ -12,19 +12,21 @@
 
 <li class="grid gap-2">
   <a class="group grid gap-2" href="{{ product.url | within: collection }}">
-    <figure class="relative bg-canvas-subdued overflow-hidden">
-      {%- if product.featured_image -%}
-        {{ product.featured_image
-          | image_url: width: 500, height: 500
-          | image_tag: class: 'w-full group-hover:scale-110 transition-transform', loading: 'lazy'
-        }}
-      {%- else -%}
-        {{ 'product-1' | placeholder_svg_tag }}
-      {%- endif -%}
+    <figure class="relative">
+      <div class="bg-canvas-subdued overflow-hidden">
+        {%- if product.featured_image -%}
+          {{ product.featured_image
+            | image_url: width: 500, height: 500
+            | image_tag: class: 'w-full group-hover:scale-110 transition-transform', loading: 'lazy'
+          }}
+        {%- else -%}
+          {{ 'product-1' | placeholder_svg_tag }}
+        {%- endif -%}
+      </div>
 
-      {%- if is_on_sale and sale_badge.enabled -%}
-        <span class="badge absolute {{ sale_badge.tailwind | default: 'right-0 bottom-4' }}">
-          {{- sale_badge.text | default: 'On sale' -}}
+      {%- if sale_badge_enabled and is_on_sale -%}
+        <span class="badge absolute -right-1 top-2">
+          Save {{ product.compare_at_price_min | minus: product.price_min | times: 100 | divided_by: product.compare_at_price_min }}%
         </span>
       {%- endif -%}
     </figure>

@@ -2,19 +2,6 @@
   "sections": {
     "collection": {
       "type": "collection",
-      "blocks": {
-        "e0e9d67e-e1b5-4e95-96d3-6707f6989c9d": {
-          "type": "sale-badge",
-          "settings": {
-            "enabled": true,
-            "label": "On sale",
-            "tailwind": ""
-          }
-        }
-      },
-      "block_order": [
-        "e0e9d67e-e1b5-4e95-96d3-6707f6989c9d"
-      ],
       "settings": {
         "hide_heading": false,
         "tailwind": "",
@@ -22,6 +9,7 @@
         "filters_enabled": true,
         "opened_by_default": true,
         "filters_position": "left",
+        "sale_badge_enabled": true,
         "grid_item_size": 200,
         "page_size": 12
       }

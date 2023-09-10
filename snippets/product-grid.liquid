@@ -1,7 +1,6 @@
-{% assign sale_badge = section.blocks | where: 'type', 'sale-badge' | first %}
-
 <ul class="item-grid" style="--size: {{ section.settings.grid_item_size }}px;">
-  {%- render 'product-item' for products as product
-    sale_badge: sale_badge.settings
+  {%- render 'product-item'
+    for products as product
+    sale_badge_enabled: sale_badge_enabled
   -%}
 </ul>

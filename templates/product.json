@@ -75,6 +75,7 @@
       "settings": {
         "show_pickup_availability": false,
         "carousel_zoom_enabled": true,
+        "carousel_fade_enabled": true,
         "carousel_autoHeight": true,
         "carousel_slidesPerView": 8
       }

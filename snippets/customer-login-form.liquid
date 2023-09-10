@@ -13,10 +13,10 @@
       <label for="customer-password">Password</label>
       <input class="input w-full" id="customer-password" name="customer[password]" type="password" autocomplete="current-password" required>
     </div>
-    <p class="flex flex-wrap gap-[1em] text-sm">
+    <div class="flex flex-wrap gap-[1em] text-sm">
       {{ 'Forgot your password?' | link_to: '#recover', class: 'link' }}
       {{ 'Create an account?' | link_to: routes.account_register_url, class: 'link' }}
-    </p>
+    </div>
   </div>
 
   <div>

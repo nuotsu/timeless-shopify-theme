@@ -1,11 +1,11 @@
 {
   "sections": {
-    "placeholder": {
-      "type": "placeholder",
+    "activate-customer-password": {
+      "type": "activate-customer-password",
       "settings": {}
     }
   },
   "order": [
-    "placeholder"
+    "activate-customer-password"
   ]
 }

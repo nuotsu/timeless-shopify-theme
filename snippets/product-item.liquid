@@ -1,13 +1,23 @@
 {%- liquid
-  if product.price_min < product.compare_at_price_min
-    assign is_on_sale = true
-  else
-    assign is_on_sale = false
-  endif
-
   capture unit_price
     render 'unit-price', measurement: product.variants.first.unit_price_measurement
   endcapture
+
+  assign percentages = ''
+  if product.has_only_default_variant
+    if product.price < product.compare_at_price
+      assign percentage = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price | ceil
+      assign percentages = percentages | append: percentage | append: ','
+    endif
+  else
+    for variant in product.variants
+      if variant.price < variant.compare_at_price
+        assign percentage = variant.compare_at_price | minus: variant.price | times: 100 | divided_by: variant.compare_at_price | ceil
+        assign percentages = percentages | append: percentage | append: ','
+      endif
+    endfor
+  endif
+  assign lowest_percentage = percentages | split: ',' | uniq | sort | first
 -%}
 
 <li class="grid gap-2">
@@ -24,9 +34,9 @@
         {%- endif -%}
       </div>
 
-      {%- if sale_badge_enabled and is_on_sale -%}
+      {%- if sale_badge_enabled and lowest_percentage -%}
         <span class="badge absolute -right-1 top-2">
-          Save {{ product.compare_at_price_min | minus: product.price_min | times: 100 | divided_by: product.compare_at_price_min }}%
+          Save {{ lowest_percentage }}%
         </span>
       {%- endif -%}
     </figure>
@@ -40,9 +50,9 @@
       <strong class="price">{{ product.price_min | default: 0 | money }}</strong>
       {{- unit_price -}}
     </span>
-    {% if is_on_sale %}
+    {% if product.selected_or_first_available_variant.price < product.selected_or_first_available_variant.compare_at_price %}
       <span class="ml-1">
-        <s class="price">{{ product.compare_at_price_min | money }}</s>
+        <s class="price">{{ product.selected_or_first_available_variant.compare_at_price | money }}</s>
         {{- unit_price -}}
       </span>
     {% endif %}

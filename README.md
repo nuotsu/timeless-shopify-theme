@@ -21,7 +21,7 @@ Use the following style tag for use with Tailwind:
 
 To add custom CSS, use the **Custom CSS fields** found within the [theme editor](https://shopify.dev/docs/themes/tools/online-editor)
 
-## Polaris Icons
+## Icons
 
 > Defined in `snippets/icon.liquid`
 

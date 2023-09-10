@@ -80,6 +80,24 @@
         "carousel_slidesPerView": 8
       }
     },
+    "2295fb98-98db-4113-ae43-2aeac770dd15": {
+      "type": "resource-tabs",
+      "blocks": {
+        "ee9ee397-28f6-4e9a-b638-238ea4ac87da": {
+          "type": "product",
+          "settings": {
+            "title": "Product description",
+            "product": ""
+          }
+        }
+      },
+      "block_order": [
+        "ee9ee397-28f6-4e9a-b638-238ea4ac87da"
+      ],
+      "settings": {
+        "title": "Tabs"
+      }
+    },
     "product-recommendations": {
       "type": "product-recommendations",
       "settings": {
@@ -91,6 +109,7 @@
   },
   "order": [
     "product-form",
+    "2295fb98-98db-4113-ae43-2aeac770dd15",
     "product-recommendations"
   ]
 }

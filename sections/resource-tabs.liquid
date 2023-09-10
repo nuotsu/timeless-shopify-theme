@@ -1,0 +1,151 @@
+<div class="grid md:grid-cols-[250px,1fr] gap-y-8 gap-x-12">
+  <nav class="grid gap-1 p-4 bg-canvas-subdued self-start md:sticky-below-header">
+    <div class="technical text-xs -mt-6">{{ section.settings.title | default: 'Tabs' }}</div>
+
+    {%- for block in section.blocks -%}
+      <label
+        class="hover:font-bold"
+        for="resource-tabs-{{ section.id }}-{{ block.settings.title | handleize }}"
+      >
+        {{- block.settings.title -}}
+      </label>
+    {%- endfor -%}
+  </nav>
+
+  {%- for block in section.blocks -%}
+    <input
+      id="resource-tabs-{{ section.id }}-{{ block.settings.title | handleize }}"
+      name="resource-tabs-{{ section.id }}"
+      type="radio"
+      hidden
+      {% if forloop.first %}checked{% endif %}
+    >
+
+    <article class="[:not(:checked)+&]:hidden rte anim-fade-r">
+      <div class="technical text-sm">{{ block.settings.title }}</div>
+
+      {%- liquid
+        case block.type
+          when 'product'
+            echo block.settings.product.description | default: product.description
+
+          when 'page'
+            echo block.settings.page.content
+
+          when 'richtext'
+            echo block.settings.content
+
+          when 'custom-liquid'
+            echo block.settings.liquid
+
+        endcase
+      -%}
+    </article>
+  {%- endfor -%}
+</div>
+
+{% schema %}
+{
+  "name": "Resource tabs",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Tabs"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        }
+      ]
+    },
+    {
+      "type": "page",
+      "name": "Page",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "page",
+          "id": "page",
+          "label": "Page"
+        }
+      ]
+    },
+    {
+      "type": "richtext",
+      "name": "Richtext",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content"
+        }
+      ]
+    },
+    {
+      "type": "custom-liquid",
+      "name": "Custom liquid",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "liquid",
+          "id": "liquid",
+          "label": "Liquid"
+        }
+      ]
+    }
+  ],
+  "disabled_on": {
+    "groups": [
+      "*"
+    ]
+  },
+  "presets": [
+    {
+      "name": "Resource tabs",
+      "blocks": [
+        {
+          "type": "product",
+          "settings": {
+            "title": "Product description"
+          }
+        },
+        {
+          "type": "custom-liquid",
+          "settings": {
+            "title": "Custom liquid"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

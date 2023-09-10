@@ -5,23 +5,23 @@
 
   <div class="with-label">
     <label for="customer-firstname">First name</label>
-    <input class="input w-full" id="customer-firstname" name="customer[first_name]" type="text" placeholder="John" required>
+    <input class="input w-full" id="customer-firstname" name="customer[first_name]" type="text" placeholder="John" autocomplete="given-name" required>
   </div>
 
   <div class="with-label">
     <label for="customer-lastname">Last name</label>
-    <input class="input w-full" id="customer-lastname" name="customer[last_name]" type="text" placeholder="Smith" required>
+    <input class="input w-full" id="customer-lastname" name="customer[last_name]" type="text" placeholder="Smith" autocomplete="last-name" required>
   </div>
 
   <div class="with-label">
     <label for="customer-email">Email</label>
-    <input class="input w-full" id="customer-email" name="customer[email]" type="email" placeholder="john@example.com" required>
+    <input class="input w-full" id="customer-email" name="customer[email]" type="email" placeholder="john@example.com" autocomplete="email" required>
   </div>
 
   <div>
     <div class="with-label">
       <label for="customer-password">Password</label>
-      <input class="input w-full" id="customer-password" name="customer[password]" type="password" required>
+      <input class="input w-full" id="customer-password" name="customer[password]" type="password" autocomplete="new-password" required>
     </div>
     <p class="text-sm">{{ 'Already have an account?' | link_to: routes.account_login_url, class: 'link' }}</p>
   </div>

@@ -3,12 +3,12 @@
 
   <div class="with-label">
     <label for="contact-name">Name</label>
-    <input class="input w-full" id="contact-name" name="contact[name]" value="{{ form.author }}" type="text" placeholder="John Smith" />
+    <input class="input w-full" id="contact-name" name="contact[name]" value="{{ form.author }}" type="text" placeholder="John Smith" autocomplete="name" />
   </div>
 
   <div class="with-label">
     <label for="contact-email">Email</label>
-    <input class="input w-full" id="contact-email" name="contact[email]" value="{{ form.email }}" type="email" placeholder="john@example.com" required />
+    <input class="input w-full" id="contact-email" name="contact[email]" value="{{ form.email }}" type="email" placeholder="john@example.com" autocomplete="email" required />
   </div>
 
   <div class="with-label">

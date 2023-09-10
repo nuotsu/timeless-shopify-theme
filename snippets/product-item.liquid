@@ -13,7 +13,7 @@
 <li class="grid gap-2">
   <a class="group grid gap-2" href="{{ product.url | within: collection }}">
     <figure class="relative">
-      <div class="bg-canvas-subdued overflow-hidden">
+      <div class="bg-canvas-subdued overflow-hidden" style="border-radius: var(--border-radius);">
         {%- if product.featured_image -%}
           {{ product.featured_image
             | image_url: width: 500, height: 500

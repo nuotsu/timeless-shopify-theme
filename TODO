@@ -1,11 +1,6 @@
 # TODO
 
 ## General
-- breadcrumbs
-- announcement bar
-  - `color_background`
-- scheduled content
-- `.anim-*`
 - `autocomplete` on inputs
 - password input toggle
 - `activate_account.json``

@@ -87,7 +87,7 @@
       "settings": {
         "color_scheme": "default",
         "content": "<h2>Why choose us?<\/h2>",
-        "text_align": "left",
+        "content_align": "left",
         "columns": 3,
         "icon_height": 60
       }

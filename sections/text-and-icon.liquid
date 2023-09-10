@@ -1,4 +1,15 @@
-{%- assign items = section.blocks | where: 'type', 'item' | map: 'settings' -%}
+{%- liquid
+  assign items = section.blocks | where: 'type', 'item' | map: 'settings'
+
+  case section.settings.content_align
+    when 'left'
+      assign content_class = 'text-left [&_img]:mr-auto'
+    when 'center'
+      assign content_class = 'text-center [&_img]:mx-auto'
+    when 'right'
+      assign content_class = 'text-right [&_img]:ml-auto'
+  endcase
+-%}
 
 <div class="section">
   {%- if section.settings.content != blank -%}
@@ -9,10 +20,10 @@
 
   <ul
     class="
-      carousel md:grid gap-8 items-start <md:full-width <md:px-4 <md:pb-4
-      grid-cols-{{ section.settings.columns }}
+      carousel md:grid gap-4 md:gap-8 items-start <md:full-width <md:px-4 <md:pb-4
+      grid-cols-{{ section.settings.columns }} {{ content_class }}
     "
-    style="text-align: {{ section.settings.text_align }};"
+    style="border-radius: var(--border-radius);"
   >
     {%- for item in items -%}
       <li class="rte">
@@ -32,12 +43,22 @@
 </div>
 
 <style type="text/tailwindcss">
-  #shopify-section-{{ section.id }} {
-    --canvas: {{ section.settings.color_scheme.settings.canvas }};
-    --ink: {{ section.settings.color_scheme.settings.ink }};
-    --icon-height: {{ section.settings.icon_height }}px;
-    @apply bg-[var(--canvas)] text-[var(--ink)];
-  }
+  {% if section.settings.color_items %}
+    #shopify-section-{{ section.id }} li {
+      --canvas: {{ section.settings.color_scheme.settings.canvas }};
+      --ink: {{ section.settings.color_scheme.settings.ink }};
+      --icon-height: {{ section.settings.icon_height }}px;
+      @apply p-4 bg-[var(--canvas)] text-[var(--ink)];
+    }
+  {% else %}
+    #shopify-section-{{ section.id }} {
+      --canvas: {{ section.settings.color_scheme.settings.canvas }};
+      --ink: {{ section.settings.color_scheme.settings.ink }};
+      --icon-height: {{ section.settings.icon_height }}px;
+      @apply bg-[var(--canvas)] text-[var(--ink)];
+    }
+  {% endif %}
+
 </style>
 
 {% schema %}
@@ -51,6 +72,12 @@
       "label": "Color scheme"
     },
     {
+      "type": "checkbox",
+      "id": "color_items",
+      "label": "Apply color scheme to items",
+      "default": false
+    },
+    {
       "type": "richtext",
       "id": "content",
       "label": "Content",
@@ -58,7 +85,7 @@
     },
     {
       "type": "select",
-      "id": "text_align",
+      "id": "content_align",
       "label": "Text align",
       "options": [
         {

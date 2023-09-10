@@ -9,8 +9,11 @@
   endcase
 -%}
 
-<div class="grid md:grid-cols-2 items-center">
-  <figure class="{{ section.settings.image_position_desktop }} {{ section.settings.image_position_mobile }}">
+<div class="grid md:grid-cols-2 items-center overflow-hidden" style="border-radius: var(--border-radius);">
+  <figure
+    class="overflow-hidden {{ section.settings.image_position_desktop }} {{ section.settings.image_position_mobile }}"
+    style="border-radius: var(--border-radius);"
+  >
     {%- if section.settings.image -%}
       {{ section.settings.image
         | image_url: width: 1000

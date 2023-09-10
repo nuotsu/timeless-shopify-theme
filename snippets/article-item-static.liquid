@@ -2,7 +2,10 @@
 
 <li>
   <a class="group grid gap-2" href="{{ article.url }}">
-    <figure class="overflow-hidden [&>*]:aspect-[{{ aspect_ratio | default: 'square' }}]">
+    <figure
+      class="overflow-hidden [&>*]:aspect-[{{ aspect_ratio | default: 'square' }}]"
+      style="border-radius: var(--border-radius);"
+    >
       {%- if article.image -%}
         {{ article.image
           | image_url: width: 500

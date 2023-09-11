@@ -180,8 +180,8 @@
       "type": "newsletter-form",
       "settings": {
         "color_scheme": "scheme-90cd56fb-9ea6-4dc6-b3a9-59f1b4e3da31",
-        "content": "<h2>Unlock Exclusive Access to Automotive Advancements!<\/h2><p>Join our community of discerning drivers and be the first to access exclusive offers, cutting-edge innovations, and expert insights.<\/p>",
-        "submit_label": "Unlock now!"
+        "content": "<h2>Thanks for the invite!<\/h2><p>Join our community... sorry another FOMO opportunity 🥲<\/p>",
+        "submit_label": "TFTI"
       }
     }
   },

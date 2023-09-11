@@ -6,9 +6,9 @@
         "0b40575d-b6b3-46fa-84b6-10cfa7683275": {
           "type": "cta",
           "settings": {
-            "url": "shopify:\/\/collections\/premium-enhancers",
-            "label": "Upgrade now",
-            "style": "action"
+            "url": "shopify:\/\/collections\/all",
+            "label": "Find your sticker",
+            "style": "action-secondary"
           }
         }
       },
@@ -17,11 +17,10 @@
       ],
       "settings": {
         "color_scheme": "dark",
-        "content": "<h1>Your Vehicle's Upgrade Headquarters.<\/h1><p>Welcome to the hub of automotive innovation!<\/p>",
-        "content_alignment": "left",
-        "min_height": 70,
-        "image": "shopify:\/\/shop_images\/nuotsu_Prepare_to_witness_the_future_of_engine_optimization_wi_c8d27e15-3ecf-4dd6-afea-0e47bdf15edf.png",
-        "bg_opacity": 0.2
+        "content": "<h1>But first... decals.<\/h1><p>You've seen 'em on the roads.<\/p><p>Now there here, waiting for you 🥹<\/p>",
+        "content_alignment": "center",
+        "min_height": 90,
+        "bg_opacity": 0.5
       }
     },
     "939f3313-244b-4ea3-9533-75ea1269de22": {
@@ -30,19 +29,19 @@
         "template--20591287501082__939f3313-244b-4ea3-9533-75ea1269de22-collection-1": {
           "type": "collection",
           "settings": {
-            "collection": "premium-enhancers"
+            "collection": "jdm"
           }
         },
         "template--20591287501082__939f3313-244b-4ea3-9533-75ea1269de22-collection-2": {
           "type": "collection",
           "settings": {
-            "collection": "enthusiast-essentials"
+            "collection": "european"
           }
         },
         "template--20591287501082__939f3313-244b-4ea3-9533-75ea1269de22-collection-3": {
           "type": "collection",
           "settings": {
-            "collection": "mini-mechanics"
+            "collection": "american"
           }
         }
       },
@@ -53,7 +52,7 @@
       ],
       "settings": {
         "color_scheme": "default",
-        "content": "<h2>Featured collections<\/h2>",
+        "content": "<h2>Pick your style<\/h2>",
         "columns": 3,
         "sale_badge_enabled": true
       }
@@ -61,40 +60,85 @@
     "2326e1f5-dd4b-4acb-85c6-34994c4a7832": {
       "type": "text-and-icon",
       "blocks": {
-        "template--20591287501082__2326e1f5-dd4b-4acb-85c6-34994c4a7832-item-1": {
-          "type": "item",
-          "settings": {
-            "icon": "shopify:\/\/shop_images\/img.icons8.png",
-            "content": "<h3>Rev Up Your Imagination, Not Your Engine.<\/h3><p>Explore the world of automotive nonsense at our store. From blinker fluid to muffler bearings, we've got the quirkiest car parts you never knew you needed. It's all about the joy of the journey, not the destination.<\/p>"
-          }
-        },
         "template--20591287501082__2326e1f5-dd4b-4acb-85c6-34994c4a7832-item-2": {
           "type": "item",
           "settings": {
-            "icon": "shopify:\/\/shop_images\/img.icons8-1.png",
-            "content": "<h3>Redefining 'Under the Hood'<\/h3><p>Redefine 'under the hood' with our absurd car components. Inject humor into your ride and let's make your car the life of the party.<\/p>"
+            "content": "<h3>Made in Decal-<em>ifornia<\/em><\/h3><p>All stickers are built right here in Southern California. Home of the best cars ,and car meets and car decals in the world.<\/p>"
           }
         },
         "template--20591287501082__2326e1f5-dd4b-4acb-85c6-34994c4a7832-item-3": {
           "type": "item",
           "settings": {
-            "icon": "shopify:\/\/shop_images\/img.icons8-2.png",
-            "content": "<h3>Because Your Car Deserves a Good Laugh.<\/h3><p>Get ready for a good laugh with our hilarious and utterly pointless car parts. Make your car a conversation starter and embrace the lighter side of driving.<\/p>"
+            "content": "<h3>Quality, Quality, Quality.<\/h3><p>The best quality decals made for the best quality rides.<\/p>"
+          }
+        },
+        "template--20591287501082__2326e1f5-dd4b-4acb-85c6-34994c4a7832-item-1": {
+          "type": "item",
+          "settings": {
+            "content": "<h3>You name it, we got it.<\/h3><p>If can't find the exact model for your ride, <a href=\"\/pages\/contact\" title=\"Contact\">hit us up<\/a> and we gochu.<\/p>"
           }
         }
       },
       "block_order": [
-        "template--20591287501082__2326e1f5-dd4b-4acb-85c6-34994c4a7832-item-1",
         "template--20591287501082__2326e1f5-dd4b-4acb-85c6-34994c4a7832-item-2",
-        "template--20591287501082__2326e1f5-dd4b-4acb-85c6-34994c4a7832-item-3"
+        "template--20591287501082__2326e1f5-dd4b-4acb-85c6-34994c4a7832-item-3",
+        "template--20591287501082__2326e1f5-dd4b-4acb-85c6-34994c4a7832-item-1"
       ],
       "settings": {
-        "color_scheme": "dark",
+        "color_scheme": "scheme-90cd56fb-9ea6-4dc6-b3a9-59f1b4e3da31",
         "color_items": false,
-        "content": "<h2>Why choose us?<\/h2>",
-        "content_align": "left",
+        "content": "<h2>Why Decal California?<\/h2>",
+        "content_align": "center",
         "columns": 3,
         "icon_height": 60
+      }
+    },
+    "bdf38db3-3d71-4613-9e0d-ac7b77b57196": {
+      "type": "resource-list",
+      "blocks": {
+        "template--20897512849682__bdf38db3-3d71-4613-9e0d-ac7b77b57196-product-1": {
+          "type": "product",
+          "settings": {
+            "product": "super-dupra"
+          }
+        },
+        "template--20897512849682__bdf38db3-3d71-4613-9e0d-ac7b77b57196-product-2": {
+          "type": "product",
+          "settings": {
+            "product": "rex-7"
+          }
+        },
+        "template--20897512849682__bdf38db3-3d71-4613-9e0d-ac7b77b57196-product-3": {
+          "type": "product",
+          "settings": {
+            "product": "godzi11a"
+          }
+        },
+        "template--20897512849682__bdf38db3-3d71-4613-9e0d-ac7b77b57196-product-4": {
+          "type": "product",
+          "settings": {
+            "product": "type-rawr"
+          }
+        },
+        "463df097-5c01-453e-98b5-90516e74383a": {
+          "type": "product",
+          "settings": {
+            "product": "steven"
+          }
+        }
+      },
+      "block_order": [
+        "template--20897512849682__bdf38db3-3d71-4613-9e0d-ac7b77b57196-product-1",
+        "template--20897512849682__bdf38db3-3d71-4613-9e0d-ac7b77b57196-product-2",
+        "template--20897512849682__bdf38db3-3d71-4613-9e0d-ac7b77b57196-product-3",
+        "template--20897512849682__bdf38db3-3d71-4613-9e0d-ac7b77b57196-product-4",
+        "463df097-5c01-453e-98b5-90516e74383a"
+      ],
+      "settings": {
+        "color_scheme": "",
+        "content": "<h2>🎌 Popular Picks 🎌<\/h2>",
+        "columns": 5,
+        "sale_badge_enabled": true
       }
     },
     "af49d980-61bc-48b6-9448-ef6e553acba2": {
@@ -103,8 +147,8 @@
         "template--20591287501082__af49d980-61bc-48b6-9448-ef6e553acba2-cta-1": {
           "type": "cta",
           "settings": {
-            "url": "shopify:\/\/collections\/mini-mechanics",
-            "label": "🐶 Who's a good mechanic?",
+            "url": "shopify:\/\/collections\/all",
+            "label": "Nomo FOMO pls",
             "style": "action-secondary"
           }
         }
@@ -114,36 +158,12 @@
       ],
       "settings": {
         "color_scheme": "dark",
-        "content": "<h1>Your Car's Best Friend, Ready to Assist!<\/h1><p>We're your trusted partner in vehicle enhancement. Our team of experts is dedicated to providing high-quality, precision-engineered car components that cater to your vehicle's unique requirements. Discover how we can take your ride to new heights.<\/p>",
-        "content_alignment": "left",
-        "image": "shopify:\/\/shop_images\/nuotsu_corgis_in_car_mechanic_clothes_switching_tires_on_a_car_654d123b-cd53-422c-a540-0414266c1994.png",
-        "image_position_desktop": "",
+        "content": "<h2>Super cheap, super chill<\/h2><p>Honestly, it can't get any easier than this. Avoid FOMO and get yourself a decal.<\/p>",
+        "content_alignment": "center",
+        "image": "shopify:\/\/shop_images\/nuotsu_photorealistic_product_mockup_of_a_pack_of_sticker_325bd4fe-c8d5-40d6-a98b-713d209a73b6.png",
+        "image_position_desktop": "md:order-1",
         "image_position_mobile": "",
         "image_loading": "lazy"
-      }
-    },
-    "07a70b09-2787-454e-9baa-14cb1eb74a2d": {
-      "type": "featured-collection",
-      "blocks": {
-        "e79cf6f8-5c36-4529-859b-4d7362403bdc": {
-          "type": "cta",
-          "settings": {
-            "url": "shopify:\/\/collections\/enthusiast-essentials",
-            "label": "View products",
-            "style": "action"
-          }
-        }
-      },
-      "block_order": [
-        "e79cf6f8-5c36-4529-859b-4d7362403bdc"
-      ],
-      "settings": {
-        "color_scheme": "",
-        "content": "<h2>Enthusiast Essentials<\/h2>",
-        "collection": "enthusiast-essentials",
-        "limit": 4,
-        "columns": 4,
-        "sale_badge_enabled": true
       }
     },
     "4ba374f6-ed77-4898-9e79-f005e3f0084b": {
@@ -159,9 +179,9 @@
     "934419f0-0530-4768-98cc-9472b579fe40": {
       "type": "newsletter-form",
       "settings": {
-        "color_scheme": "gray",
-        "content": "<h2>Unlock Exclusive Access to Automotive Advancements!<\/h2><p>Join our community of discerning drivers and be the first to access exclusive offers, cutting-edge innovations, and expert insights.<\/p>",
-        "submit_label": "Unlock now!"
+        "color_scheme": "scheme-90cd56fb-9ea6-4dc6-b3a9-59f1b4e3da31",
+        "content": "<h2>Thanks for the invite!<\/h2><p>Join our community... sorry another FOMO opportunity 🥲<\/p>",
+        "submit_label": "TFTI"
       }
     }
   },
@@ -169,8 +189,8 @@
     "heading",
     "939f3313-244b-4ea3-9533-75ea1269de22",
     "2326e1f5-dd4b-4acb-85c6-34994c4a7832",
+    "bdf38db3-3d71-4613-9e0d-ac7b77b57196",
     "af49d980-61bc-48b6-9448-ef6e553acba2",
-    "07a70b09-2787-454e-9baa-14cb1eb74a2d",
     "4ba374f6-ed77-4898-9e79-f005e3f0084b",
     "934419f0-0530-4768-98cc-9472b579fe40"
   ]

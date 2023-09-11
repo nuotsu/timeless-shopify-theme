@@ -8,8 +8,8 @@
         "850afe85-78d1-4942-a892-37c1cd5df2db": {
           "type": "static",
           "settings": {
-            "color_scheme": "dark",
-            "content": "<p><a href=\"\/products\/flux-capacitoor-mark-ii\" title=\"Flux Capacitor Mark II\">Flux Capacitor Mark II<\/a> Officially Announced!<\/p>"
+            "color_scheme": "scheme-90cd56fb-9ea6-4dc6-b3a9-59f1b4e3da31",
+            "content": "<p>Limited time FREE shipping!!<\/p>"
           }
         }
       },
@@ -40,8 +40,8 @@
         "d9209980-ff1d-488e-ac69-aab8c8f06d01"
       ],
       "settings": {
-        "color_scheme": "scheme-6d4c9e72-9abe-4e91-aafe-ae5cffbf63eb",
-        "offset": 2,
+        "color_scheme": "default",
+        "offset": 4,
         "logo": "{{ shop.brand.logo }}",
         "menu": "main-menu",
         "show_cart_item_count": false,

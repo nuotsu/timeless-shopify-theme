@@ -1,10 +1,10 @@
 {
   "current": {
-    "font_heading": "kairos_n4",
-    "font_body": "ibm_plex_sans_n4",
-    "anim_emoji": "🚙",
-    "border_radius": 2,
-    "fully_rounded_buttons": false,
+    "font_heading": "bio_rhyme_n4",
+    "font_body": "dm_sans_n4",
+    "anim_emoji": "👌",
+    "border_radius": 8,
+    "fully_rounded_buttons": true,
     "favicon": "shopify:\/\/shop_images\/t-rex_1f996.png",
     "checkout_input_background_color_mode": "transparent",
     "checkout_sidebar_background_color": "#fff",
@@ -17,10 +17,10 @@
       "default": {
         "settings": {
           "canvas": "#ffffff",
-          "ink": "#000000",
+          "ink": "#333333",
           "stroke": "#e3e7eb",
-          "canvas_subdued": "#ffffff",
-          "ink_subdued": "#94b4ea",
+          "canvas_subdued": "#dcfffc",
+          "ink_subdued": "#398b8f",
           "primary": "{{ shop.brand.colors.primary[0].background }}",
           "primary_contrasting": "{{ shop.brand.colors.primary[0].foreground }}",
           "secondary": "{{ shop.brand.colors.secondary[0].background }}",
@@ -29,11 +29,24 @@
       },
       "dark": {
         "settings": {
-          "canvas": "#000000",
+          "canvas": "#3e7667",
           "ink": "#ffffff",
-          "stroke": "#2b5294",
-          "canvas_subdued": "#303030",
-          "ink_subdued": "#8a8a8a",
+          "stroke": "#d6fafc",
+          "canvas_subdued": "#d6fafc",
+          "ink_subdued": "#398b8f",
+          "primary": "{{ shop.brand.colors.primary[0].background }}",
+          "primary_contrasting": "{{ shop.brand.colors.primary[0].foreground }}",
+          "secondary": "{{ shop.brand.colors.secondary[0].background }}",
+          "secondary_contrasting": "{{ shop.brand.colors.secondary[0].foreground }}"
+        }
+      },
+      "scheme-90cd56fb-9ea6-4dc6-b3a9-59f1b4e3da31": {
+        "settings": {
+          "canvas": "#dcfffc",
+          "ink": "#3e7667",
+          "stroke": "#e3e7eb",
+          "canvas_subdued": "#fff",
+          "ink_subdued": "#333333",
           "primary": "{{ shop.brand.colors.primary[0].background }}",
           "primary_contrasting": "{{ shop.brand.colors.primary[0].foreground }}",
           "secondary": "{{ shop.brand.colors.secondary[0].background }}",

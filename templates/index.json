@@ -29,19 +29,19 @@
         "template--20591287501082__939f3313-244b-4ea3-9533-75ea1269de22-collection-1": {
           "type": "collection",
           "settings": {
-            "collection": "premium-enhancers"
+            "collection": "jdm"
           }
         },
         "template--20591287501082__939f3313-244b-4ea3-9533-75ea1269de22-collection-2": {
           "type": "collection",
           "settings": {
-            "collection": "enthusiast-essentials"
+            "collection": "european"
           }
         },
         "template--20591287501082__939f3313-244b-4ea3-9533-75ea1269de22-collection-3": {
           "type": "collection",
           "settings": {
-            "collection": "mini-mechanics"
+            "collection": "american"
           }
         }
       },
@@ -52,7 +52,7 @@
       ],
       "settings": {
         "color_scheme": "default",
-        "content": "<h2>Featured collections<\/h2>",
+        "content": "<h2>Pick your style<\/h2>",
         "columns": 3,
         "sale_badge_enabled": true
       }
@@ -85,9 +85,9 @@
         "template--20591287501082__2326e1f5-dd4b-4acb-85c6-34994c4a7832-item-3"
       ],
       "settings": {
-        "color_scheme": "dark",
+        "color_scheme": "scheme-90cd56fb-9ea6-4dc6-b3a9-59f1b4e3da31",
         "color_items": false,
-        "content": "<h2>Why choose us?<\/h2>",
+        "content": "<h2>Why Decal California?<\/h2>",
         "content_align": "left",
         "columns": 3,
         "icon_height": 60
@@ -117,27 +117,51 @@
         "image_loading": "lazy"
       }
     },
-    "07a70b09-2787-454e-9baa-14cb1eb74a2d": {
-      "type": "featured-collection",
+    "bdf38db3-3d71-4613-9e0d-ac7b77b57196": {
+      "type": "resource-list",
       "blocks": {
-        "e79cf6f8-5c36-4529-859b-4d7362403bdc": {
-          "type": "cta",
+        "template--20897512849682__bdf38db3-3d71-4613-9e0d-ac7b77b57196-product-1": {
+          "type": "product",
           "settings": {
-            "url": "shopify:\/\/collections\/enthusiast-essentials",
-            "label": "View products",
-            "style": "action"
+            "product": "2upra"
+          }
+        },
+        "template--20897512849682__bdf38db3-3d71-4613-9e0d-ac7b77b57196-product-2": {
+          "type": "product",
+          "settings": {
+            "product": "rex-7"
+          }
+        },
+        "template--20897512849682__bdf38db3-3d71-4613-9e0d-ac7b77b57196-product-3": {
+          "type": "product",
+          "settings": {
+            "product": ""
+          }
+        },
+        "template--20897512849682__bdf38db3-3d71-4613-9e0d-ac7b77b57196-product-4": {
+          "type": "product",
+          "settings": {
+            "product": ""
+          }
+        },
+        "463df097-5c01-453e-98b5-90516e74383a": {
+          "type": "product",
+          "settings": {
+            "product": ""
           }
         }
       },
       "block_order": [
-        "e79cf6f8-5c36-4529-859b-4d7362403bdc"
+        "template--20897512849682__bdf38db3-3d71-4613-9e0d-ac7b77b57196-product-1",
+        "template--20897512849682__bdf38db3-3d71-4613-9e0d-ac7b77b57196-product-2",
+        "template--20897512849682__bdf38db3-3d71-4613-9e0d-ac7b77b57196-product-3",
+        "template--20897512849682__bdf38db3-3d71-4613-9e0d-ac7b77b57196-product-4",
+        "463df097-5c01-453e-98b5-90516e74383a"
       ],
       "settings": {
         "color_scheme": "",
-        "content": "<h2>Enthusiast Essentials<\/h2>",
-        "collection": "enthusiast-essentials",
-        "limit": 4,
-        "columns": 4,
+        "content": "<h2>Popular Picks<\/h2>",
+        "columns": 5,
         "sale_badge_enabled": true
       }
     },
@@ -165,7 +189,7 @@
     "939f3313-244b-4ea3-9533-75ea1269de22",
     "2326e1f5-dd4b-4acb-85c6-34994c4a7832",
     "af49d980-61bc-48b6-9448-ef6e553acba2",
-    "07a70b09-2787-454e-9baa-14cb1eb74a2d",
+    "bdf38db3-3d71-4613-9e0d-ac7b77b57196",
     "4ba374f6-ed77-4898-9e79-f005e3f0084b",
     "934419f0-0530-4768-98cc-9472b579fe40"
   ]

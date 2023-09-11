@@ -5,17 +5,17 @@ tailwind.config = {
     extend: {
       colors: {
         // base
-        canvas: '{{ settings.color_schemes.default.settings.canvas }}',
-        ink: '{{ settings.color_schemes.default.settings.ink }}',
-        stroke: '{{ settings.color_schemes.default.settings.stroke }}',
+        canvas: `{{ settings.color_schemes.default.settings.canvas | default: '#fff' }}`,
+        ink: `{{ settings.color_schemes.default.settings.ink | default: '#000' }}`,
+        stroke: `{{ settings.color_schemes.default.settings.stroke | default: '#a3a3a3' }}`,
         // subdued
-        'canvas-subdued': '{{ settings.color_schemes.default.settings.canvas_subdued }}',
-        'ink-subdued': '{{ settings.color_schemes.default.settings.ink_subdued }}',
+        'canvas-subdued': `{{ settings.color_schemes.default.settings.canvas_subdued | default: '#f7f7f7' }}`,
+        'ink-subdued': `{{ settings.color_schemes.default.settings.ink_subdued | default: '#a3a3a3' }}`,
         // accents
-        primary: '{{ settings.color_schemes.default.settings.primary }}',
-        'primary-contrasting': '{{ settings.color_schemes.default.settings.primary_contrasting }}',
-        secondary: '{{ settings.color_schemes.default.settings.secondary }}',
-        'secondary-contrasting': '{{ settings.color_schemes.default.settings.secondary_contrasting }}',
+        primary: `{{ settings.color_schemes.default.settings.primary | default: '#d5001c' }}`,
+        'primary-contrasting': `{{ settings.color_schemes.default.settings.primary_contrasting | default: '#fff' }}`,
+        secondary: `{{ settings.color_schemes.default.settings.secondary | default: '#f4c827' }}`,
+        'secondary-contrasting': `{{ settings.color_schemes.default.settings.secondary_contrasting | default: '#000' }}`,
       },
       fontFamily: {
         heading: `{{ settings.font_heading.family }},{{ settings.font_heading.fallback_families }}`,

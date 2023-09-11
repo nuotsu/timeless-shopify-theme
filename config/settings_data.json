@@ -16,24 +16,11 @@
     "color_schemes": {
       "default": {
         "settings": {
-          "canvas": "#f7f7f7",
-          "ink": "#121a3b",
+          "canvas": "#ffffff",
+          "ink": "#000000",
           "stroke": "#e3e7eb",
           "canvas_subdued": "#ffffff",
           "ink_subdued": "#94b4ea",
-          "primary": "{{ shop.brand.colors.primary[0].background }}",
-          "primary_contrasting": "{{ shop.brand.colors.primary[0].foreground }}",
-          "secondary": "{{ shop.brand.colors.secondary[0].background }}",
-          "secondary_contrasting": "{{ shop.brand.colors.secondary[0].foreground }}"
-        }
-      },
-      "gray": {
-        "settings": {
-          "canvas": "#eaf2ff",
-          "ink": "#2b5294",
-          "stroke": "#94b4ea",
-          "canvas_subdued": "#ebebeb",
-          "ink_subdued": "#a3a3a3",
           "primary": "{{ shop.brand.colors.primary[0].background }}",
           "primary_contrasting": "{{ shop.brand.colors.primary[0].foreground }}",
           "secondary": "{{ shop.brand.colors.secondary[0].background }}",
@@ -42,24 +29,11 @@
       },
       "dark": {
         "settings": {
-          "canvas": "#121a3b",
+          "canvas": "#000000",
           "ink": "#ffffff",
           "stroke": "#2b5294",
           "canvas_subdued": "#303030",
           "ink_subdued": "#8a8a8a",
-          "primary": "{{ shop.brand.colors.primary[0].background }}",
-          "primary_contrasting": "{{ shop.brand.colors.primary[0].foreground }}",
-          "secondary": "{{ shop.brand.colors.secondary[0].background }}",
-          "secondary_contrasting": "{{ shop.brand.colors.secondary[0].foreground }}"
-        }
-      },
-      "scheme-6d4c9e72-9abe-4e91-aafe-ae5cffbf63eb": {
-        "settings": {
-          "canvas": "#ffffff",
-          "ink": "#121a3b",
-          "stroke": "#e3e7eb",
-          "canvas_subdued": "#ffffff",
-          "ink_subdued": "#94b4ea",
           "primary": "{{ shop.brand.colors.primary[0].background }}",
           "primary_contrasting": "{{ shop.brand.colors.primary[0].foreground }}",
           "secondary": "{{ shop.brand.colors.secondary[0].background }}",

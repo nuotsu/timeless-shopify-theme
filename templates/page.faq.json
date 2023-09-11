@@ -1,0 +1,14 @@
+{
+  "sections": {
+    "heading": {
+      "type": "heading"
+    },
+    "faq-list": {
+      "type": "faq-list"
+    }
+  },
+  "order": [
+    "heading",
+    "faq-list"
+  ]
+}

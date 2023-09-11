@@ -1,0 +1,49 @@
+
+
+{% schema %}
+{
+  "name": "FAQ list",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "Frequently asked question",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "question",
+          "label": "Question"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer"
+        }
+      ]
+    }
+  ],
+  "disabled_on": {
+    "groups": [
+      "*"
+    ]
+  },
+  "presets": [
+    {
+      "name": "FAQ list",
+      "blocks": [
+        {
+          "type": "faq",
+          "settings": {
+            "question": "What does this do section do?",
+            "answer": "<p>This section lists FAQs and corresponding answers in an accordion style.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -34,6 +34,7 @@
           "type": "buy-button",
           "settings": {
             "text": "",
+            "inventory_text": "",
             "full_width": false,
             "show_payment_buttons": false
           }
@@ -47,16 +48,15 @@
             "tailwind": ""
           }
         },
-        "ea60413e-869a-4388-8cf9-de82ddcf8503": {
-          "type": "divider",
-          "settings": {
-            "label": "Product description"
-          }
-        },
-        "486d662c-5fd8-4399-b13b-bd4cf3d00b09": {
-          "type": "description",
+        "74abe424-5bff-44b1-9009-3fa5933c001e": {
+          "type": "tags",
           "settings": {
             "tailwind": ""
+          }
+        },
+        "ab048911-1693-4355-8269-ab1415cb7ec2": {
+          "type": "sku",
+          "settings": {
           }
         }
       },
@@ -68,8 +68,8 @@
         "53d588d3-8f9e-4dc5-8de0-e3eca78cd48f",
         "54221e7b-8868-4c06-bc77-ea9ea93bea2b",
         "0442fcb3-bb2b-4c7c-854f-063c431018ce",
-        "ea60413e-869a-4388-8cf9-de82ddcf8503",
-        "486d662c-5fd8-4399-b13b-bd4cf3d00b09"
+        "74abe424-5bff-44b1-9009-3fa5933c001e",
+        "ab048911-1693-4355-8269-ab1415cb7ec2"
       ],
       "settings": {
         "show_pickup_availability": false,
@@ -80,7 +80,38 @@
       }
     },
     "resource-tabs": {
-      "type": "resource-tabs"
+      "type": "resource-tabs",
+      "blocks": {
+        "e77e1b95-b9db-4eaf-8848-f66146ad2f18": {
+          "type": "product",
+          "settings": {
+            "title": "Product description",
+            "product": ""
+          }
+        },
+        "95542676-7659-4c18-8463-ff095c129a20": {
+          "type": "page",
+          "settings": {
+            "title": "Page content",
+            "page": "blank-page"
+          }
+        },
+        "dfd20e79-1d3a-4740-9078-fc0dd23e7e5e": {
+          "type": "richtext",
+          "settings": {
+            "title": "Important information",
+            "content": "<h2>Please don't take this store seriously.<\/h2><p>This site is made to demonstrate the capabilities and possible styles of the Timeless Shopify Theme.<\/p><p>But please do have some fun!<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "e77e1b95-b9db-4eaf-8848-f66146ad2f18",
+        "95542676-7659-4c18-8463-ff095c129a20",
+        "dfd20e79-1d3a-4740-9078-fc0dd23e7e5e"
+      ],
+      "settings": {
+        "title": "Details"
+      }
     },
     "product-recommendations": {
       "type": "product-recommendations",

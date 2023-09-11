@@ -1,6 +1,6 @@
 {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
 
-<aside class="flex flex-wrap gap-4 justify-end">
+<aside class="sort-by flex flex-wrap gap-4 justify-end">
   <div class="with-label">
     <label for="sort-by">Sort by</label>
     <select class="select" id="sort-by" name="sort-by" onchange="sortByOnChange(this)">

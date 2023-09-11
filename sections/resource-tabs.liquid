@@ -1,13 +1,14 @@
 <div class="grid md:grid-cols-[250px,1fr] gap-y-8 gap-x-12">
-  <nav class="grid gap-1 p-4 bg-canvas-subdued self-start md:sticky-below-header">
+  <nav class="grid p-4 bg-canvas-subdued self-start md:sticky-below-header">
     <div class="technical text-xs -mt-6">{{ section.settings.title | default: 'Tabs' }}</div>
 
     {%- for block in section.blocks -%}
       <label
-        class="hover:font-bold"
+        class="with-icon py-2 [&:not(:last-child)]:border-b border-stroke"
         for="resource-tabs-{{ section.id }}-{{ block.settings.title | handleize }}"
       >
-        {{- block.settings.title -}}
+        <span class="grow">{{- block.settings.title -}}</span>
+        {% render 'icon' with 'chevron-right' %}
       </label>
     {%- endfor -%}
   </nav>
@@ -24,22 +25,22 @@
     <article class="[:not(:checked)+&]:hidden rte anim-fade-r">
       <div class="technical text-sm">{{ block.settings.title }}</div>
 
-      {%- liquid
-        case block.type
-          when 'product'
-            echo block.settings.product.description | default: product.description | replace: '<meta charset="utf-8">', ''
+      {%- case block.type -%}
+        {%- when 'product' -%}
+          <h2>{{ block.settings.product.title | default: product.title }}</h2>
 
-          when 'page'
-            echo block.settings.page.content
+          {{ block.settings.product.description
+            | default: product.description
+            | replace: '<meta charset="utf-8">', ''
+          }}
 
-          when 'richtext'
-            echo block.settings.content
+        {%- when 'page' -%}
+          {{ block.settings.page.content }}
 
-          when 'custom-liquid'
-            echo block.settings.liquid
+        {%- when 'richtext' -%}
+          {{ block.settings.content }}
 
-        endcase
-      -%}
+      {%- endcase -%}
     </article>
   {%- endfor -%}
 </div>
@@ -70,7 +71,8 @@
         {
           "type": "product",
           "id": "product",
-          "label": "Product"
+          "label": "Product",
+          "info": "Defaults to the current product"
         }
       ]
     },
@@ -105,22 +107,6 @@
           "label": "Content"
         }
       ]
-    },
-    {
-      "type": "custom-liquid",
-      "name": "Custom liquid",
-      "settings": [
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Title"
-        },
-        {
-          "type": "liquid",
-          "id": "liquid",
-          "label": "Liquid"
-        }
-      ]
     }
   ],
   "disabled_on": {
@@ -136,12 +122,6 @@
           "type": "product",
           "settings": {
             "title": "Product description"
-          }
-        },
-        {
-          "type": "custom-liquid",
-          "settings": {
-            "title": "Custom liquid"
           }
         }
       ]

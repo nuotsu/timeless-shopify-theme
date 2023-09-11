@@ -1,5 +1,5 @@
 <form
-  class="flex {% if stacked %}flex-col gap-y-4{% endif %} gap-x-8 overflow-x-auto <sm:full-width <sm:px-4"
+  class="flex flex-col gap-y-4 gap-x-8 overflow-x-auto <sm:full-width <sm:px-4 {% if stacked %}md:flex-row{% endif %}"
   oninput="this.querySelector('[data-filters-actions]').removeAttribute('hidden')"
 >
   {%- if results.terms -%}
@@ -8,7 +8,7 @@
   {%- endif -%}
 
   {%- for filter in results.filters -%}
-    <details class="with-accordion whitespace-nowrap" {% if opened %}open{% endif %}>
+    <details class="with-accordion {% if stacked %}md:whitespace-nowrap{% endif %}" {% if opened %}open{% endif %}>
       <summary class="flex items-center gap-2">
         <span class="with-icon grow technical text-xs">
           <span class="grow">{{ filter.label }}</span>
@@ -23,14 +23,14 @@
         {%- endif -%}
       </summary>
 
-      <fieldset class="mt-1 anim-fade-b">
+      <fieldset class="mt-1 anim-fade-b text-sm">
         <legend class="sr-only">{{ filter.label }}</legend>
 
         {%- case filter.type -%}
           {%- when 'boolean' or 'list' -%}
-            <div class="grid">
+            <div class="grid gap-1">
               {%- for value in filter.values -%}
-                <label class="flex items-center gap-1">
+                <label class="flex items-center gap-2">
                   <input
                     name="{{ value.param_name }}"
                     id="Filter-{{ filter.param_name | escape }}-{{ forloop.index }}"
@@ -85,12 +85,12 @@
       </fieldset>
     </details>
 
-    {%- if stacked -%}
-      {%- unless forloop.last -%}<hr>{%- endunless -%}
-    {%- endif -%}
+    {%- unless forloop.last -%}
+      <hr {% if stacked %}class="md:hidden"{% endif %}>
+    {%- endunless -%}
   {%- endfor -%}
 
-  <div data-filters-actions class="sticky -right-4 md:right-0 z-[1] bg-white/50 backdrop-blur-sm overflow-hidden" hidden>
+  <div data-filters-actions class="sticky -right-4 md:right-0 z-[1] bg-white/50 backdrop-blur-sm" hidden>
     <button class="w-full h-full action-secondary animate-pulse hover:scale-100 no-anim-emoji" type="submit">
       Apply
     </button>

@@ -8,7 +8,7 @@
 
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
 
-<div class="section-product-form section grid sm:grid-cols-2 items-start gap-8">
+<div class="section-product-form section grid sm:grid-cols-2 items-start gap-y-8 gap-x-12">
   {% render 'product-image-carousel' %}
 
   <div class="grid gap-6">
@@ -87,9 +87,9 @@
 
           {%- when 'tags' -%}
             {%- if product.tags.size > 0 -%}
-              <div class="flex flex-wrap gap-x-4 {{ block.settings.tailwind }}">
+              <div class="flex flex-wrap gap-x-4 text-sm [&_a]:hashtag [&_a]:hover:text-primary {{ block.settings.tailwind }}">
                 {%- for tag in product.tags -%}
-                  <span class="hashtag">{{ tag }}</span>
+                  {{ tag | link_to_tag: tag }}
                 {%- endfor -%}
               </div>
             {%- endif -%}
@@ -118,7 +118,7 @@
 <style type="text/tailwindcss">
   .section-product-form > * {
     min-width: 0;
-    @apply sm:self-start sm:sticky-below-header
+    @apply self-start sm:sticky-below-header;
   }
 
   .product-thumbs .swiper-slide {

@@ -6,9 +6,9 @@
         "0b40575d-b6b3-46fa-84b6-10cfa7683275": {
           "type": "cta",
           "settings": {
-            "url": "shopify:\/\/collections\/premium-enhancers",
-            "label": "Upgrade now",
-            "style": "action"
+            "url": "shopify:\/\/collections",
+            "label": "Find your sticker",
+            "style": "action-secondary"
           }
         }
       },
@@ -17,7 +17,7 @@
       ],
       "settings": {
         "color_scheme": "dark",
-        "content": "<h1>Your Vehicle's Upgrade Headquarters.<\/h1><p>Welcome to the hub of automotive innovation!<\/p>",
+        "content": "<h1>But first... decals.<\/h1><p>You've seen 'em on the roads.<\/p><p>Now there here, waiting for you 🥹<\/p>",
         "content_alignment": "center",
         "min_height": 90,
         "bg_opacity": 0.5

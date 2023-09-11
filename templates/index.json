@@ -93,30 +93,6 @@
         "icon_height": 60
       }
     },
-    "af49d980-61bc-48b6-9448-ef6e553acba2": {
-      "type": "hero",
-      "blocks": {
-        "template--20591287501082__af49d980-61bc-48b6-9448-ef6e553acba2-cta-1": {
-          "type": "cta",
-          "settings": {
-            "url": "shopify:\/\/collections\/mini-mechanics",
-            "label": "🐶 Who's a good mechanic?",
-            "style": "action-secondary"
-          }
-        }
-      },
-      "block_order": [
-        "template--20591287501082__af49d980-61bc-48b6-9448-ef6e553acba2-cta-1"
-      ],
-      "settings": {
-        "color_scheme": "dark",
-        "content": "<h1>Your Car's Best Friend, Ready to Assist!<\/h1><p>We're your trusted partner in vehicle enhancement. Our team of experts is dedicated to providing high-quality, precision-engineered car components that cater to your vehicle's unique requirements. Discover how we can take your ride to new heights.<\/p>",
-        "content_alignment": "left",
-        "image_position_desktop": "",
-        "image_position_mobile": "",
-        "image_loading": "lazy"
-      }
-    },
     "bdf38db3-3d71-4613-9e0d-ac7b77b57196": {
       "type": "resource-list",
       "blocks": {
@@ -165,6 +141,30 @@
         "sale_badge_enabled": true
       }
     },
+    "af49d980-61bc-48b6-9448-ef6e553acba2": {
+      "type": "hero",
+      "blocks": {
+        "template--20591287501082__af49d980-61bc-48b6-9448-ef6e553acba2-cta-1": {
+          "type": "cta",
+          "settings": {
+            "url": "shopify:\/\/collections\/mini-mechanics",
+            "label": "🐶 Who's a good mechanic?",
+            "style": "action-secondary"
+          }
+        }
+      },
+      "block_order": [
+        "template--20591287501082__af49d980-61bc-48b6-9448-ef6e553acba2-cta-1"
+      ],
+      "settings": {
+        "color_scheme": "dark",
+        "content": "<h1>Your Car's Best Friend, Ready to Assist!<\/h1><p>We're your trusted partner in vehicle enhancement. Our team of experts is dedicated to providing high-quality, precision-engineered car components that cater to your vehicle's unique requirements. Discover how we can take your ride to new heights.<\/p>",
+        "content_alignment": "left",
+        "image_position_desktop": "",
+        "image_position_mobile": "",
+        "image_loading": "lazy"
+      }
+    },
     "4ba374f6-ed77-4898-9e79-f005e3f0084b": {
       "type": "article-list",
       "settings": {
@@ -188,8 +188,8 @@
     "heading",
     "939f3313-244b-4ea3-9533-75ea1269de22",
     "2326e1f5-dd4b-4acb-85c6-34994c4a7832",
-    "af49d980-61bc-48b6-9448-ef6e553acba2",
     "bdf38db3-3d71-4613-9e0d-ac7b77b57196",
+    "af49d980-61bc-48b6-9448-ef6e553acba2",
     "4ba374f6-ed77-4898-9e79-f005e3f0084b",
     "934419f0-0530-4768-98cc-9472b579fe40"
   ]

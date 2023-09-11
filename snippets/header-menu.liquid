@@ -15,7 +15,7 @@
               {% render 'icon' with 'chevron-right' %}
             </summary>
             <div class="megamenu-contents inset-x-0 anim-fade-b">
-              <ul class="sm:section sm:py-4 flex <sm:flex-col flex-wrap gap-y-4 gap-x-8 sm:justify-center sm:items-start">
+              <ul class="sm:section sm:py-4 flex <sm:flex-col flex-wrap gap-y-4 gap-x-12 sm:justify-center sm:items-start">
                 {%- for child_link in link.links -%}
                   {%- case child_link.levels -%}
                     {%- when 1 -%}
@@ -38,7 +38,7 @@
                               class="group grid gap-2 <sm:grid-cols-[100px,1fr] items-center sm:text-center font-bold"
                               href="{{ child_link.url }}"
                             >
-                              <figure class="overflow-hidden bg-canvas-subdued shadow-md">
+                              <figure class="overflow-hidden bg-[var(--canvas-subdued)] shadow-md">
                                 {{ featured_link.image
                                   | default: child_link.object.featured_image
                                   | image_url: width: 300, height: 200

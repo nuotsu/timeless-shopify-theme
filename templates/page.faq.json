@@ -1,14 +1,82 @@
 {
   "sections": {
-    "heading": {
-      "type": "heading"
-    },
     "faq-list": {
-      "type": "faq-list"
+      "type": "faq-list",
+      "blocks": {
+        "e16483d8-2eb5-43ba-b783-d7202f9a5169": {
+          "type": "faq",
+          "settings": {
+            "question": "What types of premium car components do you offer?",
+            "answer": "<p>We offer a wide range of premium car components, including performance parts, advanced accessories, high-quality replacement parts, and more.<\/p>"
+          }
+        },
+        "0a87d70e-7647-44ea-a704-37770387244b": {
+          "type": "faq",
+          "settings": {
+            "question": "Are your products compatible with specific makes and models of vehicles?",
+            "answer": "<p>Yes, our products are designed to be compatible with a variety of makes and models. Please check product descriptions and compatibility charts for details.<\/p>"
+          }
+        },
+        "40071bb7-c347-4f45-aa40-7fcbcff1324b": {
+          "type": "faq",
+          "settings": {
+            "question": "What are the benefits of upgrading to premium car parts?",
+            "answer": "<p>Upgrading to premium car parts can enhance your vehicle's performance, durability, and functionality. It often leads to improved fuel efficiency and a smoother driving experience.<\/p>"
+          }
+        },
+        "0e92527b-b240-4f8b-a3ab-2a6b8164d909": {
+          "type": "faq",
+          "settings": {
+            "question": "Do you offer any warranties or guarantees on your premium products?",
+            "answer": "<p>Yes, many of our premium products come with warranties and guarantees. Details can be found in the product descriptions.<\/p>"
+          }
+        },
+        "31ee1bc2-5787-423f-96c9-9bc114b50dcb": {
+          "type": "faq",
+          "settings": {
+            "question": "Can I return or exchange a premium component if it doesn't fit or meet my expectations?",
+            "answer": "<p>We have a flexible return and exchange policy. If a component doesn't meet your expectations or fit your vehicle, please refer to our Returns and Exchanges page for instructions.<\/p>"
+          }
+        },
+        "f7e989e7-7271-48c2-a9f8-4fd242f69e3a": {
+          "type": "faq",
+          "settings": {
+            "question": "Do you provide installation services or recommendations for professional installers?",
+            "answer": "<p>While we don't provide installation services, we can recommend certified professionals in your area for installations.<\/p>"
+          }
+        },
+        "4eb9cafd-4e2d-4b0e-aba0-ecbbc9316a68": {
+          "type": "faq",
+          "settings": {
+            "question": "Are your premium components designed to improve fuel efficiency or performance?",
+            "answer": "<p>Yes, many of our premium components are engineered to enhance both fuel efficiency and overall vehicle performance.<\/p>"
+          }
+        },
+        "3ffb96a3-b08f-4c9d-baf3-f6c85398ceeb": {
+          "type": "faq",
+          "settings": {
+            "question": "Should I take this store seriously?",
+            "answer": "<p><strong>Absolutely not, but have some fun!<\/strong> This site is made to demonstrate the capabilities and possible styles of the Timeless Shopify Theme.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "e16483d8-2eb5-43ba-b783-d7202f9a5169",
+        "0a87d70e-7647-44ea-a704-37770387244b",
+        "40071bb7-c347-4f45-aa40-7fcbcff1324b",
+        "0e92527b-b240-4f8b-a3ab-2a6b8164d909",
+        "31ee1bc2-5787-423f-96c9-9bc114b50dcb",
+        "f7e989e7-7271-48c2-a9f8-4fd242f69e3a",
+        "4eb9cafd-4e2d-4b0e-aba0-ecbbc9316a68",
+        "3ffb96a3-b08f-4c9d-baf3-f6c85398ceeb"
+      ],
+      "settings": {
+        "color_scheme": "",
+        "content": "<h2>Frequently Asked Questions<\/h2>"
+      }
     }
   },
   "order": [
-    "heading",
     "faq-list"
   ]
 }

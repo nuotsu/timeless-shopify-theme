@@ -1,4 +1,34 @@
+{%- assign faqs = section.blocks | where: 'type', 'faq' | map: 'settings' -%}
 
+{%- if section.settings.content -%}
+  <header class="mb-8 text-center rte">
+    {{ section.settings.content }}
+  </header>
+{%- endif -%}
+
+<div class="max-w-screen-md mx-auto">
+  {%- for faq in faqs -%}
+    <details class="with-accordion [&:not(:last-child)]:border-b border-stroke">
+      <summary class="w-full font-bold with-icon py-3">
+        <span class="grow">{{ faq.question }}</span>
+        {% render 'icon' with 'chevron-right' %}
+      </summary>
+
+      <div class="pb-4 rte anim-fade-b">
+        {{ faq.answer }}
+      </div>
+    </details>
+  {%- endfor -%}
+</div>
+
+<style type="text/tailwindcss">
+  #shopify-section-{{ section.id }} {
+    --canvas: {{ section.settings.color_scheme.settings.canvas }};
+    --ink: {{ section.settings.color_scheme.settings.ink }};
+    --stroke: {{ section.settings.color_scheme.settings.stroke }};
+    @apply bg-[var(--canvas)] text-[var(--ink)];
+  }
+</style>
 
 {% schema %}
 {
@@ -6,12 +36,22 @@
   "tag": "section",
   "class": "section",
   "settings": [
-
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content",
+      "default": "<h2>Frequently Asked Questions</h2>"
+    }
   ],
   "blocks": [
     {
       "type": "faq",
-      "name": "Frequently asked question",
+      "name": "FAQ",
       "settings": [
         {
           "type": "textarea",

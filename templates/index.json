@@ -122,43 +122,26 @@
         "image_loading": "lazy"
       }
     },
-    "ce0ef662-6b39-433c-b70a-bf2a6563ea2f": {
-      "type": "resource-list",
+    "07a70b09-2787-454e-9baa-14cb1eb74a2d": {
+      "type": "featured-collection",
       "blocks": {
-        "template--20591287501082__ce0ef662-6b39-433c-b70a-bf2a6563ea2f-product-1": {
-          "type": "product",
+        "e79cf6f8-5c36-4529-859b-4d7362403bdc": {
+          "type": "cta",
           "settings": {
-            "product": "timeless-being"
-          }
-        },
-        "template--20591287501082__ce0ef662-6b39-433c-b70a-bf2a6563ea2f-product-2": {
-          "type": "product",
-          "settings": {
-            "product": "timeless-syrup"
-          }
-        },
-        "template--20591287501082__ce0ef662-6b39-433c-b70a-bf2a6563ea2f-product-3": {
-          "type": "product",
-          "settings": {
-            "product": "timeless-cap"
-          }
-        },
-        "template--20591287501082__ce0ef662-6b39-433c-b70a-bf2a6563ea2f-product-4": {
-          "type": "product",
-          "settings": {
-            "product": "time-machine"
+            "url": "shopify:\/\/collections\/enthusiast-essentials",
+            "label": "View products",
+            "style": "action"
           }
         }
       },
       "block_order": [
-        "template--20591287501082__ce0ef662-6b39-433c-b70a-bf2a6563ea2f-product-1",
-        "template--20591287501082__ce0ef662-6b39-433c-b70a-bf2a6563ea2f-product-2",
-        "template--20591287501082__ce0ef662-6b39-433c-b70a-bf2a6563ea2f-product-3",
-        "template--20591287501082__ce0ef662-6b39-433c-b70a-bf2a6563ea2f-product-4"
+        "e79cf6f8-5c36-4529-859b-4d7362403bdc"
       ],
       "settings": {
-        "color_scheme": "default",
-        "content": "<h2>Featured products<\/h2>",
+        "color_scheme": "",
+        "content": "<h2>Enthusiast Essentials<\/h2>",
+        "collection": "enthusiast-essentials",
+        "limit": 4,
         "columns": 4,
         "sale_badge_enabled": true
       }
@@ -187,7 +170,7 @@
     "939f3313-244b-4ea3-9533-75ea1269de22",
     "2326e1f5-dd4b-4acb-85c6-34994c4a7832",
     "af49d980-61bc-48b6-9448-ef6e553acba2",
-    "ce0ef662-6b39-433c-b70a-bf2a6563ea2f",
+    "07a70b09-2787-454e-9baa-14cb1eb74a2d",
     "4ba374f6-ed77-4898-9e79-f005e3f0084b",
     "934419f0-0530-4768-98cc-9472b579fe40"
   ]

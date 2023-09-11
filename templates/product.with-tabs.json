@@ -1,0 +1,99 @@
+{
+  "sections": {
+    "product-form": {
+      "type": "product-form",
+      "blocks": {
+        "8827b8ca-82ef-4494-b7ae-5b4db5859373": {
+          "type": "vendor",
+          "settings": {
+            "tailwind": ""
+          }
+        },
+        "dbad3ae8-84d5-48a6-9ab8-8885e1ee2c41": {
+          "type": "title",
+          "settings": {
+          }
+        },
+        "07d05eb6-e4ce-4fa1-81d6-3b59e0854401": {
+          "type": "price",
+          "settings": {
+          }
+        },
+        "743a2bf4-9909-45f2-9b51-411702650ac1": {
+          "type": "variant-selector",
+          "settings": {
+            "show_dividers": false
+          }
+        },
+        "53d588d3-8f9e-4dc5-8de0-e3eca78cd48f": {
+          "type": "quantity-selector",
+          "settings": {
+          }
+        },
+        "54221e7b-8868-4c06-bc77-ea9ea93bea2b": {
+          "type": "buy-button",
+          "settings": {
+            "text": "",
+            "full_width": false,
+            "show_payment_buttons": false
+          }
+        },
+        "0442fcb3-bb2b-4c7c-854f-063c431018ce": {
+          "type": "inventory",
+          "settings": {
+            "text": "Only # left in stock!",
+            "threshold_enabled": true,
+            "threshold": 10,
+            "tailwind": ""
+          }
+        },
+        "ea60413e-869a-4388-8cf9-de82ddcf8503": {
+          "type": "divider",
+          "settings": {
+            "label": "Product description"
+          }
+        },
+        "486d662c-5fd8-4399-b13b-bd4cf3d00b09": {
+          "type": "description",
+          "settings": {
+            "tailwind": ""
+          }
+        }
+      },
+      "block_order": [
+        "8827b8ca-82ef-4494-b7ae-5b4db5859373",
+        "dbad3ae8-84d5-48a6-9ab8-8885e1ee2c41",
+        "07d05eb6-e4ce-4fa1-81d6-3b59e0854401",
+        "743a2bf4-9909-45f2-9b51-411702650ac1",
+        "53d588d3-8f9e-4dc5-8de0-e3eca78cd48f",
+        "54221e7b-8868-4c06-bc77-ea9ea93bea2b",
+        "0442fcb3-bb2b-4c7c-854f-063c431018ce",
+        "ea60413e-869a-4388-8cf9-de82ddcf8503",
+        "486d662c-5fd8-4399-b13b-bd4cf3d00b09"
+      ],
+      "settings": {
+        "show_pickup_availability": false,
+        "carousel_zoom_enabled": true,
+        "carousel_fade_enabled": true,
+        "carousel_autoHeight": true,
+        "carousel_slidesPerView": 8
+      }
+    },
+    "resource-tabs": {
+      "type": "resource-tabs"
+    },
+    "product-recommendations": {
+      "type": "product-recommendations",
+      "settings": {
+        "color_scheme": "",
+        "content": "<h2>Product Recommendations<\/h2>",
+        "intent": "related"
+      }
+    }
+  },
+  "order": [
+    "product-form",
+    "resource-tabs",
+    "product-recommendations"
+  ]
+}

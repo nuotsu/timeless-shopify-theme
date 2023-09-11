@@ -111,19 +111,19 @@
         "template--20897512849682__bdf38db3-3d71-4613-9e0d-ac7b77b57196-product-3": {
           "type": "product",
           "settings": {
-            "product": ""
+            "product": "godzi11a"
           }
         },
         "template--20897512849682__bdf38db3-3d71-4613-9e0d-ac7b77b57196-product-4": {
           "type": "product",
           "settings": {
-            "product": ""
+            "product": "type-rawr"
           }
         },
         "463df097-5c01-453e-98b5-90516e74383a": {
           "type": "product",
           "settings": {
-            "product": ""
+            "product": "steven"
           }
         }
       },
@@ -136,7 +136,7 @@
       ],
       "settings": {
         "color_scheme": "",
-        "content": "<h2>Popular Picks<\/h2>",
+        "content": "<h2>🎌 Popular Picks 🎌<\/h2>",
         "columns": 5,
         "sale_badge_enabled": true
       }

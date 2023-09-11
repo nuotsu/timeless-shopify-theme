@@ -18,10 +18,9 @@
       "settings": {
         "color_scheme": "dark",
         "content": "<h1>Your Vehicle's Upgrade Headquarters.<\/h1><p>Welcome to the hub of automotive innovation!<\/p>",
-        "content_alignment": "left",
-        "min_height": 70,
-        "image": "shopify:\/\/shop_images\/nuotsu_Prepare_to_witness_the_future_of_engine_optimization_wi_c8d27e15-3ecf-4dd6-afea-0e47bdf15edf.png",
-        "bg_opacity": 0.2
+        "content_alignment": "center",
+        "min_height": 90,
+        "bg_opacity": 0.5
       }
     },
     "939f3313-244b-4ea3-9533-75ea1269de22": {
@@ -64,21 +63,18 @@
         "template--20591287501082__2326e1f5-dd4b-4acb-85c6-34994c4a7832-item-1": {
           "type": "item",
           "settings": {
-            "icon": "shopify:\/\/shop_images\/img.icons8.png",
             "content": "<h3>Rev Up Your Imagination, Not Your Engine.<\/h3><p>Explore the world of automotive nonsense at our store. From blinker fluid to muffler bearings, we've got the quirkiest car parts you never knew you needed. It's all about the joy of the journey, not the destination.<\/p>"
           }
         },
         "template--20591287501082__2326e1f5-dd4b-4acb-85c6-34994c4a7832-item-2": {
           "type": "item",
           "settings": {
-            "icon": "shopify:\/\/shop_images\/img.icons8-1.png",
             "content": "<h3>Redefining 'Under the Hood'<\/h3><p>Redefine 'under the hood' with our absurd car components. Inject humor into your ride and let's make your car the life of the party.<\/p>"
           }
         },
         "template--20591287501082__2326e1f5-dd4b-4acb-85c6-34994c4a7832-item-3": {
           "type": "item",
           "settings": {
-            "icon": "shopify:\/\/shop_images\/img.icons8-2.png",
             "content": "<h3>Because Your Car Deserves a Good Laugh.<\/h3><p>Get ready for a good laugh with our hilarious and utterly pointless car parts. Make your car a conversation starter and embrace the lighter side of driving.<\/p>"
           }
         }
@@ -116,7 +112,6 @@
         "color_scheme": "dark",
         "content": "<h1>Your Car's Best Friend, Ready to Assist!<\/h1><p>We're your trusted partner in vehicle enhancement. Our team of experts is dedicated to providing high-quality, precision-engineered car components that cater to your vehicle's unique requirements. Discover how we can take your ride to new heights.<\/p>",
         "content_alignment": "left",
-        "image": "shopify:\/\/shop_images\/nuotsu_corgis_in_car_mechanic_clothes_switching_tires_on_a_car_654d123b-cd53-422c-a540-0414266c1994.png",
         "image_position_desktop": "",
         "image_position_mobile": "",
         "image_loading": "lazy"
@@ -159,7 +154,7 @@
     "934419f0-0530-4768-98cc-9472b579fe40": {
       "type": "newsletter-form",
       "settings": {
-        "color_scheme": "gray",
+        "color_scheme": "scheme-90cd56fb-9ea6-4dc6-b3a9-59f1b4e3da31",
         "content": "<h2>Unlock Exclusive Access to Automotive Advancements!<\/h2><p>Join our community of discerning drivers and be the first to access exclusive offers, cutting-edge innovations, and expert insights.<\/p>",
         "submit_label": "Unlock now!"
       }

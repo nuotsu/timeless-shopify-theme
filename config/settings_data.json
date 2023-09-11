@@ -39,6 +39,19 @@
           "secondary": "{{ shop.brand.colors.secondary[0].background }}",
           "secondary_contrasting": "{{ shop.brand.colors.secondary[0].foreground }}"
         }
+      },
+      "scheme-90cd56fb-9ea6-4dc6-b3a9-59f1b4e3da31": {
+        "settings": {
+          "canvas": "#dcfffc",
+          "ink": "#3e7667",
+          "stroke": "#e3e7eb",
+          "canvas_subdued": "#fff",
+          "ink_subdued": "#333333",
+          "primary": "{{ shop.brand.colors.primary[0].background }}",
+          "primary_contrasting": "{{ shop.brand.colors.primary[0].foreground }}",
+          "secondary": "{{ shop.brand.colors.secondary[0].background }}",
+          "secondary_contrasting": "{{ shop.brand.colors.secondary[0].foreground }}"
+        }
       }
     }
   }

@@ -147,8 +147,8 @@
         "template--20591287501082__af49d980-61bc-48b6-9448-ef6e553acba2-cta-1": {
           "type": "cta",
           "settings": {
-            "url": "shopify:\/\/collections\/mini-mechanics",
-            "label": "🐶 Who's a good mechanic?",
+            "url": "shopify:\/\/collections\/all",
+            "label": "Nomo FOMO pls",
             "style": "action-secondary"
           }
         }

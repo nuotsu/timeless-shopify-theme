@@ -8,7 +8,7 @@
 
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
 
-<div class="section-product-form section grid sm:grid-cols-2 items-start gap-y-8 gap-x-12">
+<div class="section-product-form section grid sm:grid-cols-2 items-start gap-y-8 gap-x-12 <md:overflow-hidden">
   {% render 'product-image-carousel' %}
 
   <div class="grid gap-6">
@@ -66,7 +66,7 @@
             </p>
 
           {%- when 'price' -%}
-            {%- render 'price', show_taxes_included: true -%}
+            {%- render 'price', class: 'text-xl', show_taxes_included: true -%}
 
             {{ form | payment_terms }}
 

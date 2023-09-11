@@ -5,7 +5,7 @@
     </header>
   {%- endif -%}
 
-  {%- if section.settings.blog != nil -%}
+  {%- if section.settings.blog != nil or section.settings.blog.articles_count > 0 -%}
     {% paginate section.settings.blog.articles by section.settings.page_size %}
       <ul class="item-grid <sm:grid-cols-1" style="--size: {{ section.settings.grid_item_size | default: item_size }}px;">
         {%- render 'article-item-static'

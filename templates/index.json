@@ -6,7 +6,7 @@
         "0b40575d-b6b3-46fa-84b6-10cfa7683275": {
           "type": "cta",
           "settings": {
-            "url": "shopify:\/\/collections",
+            "url": "shopify:\/\/collections\/all",
             "label": "Find your sticker",
             "style": "action-secondary"
           }

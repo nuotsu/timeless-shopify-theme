@@ -3,8 +3,10 @@
     "heading": {
       "type": "heading",
       "settings": {
-        "color_scheme": "gray",
+        "color_scheme": "dark",
         "content": "",
+        "content_alignment": "center",
+        "min_height": 0,
         "bg_opacity": 0.8
       }
     },
@@ -63,6 +65,8 @@
         "e7010210-2d02-4436-ba8e-2918a2c2fe3f"
       ],
       "settings": {
+        "tailwind": "",
+        "page_size": 10
       }
     }
   },

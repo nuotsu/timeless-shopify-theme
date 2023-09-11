@@ -41,12 +41,13 @@
       min-height: calc({{ section.settings.min_height | default: 0 }}dvh - var(--header-height));
     "
   >
-    <div class="max-w-screen-sm rte {{ content_class }}">
+    <div class="max-w-screen-sm rte [&>*:not(.cta-list)]:[text-shadow:0_.25em_1.5em_var(--canvas)] {{ content_class }}">
       {%- if section.settings.content != blank -%}
         {{ section.settings.content }}
 
       {%- else -%}
         <h1>{{ data.title | default: data.name | default: page_title }}</h1>
+
         {%- unless data.description contains '<' -%}
           <p>{{ data.description }}</p>
         {%- else -%}
@@ -55,7 +56,7 @@
 
       {%- endif -%}
 
-      {% render 'cta-list' with section %}
+      {% render 'cta-list' %}
     </div>
   </div>
 </div>

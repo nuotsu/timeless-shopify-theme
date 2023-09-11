@@ -120,6 +120,13 @@
         "content": "Components"
       },
       {
+        "type": "text",
+        "id": "anim_emoji",
+        "label": "Animated emoji on hover",
+        "default": "👍",
+        "info": "Emoji to show when hovering over action buttons. Single emoji recommended. Leave blank to disable."
+      },
+      {
         "type": "range",
         "id": "border_radius",
         "min": 0,

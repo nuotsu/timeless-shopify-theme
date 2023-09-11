@@ -3,13 +3,13 @@
 <li>
   <a class="group grid gap-2" href="{{ article.url }}">
     <figure
-      class="overflow-hidden [&>*]:aspect-[{{ aspect_ratio | default: 'square' }}]"
+      class="overflow-hidden [&>*]:aspect-[{{ aspect_ratio | default: 'square' }}] shadow-md"
       style="border-radius: var(--border-radius);"
     >
       {%- if article.image -%}
         {{ article.image
           | image_url: width: 500
-          | image_tag: class: 'object-cover w-full transition-transform group-hover:scale-110', loading: 'lazy'
+          | image_tag: class: 'object-cover w-full transition-transform group-hover:scale-105', loading: 'lazy'
         }}
       {%- else -%}
         <div class="grid place-content-center p-4 bg-canvas-subdued text-ink-subdued">

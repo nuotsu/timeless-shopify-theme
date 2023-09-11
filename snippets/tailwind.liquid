@@ -65,14 +65,6 @@ tailwind.config = {
     @apply bg-canvas text-ink accent-primary caret-primary font-body;
   }
 
-  details > *:not(summary) {
-    @apply transition-[opacity,translate];
-  }
-  details:not([open]) > *:not(summary) {
-    opacity: 0;
-    translate: 0 -1rem;
-  }
-
   summary {
     cursor: pointer;
     display: block;
@@ -132,7 +124,7 @@ tailwind.config = {
     border-radius: var(--border-radius);
     padding: 0.5em 1em;
 
-    @apply disabled:grayscale border border-transparent;
+    @apply disabled:grayscale border border-transparent transition-all;
 
     {% if settings.fully_rounded_buttons %}
       @apply rounded-full;
@@ -140,10 +132,10 @@ tailwind.config = {
   }
 
   .action {
-    @apply _btn bg-primary text-primary-contrasting transition-[filter] hover:brightness-[1.2];
+    @apply _btn anim-emoji bg-primary text-primary-contrasting font-heading hover:scale-105 shadow-md hover:shadow-lg;
   }
   .action-secondary {
-    @apply _btn bg-secondary text-secondary-contrasting transition-[filter] hover:brightness-[1.2];
+    @apply _btn anim-emoji bg-secondary text-secondary-contrasting font-heading hover:scale-105 shadow-md hover:shadow-lg;
   }
 
   .ghost {
@@ -386,6 +378,27 @@ tailwind.config = {
 		@apply anim-fade;
 		--translate: 0 -1rem;
 	}
+
+  :not(.no-anim-emoji).anim-emoji {
+    position: relative;
+  }
+  :not(.no-anim-emoji).anim-emoji::after {
+    content: var(--anim-emoji, '{{ settings.anim_emoji }}');
+    position: absolute;
+    z-index: -1;
+    inset: 50% auto auto 100%;
+    translate: -200% -50%;
+    rotate: -8deg;
+    @apply transition-[translate,rotate,scale,opacity] drop-shadow;
+  }
+  :not(.no-anim-emoji).anim-emoji:hover::after {
+    translate: -25% -50%;
+    rotate: 8deg;
+  }
+  :not(.no-anim-emoji).anim-emoji:not(:hover)::after {
+    opacity: 0;
+    scale: 0;
+  }
 }
 </style>
 {% endcapture %}

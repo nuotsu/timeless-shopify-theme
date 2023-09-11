@@ -1,7 +1,7 @@
 {%- assign ctas = section.blocks | where: 'type', 'cta' | map: 'settings' -%}
 
 {%- if ctas.size -%}
-  <p class="cta-list flex flex-wrap items-center gap-[1em]">
+  <p class="cta-list flex flex-wrap items-center gap-[1em] {{ class }}">
     {%- for cta in ctas -%}
       {%- if cta.label != blank -%}
         <a class="{{ cta.style }}" href="{{ cta.url }}">

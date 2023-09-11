@@ -1,10 +1,10 @@
 <li>
   <a class="group grid gap-2" href="{{ collection.url }}">
-    <figure class="overflow-hidden bg-canvas-subdued" style="border-radius: var(--border-radius);">
+    <figure class="overflow-hidden bg-canvas-subdued shadow-md" style="border-radius: var(--border-radius);">
       {%- if collection.featured_image -%}
         {{ collection.featured_image
           | image_url: width: 500, height: 500
-          | image_tag: class: 'w-full group-hover:scale-110 transition-transform', loading: 'lazy'
+          | image_tag: class: 'w-full group-hover:scale-105 transition-transform', loading: 'lazy'
         }}
       {%- else -%}
         {{ 'collection-1' | placeholder_svg_tag }}

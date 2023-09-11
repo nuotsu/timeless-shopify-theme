@@ -18,15 +18,12 @@
     </header>
   {%- endif -%}
 
-  <ul
-    class="
-      carousel md:grid gap-4 md:gap-8 items-start <md:full-width <md:px-4 <md:pb-4
-      grid-cols-{{ section.settings.columns }} {{ content_class }}
-    "
-    style="border-radius: var(--border-radius);"
-  >
+  <ul class="
+    carousel md:grid gap-4 md:gap-8 items-stretch <md:full-width <md:px-4 <md:pb-4
+    grid-cols-{{ section.settings.columns }} {{ content_class }}
+  ">
     {%- for item in items -%}
-      <li class="rte">
+      <li class="h-full rte" style="border-radius: var(--border-radius);">
         {%- if item.icon -%}
           <figure class="[&>*]:max-h-[var(--icon-height)]">
             {{ item.icon

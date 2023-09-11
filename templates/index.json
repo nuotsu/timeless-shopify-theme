@@ -6,8 +6,8 @@
         "0b40575d-b6b3-46fa-84b6-10cfa7683275": {
           "type": "cta",
           "settings": {
-            "url": "shopify:\/\/collections",
-            "label": "View all collections",
+            "url": "shopify:\/\/collections\/premium-enhancers",
+            "label": "Upgrade now",
             "style": "action"
           }
         }
@@ -17,11 +17,11 @@
       ],
       "settings": {
         "color_scheme": "dark",
-        "content": "",
-        "content_alignment": "center",
-        "min_height": 65,
-        "image": "shopify:\/\/shop_images\/nuotsu_triceratops_and_t-rex_fighting_around_a_Porsche_911_jur_75b96cbf-fb44-4814-b98e-ed6ca8c26569.png",
-        "bg_opacity": 0.5
+        "content": "<h1>Your Vehicle's Upgrade Headquarters.<\/h1><p>Welcome to the hub of automotive innovation!<\/p>",
+        "content_alignment": "left",
+        "min_height": 70,
+        "image": "shopify:\/\/shop_images\/nuotsu_Prepare_to_witness_the_future_of_engine_optimization_wi_c8d27e15-3ecf-4dd6-afea-0e47bdf15edf.png",
+        "bg_opacity": 0.2
       }
     },
     "939f3313-244b-4ea3-9533-75ea1269de22": {
@@ -30,19 +30,19 @@
         "template--20591287501082__939f3313-244b-4ea3-9533-75ea1269de22-collection-1": {
           "type": "collection",
           "settings": {
-            "collection": "everything"
+            "collection": "premium-enhancers"
           }
         },
         "template--20591287501082__939f3313-244b-4ea3-9533-75ea1269de22-collection-2": {
           "type": "collection",
           "settings": {
-            "collection": "timeless-stuff"
+            "collection": "enthusiast-essentials"
           }
         },
         "template--20591287501082__939f3313-244b-4ea3-9533-75ea1269de22-collection-3": {
           "type": "collection",
           "settings": {
-            "collection": "car-stuff"
+            "collection": "mini-mechanics"
           }
         }
       },
@@ -52,9 +52,10 @@
         "template--20591287501082__939f3313-244b-4ea3-9533-75ea1269de22-collection-3"
       ],
       "settings": {
-        "color_scheme": "",
+        "color_scheme": "default",
         "content": "<h2>Featured collections<\/h2>",
-        "columns": 3
+        "columns": 3,
+        "sale_badge_enabled": true
       }
     },
     "2326e1f5-dd4b-4acb-85c6-34994c4a7832": {
@@ -63,19 +64,22 @@
         "template--20591287501082__2326e1f5-dd4b-4acb-85c6-34994c4a7832-item-1": {
           "type": "item",
           "settings": {
-            "content": "<h3>Feature 1<\/h3><p>Feature 1 description<\/p>"
+            "icon": "shopify:\/\/shop_images\/img.icons8.png",
+            "content": "<h3>Rev Up Your Imagination, Not Your Engine.<\/h3><p>Explore the world of automotive nonsense at our store. From blinker fluid to muffler bearings, we've got the quirkiest car parts you never knew you needed. It's all about the joy of the journey, not the destination.<\/p>"
           }
         },
         "template--20591287501082__2326e1f5-dd4b-4acb-85c6-34994c4a7832-item-2": {
           "type": "item",
           "settings": {
-            "content": "<h3>Feature 2<\/h3><p>Feature 2 description<\/p>"
+            "icon": "shopify:\/\/shop_images\/img.icons8-1.png",
+            "content": "<h3>Redefining 'Under the Hood'<\/h3><p>Redefine 'under the hood' with our absurd car components. Inject humor into your ride and let's make your car the life of the party.<\/p>"
           }
         },
         "template--20591287501082__2326e1f5-dd4b-4acb-85c6-34994c4a7832-item-3": {
           "type": "item",
           "settings": {
-            "content": "<h3>Feature 3<\/h3><p>Feature 3 description<\/p>"
+            "icon": "shopify:\/\/shop_images\/img.icons8-2.png",
+            "content": "<h3>Because Your Car Deserves a Good Laugh.<\/h3><p>Get ready for a good laugh with our hilarious and utterly pointless car parts. Make your car a conversation starter and embrace the lighter side of driving.<\/p>"
           }
         }
       },
@@ -85,8 +89,10 @@
         "template--20591287501082__2326e1f5-dd4b-4acb-85c6-34994c4a7832-item-3"
       ],
       "settings": {
-        "color_scheme": "default",
+        "color_scheme": "dark",
+        "color_items": false,
         "content": "<h2>Why choose us?<\/h2>",
+        "content_align": "left",
         "columns": 3,
         "icon_height": 60
       }
@@ -97,9 +103,9 @@
         "template--20591287501082__af49d980-61bc-48b6-9448-ef6e553acba2-cta-1": {
           "type": "cta",
           "settings": {
-            "url": "",
-            "label": "Shop now",
-            "style": "action"
+            "url": "shopify:\/\/collections\/mini-mechanics",
+            "label": "🐶 Who's a good mechanic?",
+            "style": "action-secondary"
           }
         }
       },
@@ -107,10 +113,10 @@
         "template--20591287501082__af49d980-61bc-48b6-9448-ef6e553acba2-cta-1"
       ],
       "settings": {
-        "color_scheme": "gray",
-        "content": "<h2>Heading<\/h2><p>A description goes here.<\/p>",
+        "color_scheme": "dark",
+        "content": "<h1>Your Car's Best Friend, Ready to Assist!<\/h1><p>We're your trusted partner in vehicle enhancement. Our team of experts is dedicated to providing high-quality, precision-engineered car components that cater to your vehicle's unique requirements. Discover how we can take your ride to new heights.<\/p>",
         "content_alignment": "left",
-        "image": "shopify:\/\/shop_images\/nuotsu_a_tortoise_in_the_driver_seat_of_a_Porsche_911_992_koda_0b22ca16-d8c4-4b94-99ed-51f1ed0f261f.png",
+        "image": "shopify:\/\/shop_images\/nuotsu_corgis_in_car_mechanic_clothes_switching_tires_on_a_car_654d123b-cd53-422c-a540-0414266c1994.png",
         "image_position_desktop": "",
         "image_position_mobile": "",
         "image_loading": "lazy"
@@ -151,14 +157,16 @@
         "template--20591287501082__ce0ef662-6b39-433c-b70a-bf2a6563ea2f-product-4"
       ],
       "settings": {
-        "color_scheme": "gray",
+        "color_scheme": "default",
         "content": "<h2>Featured products<\/h2>",
-        "columns": 4
+        "columns": 4,
+        "sale_badge_enabled": true
       }
     },
     "4ba374f6-ed77-4898-9e79-f005e3f0084b": {
       "type": "article-list",
       "settings": {
+        "color_scheme": "scheme-6d4c9e72-9abe-4e91-aafe-ae5cffbf63eb",
         "blog": "timeless",
         "content": "<h2>Read our blog<\/h2>",
         "grid_item_size": 240,
@@ -169,8 +177,8 @@
       "type": "newsletter-form",
       "settings": {
         "color_scheme": "gray",
-        "content": "<h2>Subscribe to our newsletter<\/h2>",
-        "submit_label": ""
+        "content": "<h2>Unlock Exclusive Access to Automotive Advancements!<\/h2><p>Join our community of discerning drivers and be the first to access exclusive offers, cutting-edge innovations, and expert insights.<\/p>",
+        "submit_label": "Unlock now!"
       }
     }
   },

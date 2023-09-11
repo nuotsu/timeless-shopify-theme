@@ -27,7 +27,7 @@
       {%- liquid
         case block.type
           when 'product'
-            echo block.settings.product.description | default: product.description
+            echo block.settings.product.description | default: product.description | replace: '<meta charset="utf-8">', ''
 
           when 'page'
             echo block.settings.page.content

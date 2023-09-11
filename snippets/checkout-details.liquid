@@ -31,7 +31,7 @@
               {% render 'icon' with 'chevron-right' %}
             </summary>
 
-            <div class="grid grid-cols-[1fr,auto] gap-x-4 [&_dd]:text-right">
+            <div class="grid grid-cols-[1fr,auto] gap-x-4 [&_dd]:text-right anim-fade-b">
               {%- for discount in cart.cart_level_discount_applications -%}
                 <dt>
                   {{ discount.title }}

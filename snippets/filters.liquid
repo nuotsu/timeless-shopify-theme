@@ -23,7 +23,7 @@
         {%- endif -%}
       </summary>
 
-      <fieldset class="mt-1">
+      <fieldset class="mt-1 anim-fade-b">
         <legend class="sr-only">{{ filter.label }}</legend>
 
         {%- case filter.type -%}
@@ -90,8 +90,8 @@
     {%- endif -%}
   {%- endfor -%}
 
-  <div data-filters-actions class="sticky -right-4 md:right-0 z-[1] bg-white/50 backdrop-blur-sm" hidden>
-    <button class="w-full h-full action-secondary animate-pulse" type="submit">
+  <div data-filters-actions class="sticky -right-4 md:right-0 z-[1] bg-white/50 backdrop-blur-sm overflow-hidden" hidden>
+    <button class="w-full h-full action-secondary animate-pulse hover:scale-100 no-anim-emoji" type="submit">
       Apply
     </button>
   </div>

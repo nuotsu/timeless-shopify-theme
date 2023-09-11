@@ -34,7 +34,6 @@
           "type": "buy-button",
           "settings": {
             "text": "",
-            "inventory_text": "(# left)",
             "full_width": false,
             "show_payment_buttons": false
           }

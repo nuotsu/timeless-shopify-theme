@@ -6,7 +6,7 @@
   endif
 
   capture unit_price
-    render 'unit-price', measurement: p.unit_price_measurement
+    render 'unit-price', measurement: product.selected_or_first_available_variant.unit_price_measurement
   endcapture
 -%}
 

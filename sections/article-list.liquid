@@ -1,31 +1,46 @@
-{%- if section.settings.content -%}
-  <header class="mb-8 rte">
-    {{ section.settings.content }}
-  </header>
-{%- endif -%}
+<div class="section">
+  {%- if section.settings.content -%}
+    <header class="mb-8 rte">
+      {{ section.settings.content }}
+    </header>
+  {%- endif -%}
 
-{%- if section.settings.blog != nil -%}
-  {% paginate section.settings.blog.articles by section.settings.page_size %}
-    <ul class="item-grid <sm:grid-cols-1" style="--size: {{ section.settings.grid_item_size | default: item_size }}px;">
-      {%- render 'article-item-static'
-        for section.settings.blog.articles as article
-        with section
-        aspect_ratio: 1.5
-      -%}
-    </ul>
+  {%- if section.settings.blog != nil -%}
+    {% paginate section.settings.blog.articles by section.settings.page_size %}
+      <ul class="item-grid <sm:grid-cols-1" style="--size: {{ section.settings.grid_item_size | default: item_size }}px;">
+        {%- render 'article-item-static'
+          for section.settings.blog.articles as article
+          with section
+          aspect_ratio: 1.5
+        -%}
+      </ul>
 
-    {%- if paginate.pages > 1 -%}
-      <nav class="pagination">{{ paginate | default_pagination }}</nav>
-    {%- endif -%}
-  {% endpaginate %}
-{%- endif -%}
+      {%- if paginate.pages > 1 -%}
+        <nav class="pagination">{{ paginate | default_pagination }}</nav>
+      {%- endif -%}
+    {% endpaginate %}
+  {%- endif -%}
+</div>
+
+<style type="text/tailwindcss">
+  #shopify-section-{{ section.id }} {
+    --canvas: {{ section.settings.color_scheme.settings.canvas }};
+    --ink: {{ section.settings.color_scheme.settings.ink }};
+    --stroke: {{ section.settings.color_scheme.settings.stroke }};
+    @apply bg-[var(--canvas)] text-[var(--ink)];
+  }
+</style>
 
 {% schema %}
 {
   "name": "Article list",
   "tag": "section",
-  "class": "section",
   "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme"
+    },
     {
       "type": "blog",
       "id": "blog",

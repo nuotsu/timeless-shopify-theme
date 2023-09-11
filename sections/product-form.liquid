@@ -37,7 +37,7 @@
 
           {%- when 'description' -%}
             <div class="rte empty:hidden {{ block.settings.tailwind | default: '<md:text-sm' }}">
-              {{- product.description -}}
+              {{- product.description | replace: '<meta charset="utf-8">', '' -}}
             </div>
 
           {%- when 'divider' -%}
@@ -59,7 +59,7 @@
               class="{{ block.settings.tailwind | default: 'text-sm text-center md:text-left' }}"
               {% if block.settings.threshold_enabled %}
                 data-inventory-threshold="{{ block.settings.threshold }}"
-                {% if p.inventory_quantity > block.settings.threshold %}hidden{% endif %}
+                {% if product.selected_or_first_available_variant.inventory_quantity > block.settings.threshold %}hidden{% endif %}
               {% endif %}
             >
               {% render 'inventory', text: block.settings.text %}
@@ -209,7 +209,6 @@
           "id": "inventory_text",
           "label": "Inventory text",
           "info": "\"#\" will be replaced with the actual inventory quantity. Leave blank to hide.",
-          "default": "(# left)",
           "placeholder": "(# left)"
         },
         {

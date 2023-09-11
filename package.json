@@ -10,7 +10,7 @@
   "author": "nuotsu <xzmaru@gmail.com> (https://nuotsu.dev)",
   "license": "ISC",
   "scripts": {
-    "dev": "shopify theme dev --store=nuotsu-dev",
+    "dev": "shopify theme dev --store=decal-california",
     "check": "shopify theme check"
   }
 }

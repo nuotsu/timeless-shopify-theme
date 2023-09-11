@@ -60,35 +60,35 @@
     "2326e1f5-dd4b-4acb-85c6-34994c4a7832": {
       "type": "text-and-icon",
       "blocks": {
-        "template--20591287501082__2326e1f5-dd4b-4acb-85c6-34994c4a7832-item-1": {
-          "type": "item",
-          "settings": {
-            "content": "<h3>Rev Up Your Imagination, Not Your Engine.<\/h3><p>Explore the world of automotive nonsense at our store. From blinker fluid to muffler bearings, we've got the quirkiest car parts you never knew you needed. It's all about the joy of the journey, not the destination.<\/p>"
-          }
-        },
         "template--20591287501082__2326e1f5-dd4b-4acb-85c6-34994c4a7832-item-2": {
           "type": "item",
           "settings": {
-            "content": "<h3>Redefining 'Under the Hood'<\/h3><p>Redefine 'under the hood' with our absurd car components. Inject humor into your ride and let's make your car the life of the party.<\/p>"
+            "content": "<h3>Made in Decal-<em>ifornia<\/em><\/h3><p>All stickers are built right here in Southern California. Home of the best cars ,and car meets and car decals in the world.<\/p>"
           }
         },
         "template--20591287501082__2326e1f5-dd4b-4acb-85c6-34994c4a7832-item-3": {
           "type": "item",
           "settings": {
-            "content": "<h3>Because Your Car Deserves a Good Laugh.<\/h3><p>Get ready for a good laugh with our hilarious and utterly pointless car parts. Make your car a conversation starter and embrace the lighter side of driving.<\/p>"
+            "content": "<h3>Quality, Quality, Quality.<\/h3><p>The best quality decals made for the best quality rides.<\/p>"
+          }
+        },
+        "template--20591287501082__2326e1f5-dd4b-4acb-85c6-34994c4a7832-item-1": {
+          "type": "item",
+          "settings": {
+            "content": "<h3>You name it, we got it.<\/h3><p>If can't find the exact model for your ride, <a href=\"\/pages\/contact\" title=\"Contact\">hit us up<\/a> and we gochu.<\/p>"
           }
         }
       },
       "block_order": [
-        "template--20591287501082__2326e1f5-dd4b-4acb-85c6-34994c4a7832-item-1",
         "template--20591287501082__2326e1f5-dd4b-4acb-85c6-34994c4a7832-item-2",
-        "template--20591287501082__2326e1f5-dd4b-4acb-85c6-34994c4a7832-item-3"
+        "template--20591287501082__2326e1f5-dd4b-4acb-85c6-34994c4a7832-item-3",
+        "template--20591287501082__2326e1f5-dd4b-4acb-85c6-34994c4a7832-item-1"
       ],
       "settings": {
         "color_scheme": "scheme-90cd56fb-9ea6-4dc6-b3a9-59f1b4e3da31",
         "color_items": false,
         "content": "<h2>Why Decal California?<\/h2>",
-        "content_align": "left",
+        "content_align": "center",
         "columns": 3,
         "icon_height": 60
       }
@@ -158,9 +158,10 @@
       ],
       "settings": {
         "color_scheme": "dark",
-        "content": "<h1>Your Car's Best Friend, Ready to Assist!<\/h1><p>We're your trusted partner in vehicle enhancement. Our team of experts is dedicated to providing high-quality, precision-engineered car components that cater to your vehicle's unique requirements. Discover how we can take your ride to new heights.<\/p>",
-        "content_alignment": "left",
-        "image_position_desktop": "",
+        "content": "<h2>Super cheap, super chill<\/h2><p>Honestly, it can't get any easier than this. Avoid FOMO and get yourself a decal.<\/p>",
+        "content_alignment": "center",
+        "image": "shopify:\/\/shop_images\/nuotsu_photorealistic_product_mockup_of_a_pack_of_sticker_325bd4fe-c8d5-40d6-a98b-713d209a73b6.png",
+        "image_position_desktop": "md:order-1",
         "image_position_mobile": "",
         "image_loading": "lazy"
       }

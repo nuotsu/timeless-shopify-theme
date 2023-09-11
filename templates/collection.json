@@ -10,7 +10,7 @@
         "opened_by_default": true,
         "filters_position": "left",
         "sale_badge_enabled": true,
-        "grid_item_size": 200,
+        "grid_item_size": 180,
         "page_size": 12
       }
     }

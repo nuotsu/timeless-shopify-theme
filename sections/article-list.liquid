@@ -19,6 +19,10 @@
         <nav class="pagination">{{ paginate | default_pagination }}</nav>
       {%- endif -%}
     {% endpaginate %}
+
+  {%- else -%}
+    <p class="text-ink-subdued text-center">No articles</p>
+
   {%- endif -%}
 </div>
 

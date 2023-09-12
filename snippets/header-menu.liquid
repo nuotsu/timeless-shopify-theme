@@ -38,7 +38,7 @@
                               class="group grid gap-2 <sm:grid-cols-[100px,1fr] items-center sm:text-center font-bold"
                               href="{{ child_link.url }}"
                             >
-                              <figure class="overflow-hidden bg-[var(--canvas-subdued)] shadow-md">
+                              <figure class="overflow-hidden bg-[var(--canvas-subdued)] rounded-[var(--border-radius)] shadow-md">
                                 {{ featured_link.image
                                   | default: child_link.object.featured_image
                                   | image_url: width: 300, height: 200

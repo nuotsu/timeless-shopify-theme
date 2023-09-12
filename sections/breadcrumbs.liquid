@@ -6,7 +6,7 @@
   request.page_type == 'article' or
   request.page_type == 'page'
 -%}
-  <nav class="section py-4 {{ section.settings.tailwind | default: 'text-sm' }}">
+  <nav class="section py-4 text-sm">
     <ol class="flex" itemscope itemtype="https://schema.org/BreadcrumbList">
       {% render 'breadcrumb-item', link: routes.root_url, title: 'Home', position: 1 %}
 
@@ -56,12 +56,6 @@
       "type": "color_scheme",
       "id": "color_scheme",
       "label": "Color scheme"
-    },
-    {
-      "type": "liquid",
-      "id": "tailwind",
-      "label": "Tailwind classes",
-      "info": "Default: \"text-sm\""
     }
   ],
   "presets": [

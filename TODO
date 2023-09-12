@@ -1,18 +1,16 @@
 # TODO
 
-## General
-- slideshow
-- password input toggle
-
-## PDP
-- vertical thumbnails
-
-## Pre-launch
-
-### Products
-- elbow grease
-
-### Documentation
+## Documentation
 - contact form
 - FAQs
 - https://shopify.dev/docs/themes/store/success/brand-assets
+
+## Roadmap
+
+- More sections
+  - slideshow
+- UI/UX Improvements
+  - password input toggle
+  - popover cart
+- Performance Improvements
+  - swiper-element

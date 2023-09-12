@@ -5,8 +5,7 @@
     "breadcrumbs": {
       "type": "breadcrumbs",
       "settings": {
-        "color_scheme": "gray",
-        "tailwind": ""
+        "color_scheme": "gray"
       }
     },
     "footer": {

@@ -18,9 +18,10 @@
       "settings": {
         "color_scheme": "dark",
         "content": "<h1>But first... decals.<\/h1><p>You've seen 'em on the roads.<\/p><p>Now there here, waiting for you 🥹<\/p>",
-        "content_alignment": "center",
-        "min_height": 90,
-        "bg_opacity": 0.5
+        "content_alignment": "left",
+        "min_height": 75,
+        "image": "shopify:\/\/shop_images\/nuotsu_piles_and_stackes_of_bumper_stickers_children_throwing__99f5fbb9-d9ae-4370-bd26-abc033293ce4.png",
+        "bg_opacity": 0.6
       }
     },
     "939f3313-244b-4ea3-9533-75ea1269de22": {

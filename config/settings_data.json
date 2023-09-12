@@ -1,11 +1,10 @@
 {
   "current": {
-    "font_heading": "kairos_n4",
-    "font_body": "ibm_plex_sans_n4",
-    "anim_emoji": "🚙",
-    "border_radius": 2,
+    "font_heading": "serif",
+    "font_body": "sans-serif",
+    "anim_emoji": "👍",
+    "border_radius": 0,
     "fully_rounded_buttons": false,
-    "favicon": "shopify:\/\/shop_images\/t-rex_1f996.png",
     "checkout_input_background_color_mode": "transparent",
     "checkout_sidebar_background_color": "#fff",
     "checkout_accent_color": "#dd1d1d",

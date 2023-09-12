@@ -3,29 +3,20 @@
     "heading": {
       "type": "heading",
       "blocks": {
-        "85f653a9-e073-4185-b0f9-a66a30d37eee": {
-          "type": "cta",
-          "settings": {
-            "url": "shopify:\/\/collections\/timeless-stuff",
-            "label": "Explore Timeless Wonders",
-            "style": "ghost"
-          }
-        },
         "c4ca76ea-5c49-4e4b-8088-d0f8c1431e62": {
           "type": "cta",
           "settings": {
             "url": "\/",
-            "label": "take me home",
-            "style": "hashtag"
+            "label": "Go home",
+            "style": "action"
           }
         }
       },
       "block_order": [
-        "85f653a9-e073-4185-b0f9-a66a30d37eee",
         "c4ca76ea-5c49-4e4b-8088-d0f8c1431e62"
       ],
       "settings": {
-        "content": "<h1>Lost in Time...?<\/h1><p><strong>Oops! It seems you've wandered into uncharted territory.<\/strong><\/p><p>Just like the intricate mechanics of a timeless machine, our digital pathways sometimes take unexpected turns. But fear not, for every detour is a chance to discover something new. While you're here, why not explore our curated collection of timeless treasures?<\/p>",
+        "content": "<h1>Page not found<\/h1>",
         "bg_opacity": 0.5
       }
     }

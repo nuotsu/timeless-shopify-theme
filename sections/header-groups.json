@@ -2,14 +2,14 @@
   "name": "Header",
   "type": "header",
   "sections": {
-    "d992c21f-752c-4c84-a751-f552e3aaaa35": {
+    "announcement": {
       "type": "announcement",
       "blocks": {
         "850afe85-78d1-4942-a892-37c1cd5df2db": {
           "type": "static",
           "settings": {
             "color_scheme": "dark",
-            "content": "<p><a href=\"\/products\/flux-capacitoor-mark-ii\" title=\"Flux Capacitor Mark II\">Flux Capacitor Mark II<\/a> Officially Announced!<\/p>"
+            "content": "<p>Announcement goes here.<\/p>"
           }
         }
       },
@@ -27,17 +27,10 @@
           "settings": {
             "title": "Catalog"
           }
-        },
-        "d9209980-ff1d-488e-ac69-aab8c8f06d01": {
-          "type": "featured_link",
-          "settings": {
-            "title": "New Product"
-          }
         }
       },
       "block_order": [
-        "d752493f-8893-4048-aab0-ec763a3057d5",
-        "d9209980-ff1d-488e-ac69-aab8c8f06d01"
+        "d752493f-8893-4048-aab0-ec763a3057d5"
       ],
       "settings": {
         "color_scheme": "scheme-6d4c9e72-9abe-4e91-aafe-ae5cffbf63eb",
@@ -50,7 +43,7 @@
     }
   },
   "order": [
-    "d992c21f-752c-4c84-a751-f552e3aaaa35",
+    "announcement",
     "header"
   ]
 }

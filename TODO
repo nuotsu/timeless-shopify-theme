@@ -9,8 +9,9 @@
 
 - More sections
   - slideshow
+  - atomic widgets
+- Performance Improvements
+  - swiper-element
 - UI/UX Improvements
   - password input toggle
   - popover cart
-- Performance Improvements
-  - swiper-element

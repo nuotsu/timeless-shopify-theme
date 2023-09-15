@@ -1,29 +1,5 @@
 {
   "sections": {
-    "3097804f-badb-49ff-bb28-5768bda94764": {
-      "type": "hero",
-      "blocks": {
-        "template--20950159851800__3097804f-badb-49ff-bb28-5768bda94764-cta-1": {
-          "type": "cta",
-          "settings": {
-            "url": "",
-            "label": "Shop now",
-            "style": "action"
-          }
-        }
-      },
-      "block_order": [
-        "template--20950159851800__3097804f-badb-49ff-bb28-5768bda94764-cta-1"
-      ],
-      "settings": {
-        "color_scheme": "",
-        "content": "<h2>Heading<\/h2><p>A description goes here.<\/p>",
-        "content_alignment": "left",
-        "image_position_desktop": "",
-        "image_position_mobile": "",
-        "image_loading": "lazy"
-      }
-    },
     "heading": {
       "type": "heading",
       "blocks": {
@@ -49,7 +25,6 @@
     }
   },
   "order": [
-    "3097804f-badb-49ff-bb28-5768bda94764",
     "heading"
   ]
 }

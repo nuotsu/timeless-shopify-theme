@@ -16,7 +16,10 @@
         "c4ca76ea-5c49-4e4b-8088-d0f8c1431e62"
       ],
       "settings": {
+        "color_scheme": "",
         "content": "<h1>Page not found<\/h1>",
+        "content_alignment": "center",
+        "min_height": 0,
         "bg_opacity": 0.5
       }
     }

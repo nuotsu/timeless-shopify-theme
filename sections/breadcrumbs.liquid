@@ -11,7 +11,7 @@
       {% render 'breadcrumb-item', link: routes.root_url, title: 'Home', position: 1 %}
 
       {%- liquid
-        case template
+        case template.name
           when 'product'
             if collection != blank
               render 'breadcrumb-item', link: collection.url, title: collection.title, position: 2
@@ -41,7 +41,7 @@
     }
 
     #shopify-section-{{ section.id }} li:not(:first-child)::before {
-      content: '/';
+      content: '{{ section.settings.separator }}';
       @apply text-[var(--stroke)] mx-2;
     }
   </style>
@@ -56,6 +56,12 @@
       "type": "color_scheme",
       "id": "color_scheme",
       "label": "Color scheme"
+    },
+    {
+      "type": "text",
+      "id": "separator",
+      "label": "Separator",
+      "default": "/"
     }
   ],
   "presets": [

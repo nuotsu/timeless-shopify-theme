@@ -163,6 +163,50 @@
         "content": "<h2>Unlock Exclusive Access to Automotive Advancements!<\/h2><p>Join our community of discerning drivers and be the first to access exclusive offers, cutting-edge innovations, and expert insights.<\/p>",
         "submit_label": "Unlock now!"
       }
+    },
+    "f236dc8f-6d2a-4b6c-bf40-add9d5fe07a1": {
+      "type": "testimonial-list",
+      "blocks": {
+        "template--20920796315930__f236dc8f-6d2a-4b6c-bf40-add9d5fe07a1-testimonial-1": {
+          "type": "testimonial",
+          "settings": {
+            "show_rating": true,
+            "rating": 5,
+            "quote": "<p>Nothing beats Auto Hub. They're simply just the best.<\/p>",
+            "author": "K. Tsuchiya",
+            "author_title": "Drift King"
+          }
+        },
+        "template--20920796315930__f236dc8f-6d2a-4b6c-bf40-add9d5fe07a1-testimonial-2": {
+          "type": "testimonial",
+          "settings": {
+            "show_rating": true,
+            "rating": 5,
+            "quote": "<p>I just bought one... and now I'm addicted.<\/p>",
+            "author": "Lay Jeno",
+            "author_title": "Collector"
+          }
+        },
+        "template--20920796315930__f236dc8f-6d2a-4b6c-bf40-add9d5fe07a1-testimonial-3": {
+          "type": "testimonial",
+          "settings": {
+            "show_rating": true,
+            "rating": 5,
+            "quote": "<p>How can you say no to the deals here.<\/p>",
+            "author": "Yori Naro",
+            "author_title": "YouTuber"
+          }
+        }
+      },
+      "block_order": [
+        "template--20920796315930__f236dc8f-6d2a-4b6c-bf40-add9d5fe07a1-testimonial-1",
+        "template--20920796315930__f236dc8f-6d2a-4b6c-bf40-add9d5fe07a1-testimonial-2",
+        "template--20920796315930__f236dc8f-6d2a-4b6c-bf40-add9d5fe07a1-testimonial-3"
+      ],
+      "settings": {
+        "color_scheme": "default",
+        "content": "<h2>Hear from our customers<\/h2>"
+      }
     }
   },
   "order": [
@@ -172,6 +216,7 @@
     "af49d980-61bc-48b6-9448-ef6e553acba2",
     "07a70b09-2787-454e-9baa-14cb1eb74a2d",
     "4ba374f6-ed77-4898-9e79-f005e3f0084b",
-    "934419f0-0530-4768-98cc-9472b579fe40"
+    "934419f0-0530-4768-98cc-9472b579fe40",
+    "f236dc8f-6d2a-4b6c-bf40-add9d5fe07a1"
   ]
 }

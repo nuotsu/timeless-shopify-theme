@@ -167,6 +167,50 @@
         "image_loading": "lazy"
       }
     },
+    "97e28a24-be9b-4914-9f1f-2aa2a7c9e6e5": {
+      "type": "testimonial-list",
+      "blocks": {
+        "template--20897512849682__97e28a24-be9b-4914-9f1f-2aa2a7c9e6e5-testimonial-1": {
+          "type": "testimonial",
+          "settings": {
+            "show_rating": true,
+            "rating": 5,
+            "quote": "<p>Nothing beats Decal California's stickers. They're simply just the best.<\/p>",
+            "author": "K. Tsuchiya",
+            "author_title": "Drift King"
+          }
+        },
+        "template--20897512849682__97e28a24-be9b-4914-9f1f-2aa2a7c9e6e5-testimonial-2": {
+          "type": "testimonial",
+          "settings": {
+            "show_rating": true,
+            "rating": 5,
+            "quote": "<p>I only bought one... and now I'm addicted.<\/p>",
+            "author": "Lay Jeno",
+            "author_title": "Collector"
+          }
+        },
+        "template--20897512849682__97e28a24-be9b-4914-9f1f-2aa2a7c9e6e5-testimonial-3": {
+          "type": "testimonial",
+          "settings": {
+            "show_rating": true,
+            "rating": 5,
+            "quote": "<p>How can you say no to the deals here.<\/p>",
+            "author": "Yori Naro",
+            "author_title": "YouTuber"
+          }
+        }
+      },
+      "block_order": [
+        "template--20897512849682__97e28a24-be9b-4914-9f1f-2aa2a7c9e6e5-testimonial-1",
+        "template--20897512849682__97e28a24-be9b-4914-9f1f-2aa2a7c9e6e5-testimonial-2",
+        "template--20897512849682__97e28a24-be9b-4914-9f1f-2aa2a7c9e6e5-testimonial-3"
+      ],
+      "settings": {
+        "color_scheme": "scheme-90cd56fb-9ea6-4dc6-b3a9-59f1b4e3da31",
+        "content": "<h2>Hear from our customers<\/h2>"
+      }
+    },
     "4ba374f6-ed77-4898-9e79-f005e3f0084b": {
       "type": "article-list",
       "settings": {
@@ -192,6 +236,7 @@
     "2326e1f5-dd4b-4acb-85c6-34994c4a7832",
     "bdf38db3-3d71-4613-9e0d-ac7b77b57196",
     "af49d980-61bc-48b6-9448-ef6e553acba2",
+    "97e28a24-be9b-4914-9f1f-2aa2a7c9e6e5",
     "4ba374f6-ed77-4898-9e79-f005e3f0084b",
     "934419f0-0530-4768-98cc-9472b579fe40"
   ]

@@ -176,35 +176,13 @@
             "author": "K. Tsuchiya",
             "author_title": "Drift King"
           }
-        },
-        "template--20920796315930__f236dc8f-6d2a-4b6c-bf40-add9d5fe07a1-testimonial-2": {
-          "type": "testimonial",
-          "settings": {
-            "show_rating": true,
-            "rating": 5,
-            "quote": "<p>I just bought one... and now I'm addicted.<\/p>",
-            "author": "Lay Jeno",
-            "author_title": "Collector"
-          }
-        },
-        "template--20920796315930__f236dc8f-6d2a-4b6c-bf40-add9d5fe07a1-testimonial-3": {
-          "type": "testimonial",
-          "settings": {
-            "show_rating": true,
-            "rating": 5,
-            "quote": "<p>How can you say no to the deals here.<\/p>",
-            "author": "Yori Naro",
-            "author_title": "YouTuber"
-          }
         }
       },
       "block_order": [
-        "template--20920796315930__f236dc8f-6d2a-4b6c-bf40-add9d5fe07a1-testimonial-1",
-        "template--20920796315930__f236dc8f-6d2a-4b6c-bf40-add9d5fe07a1-testimonial-2",
-        "template--20920796315930__f236dc8f-6d2a-4b6c-bf40-add9d5fe07a1-testimonial-3"
+        "template--20920796315930__f236dc8f-6d2a-4b6c-bf40-add9d5fe07a1-testimonial-1"
       ],
       "settings": {
-        "color_scheme": "default",
+        "color_scheme": "gray",
         "content": "<h2>Hear from our customers<\/h2>"
       }
     }

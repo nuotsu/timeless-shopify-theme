@@ -6,7 +6,7 @@
         "0b40575d-b6b3-46fa-84b6-10cfa7683275": {
           "type": "cta",
           "settings": {
-            "url": "shopify:\/\/products\/all",
+            "url": "shopify:\/\/collections",
             "label": "Shop now",
             "style": "action"
           }
@@ -27,13 +27,22 @@
       "type": "resource-list",
       "blocks": {
         "template--collection-list-collection-1": {
-          "type": "collection"
+          "type": "collection",
+          "settings": {
+            "collection": ""
+          }
         },
         "template--collection-list-collection-2": {
-          "type": "collection"
+          "type": "collection",
+          "settings": {
+            "collection": ""
+          }
         },
         "template--collection-list-collection-3": {
-          "type": "collection"
+          "type": "collection",
+          "settings": {
+            "collection": ""
+          }
         }
       },
       "block_order": [
@@ -79,7 +88,7 @@
         "template--20591287501082__text-and-icon-item-3"
       ],
       "settings": {
-        "color_scheme": "dark",
+        "color_scheme": "default",
         "color_items": false,
         "content": "<h2>Why choose us?<\/h2>",
         "content_align": "left",
@@ -93,9 +102,9 @@
         "template--20591287501082__hero-cta-1": {
           "type": "cta",
           "settings": {
-            "url": "shopify:\/\/products\/all",
+            "url": "shopify:\/\/collections",
             "label": "Shop now",
-            "style": "action-secondary"
+            "style": "action"
           }
         }
       },
@@ -103,35 +112,12 @@
         "template--20591287501082__hero-cta-1"
       ],
       "settings": {
-        "color_scheme": "dark",
+        "color_scheme": "default",
         "content": "<h2>Heading<\/h2><p>A description goes here.<\/p>",
         "content_alignment": "left",
         "image_position_desktop": "",
         "image_position_mobile": "",
         "image_loading": "lazy"
-      }
-    },
-    "featured-collection": {
-      "type": "featured-collection",
-      "blocks": {
-        "e79cf6f8-5c36-4529-859b-4d7362403bdc": {
-          "type": "cta",
-          "settings": {
-            "url": "shopify:\/\/collection\/all",
-            "label": "Shop now",
-            "style": "action"
-          }
-        }
-      },
-      "block_order": [
-        "e79cf6f8-5c36-4529-859b-4d7362403bdc"
-      ],
-      "settings": {
-        "color_scheme": "",
-        "content": "<h2>Heading<\/h2>",
-        "limit": 4,
-        "columns": 4,
-        "sale_badge_enabled": true
       }
     },
     "article-list": {
@@ -158,7 +144,6 @@
     "collection-list",
     "text-and-icon",
     "hero",
-    "featured-collection",
     "article-list",
     "newsletter-form"
   ]

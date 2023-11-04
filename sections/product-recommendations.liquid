@@ -10,7 +10,7 @@
 
 <script type="module">
   // TODO: use intersection observer to lazyload
-  fetch('{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit=4&intent={{ section.settings.intent }}')
+  fetch('{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit=4&intent=related')
     .then(res => res.text())
     .then(data => {
       const div = document.createElement('div')

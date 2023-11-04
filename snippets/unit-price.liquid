@@ -1,8 +1,17 @@
-{%- if measurement -%}
-  <small aria-label="{{ measurement.measured_type }}">/
-    {%- if measurement.reference_value != 1 -%}
-      {{- measurement.reference_value -}}
-    {%- endif -%}
-    {{ measurement.reference_unit }}
+{%- liquid
+  assign unit_price = product.selected_or_first_available_variant.unit_price_measurement
+  assign unit_price_value = product.selected_or_first_available_variant.price | times: unit_price.reference_value | divided_by: unit_price.quantity_value
+-%}
+
+{%- if unit_price != nil -%}
+  <small>
+    {{- unit_price_value | money -}}
+
+    <span aria-label="{{ unit_price.measured_type }}">/
+      {%- if unit_price.reference_value != 1 -%}
+        {{- unit_price.reference_value -}}
+      {%- endif -%}
+      {{- unit_price.reference_unit -}}
+    </span>
   </small>
 {%- endif -%}

@@ -37,6 +37,7 @@ import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.mjs
 
   const productForm = document.querySelector('#shopify-section-{{ section.id }} form')
   const variantSelector = productForm.querySelector('select[name="id"]')
+  const buyButton = productForm.querySelector('button[type="submit"]')
 
   if (!!variantSelector) {
     // initialize options (populate on page load)
@@ -61,10 +62,17 @@ import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.mjs
         // update <select name="id">
         variantSelector.value = newVariantId
 
-        // update [data-*]
         const [selectedOption] = variantSelector.selectedOptions
         const selected = JSON.parse(selectedOption.innerHTML)
 
+        // update buy button
+        if (Number(selectedOption.dataset.inventory) <= 0) {
+          buyButton.setAttribute('disabled', '')
+        } else {
+          buyButton.removeAttribute('disabled')
+        }
+
+        // update [data-*]
         productForm.querySelectorAll('[data-sku]').forEach(elem => {
           elem.textContent = selected.sku
 

@@ -10,12 +10,15 @@
   {%- endif -%}
 
   <div class="swiper text-center">
-    <div class="swiper-wrapper items-center">
+    <div class="swiper-wrapper !items-center">
       {%- for testimonial in testimonials -%}
-        <article class="swiper-slide p-4 max-w-lg" style="border-radius: var(--border-radius);">
+        <article
+          class="swiper-slide p-4 {% if section.blocks.size > 1 %}max-w-lg{% endif %}"
+          style="border-radius: var(--border-radius);"
+        >
           <span class="absolute top-2 left-4 fill-ink opacity-10 text-4xl">{% render 'icon' with 'quote' %}</span>
 
-          <blockquote class="relative">
+          <blockquote class="relative" style="text-wrap: balance;">
             {%- if testimonial.show_rating -%}
               <div>
                 {%- for star in (1..5) -%}
@@ -70,6 +73,7 @@
       spaceBetween: 16,
       centeredSlides: true,
       autoHeight: true,
+      loop: {{ section.settings.carousel_loop_enabled }},
     })
   })()
 </script>
@@ -89,6 +93,17 @@
       "id": "content",
       "label": "Content",
       "default": "<h2>Hear from our customers</h2>"
+    },
+    {
+      "type": "header",
+      "content": "Carousel",
+      "info": "This theme uses [Swiper](https://swiperjs.com/) for carousels. Refresh the page to see the results."
+    },
+    {
+      "type": "checkbox",
+      "id": "carousel_loop_enabled",
+      "label": "Enable looping",
+      "default": true
     }
   ],
   "blocks": [

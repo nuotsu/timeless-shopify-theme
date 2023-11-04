@@ -24,22 +24,22 @@
         "bg_opacity": 0.6
       }
     },
-    "939f3313-244b-4ea3-9533-75ea1269de22": {
+    "collection-list": {
       "type": "resource-list",
       "blocks": {
-        "template--20591287501082__939f3313-244b-4ea3-9533-75ea1269de22-collection-1": {
+        "template--collection-list-collection-1": {
           "type": "collection",
           "settings": {
             "collection": "jdm"
           }
         },
-        "template--20591287501082__939f3313-244b-4ea3-9533-75ea1269de22-collection-2": {
+        "template--collection-list-collection-2": {
           "type": "collection",
           "settings": {
             "collection": "european"
           }
         },
-        "template--20591287501082__939f3313-244b-4ea3-9533-75ea1269de22-collection-3": {
+        "template--collection-list-collection-3": {
           "type": "collection",
           "settings": {
             "collection": "american"
@@ -47,9 +47,9 @@
         }
       },
       "block_order": [
-        "template--20591287501082__939f3313-244b-4ea3-9533-75ea1269de22-collection-1",
-        "template--20591287501082__939f3313-244b-4ea3-9533-75ea1269de22-collection-2",
-        "template--20591287501082__939f3313-244b-4ea3-9533-75ea1269de22-collection-3"
+        "template--collection-list-collection-1",
+        "template--collection-list-collection-2",
+        "template--collection-list-collection-3"
       ],
       "settings": {
         "color_scheme": "default",
@@ -58,7 +58,7 @@
         "sale_badge_enabled": true
       }
     },
-    "2326e1f5-dd4b-4acb-85c6-34994c4a7832": {
+    "text-and-icon": {
       "type": "text-and-icon",
       "blocks": {
         "template--20591287501082__2326e1f5-dd4b-4acb-85c6-34994c4a7832-item-2": {
@@ -67,7 +67,7 @@
             "content": "<h3>Made in Decal-<em>ifornia<\/em><\/h3><p>All stickers are built right here in Southern California. Home of the best cars ,and car meets and car decals in the world.<\/p>"
           }
         },
-        "template--20591287501082__2326e1f5-dd4b-4acb-85c6-34994c4a7832-item-3": {
+        "template--20591287501082__text-and-icon-item-3": {
           "type": "item",
           "settings": {
             "content": "<h3>Quality, Quality, Quality.<\/h3><p>The best quality decals made for the best quality rides.<\/p>"
@@ -145,7 +145,7 @@
     "af49d980-61bc-48b6-9448-ef6e553acba2": {
       "type": "hero",
       "blocks": {
-        "template--20591287501082__af49d980-61bc-48b6-9448-ef6e553acba2-cta-1": {
+        "template--20591287501082__hero-cta-1": {
           "type": "cta",
           "settings": {
             "url": "shopify:\/\/collections\/all",
@@ -211,17 +211,17 @@
         "content": "<h2>Hear from our customers<\/h2>"
       }
     },
-    "4ba374f6-ed77-4898-9e79-f005e3f0084b": {
+    "article-list": {
       "type": "article-list",
       "settings": {
         "color_scheme": "scheme-6d4c9e72-9abe-4e91-aafe-ae5cffbf63eb",
-        "blog": "timeless",
+        "blog": "news",
         "content": "<h2>Read our blog<\/h2>",
         "grid_item_size": 240,
         "page_size": 4
       }
     },
-    "934419f0-0530-4768-98cc-9472b579fe40": {
+    "newsletter-form": {
       "type": "newsletter-form",
       "settings": {
         "color_scheme": "scheme-90cd56fb-9ea6-4dc6-b3a9-59f1b4e3da31",

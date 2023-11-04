@@ -20,7 +20,11 @@
 
           {%- when 'buy-button' -%}
             <div>
-              <button class="action w-full {% unless block.settings.full_width %}md:w-auto{% endunless %}" type="submit">
+              <button
+                class="action w-full {% unless block.settings.full_width %}md:w-auto{% endunless %}"
+                type="submit"
+                {% unless product.available or product.selected_or_first_available_variant.availabile %}disabled{% endunless %}
+              >
                 {{ block.settings.text | default: 'Add to cart' | escape }}
                 {%- if block.settings.inventory_text != blank -%}
                   {% render 'inventory', text: block.settings.inventory_text %}
@@ -201,15 +205,13 @@
         {
           "type": "text",
           "id": "text",
-          "label": "Text",
-          "placeholder": "Add to cart"
+          "label": "Text"
         },
         {
           "type": "text",
           "id": "inventory_text",
           "label": "Inventory text",
-          "info": "\"#\" will be replaced with the actual inventory quantity. Leave blank to hide.",
-          "placeholder": "(# left)"
+          "info": "\"#\" will be replaced with the actual inventory quantity. Leave blank to hide."
         },
         {
           "type": "checkbox",
@@ -287,8 +289,7 @@
           "id": "text",
           "label": "Text",
           "info": "\"#\" will be replaced with the actual inventory quantity",
-          "default": "Only # left in stock!",
-          "placeholder": "Only # left in stock!"
+          "default": "Only # left in stock!"
         },
         {
           "type": "checkbox",

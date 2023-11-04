@@ -6,19 +6,19 @@
   endif
 
   capture unit_price
-    render 'unit-price', measurement: product.selected_or_first_available_variant.unit_price_measurement
+    render 'unit-price', product: product
   endcapture
 -%}
 
 <div class="flex flex-wrap gap-2 items-baseline {{ class }}">
   <span>
     <strong data-price>{{ p.price | money }}</strong>
-    {{- unit_price -}}
+    {{ unit_price -}}
   </span>
 
   <span {% unless p.price < p.compare_at_price %}hidden{% endunless %}>
     <s data-compare-at-price>{{ p.compare_at_price | money }}</s>
-    {{- unit_price -}}
+    {{ unit_price -}}
   </span>
 
   {%- if show_taxes_included and cart.taxes_included -%}

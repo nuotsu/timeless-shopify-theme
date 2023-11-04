@@ -352,33 +352,33 @@ tailwind.config = {
   /* anims */
 
   @keyframes fade {
-		from {
-			opacity: 0;
-			scale: var(--scale, 1);
-			translate: var(--translate, 0 0);
-		}
-		to {
-			opacity: 1;
-			scale: 1;
-			translate: 0 0;
-		}
-	}
+    from {
+      opacity: 0;
+      scale: var(--scale, 1);
+      translate: var(--translate, 0 0);
+    }
+    to {
+      opacity: 1;
+      scale: 1;
+      translate: 0 0;
+    }
+  }
 
-	.anim-fade {
-		animation: fade .2s ease-in-out var(--delay, 0s) forwards;
-	}
-	.anim-fade-r {
-		@apply anim-fade;
-		--translate: -1rem 0;
-	}
-	.anim-fade-l {
-		@apply anim-fade;
-		--translate: 1rem 0;
-	}
-	.anim-fade-b {
-		@apply anim-fade;
-		--translate: 0 -1rem;
-	}
+  .anim-fade {
+    animation: fade .2s ease-in-out var(--delay, 0s) forwards;
+  }
+  .anim-fade-r {
+    @apply anim-fade;
+    --translate: -1rem 0;
+  }
+  .anim-fade-l {
+    @apply anim-fade;
+    --translate: 1rem 0;
+  }
+  .anim-fade-b {
+    @apply anim-fade;
+    --translate: 0 -1rem;
+  }
 
   :not(.no-anim-emoji).anim-emoji {
     position: relative;

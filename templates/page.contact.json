@@ -3,7 +3,7 @@
     "contact": {
       "type": "contact",
       "settings": {
-        "content": "<h3>Contact us!<\/h3>",
+        "content": "<h3>Contact us<\/h3>",
         "submit_label": ""
       }
     }

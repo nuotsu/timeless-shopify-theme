@@ -31,3 +31,7 @@ To add custom CSS, use the **Custom CSS fields** found within the [theme editor]
 ```
 
 Refer to https://polaris.shopify.com/icons
+
+## Carousels
+
+All carousels in this theme (if not built with native CSS) are built using [Swiper](https://swiperjs.com/).

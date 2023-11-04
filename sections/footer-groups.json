@@ -11,14 +11,12 @@
     "footer": {
       "type": "footer",
       "settings": {
-        "color_scheme": "dark",
         "menu": "footer"
       }
     },
     "footer-bottom": {
       "type": "footer-bottom",
       "settings": {
-        "color_scheme": "dark",
         "show_follow_on_shop": false
       }
     }
